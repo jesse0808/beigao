@@ -1,0 +1,4252 @@
+{
+  "240": {
+    "title": "特码",
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "当期开出最后一位号码为特码。当开出特码与投注号码一致，即为中奖"
+  },
+  "241": {
+    "title": "正特1",
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "当期开出之前6个号码叫正特。第一号为正特1，依次叫正特2、正特3……正特6，不以大小排序。当开出正特1与投注号码一致、即视为中奖（其余情况则视为不中奖）"
+  },
+  "242": {
+    "title": "正特2",
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "当期开出之前6个号码叫正特。第一号为正特1，依次叫正特2、正特3……正特6，不以大小排序。当开出正特1与投注号码一致、即视为中奖（其余情况则视为不中奖）"
+  },
+  "243": {
+    "title": "正特3",
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "当期开出之前6个号码叫正特。第一号为正特1，依次叫正特2、正特3……正特6，不以大小排序。当开出正特1与投注号码一致、即视为中奖（其余情况则视为不中奖）"
+  },
+  "244": {
+    "title": "正特4",
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "当期开出之前6个号码叫正特。第一号为正特1，依次叫正特2、正特3……正特6，不以大小排序。当开出正特1与投注号码一致、即视为中奖（其余情况则视为不中奖）"
+  },
+  "245": {
+    "title": "正特5",
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "当期开出之前6个号码叫正特。第一号为正特1，依次叫正特2、正特3……正特6，不以大小排序。当开出正特1与投注号码一致、即视为中奖（其余情况则视为不中奖）"
+  },
+  "246": {
+    "title": "正特6",
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "当期开出之前6个号码叫正特。第一号为正特1，依次叫正特2、正特3……正特6，不以大小排序。当开出正特1与投注号码一致、即视为中奖（其余情况则视为不中奖）"
+  },
+  "247": {
+    "title": "半波",
+    "boxArr": [
+      {
+        "value": "红大",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["29","30","34","35","40","45","46"]
+      },
+      {
+        "value": "红小",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["01","02","07","08","12","13","18","19","23","24"]
+      },
+      {
+        "value": "红单",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["01","07","13","19","23","29","34","45"]
+      },
+      {
+        "value": "红双",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["02","08","12","18","24","30","34","40","46"]
+      },
+      {
+        "value": "红合单",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["01","07","12","18","23","29","30","34","45"]
+      },{
+        "value": "红合双",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["02","08","13","19","24","35","40","46"]
+      },
+      {
+        "value": "绿大",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["27","28","32","33","38","39","43","44"]
+      },
+      {
+        "value": "绿小",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["05","06","11","16","17","21","22"]
+      },
+      {
+        "value": "绿单",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["05","11","17","21","27","33","39","43"]
+      },
+      {
+        "value": "绿双",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["06","16","22","28","32","38","44"]
+      },
+      {
+        "value": "绿合单",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["05","16","21","27","32","38","43"]
+      },
+      {
+        "value": "绿合双",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["06","11","17","22","28","33","39","44"]
+      },
+      {
+        "value": "蓝大",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ["25","26","31","36","37","41","42","47","48"]
+      },
+      {
+        "value": "蓝小",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ["03","04","09","10","14","15","20"]
+      },
+      {
+        "value": "蓝单",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ["03","09","15","25","31","37","41","47"]
+      },
+      {
+        "value": "蓝双",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ["04","10","14","20","26","36","42","48"]
+      },
+      {
+        "value": "蓝合单",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ["03","09","10","14","25","36","41","47"]
+      },
+      {
+        "value": "蓝合双",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ["04","15","20","26","31","37","42"]
+      }
+    ],
+    "hintText": "以特码色波和特码单双大小为一个投注组合。当开出的特码出现在其投注组合中，即视为中奖（其余情况则视为不中奖）。若开出特码为49号时，所有投注半波任意一个组合接会被视为和局，并返回全部本金（不派发返点）"
+  },
+  "251": {
+    "title": "尾数",
+    "boxArr": [
+      {
+        "value": "0尾",
+        "state": false,
+        "bgColor": "",
+        "odds": 0,
+        "num": ["10","20","30","40"]
+      },
+      {
+        "value": "1尾",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["01","11","21","31","41"]
+      },
+      {
+        "value": "2尾",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["02","12","22","32","42"]
+      },
+      {
+        "value": "3尾",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["03","13","23","33","43"]
+      },
+      {
+        "value": "4尾",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["04","14","24","34","44"]
+      },{
+        "value": "5尾",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ["05","15","25","35","45"]
+      },
+      {
+        "value": "6尾",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["06","16","26","36","46"]
+      },
+      {
+        "value": "7尾",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["07","17","27","37","47"]
+      },
+      {
+        "value": "8尾",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["08","18","28","38","48"]
+      },
+      {
+        "value": "9尾",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ["09","19","29","39","49"]
+      }
+    ],
+    "hintText": "指7个开奖号码中含有所属尾数的一个或多个号码，不论同尾数的号码出现一个或多个，派彩只派一次"
+  },
+  "252": {
+    "title": "总分",
+    "boxArr": [
+      {
+        "value": "大",
+        "state": false,
+        "bgColor": "",
+        "odds": 0,
+        "text": "总分大于等于175的，即视为中奖。"
+      },
+      {
+        "value": "小",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "text": "总分小于等于174的，即视为中奖。"
+      },
+      {
+        "value": "单",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "text": "总分是单数的，即视为中奖。"
+      },
+      {
+        "value": "双",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "text": "总分是双数的，即视为中奖。"
+      },
+      {
+        "value": "大单",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "text": "总分大于等于175且为单数的，即视为中奖。"
+      },{
+        "value": "大双",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "text": "总分大于等于175且为双数的，即视为中奖。"
+      },
+      {
+        "value": "小单",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "text": "总分小于等于174且为单数的，即视为中奖。"
+      },
+      {
+        "value": "小双",
+        "state": false,
+        "odds": 0,
+        "text": "总分小于等于174且为双数的，即视为中奖。"
+      }
+    ],
+    "hintText": "所有7个开奖号码的数值总和叫做总分"
+  },
+  "253": {
+    "title": "五不中",
+    "betLength": 5,
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "所投注的每五个号码为一注，每注的五个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5则中奖，而投1,2,3,4,6则不中奖"
+  },
+  "254": {
+    "title": "六不中",
+    "betLength": 6,
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "所投注的每六个号码为一注，每注的六个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13则中奖，而投1,2,3,4,5,6则不中奖"
+  },
+  "255": {
+    "title": "七不中",
+    "betLength": 7,
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "所投注的每七个号码为一注，每注的七个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13,14则中奖，而投1,2,3,4,5,6,13则不中奖"
+  },
+  "256": {
+    "title": "八不中",
+    "betLength": 8,
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "所投注的每八个号码为一注，每注的八个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13,14,15则中奖，而投1,2,3,4,5,6,13,14则不中奖"
+  },
+  "257": {
+    "title": "九不中",
+    "betLength": 9,
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "所投注的每九个号码为一注，每注的九个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13,14,15,16则中奖，而投1,2,3,4,5,6,13,14,15则不中奖"
+  },
+  "258": {
+    "title": "十不中",
+    "betLength": 10,
+    "boxArr": [
+      {
+        "value": "01",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "02",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "03",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "04",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "05",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "06",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "07",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "08",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "09",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "10",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "11",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "12",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "13",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "14",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "15",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "16",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "17",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "18",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "19",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "20",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "21",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "22",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "23",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "24",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "25",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "26",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "27",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "28",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "29",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "30",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "31",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "32",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "33",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "34",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "35",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "36",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "37",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "38",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "39",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "40",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },
+      {
+        "value": "41",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "42",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "43",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "44",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "45",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "46",
+        "state": false,
+        "bgColor": "red_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "47",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "48",
+        "state": false,
+        "bgColor": "blue_qiu",
+        "odds": 0,
+        "num": ""
+      },{
+        "value": "49",
+        "state": false,
+        "bgColor": "green_qiu",
+        "odds": 0,
+        "num": ""
+      }
+    ],
+    "hintText": "所投注的每十个号码为一注，每注的十个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13,14,15,16,17则中奖，而投1,2,3,4,5,6,13,14,15,16则不中奖"
+  }
+}

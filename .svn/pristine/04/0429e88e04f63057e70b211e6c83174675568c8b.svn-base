@@ -1,0 +1,128 @@
+<template>
+  <!-- 悬浮切换按钮 -->
+  <div class="all_flex_box">
+    <!-- <router-link class="all_choice_tabbtn">切换盘口</router-link>
+    <router-link>盘口规则</router-link> -->
+<!--    <router-link class="trend" :to="{name:'Trendmap',query:{id:id,index:indexs}}" target="_blank">-->
+<!--      <span class="trendImg"></span>-->
+<!--      <p>号码走势</p>-->
+<!--    </router-link>-->
+<!--    <router-link class="history" :to="{name:'historyLottery',query:{id:id}}" target="_blank">-->
+<!--      <span class="historyImg"></span>-->
+<!--      <p>历史开奖</p>-->
+<!--    </router-link>-->
+
+    <router-link :class="[$route.path == '/Time'?'official':'playing']" v-if="indexs==1 && id!=2" v-bind:to="{name:'gamePanel',query: {id:id,index:indexs}}">
+      经典玩法
+    </router-link>
+    <router-link :class="[$route.path == '/Time'?'playing':'official']" v-if="indexs==1 && id!=2" v-bind:to="{name:'Timehonor',query: {id:id,index:indexs}}">
+      官方玩法
+    </router-link>
+    <router-link :class="[$route.path == '/Racing'?'official':'playing']" v-if="indexs==2" v-bind:to="{name:'gamePanel',query: {id:id,index:indexs}}">
+      经典玩法
+    </router-link>
+    <router-link :class="[$route.path == '/Racing'?'playing':'official']" v-if="indexs==2" v-bind:to="{name:'Racing',query: {id:id,index:indexs}}">
+      官方玩法
+    </router-link>
+<!--    <router-link class="playing" v-if="gameType==1 && indexs==1 && id!=2" v-bind:to="{name:'gamePanel',query: {id:id,index:indexs}}">-->
+<!--      经典玩法-->
+<!--    </router-link>-->
+<!--    <router-link class="official" v-if="gameType==1 && indexs==1 && id!=2" v-bind:to="{name:'Timehonor',query: {id:id,index:indexs}}">-->
+<!--      官方玩法-->
+<!--    </router-link>-->
+<!--    <router-link class="official" v-if="gameType==186 && indexs==1 && id!=2" v-bind:to="{name:'Timehonor',query: {id:id,index:indexs}}">-->
+<!--      官方玩法-->
+<!--    </router-link>-->
+<!--    <router-link class="playing" v-if="gameType==1 && indexs==2" v-bind:to="{name:'gamePanel',query: {id:id,index:indexs}}">-->
+<!--      经典玩法-->
+<!--    </router-link>-->
+<!--    <router-link class="official" v-if="gameType==211 && indexs==2" v-bind:to="{name:'Racing',query: {id:id,index:indexs}}">-->
+<!--      官方玩法-->
+<!--    </router-link>-->
+<!--    <a class="gamePanel" :data-id="2" :data-index="1" @click="choseone" target="_blank">-->
+<!--      <span class="historyImg"></span>-->
+<!--      <p>切换玩法</p>-->
+<!--    </a>-->
+  </div>
+</template>
+<script>
+  export default {
+    props: {
+      id: {
+        type: Number,
+        required: true
+      },
+      indexs: {
+        type: String,
+        required: true
+      },
+      gameType: {
+        type: Number,
+        required: true
+      }
+    },
+    data() {
+      return {
+      }
+    },
+    methods: {
+
+      choseone(e){
+        let indexs = e.target.dataset.index
+        let ids = e.target.dataset.id
+        this.$router.push({
+          path: "/gamePanel",
+          params: {
+            id: ids,
+            index: indexs
+          }
+        })
+        // this.hoverState = false
+        // this.reload()
+      },
+      // handleGoRouter() {
+      //   let query = this.$router.history.current.query
+      //   this.$router.push({
+      //     path:'/trend',
+      //     query:{
+      //       id:JSON.stringify({
+      //         id:Number(query.id),
+      //         index:Number(query.index)
+      //       })
+      //     }
+      //   })
+      // }
+    }
+  }
+</script>
+<style lang="scss">
+  .all_flex_box {
+    position: absolute;
+    top: 152px;
+    left: -63px;
+    a{
+      display: block;
+      width: 56px;
+      height: 50px;
+      text-align: center;
+      margin-bottom: 10px;
+      color: #ffffff;
+      border-radius: 5px;
+      font-size: 12px;
+      padding: 5px 15px;
+      cursor: pointer;
+    }
+    .playing{
+      background: url("../../static/img/icon/btn_01.png") no-repeat 0 0/100% 100%;
+    }
+    .official{
+      background: url("../../static/img/icon/btn_02.png") no-repeat 0 0/100% 100%;
+    }
+  }
+  .all_flex_box .all_choice_tabbtn {
+    background-color: #1f7877;
+    color: #fff;
+  }
+</style>
+
+

@@ -1,0 +1,436 @@
+<template>
+  <div id="zbmx"
+       v-loading="loading"
+       element-loading-text="加载中"
+       element-loading-spinner="el-icon-loading"
+  >
+    <div class="zbmx_main">
+      <!-- 彩票类型 -->
+      <!-- <div class="lottery_type">
+                <div class="lottery_type_item lottery_type_item_active">彩票</div>
+                <div class="lottery_type_item">VR彩票</div>
+                <div class="lottery_type_item">AG娱乐</div>
+                <div class="lottery_type_item">AG体育</div>
+                <div class="lottery_type_item">YOPLAY</div>
+                <div class="lottery_type_item">捕鱼王</div>
+                <div class="lottery_type_item">PT艺游</div>
+            </div> -->
+
+      <div class="query_info">
+        <!-- 选择账单类别 -->
+        <el-select v-model="currBillTypes" placeholder="请选择账单类别">
+          <el-option
+            v-for="item in billTypes"
+            :key="item.Value"
+            :label="item.Name"
+            :value="item.Value">
+          </el-option>
+        </el-select>
+        <!-- 订单编号 -->
+        <!-- <el-input v-model="orderNum" placeholder="请输入订单编号"></el-input> -->
+        <el-date-picker
+          v-model="beginDate"
+          type="datetime"
+          value-format="yyyy-MM-dd HH:mm:ss"
+          placeholder="开始日期" class="czdateStyle">
+        </el-date-picker>
+        <el-date-picker
+          v-model="endDate"
+          type="datetime"
+          value-format="yyyy-MM-dd HH:mm:ss"
+          placeholder="结束日期" class="czdateStyle">
+        </el-date-picker>
+        <div class="czCxBtn" @click="zbCxBtn">搜索</div>
+      </div>
+      <!-- 彩票的表格 -->
+      <div class="czTable">
+        <!-- 彩票表格 -->
+        <el-table
+          :data="czTableData"
+          border
+          stripe
+          style="width: 100%;">
+          <el-table-column
+            prop="OpTypeText"
+            label="账单类别">
+          </el-table-column>
+          <el-table-column
+            prop="OpMoney"
+            label="账变金额">
+          </el-table-column>
+          <el-table-column
+            prop="NowMoney"
+            label="当前余额">
+          </el-table-column>
+          <el-table-column
+            prop="Remark"
+            label="备注说明">
+          </el-table-column>
+          <el-table-column
+            prop="OpTime"
+            width="144"
+            label="账变时间">
+          </el-table-column>
+          <div slot="empty"></div>
+        </el-table>
+      </div>
+      <div class="my-paging" v-show="czTableData.length!=0">
+        <div class="everyPageShow">每页显示 10 条</div>
+        <!--<el-select v-model="paginationArray.currpageSize" :placeholder='paginationArray.currpageSize+"条"' @change="pageChange" class="choosePage">
+                    <el-option
+                      v-for="item in pageSize"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                      :disabled="item.disabled">
+                    </el-option>
+                </el-select>-->
+        <div class="totalNum">共{{paginationArray.total}}条</div>
+        <div class="jumpPage">跳转</div>
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :page-size="paginationArray.currpageSize"
+          layout="prev, pager, next, jumper"
+          :total="paginationArray.total">
+        </el-pagination>
+      </div>
+      <!-- 表格为空的样式 -->
+      <div class="table-empty" v-show="czTableData.length==0">
+        <img src="../../assets/zjzh/empty.png" style="width: 102px;height: 78px;">
+        <div class="table-empty-text">暂无记录</div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+  // 引用axios封装文件
+  import {postAjax, getAjax} from "../../util/ajax.js"
+
+  export default {
+    data() {
+      return {
+        loading: false,
+        //显示弹框
+        dialogVisible: true,
+        //账单类别
+        billTypes: [],
+        currBillTypes: '',
+        //投注期号
+        betIssue: '',
+        //订单编号
+        orderNum: '',
+        //日期
+        beginDate: '',
+        endDate: '',
+        //表格数据
+        czTableData: [],
+        // czTableData:[],
+        paginationArray: {
+          total: 0,
+          currpageSize: 10,
+          currPage: 1,//当前页数
+        },
+        //每页展示多少条
+        pageSize: [
+          {value: 10, label: '10条'},
+          {value: 20, label: '20条'},
+          {value: 30, label: '30条'},
+        ]
+      }
+    },
+    methods: {
+      initDate() {
+        let etad = new Date()
+        let y = etad.getFullYear()
+        let m = ('00' + (etad.getMonth() + 1)).slice(-2)
+        let d = etad.getDate()
+        let h = etad.getHours()
+        d = h > 3 ? d : d - 1
+        this.beginDate = `${y}-${m}-${('00' + d).slice(-2)} 03:00:00`
+        this.endDate = `${y}-${m}-${('00' + (d + 1)).slice(-2)} 03:00:00`
+      },
+      //改变分页条数
+      pageChange(val) {
+        this.paginationArray.currpageSize = val;
+        this.zbCxBtn();
+      },
+      getBillType() {
+        let that = this;
+        that.billTypes = [{Name: '全部', LgId: ''}]
+        let url = "api/Sys/GetUserAccTypeList";
+        postAjax(url, null).then(function (data) {
+          if (data.IsSucess) {
+            that.billTypes.push(...data.Data);
+            that.zbCxBtn();
+          }
+        })
+      },
+      //查询
+      zbCxBtn() {
+        let that = this;
+        let url = "api/Order/PUserAccInfo";
+        let data = {
+          BetNumber: this.orderNum,
+          EndTime: this.endDate,
+          OpType: this.currBillTypes,
+          PIndex: this.paginationArray.currPage,
+          PSize: this.paginationArray.currpageSize,
+          StartTime: this.beginDate,
+        };
+        this.loading = true
+        postAjax(url, data).then( (data) =>  {
+          this.loading = false
+          if (data.IsSucess) {
+            that.czTableData = data.Data.rows;
+            that.paginationArray.total = data.Data.total;
+          }
+        }).catch(() => {
+          this.loading = false
+        })
+      },
+      handleSizeChange(e) {
+        // console.log(1);
+      },
+      handleCurrentChange(e) {
+        //回调为当前跳转的第几页
+        this.paginationArray.currPage = e;
+        this.zbCxBtn();
+      },
+      //时间格式化
+      formatDate(row, column) {
+        if (row[column.property]) {
+          var arr = row[column.property].split("T");
+          var arr1 = arr[1].split(".")
+          return arr[0] + ' ' + arr1[0]
+        } else {
+          return '-'
+        }
+
+      },
+    },
+    mounted() {
+      this.initDate()
+      this.getBillType();
+    },
+  }
+</script>
+<style lang="scss">
+  #zbmx {
+    .el-loading-spinner {
+      margin-top: -140px;
+      .el-icon-loading {
+        color: #1d7272;
+      }
+
+      .el-loading-text {
+        color: #1d7272;
+      }
+    }
+
+    .el-loading-mask {
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+</style>
+<style type="scss">
+  #zbmx {
+    height: 759px;
+    background-color: white;
+  }
+
+  #zbmx .el-select, #zbmx .el-input, #zbmx input {
+    width: 226px;
+    margin-right: 10px;
+  }
+
+  #zbmx table tbody th {
+    border: none;
+  }
+
+  .zbmx_main {
+    padding: 20px 23px 0 20px
+  }
+
+  /*彩票类型*/
+  .lottery_type {
+    border-bottom: 4px solid #e5e6eb;
+    height: 48px;
+    margin-bottom: 16px;
+  }
+
+  .lottery_type_item {
+    height: 48px;
+    width: 102px;
+    float: left;
+    font-size: 18px;
+    text-align: center;
+    line-height: 48px;
+    font-weight: 500;
+  }
+
+  .lottery_type_item_active {
+    border-bottom: 4px solid #13aca8
+  }
+
+  #zbmx .czdateStyle .el-input__prefix {
+    left: 196px;
+  }
+
+  .czCxBtn {
+    width: 75px;
+    height: 37px;
+    background-color: #008573;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 37px;
+    font-size: 14px;
+    color: #fff;
+    display: inline-block;
+  }
+
+  .czCxBtn:hover {
+    cursor: pointer;
+  }
+
+  .czTable {
+    margin-top: 20px;
+  }
+
+  .czTable .el-table td, .czTable .el-table th {
+    padding: 0;
+    height: 35px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+  }
+
+  .czTable .el-table thead th {
+    font-size: 14px;
+  }
+
+  /*去掉表格为空的样式*/
+  .czTable .el-table__empty-block {
+    display: none;
+  }
+
+  /*自定义样式*/
+  .table-empty {
+    padding-top: 80px;
+    text-align: center;
+  }
+
+  .table-empty-text {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #8b918b;
+  }
+
+  .my-paging {
+    padding-top: 12px;
+  }
+
+  .everyPageShow {
+    width: 84px;
+    height: 27px;
+    font-size: 12px;
+    color: #67707c;
+    line-height: 27px;
+    text-align: center;
+    float: left;
+  }
+
+  .my-paging .el-pagination {
+    float: right;
+    padding: 0;
+  }
+
+  .choosePage .el-input__inner {
+    height: 27px;
+    border-radius: 0;
+    margin-left: 5px;
+    width: 65px;
+    padding: 0;
+    padding-left: 8px;
+    font-size: 12px;
+  }
+
+  .choosePage .el-input__icon {
+    line-height: 27px;
+  }
+
+  #dljl .choosePage input::-webkit-input-placeholder {
+    color: #67707c !important;
+  }
+
+  .el-pager li.active {
+    color: #008573;
+  }
+
+  .el-pager {
+    font-weight: normal;
+  }
+
+  /*总共多少条的样式*/
+  .totalNum {
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 15px;
+  }
+
+  .jumpPage {
+    float: right;
+    width: 54px;
+    height: 27px;
+    line-height: 27px;
+    font-size: 14px;
+    text-align: center;
+    color: #008573;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+
+  /*弹窗样式*/
+  .my_dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    margin: 0;
+    z-index: 2003;
+    background-color: rgba(149, 150, 153, 0.3);
+  }
+
+  .my_dialog_main {
+    position: absolute;
+    width: 30%;
+    background: #fff;
+    z-index: 2004;
+    top: 20%;
+    left: 35%;
+  }
+  #zbmx .czTable .el-table th {
+    color: #171717;
+    height: 35px;
+    background-image: linear-gradient(0deg,
+      #e7e6e7 0%,
+      #ffffff 100%);
+  }
+  #zbmx table thead tr th {
+    border-right: 1px solid #dddddd !important;
+  }
+  #zbmx .el-input__inner{
+    width: 226px;
+    height: 38px;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#e6e4e4), to(#ffffff));
+    background-image: linear-gradient(0deg, #e6e4e4 0%, #ffffff 100%);
+    border-radius: 5px;
+    border: solid 1px #dddddd;
+  }
+  #zbmx .is-in-pagination input,#zbmx .is-in-pagination{
+    width: auto;
+    height: auto;
+  }
+</style>

@@ -1,0 +1,166 @@
+<template>
+    <!-- 每日签到 -->
+    <div class="preM_every_signbox">
+        <img :src="url" class="preM_sign_banner"/>
+        <!-- 主要内容 -->
+        <div class="preM_sign_maincontent">
+            <!-- 通用规则模块  -->
+            <div class="prefec_allac_rulesbox">
+                <img src="../../static/img/sign/active_rules.png" class="allac_rules_title"/>
+                <div v-html="acObj.Description"></div>
+            </div>
+        </div>
+    </div>
+
+</template>
+<script>
+import {postAjax,getAjax} from "../../util/ajax.js";
+import {SysKey} from "../../util/sysconfig";
+export default {
+    data(){
+        return{
+            url:SysKey("ImgServerUrl").SysValue, //图片地址
+            ids:3,  //活动ID
+            acObj:{}, // 活动内容
+        }
+    },
+    methods:{
+        getActive(){
+            let that =this
+            let url ="api/Activity/GetActList"
+            postAjax(url)
+            .then(function(data){
+                if(data.IsSucess==true){
+                    data.Data.forEach(item => {
+                        if(item.AcType == that.ids){
+                            that.acObj=item
+                            that.url = that.url + that.acObj.ImgUrl
+
+                        }
+                    });
+                }
+            })
+        }
+    },
+    created(){
+        this.getActive()
+    }
+}
+</script>
+<style>
+    .preM_sign_banner{
+        display: block;
+        width: 100%;
+        height: 180px;
+        margin-bottom: 10px;
+    }
+    /* 签到按钮 */
+    .preM_sign_topbtn{
+        margin-bottom: 10px;
+    }
+    .preM_sign_itembtn{
+        float: left;
+        width: 99px;
+        height: 45px;
+        border-radius: 3px;
+        border:1px dashed #cccccc;
+        text-align: center;
+        color:#232924;
+        cursor: pointer;
+        font-size: 14px;
+        padding-top: 5px;
+        line-height: 18px;
+        margin-right: 12px;
+    }
+    .preM_sign_itembtn:last-child{
+        margin-right: 0px
+    }
+    .preM_sign_itembtn>div{
+        color:#898c8a;
+        font-size: 12px;
+
+    }
+    .preM_sign_itembtn.preM_aready_btn{
+        background-color:#405e5e;
+        color:#ffffff;
+        border:1px solid #ffffff;
+    }
+    /* 内容按钮 */
+    .preM_content_centetbox{
+        height:96px;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        background-color: #f3f3f3;
+        padding: 14px 0;
+        margin-bottom: 25px;
+    }
+    .preM_content_centetbox>p{
+        color:#666666;
+        padding-bottom: 10px;
+    }
+    .preM_content_centetbox>p>span{
+        color:#ff4d4d;
+        margin: 0 2px;
+    }
+    .preM_content_btnbox{
+        justify-content: center;
+        align-items: center;
+    }
+    .preM_content_btnbox>div{
+        width: 121px;
+        height:36px;
+        background-color: #1f7877;
+        border-radius: 3px;
+        color:white;
+        letter-spacing: 1px;
+        font-size: 16px;
+        line-height: 36px;
+    }
+    /* 未签到样式 */
+    .preM_content_btnbox>.has_not_sign{
+        background-color: #8fbcbb;
+    }
+    /* 通用规则 */
+    .prefec_allac_rulesbox{
+        width: 100%;
+    }
+    .prefec_allac_rulesbox .allac_rules_title{
+        width:100%;
+        display: block;
+        margin-bottom: 30px;
+    }
+    .prefec_allac_rulesbox>div{
+        font-weight: bold;
+        font-size: 18px;
+        color:#141414;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+    .prefec_allac_rulesbox>div>span{
+         color:#ff4d4d;
+         margin: 0 2px;
+    }
+    .prefec_allac_rulesbox>div>a{
+        color:#414141;
+        font-size: 16px;
+
+    }
+    .prefec_allac_rulesbox>div>p{
+        font-size: 14px;
+        margin: 10px 0;
+    }
+    .prefec_allac_rulesbox .intro_allac_item{
+        color:#6b6b6b;
+        font-size: 15px;
+        line-height: 24px;
+    }
+    .prefec_allac_rulesbox .intro_allac_item>span{
+        color:#ff4d4d;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 2px;
+    }
+</style>
+
+

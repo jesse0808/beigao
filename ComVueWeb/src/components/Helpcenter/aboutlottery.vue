@@ -1,0 +1,129 @@
+<template>
+  <div class="helpcenter_chidrenbox">
+    <div class="helpcenter_item1_title">关于{{SysValue}}</div>
+    <div class="helpcenter_item1_content">
+      <h4 class="item1_top_title">关于{{SysValue}}</h4>
+      <p>{{SysValue}}是世界领先的在线供应商，一直以来与世界多家顶级游戏软件供应商保持良好的合作关系。</p>
+      <p>{{SysValue}}作为知名的在线博彩公司，总部成立于2009年8月，位于菲律宾国并接受与认真执行当地的相关法律，自成立以来致力提供最广范围并最具竞争力的产品。</p>
+      <div class="item1_small_title1">{{SysValue}}的承诺</div>
+      <p>
+        作为国际专业的网上游戏运营企业，我们为每一位顾客提供最及时、最安全、最准确的数据，以及全方位的国际化专业服务。
+        同时，{{SysValue}}全部游戏设计均采用世界最领先的软件。我们更聘请了多位计算机资深专家给公司设计和提供软硬件设施维护
+        服务，以提供最佳的技术支援，确保客户能无时无刻享受到最优质的游戏服务。我们承诺，置身于{{SysValue}}平台的客户，不论参与
+        的是真人游戏，还是其他网上游戏，也能享有极具价值的博彩回报，同时，每位客户的资讯保密性对我们来说是最重要的。我们承诺
+        ，将继续不遗余力地坚持严格实行保密和隐私制度。
+      </p>
+      <div class="item1_small_title1">最佳选择</div>
+      <p>我们为广大会员提供包括
+        时时彩、体育博彩、真人娱乐城、快乐彩和PT电子游戏。我们为您提供最好的彩票奖金及博彩赔率。彩票游戏更是提供多项大型第三方公证类彩种，包括重庆时时彩、江西时时彩、新疆时时彩、11选5和福彩3D等。</p>
+      <p>我们是首家提供全方位博彩娱乐的线上公司。</p>
+      <div class="item1_small_title1">更具网络博彩娱乐价值</div>
+      <p>我们承诺提供给您最具价值的娱乐博彩无论你在玩什么游戏。如果您相信您有这方面的知识可以预测出您喜爱的彩票类开奖的结果，那么您将在{{SysValue}}找到您博彩的最佳价值。</p>
+      <div class="item1_small_title1">安全系统</div>
+      <p>一个坚实，稳定与安全的博彩系统。</p>
+      <p>{{SysValue}}系统的基础在设置和系统安全方面是一个类似被大型财政机构所使用的系统基础。您的信息保密性对我们来说是最重要而且我们将坚持实行严格保密和隐私制度</p>
+      <div class="item1_small_title1">博彩责任（法律适用）</div>
+      <p>我们在菲律宾的执照是由FCLRC ('First Cagayan Leisure and Resort Corporation')tttt者使用经过批准的供应商的软件，以确保游戏操作平台对客户是公正及安全的。
+        我们将保证提供给您一个完全公证和安全的网络娱乐空间，客户在本公司的所有活动均严格保密，我们绝不会向商业合作公司（包括政府）透漏您的任何资料。
+        {{SysValue}}提供128位SSL加密传输与MD5加密密码，在最大程度上保障用户信息的安全。{{SysValue}}提供128位SSL加密传输与MD5加密密码，在最大程度上保障用户信息的安全。</p>
+      <div class="item1_small_title1">{{SysValue}}的建议</div>
+      <div class="rules_box">
+        <h4 class="titlecolor1">{{SysValue}}提倡您有节制的博彩行为，我们建议阁下遵守以下一些基本规则：</h4>
+        <div>禁止未满18岁的人士参与博彩游戏。在加入游戏前，请您确定您已满18周岁。</div>
+        <div>自定博彩预算，并按照预算下注，遵守您当地的法律规定。</div>
+      </div>
+      <div class="rules_box">
+        <h4 class="titlecolor2">本站由亚洲及世界上最大的游戏软件公司提供技术合作。</h4>
+        <div class="intro">我们的真人娱乐城同知名线上真人娱乐公司 BBIN 与 AG 平台进行技术合作。PT电子游戏供应商亦是全球知名 PT 公司，我们将紧密携手合作，带给您全新线上娱乐体验。</div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+
+  import {SysKey} from "../../util/sysconfig";
+
+  export default {
+    data() {
+      return {
+        SysValue:SysKey("SysName").SysValue
+
+      }
+    },
+    created(){
+        if(!window.userInfo || window.userInfo == null){
+            // this.$router.push("/login");
+        }
+    }
+  }
+</script>
+<style>
+  .helpcenter_chidrenbox {
+    overflow: hidden;
+  }
+
+  .helpcenter_item1_title {
+    height: 42px;
+    border-bottom: 2px solid #2ba498;
+    line-height: 42px;
+    padding: 0 20px;
+    font-size: 16px;
+  }
+
+  .helpcenter_item1_content {
+    padding: 16px 31px;
+    color: #606060;
+  }
+
+  .helpcenter_item1_content p {
+    text-indent: 28px;
+    font-size: 14px;
+    padding: 11px 0;
+  }
+
+  .item1_top_title {
+    color: #1f7879;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .item1_small_title1 {
+    background: #f3f9f8;
+    line-height: 30px;
+    height: 30px;
+    color: #1f7879;
+    font-weight: bold;
+    padding: 0 12px;
+    font-size: 16px;
+    margin-top: 16px;
+  }
+
+  .rules_box {
+    font-size: 14px;
+    padding: 0 28px;
+  }
+
+  .rules_box > h4 {
+    font-size: 14px;
+    padding: 12px 0 0;
+  }
+
+  .rules_box > .titlecolor1 {
+    color: #000;
+  }
+
+  .rules_box > .titlecolor2 {
+    color: #1f7879;
+  }
+
+  .rules_box > div {
+    text-indent: 28px;
+  }
+
+  .rules_box > .intro {
+    padding: 18px 0;
+  }
+</style>
+

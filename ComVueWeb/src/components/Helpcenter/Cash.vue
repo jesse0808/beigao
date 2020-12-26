@@ -1,0 +1,115 @@
+<template>
+    <div class="helpcenter_chidrenbox">
+        <div class="helpcenter_item1_title">提款须知</div>
+        <div class="helpcenter_item1_content">
+            <h4 class="item1_top_title">提款须知</h4>
+            <div class="item1_small_title1">如何提款</div>
+                <div class="item1_small_content1">提款之前，请确保您所填写的提款银行信息内容正确无误。</div>
+                <div class="item1_small_content1">提款时请先将其他项目金额（如PT游戏）转至账户中心再进行提款，最低提款金额为1元；</div>
+                <div class="item1_small_content1">玩家任何一笔存款最少需要30%任意游戏流水才能进行提款喔~</div>
+            <div class="item1_small_title1">提款常见问题</div>
+            <div class="qusetion_box">
+                <strong>提款一般多久能到账？</strong>
+                <div>我们承诺，除非遇到非可控因素，我们将为您提供5分钟快速到账的提款服务。</div>
+            </div>
+            <div class="qusetion_box">
+                <strong>为什么我的提款快30分钟了还没到？</strong>
+                <div>每天上午10点至11点为提款高峰期，提款一般会在5分钟到30分钟内到账，如果您希望每次提款能即时到账，请您尽量避开提款高峰期再进行提款。</div>
+            </div>
+            <div class="qusetion_box">
+                <strong>可以24小时进行提款吗？</strong>
+                <div>平台取款时间为北京时间每日上午10:00-凌晨2:00。</div>
+            </div>
+            <div class="qusetion_box">
+                <strong>每天最高可以提款多少？</strong>
+                <div>平台每日可取款5次，每次最低1元,最高50000.00元。</div>
+            </div>
+            <div class="qusetion_box">
+                <strong>可以用多少张银行卡提款？</strong>
+                <div>您可以使用自己姓名的多张银行卡进行提款申请，但不能使用除了注册姓名之外的银行卡进行提款。由于自身绑定账号错误或者提款自行取消等自身问题造成的取款次数减少失效，平台慨不负责。</div>
+            </div>
+            <div class="qusetion_box">
+                <strong>PT游戏账户里有钱为什么无法提款？</strong>
+                <div>您需要先将资金从PT游戏转至账户中心后才能进行提款操作。</div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+export default {
+    
+}
+</script>
+<style>
+.helpcenter_chidrenbox{
+    overflow: hidden;
+}
+.helpcenter_item1_title{
+    height: 42px;
+    border-bottom: 2px solid #2ba498;
+    line-height: 42px;
+    padding: 0 20px;
+    font-size: 16px;
+}
+.helpcenter_item1_content{
+    padding: 16px 31px;
+    color:#606060;
+}
+.helpcenter_item1_content p{
+    text-indent: 28px;
+    font-size: 14px;
+    padding: 11px 0;
+}
+.item1_top_title{
+    color:#1f7879;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+}
+.item1_small_title1{
+    background: #f3f9f8;
+    line-height: 30px;
+    height: 30px;
+    color:#1f7879;
+    font-weight:bold;
+    padding: 0 12px;
+    font-size: 16px;
+    margin-top: 16px;
+}
+.item1_small_content1{
+    font-size: 14px;
+    line-height: 24px;
+    padding-left: 10px;
+}
+.rules_box{
+    font-size: 14px;
+    padding: 0 28px;
+}
+.rules_box>h4{
+    font-size: 14px;
+    padding: 12px 0 0;
+}
+.rules_box>.titlecolor1{
+    color:#000;
+}
+.rules_box>.titlecolor2{
+    color:#1f7879;
+}
+.rules_box>div{
+    text-indent: 28px;
+}
+.rules_box>.intro{
+    padding: 18px 0;
+}
+.qusetion_box{
+    padding-left: 10px;
+    font-size: 14px;
+    line-height: 24px;
+    margin-top: 8px;
+}
+.qusetion_box strong{
+    color:#1f7879;
+}
+</style>
+

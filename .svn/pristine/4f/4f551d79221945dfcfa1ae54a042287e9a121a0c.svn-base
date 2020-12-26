@@ -1,0 +1,132 @@
+<template>
+    <!-- 帮助中心 -->
+    <div class="allgame-mainbox">
+        <div class="box_center">
+            <div class="helpcenter_main box_h">
+                <!-- 左侧列表 -->
+                <div class="helpcenter_list_box">
+                    <!-- 颜色块 -->
+                    <div class="helpcenter_zw_box"></div>
+                    <!-- 列表内容 -->
+                    <ul class="helpcenter_ul_list">
+                        <li class="helpcenter_title_box">
+                            <div class="helpcenter_title">{{SysValue}}</div>
+                        </li>
+                        <!-- 选中样式 -->
+                        <li class="helpcenter_title_box">
+                            <router-link to="/first" class="helpcenter_navlist ">关于{{SysValue}}</router-link>
+                        </li>
+                        <li class="helpcenter_title_box">
+                            <router-link to="/second" class="helpcenter_navlist ">彩种介绍</router-link>
+                        </li>
+                        <li class="helpcenter_title_box">
+                            <router-link to="/three" class="helpcenter_navlist ">玩法介绍</router-link>
+                        </li>
+                        <li class="helpcenter_title_box">
+                            <router-link to="/four" class="helpcenter_navlist ">责任博彩</router-link>
+                        </li>
+                        <li class="helpcenter_title_box">
+                            <router-link to="/five" class="helpcenter_navlist ">如何充值</router-link>
+                        </li>
+                        <li class="helpcenter_title_box">
+                            <router-link to="/six" class="helpcenter_navlist ">提款须知</router-link>
+                        </li>
+                        <li class="helpcenter_title_box">
+                            <router-link to="/sven" class="helpcenter_navlist ">使用条款</router-link>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 右侧内容 -->
+                <div class="helpcontent_mainbox box_flex">
+                    <router-view></router-view>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+  import {SysKey} from "../../util/sysconfig";
+  export default {
+    data() {
+      return {
+        SysValue:SysKey("SysName").SysValue
+
+      }
+    }
+  }
+</script>
+<style>
+    .allgame-mainbox{
+        padding-bottom: 3px;
+    }
+    .helpcenter_main {
+        width: 100%;
+        overflow: hidden;
+        margin-top: 24px;
+    }
+    /* 左侧列表 */
+    .helpcenter_list_box{
+        width: 181px;
+        background: #f6f6f6;
+        margin-right: 10px;
+        height: 1180px;
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    .helpcenter_zw_box{
+        height: 10px;
+        background-color: #0e5756;
+    }
+    .helpcenter_ul_list{
+        overflow: hidden;
+       
+        text-align: center;
+    }
+    .helpcenter_title_box:first-child{
+        line-height: 50px;
+        height: 50px;
+        background-image: url(../../static/img/icon/arrow_top.png);
+        background-position: center right 13px;
+        background-size: 10px 4px;
+        background-repeat: no-repeat;
+    }
+    .helpcenter_title_box{
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+    }
+    .helpcenter_title_box .helpcenter_title{
+        color:#74aca6;
+        font-size: 16px;
+        background-image: url(../../static/img/icon/helpcenter.png);
+        background-position: center left 39px;
+        background-size: 12px 12px;
+        background-repeat: no-repeat;
+    }
+    .helpcenter_navlist{
+        color:#5b625a;
+        display: block;
+        font-size: 14px;
+        text-align: left;
+        padding-left: 60px;
+    }
+    .helpcenter_navlist.router-link-active{
+        background: #fff;
+        color:#1f7878;
+    }
+    .helpcenter_navlist:hover{
+        background: #fff;
+        color:#1f7878;
+    }
+    /* 右侧内容框 */
+    .helpcontent_mainbox{
+        width: 834px;
+        height: 1180px;
+        background: #fff;
+        border-radius: 2px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+</style>
+
+

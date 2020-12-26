@@ -1,0 +1,97 @@
+<template>
+     <div class="top_typebox box_h">
+        <div class="type_img">
+            <img src="../../dist/static/img/gametype/lucky_twenty.png" />
+        </div>
+        <!--投注时间-->
+        <div class="time_box">
+            <div class="titles_box">---期 投注倒计时</div>
+            <div class="time"></div>
+        </div>
+        <!-- 往期中奖号码 -->
+        <div class="winning_box box_flex box_h">
+            <!-- 近一期 -->
+            <div class="one_data box_flex" v-if="choicenum">
+                <div class="">---期 中奖号码</div>
+                <!-- 中奖号码盒子 -->
+                <div class="winning_main box_h">
+                    <div class="winning_item icon">?</div>
+                    <div class="winning_item ">+</div>
+                    <div class="winning_item icon">?</div>
+                    <div class="winning_item">+</div>
+                    <div class="winning_item icon">?</div>
+                    <div class="winning_item">=</div>
+                    <div class="winning_item icon">?</div>
+                </div>
+            </div>
+            <!-- 近5期 -->
+            <div class="five_data box_flex" v-else>
+                <div class="five_data_item box_h">
+                    <div class="data_time box_flex">------期</div>
+                    <div class="data_winningbox box_flex box_h">
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">=</div>
+                        <div class="data_item icon">?</div>
+                    </div>
+                </div>
+                <div class="five_data_item box_h">
+                    <div class="data_time box_flex">------期</div>
+                    <div class="data_winningbox box_flex box_h">
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">=</div>
+                        <div class="data_item icon">?</div>
+                    </div>
+                </div>
+                <div class="five_data_item box_h">
+                    <div class="data_time box_flex">------期</div>
+                    <div class="data_winningbox box_flex box_h">
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">=</div>
+                        <div class="data_item icon">?</div>
+                    </div>
+                </div>
+                <div class="five_data_item box_h">
+                    <div class="data_time box_flex">------期</div>
+                    <div class="data_winningbox box_flex box_h">
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">=</div>
+                        <div class="data_item icon">?</div>
+                    </div>
+                </div>
+                <div class="five_data_item box_h">
+                    <div class="data_time box_flex">------期</div>
+                    <div class="data_winningbox box_flex box_h">
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">+</div>
+                        <div class="data_item icon">?</div>
+                        <div class="data_item">=</div>
+                        <div class="data_item icon">?</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 切换按钮 -->
+            <div class="check_box">
+                <div :class='choicenum == true ?"select_this":""'  @click="choice_data">近一期</div>
+                <div :class='choicenum == false ?"select_this":""'  @click="choice_data_other">近五期</div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,407 @@
+<template>
+    <div id="sfjl"
+         v-loading="loading"
+         element-loading-text="加载中"
+         element-loading-spinner="el-icon-loading">
+        <div class="sfjl_main">
+            <div class="query_info">
+                <div>
+                    <el-date-picker
+                            v-model="beginDate"
+                            type="datetime"
+                            placeholder="请选择开始日期" class="czdateStyle" value-format="yyyy-MM-dd HH:mm:ss">
+                    </el-date-picker>
+                    <el-date-picker
+                            v-model="endDate"
+                            type="datetime"
+                            placeholder="请选择结束日期" class="czdateStyle" value-format="yyyy-MM-dd HH:mm:ss">
+                    </el-date-picker>
+                    <!-- 选择游戏 -->
+                    <el-select v-model="currChooseGame" placeholder="请选择游戏">
+                        <el-option
+                                v-for="item in game"
+                                :key="item.GameId"
+                                :label="item.CN_Name"
+                                :value="item.GameId">
+                        </el-option>
+                    </el-select>
+                    <div class="czCxBtn" @click="tzCxBtn">查询</div>
+                </div>
+            </div>
+            <!-- 彩票的表格 -->
+            <div class="czTable">
+                <!-- 彩票表格 -->
+                <el-table
+                        :data="czTableData"
+                        border
+                        stripe
+                        style="width: 100%;">
+                    <el-table-column
+                            width="193"
+                            prop="PlatName"
+                            label="平台名称">
+                    </el-table-column>
+                    <el-table-column
+                            width="193"
+                            prop="GameName"
+                            label="游戏名称">
+                    </el-table-column>
+                    <el-table-column
+                            width="193"
+                            prop="BetMoney"
+                            label="投注金额" >
+                    </el-table-column>
+                    <el-table-column
+                            prop="WinMoney"
+                            width="193"
+                            label="中奖金额" >
+                    </el-table-column>
+                    <el-table-column
+                            prop="GameTime"
+                            width="193"
+                            label="游戏时间" >
+                    </el-table-column>
+                    <div slot="empty"></div>
+                </el-table>
+            </div>
+            <div class="my-paging" v-show="czTableData.length!=0">
+                <div class="everyPageShow">每页显示 10 条</div>
+                <!--<el-select v-model="paginationArray.currpageSize" :placeholder='paginationArray.currpageSize+"条"' @change="pageChange" class="choosePage">
+                            <el-option
+                              v-for="item in pageSize"
+                              :key="item.value"
+                              :label="item.label"
+                              :value="item.value"
+                              :disabled="item.disabled">
+                            </el-option>
+                        </el-select>-->
+                <div class="totalNum">共{{paginationArray.total}}条</div>
+                <div class="jumpPage">跳转</div>
+                <el-pagination
+                        @size-change="handleSizeChange"
+                        @current-change="handleCurrentChange"
+                        :page-size="paginationArray.currpageSize"
+                        layout="prev, pager, next, jumper"
+                        :total="paginationArray.total">
+                </el-pagination>
+            </div>
+            <!-- 表格为空的样式 -->
+            <div class="table-empty" v-show="czTableData.length==0">
+                <img src="../../assets/zjzh/empty.png" style="width: 102px;height: 78px;">
+                <div class="table-empty-text">暂无记录</div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+  // 引用axios封装文件
+  import {postAjax, getAjax} from "../../util/ajax.js"
+  import {timeFormatProcessing} from "../../util/common";
+
+  export default {
+    data() {
+      return {
+        loading: false,
+        cancelOrderTips: '',
+        currOrderType: '',
+        //游戏类型
+        game: [],
+        currChooseGame: '',
+        //日期
+        beginDate: '',
+        endDate: '',
+        //表格数据
+        czTableData: [],
+        //详情数据
+        detailData: null,
+        // czTableData:[],
+        paginationArray: {
+          total: 0,
+          currpageSize: 10,
+          currPage: 1,//当前页数
+        },
+        //每页展示多少条
+        pageSize: [
+          {value: 10, label: '10条'},
+          {value: 20, label: '20条'},
+          {value: 30, label: '30条'},
+        ]
+      }
+    },
+    mounted() {
+      this.initDate()
+      this.getGameType();
+      this.tzCxBtn()
+    },
+    methods: {
+      initDate() {
+        this.beginDate = `${timeFormatProcessing()} 03:00:00`
+        this.endDate = `${timeFormatProcessing(0,1)} 03:00:00`
+      },
+      //改变分页条数
+      pageChange(val) {
+        this.paginationArray.currpageSize = val;
+        this.tzCxBtn();
+      },
+      //查询按钮
+      tzCxBtn() {
+        let that = this;
+        let url = "/api/OrderReport/GetUserThirdGameRecord";
+        let tzData = {
+          StartTime: this.beginDate,
+          EndTime: this.endDate,
+          GameType : this.currChooseGame,
+          PIndex: this.paginationArray.currPage,
+          PSize: this.paginationArray.currpageSize,
+        };
+        this.loading = true
+        postAjax(url, tzData).then((data) => {
+          this.loading = false
+          if (data.IsSucess) {
+            that.czTableData = data.Data.rows;
+            that.paginationArray.total = data.Data.total;
+          }
+        }).catch(() => {
+          this.loading = false
+        })
+      },
+      //得到所有游戏类型
+      getGameType() {
+        let that = this;
+        let url = '/api/ThirdGame/GetGames';
+        postAjax(url).then(function (data) {
+          let tempArry = [{CN_Name: '全部', GameId: ''}];
+          if (data.IsSucess) {
+            tempArry.push(...data.Data)
+            that.game = tempArry;
+          }
+        })
+      },
+      handleSizeChange(e) {
+        // console.log(1);
+      },
+      handleCurrentChange(e) {
+        //回调为当前跳转的第几页
+        this.paginationArray.currPage = e;
+        this.tzCxBtn();
+      },
+      //时间格式化
+      formatDate(row, column) {
+        return row[column.property]
+        if (row[column.property]) {
+          let arr = row[column.property].split("T");
+          let arr1 = arr[1].split(".")
+          return arr[0] + ' ' + arr1[0]
+        } else {
+          return '-'
+        }
+
+      },
+    },
+
+    //过滤器
+    filters: {
+    }
+  }
+</script>
+<style lang="scss">
+    #sfjl {
+        .el-loading-spinner {
+            margin-top: -140px;
+
+            .el-icon-loading {
+                color: #1d7272;
+            }
+
+            .el-loading-text {
+                color: #1d7272;
+            }
+        }
+        ::-webkit-scrollbar{
+            display: none;
+        }
+        .el-loading-mask {
+            background: rgba(255, 255, 255, 0.8);
+        }
+    }
+</style>
+<style type="scss">
+    #sfjl {
+
+    }
+    #sfjl .sfjl_main {
+        padding: 20px 23px 0 20px
+    }
+    #sfjl .el-select,#sfjl .el-input{
+        width: 226px;
+        margin-right: 8px;
+    }
+    #sfjl table tbody th{
+        border: none;
+    }
+    .query_info .el-select .el-input .el-select__caret {
+        line-height: 28px;
+    }
+
+    .czdateStyle {
+        width: 180px;
+    }
+
+    #sfjl .czdateStyle .el-input__prefix {
+        left: 196px;
+    }
+
+    #sfjl .el-pagination__editor.el-input {
+        width: 50px;
+    }
+
+    .czdateStyle .el-input__icon {
+        line-height: 28px;
+        color: #000;
+    }
+
+    .czCxBtn {
+        width: 75px;
+        height: 37px;
+        background-color: #008573;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 37px;
+        font-size: 14px;
+        color: #fff;
+        display: inline-block;
+    }
+
+    .czCxBtn:hover {
+        cursor: pointer;
+    }
+
+    .czTable {
+        margin-top: 20px;
+    }
+
+    .czTable .el-table td, .czTable .el-table th {
+        padding: 0;
+        height: 35px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    .czTable .el-table thead th {
+        font-size: 14px;
+    }
+
+    #sfjl .detail_style {
+        color: #008573;
+    }
+
+    .detail_style:hover {
+        cursor: pointer;
+    }
+
+    /*去掉表格为空的样式*/
+    .czTable .el-table__empty-block {
+        display: none;
+    }
+
+    /*自定义样式*/
+    .table-empty {
+        padding-top: 80px;
+        text-align: center;
+    }
+
+    .table-empty-text {
+        font-size: 14px;
+        margin-top: 20px;
+        color: #8b918b;
+    }
+
+    .my-paging {
+        /*display: flex;*/
+        /*align-items: center;*/
+        padding-top: 12px;
+    }
+
+    .everyPageShow {
+        width: 84px;
+        height: 27px;
+        font-size: 12px;
+        color: #67707c;
+        line-height: 27px;
+        text-align: center;
+        float: left;
+    }
+
+    .my-paging .el-pagination {
+        float: right;
+        padding: 0;
+    }
+
+    .choosePage .el-input__inner {
+        height: 27px;
+        border-radius: 0;
+        margin-left: 5px;
+        width: 65px;
+        padding: 0;
+        padding-left: 8px;
+        font-size: 12px;
+    }
+
+    .choosePage .el-input__icon {
+        line-height: 27px;
+    }
+
+    #dljl .choosePage input::-webkit-input-placeholder {
+        color: #67707c !important;
+    }
+
+    .el-pager li.active {
+        color: #008573;
+    }
+
+    .el-pager {
+        font-weight: normal;
+    }
+
+    /*总共多少条的样式*/
+    .totalNum {
+        display: inline-block;
+        font-size: 12px;
+        margin-left: 15px;
+    }
+
+    #sfjl .jumpPage {
+        float: right;
+        height: 27px;
+        line-height: 27px;
+        font-size: 14px;
+        text-align: center;
+        color: #008573;
+        margin-left: 8px;
+        cursor: pointer;
+    }
+    #sfjl .czTable .el-table th {
+        color: #171717;
+        height: 35px;
+        background-image: linear-gradient(0deg,
+                #e7e6e7 0%,
+                #ffffff 100%);
+    }
+    #sfjl table thead tr th {
+        border-right: 1px solid #dddddd !important;
+    }
+    #sfjl .el-input__inner{
+        width: 226px;
+        height: 38px;
+        background-image: -webkit-gradient(linear, left bottom, left top, from(#e6e4e4), to(#ffffff));
+        background-image: linear-gradient(0deg, #e6e4e4 0%, #ffffff 100%);
+        border-radius: 5px;
+        border: solid 1px #dddddd;
+    }
+    #sfjl .is-in-pagination .el-input__inner{
+        width: auto;
+        height: auto;
+        color: #008573;
+    }
+</style>

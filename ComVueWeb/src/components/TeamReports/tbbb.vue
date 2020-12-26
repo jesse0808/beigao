@@ -1,0 +1,275 @@
+<template>
+	<div id="tbbb">
+		<p class="right_top">团报报表</p>
+		<div class="tbbb_main">
+			<div class="query_info">
+				<!-- 报表类型 -->
+				<div class="report_type">
+					<div class="report_type_item lottery_type_item_active">团报报表</div>
+					<div class="report_type_item">AG报表</div>
+					<div class="report_type_item">PT报表</div>
+				</div>
+
+				<!-- 平台账号 -->
+				<el-input v-model="platformAccount" placeholder="请输入平台账号"></el-input>
+				<el-date-picker
+			      v-model="beginDate"
+			      type="datetime"
+			      placeholder="开始日期" class="czdateStyle" value-format="yyyy-MM-dd HH:mm:ss">
+			    </el-date-picker>
+			    <el-date-picker
+			      v-model="endDate"
+			      type="datetime"
+			      placeholder="结束日期" class="czdateStyle" value-format="yyyy-MM-dd HH:mm:ss">
+			    </el-date-picker>
+			    <div class="czCxBtn" @click="tbCxBtn">搜索</div>
+			</div>
+			<!-- 彩票的表格 -->
+			<div class="czTable">
+				<!-- 团报报表表格 -->
+				<el-table
+			    :data="czTableData"
+			    border
+			    stripe
+			    style="width: 100%;">
+				    <el-table-column
+				      prop="LoginName"
+				      label="平台账号">
+				    </el-table-column>
+				    <el-table-column
+				      prop="RechareIn"
+				      label="充值">
+				    </el-table-column>
+				    <el-table-column
+				      prop="DrawOut"
+				      label="取款">
+				    </el-table-column>
+				    <el-table-column
+				      prop="TZCount"
+				      label="投注">
+				    </el-table-column>
+				    <el-table-column
+				      prop="WinBonus"
+				      label="中奖">
+				    </el-table-column>
+				    <el-table-column
+				      prop="give"
+				      label="赠送">
+				    </el-table-column>
+				    <el-table-column
+				      prop="Rebate"
+				      label="返点">
+				    </el-table-column>
+				    <el-table-column
+				      prop="Summary"
+				      label="盈亏">
+				    </el-table-column>
+				</el-table>
+				<!-- AG报表和PT报表 -->
+				<!-- <el-table
+			    :data="czTableData"
+			    border
+			    stripe
+			    style="width: 100%;">
+				    <el-table-column
+				      prop="platformAccount"
+				      label="平台账号">
+				    </el-table-column>
+				    <el-table-column
+				      prop="intoMoney"
+				      label="转入金额">
+				    </el-table-column>
+				    <el-table-column
+				      prop="outMoney"
+				      label="转出金额">
+				    </el-table-column>
+				    <el-table-column
+				      prop="betMoney"
+				      label="投注金额">
+				    </el-table-column>
+				    <el-table-column
+				      prop="winning"
+				      label="派奖金额">
+				    </el-table-column>
+				    <el-table-column
+				      prop="rebates"
+				      label="返点金额">
+				    </el-table-column>
+				    <el-table-column
+				      prop="profitLoss"
+				      label="盈亏金额">
+				    </el-table-column>
+				</el-table> -->
+			</div>
+			<!-- 表格为空的样式 -->
+			<div class="table-empty" v-show="czTableData.length==0">
+				<img src="../../assets/zjzh/empty.png" style="width: 102px;height: 78px;">
+				<div class="table-empty-text">暂无记录</div>
+			</div>
+		</div>
+	</div>
+</template>
+<script>
+	// 引用axios封装文件
+	import {postAjax,getAjax} from "../../util/ajax.js"
+  export default {
+    data() {
+      return {
+      	//平台账号
+      	platformAccount:'',
+        //日期
+        beginDate:'',
+        endDate:'',
+        //表格数据
+        czTableData:[
+        ],
+      }
+    },
+    methods: {
+      //查询
+      tbCxBtn(){
+      	this.czTableData=[];
+      	let that=this;
+      	let url="api/Proxy/GetProxyAccReport";
+      	let data={
+			EndTime: this.endDate,
+			LoginName:this.platformAccount,
+			Type: 1,
+			StartTime: this.beginDate,
+      	};
+      	postAjax(url,data).then(function(data){
+      		if(data.IsSucess){
+      			that.czTableData=data.Data.rows;
+      		}
+      	})
+      },
+    }
+  }
+</script>
+<style type="scss">
+	#tbbb{height: 1110px;background-color: white;}
+	.right_top{line-height:60px;border-bottom:4px solid #00772e;font-size:20px;font-weight:500;text-align:left;padding-left:20px;background-color:white;}
+	.tbbb_main{padding:20px 23px 0 20px}
+
+	/*团报报表*/
+	.report_type{border-bottom:4px solid #e5e6eb;height:48px;margin-bottom:16px;}
+	.report_type_item{height:48px;width:102px;float:left;font-size:18px;text-align:center;line-height:48px;font-weight:500;}
+	.report_type_item_active{border-bottom:4px solid #13aca8}
+
+	.query_info .el-input__inner{height:28px;border-radius:0;padding-left:11px !important;font-size:12px;}
+	.query_info .el-select .el-input .el-select__caret{line-height:28px;}
+	.query_info .el-input{width:180px}
+	.czdateStyle{
+		width:180px;
+	}
+	.czdateStyle .el-input__prefix{
+		left:150px;
+	}
+	.czdateStyle .el-input__icon{
+		line-height:28px;
+		color:#000;
+	}
+	.czdateStyle .el-input__inner{padding-left:11px !important;height:28px;font-size:12px;line-height:28px;
+		border-radius:0;
+	}
+	.czCxBtn{
+		width:75px;
+		height:37px;
+		background-color:#008573;
+		text-align:center;
+		line-height:37px;
+		font-size:12px;
+		color:#fff;
+		display:inline-block;
+		border-radius:2px;
+	}
+	.czCxBtn:hover{
+		cursor:pointer;
+	}
+	.czTable{margin-top:20px;}
+	.czTable .el-table td, .czTable .el-table th{
+		padding:0;
+		height:35px;
+		text-align:center;
+		font-size:12px;
+		font-weight:normal;
+	}
+	.czTable .el-table thead th{
+		font-size:14px;
+	}
+	.czTable .el-table th{
+		background-color: #2ba396;
+		color:#fff;
+	}
+	/*去掉表格为空的样式*/
+	.czTable .el-table__empty-block{
+		display:none;
+	}
+	/*自定义样式*/
+	.table-empty{padding-top:80px;text-align:center;}
+	.table-empty-text{font-size:14px;margin-top:20px;color:#8b918b;}
+	.my-paging{
+		padding-top: 12px;
+	}
+	.everyPageShow{
+		width:84px;height:27px;font-size:12px;color:#67707c;
+		line-height: 27px;
+		text-align:center;
+		float:left;
+	}
+	.my-paging .el-pagination{float:right;padding:0;}
+	.choosePage .el-input__inner{
+		height:27px;
+		border-radius:0;
+		margin-left:5px;
+		width:65px;
+		padding:0;
+		padding-left:8px;
+		font-size:12px;
+	}
+	.choosePage .el-input__icon{
+		line-height:27px;
+	}
+	#dljl .choosePage input::-webkit-input-placeholder{
+		color:#67707c !important;
+	}
+	.el-pager li.active{color:#008573;}
+	.el-pager{font-weight:normal;}
+	/*总共多少条的样式*/
+	.totalNum{
+		display: inline-block;
+	    font-size: 12px;
+	    margin-left: 15px;
+	}
+	.jumpPage{
+		float:right;
+		width:54px;
+		height:27px;
+		line-height:27px;
+		font-size:14px;
+		text-align:center;
+		color:#008573;
+		margin-left:8px;
+		cursor: pointer;
+	}
+	/*弹窗样式*/
+	.my_dialog{
+		position: fixed;
+	    top: 0;
+	    right: 0;
+	    bottom: 0;
+	    left: 0;
+	    overflow: auto;
+	    margin: 0;
+	    z-index: 2003;
+	    background-color:rgba(149,150,153,0.3);
+	}
+	.my_dialog_main{
+		position: absolute;
+		width:30%;
+		background: #fff;
+		z-index:2004;
+		top:20%;
+		left:35%;
+	}
+</style>

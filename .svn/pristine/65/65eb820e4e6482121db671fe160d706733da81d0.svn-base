@@ -1,0 +1,9424 @@
+{
+  "1": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "万位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 5,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的全部五位，号码和位置都对应即中奖",
+    "hintTitle": "12345",
+    "hintContent": "12345 即中奖"
+  },
+  "2": {
+    "title": "直选单式",
+    "betLength": 5,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如01234 56789",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的全部五位，号码和位置都对应即中奖",
+    "hintTitle": "12345",
+    "hintContent": "12345 即中奖"
+  },
+  "3": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组选120",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "minNum": 5,
+    "hintText": "至少选择五个号码投注，竞猜开奖号码的全部五位，号码一致顺序不限即中奖",
+    "hintTitle": "02568",
+    "hintContent": "02568（不限顺序）即中奖"
+  },
+  "4": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "二重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "单号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择1个二重号码和3个单号号码组成一注，竞猜开奖号码的全部五位，号码一致顺序不限即中奖",
+    "hintTitle": "02588（88为二重号，0/2/5为单号）",
+    "hintContent": "02588（顺序不限）即中奖"
+  },
+  "5": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "二重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "单号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择2个二重号码和1个单号号码组成一注，竞猜开奖号码的全部五位，号码一致顺序不限即中奖",
+    "hintTitle": "00588（0/8为二重号，5为单号）",
+    "hintContent": "00588（顺序不限） 即中奖"
+  },
+  "6": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "三重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "单号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择1个三重号码和2个单号号码组成一注，竞猜开奖号码的全部五位，号码一致顺序不限即中奖",
+    "hintTitle": "02888（8为三重号，0/2为单号）",
+    "hintContent": "02888（顺序不限） 即中奖"
+  },
+  "7": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "三重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "二重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择1个三重号码和1个二重号码组成一注，竞猜开奖号码的全部五位，号码一致顺序不限即中奖",
+    "hintTitle": "22888（2为二重号，8为三重号）",
+    "hintContent": "22888（顺序不限）即中奖"
+  },
+  "8": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "四重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "单号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择1个四重号码和1个单号号码组成一注，竞猜开奖号码的全部五位，号码一致顺序不限即中奖 ",
+    "hintTitle": "08888（8为四重号，0为单号）",
+    "hintContent": "08888（顺序不限）即中奖"
+  },
+  "9": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "一帆风顺",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择1个号码投注，竞猜开奖号码中包含这个号码，包含即中奖",
+    "hintTitle": "8",
+    "hintContent": "xxxx8（顺序不限）即中奖"
+  },
+  "10": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "好事成双",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择1个号码投注，竞猜开奖号码中包含这个号码且出现2次，即中奖",
+    "hintTitle": "8",
+    "hintContent": "xxx88（顺序不限）即中奖"
+  },
+  "11": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "三星报喜",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择1个号码投注，竞猜开奖号码中包含这个号码且出现3次，即中奖 ",
+    "hintTitle": "8",
+    "hintContent": "xx888（顺序不限）即中奖"
+  },
+  "12": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "四季发财",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择1个号码投注，竞猜开奖号码中包含这个号码且出现4次，即中奖 ",
+    "hintTitle": "8",
+    "hintContent": "x8888（顺序不限）即中奖"
+  },
+  "13": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "万位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的前四位，号码和位置都对应即中奖 ",
+    "hintTitle": "3456*",
+    "hintContent": "3456* 即中奖"
+  },
+  "14": {
+    "title": "直选单式",
+    "betLength": 4,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如0123 6789",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的前四位，号码和位置都对应即中奖 ",
+    "hintTitle": "3456*",
+    "hintContent": "3456* 即中奖"
+  },
+  "15": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组选24",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择4个号码投注，竞猜开奖号码的前4位，号码一致顺序不限即中奖",
+    "hintTitle": "2568*",
+    "hintContent": "2568* 即中奖"
+  },
+  "16": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "二重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "单号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择1个二重号码和2个单号号码，竞猜开奖号码的前四位，号码一致顺序不限即中奖",
+    "hintTitle": "2588*（8为二重号，2/5为单号）",
+    "hintContent": "2588*（顺序不限） 即中奖"
+  },
+  "17": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组选6",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择2个二重号码，竞猜开奖号码的前四位，号码一致顺序不限即中奖",
+    "hintTitle": "0088*（0/8为二重号）",
+    "hintContent": "0088*（不限顺序）"
+  },
+  "18": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "三重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "单号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择1个三重号码和1个单号号码，竞猜开奖号码的前四位，号码一致顺序不限即中奖",
+    "hintTitle": "2888*（8为三重号，2为单号）",
+    "hintContent": "2888*（顺序不限） 即中奖"
+  },
+  "19": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的后四位，号码和位置都对应即中奖",
+    "hintTitle": "*3456",
+    "hintContent": "*3456 即中奖"
+  },
+  "20": {
+    "title": "直选单式",
+    "betLength": 4,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如0123 6789",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的后四位，号码和位置都对应即中奖",
+    "hintTitle": "*3456",
+    "hintContent": "*3456 即中奖"
+  },
+  "21": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组选24",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择4个号码投注，竞猜开奖号码的后4位，号码一致顺序不限即中奖",
+    "hintTitle": "*2568",
+    "hintContent": "*2568 即中奖"
+  },
+  "22": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "二重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "单号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择1个二重号码和2个单号号码，竞猜开奖号码的后四位，号码一致顺序不限即中奖",
+    "hintTitle": "*2588（8为二重号，2/5为单号）",
+    "hintContent": "*2588（顺序不限） 即中奖"
+  },
+  "23": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组选6",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择2个二重号码，竞猜开奖号码的后四位，号码一致顺序不限即中奖",
+    "hintTitle": "*0088（0/8为二重号）",
+    "hintContent": "*0088（不限顺序） 即中奖"
+  },
+  "24": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "三重号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "单号",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "至少选择1个三重号码和1个单号号码，竞猜开奖号码的后四位，号码一致顺序不限即中奖",
+    "hintTitle": "*2888（8为三重号，2为单号）",
+    "hintContent": "*2888（顺序不限） 即中奖"
+  },
+  "25": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "万位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的前三位，号码和位置都对应即中奖",
+    "hintTitle": "456**",
+    "hintContent": "456** 即中奖"
+  },
+  "26": {
+    "title": "直选单式",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的前三位，号码和位置都对应即中奖",
+    "hintTitle": "456**",
+    "hintContent": "456** 即中奖"
+  },
+  "27": {
+    "title": "和值",
+    "betLength": 1,
+    "num": [
+      {
+        "value": 0,
+        "state": false
+      },
+      {
+        "value": 1,
+        "state": false
+      },
+      {
+        "value": 2,
+        "state": false
+      },
+      {
+        "value": 3,
+        "state": false
+      },
+      {
+        "value": 4,
+        "state": false
+      },
+      {
+        "value": 5,
+        "state": false
+      },
+      {
+        "value": 6,
+        "state": false
+      },
+      {
+        "value": 7,
+        "state": false
+      },
+      {
+        "value": 8,
+        "state": false
+      },
+      {
+        "value": 9,
+        "state": false
+      },
+      {
+        "value": 10,
+        "state": false
+      },
+      {
+        "value": 11,
+        "state": false
+      },
+      {
+        "value": 12,
+        "state": false
+      },
+      {
+        "value": 13,
+        "state": false
+      },
+      {
+        "value": 14,
+        "state": false
+      },
+      {
+        "value": 15,
+        "state": false
+      },
+      {
+        "value": 16,
+        "state": false
+      },
+      {
+        "value": 17,
+        "state": false
+      },
+      {
+        "value": 18,
+        "state": false
+      },
+      {
+        "value": 19,
+        "state": false
+      },
+      {
+        "value": 20,
+        "state": false
+      },
+      {
+        "value": 21,
+        "state": false
+      },
+      {
+        "value": 22,
+        "state": false
+      },
+      {
+        "value": 23,
+        "state": false
+      },
+      {
+        "value": 24,
+        "state": false
+      },
+      {
+        "value": 25,
+        "state": false
+      },
+      {
+        "value": 26,
+        "state": false
+      },
+      {
+        "value": 27,
+        "state": false
+      }
+    ],
+    "hintText": "至少选择一个和值，竞猜开奖号码前三位数字之和 ",
+    "hintTitle": "1",
+    "hintContent": "001**，010**，100** 即中奖"
+  },
+  "28": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "跨度",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "所选数值等于开奖号码的前3位最大与最小数字相减之差，即为中奖",
+    "hintTitle": "8",
+    "hintContent": "(1)前三数字08x（不限顺序）,x≠9;(2)前三数字19x（不限顺序），x≠0。即中奖"
+  },
+  "29": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组三",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中选择2个数字组成两注，所选号码与开奖号码的前三位相同，顺序不限，即中奖",
+    "hintTitle": "112**",
+    "hintContent": "112**（顺序不限）即中奖"
+  },
+  "30": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组六",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中任意选择3个号码组成一注，所选号码与开奖号码的前三位相同，顺序不限，即中奖",
+    "hintTitle": "123**",
+    "hintContent": "123**（不限顺序）即中奖"
+  },
+  "31": {
+    "title": "组选混合",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "手动输入号码，3个数字为一注，所选号码与开奖号码的前三位相同，顺序不限即中奖",
+    "hintTitle": "456** 开奖 456** 即中组六(不限顺序) \n投注: 445** 开奖 454/445/544** 即中组三",
+    "hintContent": ""
+  },
+  "32": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的中三位，号码和位置都对应即中奖",
+    "hintTitle": "*456*",
+    "hintContent": "*456* 即中奖"
+  },
+  "33": {
+    "title": "直选单式",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的中三位，号码和位置都对应即中奖",
+    "hintTitle": "*456*",
+    "hintContent": "*456* 即中奖"
+  },
+  "34": {
+    "title": "和值",
+    "betLength": 1,
+    "num": [
+      {
+        "value": 0,
+        "state": false
+      },
+      {
+        "value": 1,
+        "state": false
+      },
+      {
+        "value": 2,
+        "state": false
+      },
+      {
+        "value": 3,
+        "state": false
+      },
+      {
+        "value": 4,
+        "state": false
+      },
+      {
+        "value": 5,
+        "state": false
+      },
+      {
+        "value": 6,
+        "state": false
+      },
+      {
+        "value": 7,
+        "state": false
+      },
+      {
+        "value": 8,
+        "state": false
+      },
+      {
+        "value": 9,
+        "state": false
+      },
+      {
+        "value": 10,
+        "state": false
+      },
+      {
+        "value": 11,
+        "state": false
+      },
+      {
+        "value": 12,
+        "state": false
+      },
+      {
+        "value": 13,
+        "state": false
+      },
+      {
+        "value": 14,
+        "state": false
+      },
+      {
+        "value": 15,
+        "state": false
+      },
+      {
+        "value": 16,
+        "state": false
+      },
+      {
+        "value": 17,
+        "state": false
+      },
+      {
+        "value": 18,
+        "state": false
+      },
+      {
+        "value": 19,
+        "state": false
+      },
+      {
+        "value": 20,
+        "state": false
+      },
+      {
+        "value": 21,
+        "state": false
+      },
+      {
+        "value": 22,
+        "state": false
+      },
+      {
+        "value": 23,
+        "state": false
+      },
+      {
+        "value": 24,
+        "state": false
+      },
+      {
+        "value": 25,
+        "state": false
+      },
+      {
+        "value": 26,
+        "state": false
+      },
+      {
+        "value": 27,
+        "state": false
+      }
+    ],
+    "hintText": "至少选择一个和值，竞猜开奖号码中三位数字之和 ",
+    "hintTitle": "1",
+    "hintContent": "*001*，*010*，*100* 即中奖"
+  },
+  "35": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "跨度",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "所选数值等于开奖号码的中3位最大与最小数字相减之差，即为中奖",
+    "hintTitle": "8",
+    "hintContent": "(1)中三数字08x（不限顺序）,x≠9;(2)中三数字19x（不限顺序），x≠0。即中奖"
+  },
+  "36": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组三",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中选择2个数字组成两注，所选号码与开奖号码的中三位相同，顺序不限，即中奖",
+    "hintTitle": "*112*",
+    "hintContent": "*112*（顺序不限）即中奖"
+  },
+  "37": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组六",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中任意选择3个号码组成一注，所选号码与开奖号码的中三位相同，顺序不限，即中奖",
+    "hintTitle": "*123*",
+    "hintContent": "*123*（不限顺序）即中奖"
+  },
+  "38": {
+    "title": "组选混合",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "手动输入号码，3个数字为一注，所选号码与开奖号码的中三位相同，顺序不限即中奖",
+    "hintTitle": "*456* 开奖 *456* 即中组六(不限顺序) \n投注: *445* 开奖 *454/445/544* 即中组三",
+    "hintContent": ""
+  },
+  "39": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的后三位，号码和位置都对应即中奖",
+    "hintTitle": "456**",
+    "hintContent": "456** 即中奖"
+  },
+  "40": {
+    "title": "直选单式",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的后三位，号码和位置都对应即中奖",
+    "hintTitle": "456**",
+    "hintContent": "456** 即中奖"
+  },
+  "41": {
+    "title": "和值",
+    "betLength": 1,
+    "num": [
+      {
+        "value": 0,
+        "state": false
+      },
+      {
+        "value": 1,
+        "state": false
+      },
+      {
+        "value": 2,
+        "state": false
+      },
+      {
+        "value": 3,
+        "state": false
+      },
+      {
+        "value": 4,
+        "state": false
+      },
+      {
+        "value": 5,
+        "state": false
+      },
+      {
+        "value": 6,
+        "state": false
+      },
+      {
+        "value": 7,
+        "state": false
+      },
+      {
+        "value": 8,
+        "state": false
+      },
+      {
+        "value": 9,
+        "state": false
+      },
+      {
+        "value": 10,
+        "state": false
+      },
+      {
+        "value": 11,
+        "state": false
+      },
+      {
+        "value": 12,
+        "state": false
+      },
+      {
+        "value": 13,
+        "state": false
+      },
+      {
+        "value": 14,
+        "state": false
+      },
+      {
+        "value": 15,
+        "state": false
+      },
+      {
+        "value": 16,
+        "state": false
+      },
+      {
+        "value": 17,
+        "state": false
+      },
+      {
+        "value": 18,
+        "state": false
+      },
+      {
+        "value": 19,
+        "state": false
+      },
+      {
+        "value": 20,
+        "state": false
+      },
+      {
+        "value": 21,
+        "state": false
+      },
+      {
+        "value": 22,
+        "state": false
+      },
+      {
+        "value": 23,
+        "state": false
+      },
+      {
+        "value": 24,
+        "state": false
+      },
+      {
+        "value": 25,
+        "state": false
+      },
+      {
+        "value": 26,
+        "state": false
+      },
+      {
+        "value": 27,
+        "state": false
+      }
+    ],
+    "hintText": "至少选择一个和值，竞猜开奖号码后三位数字之和 ",
+    "hintTitle": "1",
+    "hintContent": "**001，**010，**100 即中奖"
+  },
+  "42": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "跨度",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "所选数值等于开奖号码的后3位最大与最小数字相减之差，即为中奖",
+    "hintTitle": "8",
+    "hintContent": "(1)后三数字08x（不限顺序）,x≠9;(2)后三数字19x（不限顺序），x≠0。即中奖"
+  },
+  "43": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组三",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中选择2个数字组成两注，所选号码与开奖号码的后三位相同，顺序不限，即中奖",
+    "hintTitle": "**112",
+    "hintContent": "**112（顺序不限）即中奖"
+  },
+  "44": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组六",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中任意选择3个号码组成一注，所选号码与开奖号码的后三位相同，顺序不限，即中奖",
+    "hintTitle": "**123",
+    "hintContent": "**123（不限顺序）即中奖"
+  },
+  "45": {
+    "title": "组选混合",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "手动输入号码，3个数字为一注，所选号码与开奖号码的后三位相同，顺序不限即中奖",
+    "hintTitle": "**456 开奖 **456 即中组六(不限顺序) \n投注: **445 开奖 **454/445/544 即中组三",
+    "hintContent": ""
+  },
+  "46": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "万位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的前二位，号码和位置都对应即中奖",
+    "hintTitle": "45***",
+    "hintContent": "45*** 即中奖"
+  },
+  "47": {
+    "title": "直选单式",
+    "betLength": 2,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如01 78",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的前二位，号码和位置都对应即中奖",
+    "hintTitle": "45***",
+    "hintContent": "45*** 即中奖"
+  },
+  "48": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组选",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中选择2个数字组成一注，所选号码与开奖号码的前二位相同，顺序不限，即中奖",
+    "hintTitle": "45***",
+    "hintContent": "45*** 即中奖"
+  },
+  "49": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的后二位，号码和位置都对应即中奖",
+    "hintTitle": "***45",
+    "hintContent": "***45 即中奖"
+  },
+  "50": {
+    "title": "直选单式",
+    "betLength": 2,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如01 78",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的后二位，号码和位置都对应即中奖",
+    "hintTitle": "***45",
+    "hintContent": "***45 即中奖"
+  },
+  "51": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组选",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中选择2个数字组成一注，所选号码与开奖号码的后二位相同，顺序不限，即中奖",
+    "hintTitle": "***45",
+    "hintContent": "***45 即中奖"
+  },
+  "52": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "万位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 5,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从任意位选择1个或多个号码，选号与对应位置的开奖号码一致即中奖",
+    "hintTitle": "1",
+    "hintContent": "00123 即中奖"
+  },
+  "53": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "前三一码",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择1个号码投注，竞猜开奖号码前三位中包含这个号码，包含即中奖",
+    "hintTitle": "1",
+    "hintContent": "1xx**(不限顺序) 即中奖"
+  },
+  "54": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "前三二码",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择2个号码投注，竞猜开奖号码前三位中包含这2个号码，包含即中奖",
+    "hintTitle": "12",
+    "hintContent": "12x**（不限顺序）"
+  },
+  "55": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "后三一码",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择1个号码投注，竞猜开奖号码后三位中包含这个号码，包含即中奖",
+    "hintTitle": "1",
+    "hintContent": "**1xx(不限顺序) 即中奖"
+  },
+  "56": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "后三二码",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择2个号码投注，竞猜开奖号码后三位中包含这2个号码，包含即中奖 ",
+    "hintTitle": "12",
+    "hintContent": "**12x（不限顺序）即中奖"
+  },
+  "57": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "后四一码",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择1个号码投注，竞猜开奖号码后四位中包含这个号码，包含即中奖",
+    "hintTitle": "*1xxx",
+    "hintContent": "*1xxx（不限顺序）即中奖"
+  },
+  "58": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "后四二码",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择2个号码投注，竞猜开奖号码后四位中包含这2个号码，包含即中奖",
+    "hintTitle": "12",
+    "hintContent": "*12xx（不限顺序）即中奖"
+  },
+  "59": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "五星二码",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择2个号码投注，竞猜开奖号码中包含这2个号码，包含即中奖",
+    "hintTitle": "12",
+    "hintContent": "1x2xx（不限顺序）即中奖"
+  },
+  "60": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "五星三码",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中至少选择3个号码投注，竞猜开奖号码中包含这3个号码，包含即中奖",
+    "hintTitle": "123",
+    "hintContent": "1x2x3（顺序不限）即中奖"
+  },
+  "61": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "万位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 5,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的任意四个位置，号码和位置都对应即中奖",
+    "hintTitle": "3456*",
+    "hintContent": "3456* 即中奖"
+  },
+  "62": {
+    "title": "直选单式",
+    "betLength": 4,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如0123 6789",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的前四位，号码和位置都对应即中奖",
+    "hintTitle": "3456*",
+    "hintContent": "3456* 即中奖"
+  },
+  "63": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "万位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 5,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的任意三个位置，号码和位置都对应即中奖",
+    "hintTitle": "456**",
+    "hintContent": "456** 即中奖"
+  },
+  "64": {
+    "title": "直选单式",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的前三位，号码和位置都对应即中奖",
+    "hintTitle": "456**",
+    "hintContent": "456** 即中奖"
+  },
+  "65": {
+    "betLength": 3,
+    "betNum": 2,
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组三",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中选择3个数字组成三注，所选号码与开奖号码的前三位相同，顺序不限，即中奖",
+    "hintTitle": "112**",
+    "hintContent": "112**（顺序不限）即中奖"
+  },
+  "66": {
+    "betLength": 3,
+    "betNum": 3,
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组六",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中任意选择3个号码组成六注，所选号码与开奖号码的前三位相同，顺序不限，即中奖",
+    "hintTitle": "123**",
+    "hintContent": "123**（不限顺序）即中奖"
+  },
+  "67": {
+    "title": "组选混合",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "手动输入号码，3个数字为一注，所选号码与开奖号码的前三位相同，顺序不限即中奖",
+    "hintTitle": "456** 开奖 456** 即中组六(不限顺序) \n投注: 445** 开奖 454/445/544** 即中组三",
+    "hintContent": ""
+  },
+  "68": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "万位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 5,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的任意二个位置，号码和位置都对应即中奖",
+    "hintTitle": "45***",
+    "hintContent": "45*** 即中奖"
+  },
+  "69": {
+    "title": "直选单式",
+    "betLength": 2,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如01 69",
+    "hintText": "每位至少选择一个号码，竞猜开奖号码的前二位，号码和位置都对应即中奖",
+    "hintTitle": "45***",
+    "hintContent": "45*** 即中奖"
+  },
+  "70": {
+    "title": "万千",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的万位大于千位，则为龙；万位小于千位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：61051，开奖号码的万位大于千位，即中龙"
+  },
+  "71": {
+    "title": "万百",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的万位大于百位，则为龙；万位小于百位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：61051，开奖号码的万位大于百位，即中龙"
+  },
+  "72": {
+    "title": "万十",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的万位大于十位，则为龙；万位小于十位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：61051，开奖号码的万位大于十位，即中龙"
+  },
+  "73": {
+    "title": "万个",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的万位大于个位，则为龙；万位小于个位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：61051，开奖号码的万位大于个位，即中龙"
+  },
+  "74": {
+    "title": "千百",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的千位大于百位，则为龙；千位小于百位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：66051，开奖号码的千位大于百位，即中龙"
+  },
+  "75": {
+    "title": "千十",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的千位大于十位，则为龙；千位小于十位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：66051，开奖号码的千位大于十位，即中龙"
+  },
+  "77": {
+    "title": "千个",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的千位大于个位，则为龙；千位小于个位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：66051，开奖号码的千位大于个位，即中龙"
+  },
+  "78": {
+    "title": "百十",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的百位大于十位，则为龙；百位小于十位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：66651，开奖号码的百位大于十位，即中龙"
+  },
+  "79": {
+    "title": "百个",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的百位大于个位，则为龙；百位小于个位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：66651，开奖号码的百位大于个位，即中龙"
+  },
+  "80": {
+    "title": "十个",
+    "num": [
+      {
+        "value": "龙",
+        "state": false
+      },
+      {
+        "value": "虎",
+        "state": false
+      },
+      {
+        "value": "和",
+        "state": false
+      }
+    ],
+    "hintText": "从龙、虎、和中任意选择1个号码形态组成一注，只要开奖号码的十位大于个位，则为龙；十位小于个位，则为虎；相同号码则为和",
+    "hintTitle": "龙",
+    "hintContent": "开奖号码：66051，开奖号码的十位大于个位，即中龙"
+  },
+  "81": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "猜冠军",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-10共10个号码中选择1个号码组成一注，所选号码与当期摇出的10个号码中的第1个号码相同，即为中奖。",
+    "hintTitle": "01",
+    "hintContent": "开奖号码的第1个号码为01 即为中奖"
+  },
+  "82": {
+    "title": "单式",
+    "betLength": 1,
+    "placeholder": "从01-10输入号码，1个号码一组每个号码用（，分隔符）隔开,如：01,03",
+    "hintText": "从01-10共10个号码中选择1个号码组成一注，所选号码与当期摇出的10个号码中的第1个号码相同，即为中奖。",
+    "hintTitle": "01",
+    "hintContent": "开奖号码的第1个号码为01 即为中奖"
+  },
+  "83": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "冠军",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "亚军",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-10共10个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前2个号码相同，且顺序一致，即为中奖。",
+    "hintTitle": "01 02",
+    "hintContent": "开奖号码的前2个号码顺序为01，02 即为中奖"
+  },
+  "84": {
+    "title": "单式",
+    "betLength": 2,
+    "placeholder": "从01-10输入号码，2个号码一组每个号码用（，分隔符）隔开,如：01 03,05 07",
+    "hintText": "从01-10共10个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前2个号码相同，且顺序一致，即为中奖。",
+    "hintTitle": "01 02",
+    "hintContent": "开奖号码的前2个号码顺序为01，02 即为中奖"
+  },
+  "184": {
+    "title": "冠亚和值",
+    "num": [
+      {
+        "value": "3",
+        "state": false
+      },
+      {
+        "value": "4",
+        "state": false
+      },
+      {
+        "value": "5",
+        "state": false
+      },
+      {
+        "value": "6",
+        "state": false
+      },
+      {
+        "value": "7",
+        "state": false
+      },
+      {
+        "value": "8",
+        "state": false
+      },
+      {
+        "value": "9",
+        "state": false
+      },
+      {
+        "value": "10",
+        "state": false
+      },
+      {
+        "value": "11",
+        "state": false
+      },
+      {
+        "value": "12",
+        "state": false
+      },
+      {
+        "value": "13",
+        "state": false
+      },
+      {
+        "value": "14",
+        "state": false
+      },
+      {
+        "value": "15",
+        "state": false
+      },
+      {
+        "value": "16",
+        "state": false
+      },
+      {
+        "value": "17",
+        "state": false
+      },
+      {
+        "value": "18",
+        "state": false
+      },
+      {
+        "value": "19",
+        "state": false
+      }
+    ],
+    "hintText": "所选数值等于冠军和亚军数字之和即为中奖",
+    "hintTitle": "3",
+    "hintContent": "冠军和亚军分别为1号和2号顺序不限即为中奖"
+  },
+  "185": {
+    "title": "冠亚大小单双",
+    "num": [
+      {
+        "value": "大",
+        "state": false
+      },
+      {
+        "value": "小",
+        "state": false
+      },
+      {
+        "value": "单",
+        "state": false
+      },
+      {
+        "value": "双",
+        "state": false
+      }
+    ],
+    "hintText": "冠军和亚军和值 3至11为小，12至19为大，偶数为双，奇数为单",
+    "hintTitle": "大",
+    "hintContent": "冠军和亚军分别为 8号和6号顺序不限即为中奖"
+  },
+  "85": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "冠军",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "亚军",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "季军",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-10共10个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前3个号码相同，且顺序一致，即为中奖。",
+    "hintTitle": "01 02 03",
+    "hintContent": "开奖号码的前3个号码顺序为01，02，03 即为中奖"
+  },
+  "86": {
+    "title": "单式",
+    "betLength": 3,
+    "placeholder": "从01-10输入号码，3个号码一组每个号码用（，分隔符）隔开,如：01 02 03,05 06 07",
+    "hintText": "从01-10共10个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前3个号码相同，且顺序一致，即为中奖。",
+    "hintTitle": "01 02 03",
+    "hintContent": "开奖号码的前3个号码顺序为01，02，03 即为中奖"
+  },
+  "87": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "第一名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "第二名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "第三名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "第四名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-10共10个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前4个号码相同，且顺序一致，即为中奖。",
+    "hintTitle": "01 02 03 04",
+    "hintContent": "开奖号码的前4个号码顺序为01，02，03，04 即为中奖"
+  },
+  "88": {
+    "title": "单式",
+    "betLength": 4,
+    "placeholder": "从01-10输入号码，4个号码一组每个号码用（，分隔符）隔开,如：01 02 03 04,05 06 07 08",
+    "hintText": "从01-10共10个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前4个号码相同，且顺序一致，即为中奖。",
+    "hintTitle": "01 02 03 04",
+    "hintContent": "开奖号码的前4个号码顺序为01，02，03，04 即为中奖"
+  },
+  "89": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "第一名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "第二名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "第三名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "第四名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 5,
+        "digit": "第五名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-10共10个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前5个号码相同，且顺序一致，即为中奖。",
+    "hintTitle": "01 02 03 04 05",
+    "hintContent": "开奖号码的前5个号码顺序为01，02，03，04，05 即为中奖"
+  },
+  "90": {
+    "title": "单式",
+    "betLength": 5,
+    "placeholder": "从01-10输入号码，5个号码一组每个号码用（，分隔符）隔开,如：01 02 03 04 05,06 07 08 09 10",
+    "hintText": "从01-10共10个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前5个号码相同，且顺序一致，即为中奖。",
+    "hintTitle": "01 02 03 04 05",
+    "hintContent": "开奖号码的前5个号码顺序为01，02，03，04，05 即为中奖"
+  },
+  "91": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "第一名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "第二名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "第三名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "第四名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 5,
+        "digit": "第五名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 6,
+        "digit": "第六名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 7,
+        "digit": "第七名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 8,
+        "digit": "第八名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 9,
+        "digit": "第九名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 10,
+        "digit": "第十名",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从第1-10名任意1个位置或多个位置上选择1个号码，所选号码与相同位置上的开奖号码一致，即为中奖",
+    "hintTitle": "第一名选择01",
+    "hintContent": "开奖号码的第1个号码为01，即为中奖"
+  },
+  "92": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "第一名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "第二名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "第三名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 4,
+        "digit": "第四名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 5,
+        "digit": "第五名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 6,
+        "digit": "第六名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 7,
+        "digit": "第七名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 8,
+        "digit": "第八名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 9,
+        "digit": "第九名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 10,
+        "digit": "第十名",
+        "num": [
+          {
+            "value": "大",
+            "state": false
+          },
+          {
+            "value": "小",
+            "state": false
+          },
+          {
+            "value": "单",
+            "state": false
+          },
+          {
+            "value": "双",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "对第1、2、3、4、5、6、7、8、9、10名的“大（06 07 08 09 10）小（01 02 03 04 05）单（01 03 05 07 09）双（02 04 06 08 10）”<br>形态进行购买，所选号码的位置、形态与开奖号码的位置、形态相同，即为中奖",
+    "hintTitle": "第一名的大",
+    "hintContent": "开奖号码第1个号码：大，即为中奖"
+  },
+  "93": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "龙虎斗",
+        "num": [
+          {
+            "value": "龙1虎10",
+            "state": false
+          },
+          {
+            "value": "虎1龙10",
+            "state": false
+          },
+          {
+            "value": "龙2虎9",
+            "state": false
+          },
+          {
+            "value": "虎2龙9",
+            "state": false
+          },
+          {
+            "value": "龙3虎8",
+            "state": false
+          },
+          {
+            "value": "虎3龙8",
+            "state": false
+          },
+          {
+            "value": "龙4虎7",
+            "state": false
+          },
+          {
+            "value": "虎4龙7",
+            "state": false
+          },
+          {
+            "value": "龙5虎6",
+            "state": false
+          },
+          {
+            "value": "虎5龙6",
+            "state": false
+          }
+        ],
+        "hintText": "对开奖号码前五位的“龙虎”形态进行购买，所选“龙虎”与开奖号码的“龙虎”形态一致，即为中奖",
+        "hintTitle": "龙1虎10",
+        "hintContent": "第一位的开奖号码大于第十位，即中奖"
+      }
+    ]
+  },
+  "94": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "第一位",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "第二位",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "第三位",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择3个不重复的号码组成一注，所选号码与当期顺序摇出的5个号码中的前3个号码相同，且顺序一致，即为中奖",
+    "hintTitle": "选择01，02，03",
+    "hintContent": "开奖号码顺序为01，02，03 * *，即为中奖"
+  },
+  "95": {
+    "title": "单式",
+    "betLength": 3,
+    "placeholder": "从01-10输入号码，2个号码一组每个号码用（，分隔符）隔开,如：01 02 03,05 06 07",
+    "hintText": "从01-11共11个号码中选择3个不重复的号码组成一注，所选号码与当期顺序摇出的5个号码中的前3个号码相同，且顺序一致，即为中奖",
+    "hintTitle": "选择01，02，03",
+    "hintContent": "开奖号码顺序为01，02，03 * *，即为中奖"
+  },
+  "96": {
+    "betLength": 3,
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组选",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11中共11个号码中选择3个号码，所选号码与当期顺序摇出的5个号码中的前3个号码相同，顺序不限，即为中奖",
+    "hintTitle": "选择01 02 03（展开为01 02 03 * *，01 03 02 * *，02 01 03 * *，02 03 01 **，03 01 02 * *，03 02 01 **）",
+    "hintContent": "开奖号码为03 01 02，即为中奖"
+  },
+  "97": {
+    "title": "单式",
+    "betLength": 3,
+    "placeholder": "从01-10输入号码，2个号码一组每个号码用（，分隔符）隔开,如：01 02 03,05 06 07",
+    "hintText": "从01-11中共11个号码中选择3个号码，所选号码与当期顺序摇出的5个号码中的前3个号码相同，顺序不限，即为中奖",
+    "hintTitle": "选择01 02 03（展开为01 02 03 * *，01 03 02 * *，02 01 03 * *，02 03 01 **，03 01 02 * *，03 02 01 **）",
+    "hintContent": "开奖号码为03 01 02，即为中奖"
+  },
+  "98": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "第一位",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "第二位",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的5个号码中的前2个号码相同，且顺序一致，即中奖",
+    "hintTitle": "选择01 02",
+    "hintContent": "01 02 * * *，即为中奖"
+  },
+  "99": {
+    "title": "单式",
+    "betLength": 2,
+    "placeholder": "从01-10输入号码，2个号码一组每个号码用（，分隔符）隔开,如：01 03,05 07",
+    "hintText": "从01-11共11个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的5个号码中的前2个号码相同，且顺序一致，即中奖",
+    "hintTitle": "选择01 02",
+    "hintContent": "01 02 * * *，即为中奖"
+  },
+  "100": {
+    "betLength": 2,
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组选",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11中共11个号码中选择2个号码，所选号码与当期顺序摇出的5个号码中的前2个号码相同，顺序不限，即为中奖",
+    "hintTitle": "选择01 02（展开为01 02 * * *，02 01 * * *）",
+    "hintContent": "02 01 * * * 或 01 02 * * *，即为中奖"
+  },
+  "101": {
+    "title": "单式",
+    "betLength": 2,
+    "placeholder": "从01-10输入号码，2个号码一组每个号码用（，分隔符）隔开,如：01 03,05 07",
+    "hintText": "从01-11中共11个号码中选择2个号码，所选号码与当期顺序摇出的5个号码中的前2个号码相同，顺序不限，即为中奖",
+    "hintTitle": "选择01 02（展开为01 02 * * *，02 01 * * *）",
+    "hintContent": "02 01 * * * 或 01 02 * * *，即为中奖"
+  },
+  "102": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "不定位",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11中共11个号码中选择1个号码，每注由1个号码组成，只要当期顺序摇出的第一位、第二位、第三位开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "01",
+    "hintContent": "01xxxx，即为中奖"
+  },
+  "103": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "第一位",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "第二位",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "第三位",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从第一位，第二位，第三位，任意1个位置或多个位置上选择1个号码，所选号码与相同位置上的开奖号码一致，即为中奖",
+    "hintTitle": "01",
+    "hintContent": "01 * * * *，即为中奖"
+  },
+  "104": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "一中一",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择1个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "105": {
+    "title": "单式",
+    "betLength": 1,
+    "placeholder": "从01-10输入号码，1个号码一组每个号码用（，分隔符）隔开,如：01,05",
+    "hintText": "从01-11共11个号码中选择1个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "106": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "二中二",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择2个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 04",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "182": {
+    "title": "单式",
+    "betLength": 2,
+    "placeholder": "从01-10输入号码，2个号码一组每个号码用（，分隔符）隔开,如：01 03,05 07",
+    "hintText": "从01-11共11个号码中选择2个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 04",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "107": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "三中三",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择3个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 04 11",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "108": {
+    "title": "单式",
+    "betLength": 3,
+    "placeholder": "从01-10输入号码，3个号码一组每个号码用（，分隔符）隔开,如：01 02 03,05 07 09",
+    "hintText": "从01-11共11个号码中选择3个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 04 11",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "109": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "四中四",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择4个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 04 08 03",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "110": {
+    "title": "单式",
+    "betLength": 4,
+    "placeholder": "从01-10输入号码，4个号码一组每个号码用（，分隔符）隔开,如：01 02 03 04 ,05 06 07 08",
+    "hintText": "从01-11共11个号码中选择4个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 04 08 03",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "111": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "五中五",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择5个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 04 08 03 11",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "112": {
+    "title": "单式",
+    "betLength": 5,
+    "placeholder": "从01-10输入号码，5个号码一组每个号码用（，分隔符）隔开,如：01 02 03 04 09,05 06 07 08 10",
+    "hintText": "从01-11共11个号码中选择5个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 04 08 03 11",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "113": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "六中五",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择6个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 10 04 11 03 08",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "114": {
+    "title": "单式",
+    "betLength": 6,
+    "placeholder": "从01-10输入号码，6个号码一组每个号码用（，分隔符）隔开,如：01 02 03 04 05 06",
+    "hintText": "从01-11共11个号码中选择6个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 10 04 11 03 08",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "115": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "七中五",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择7个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 10 04 11 03 08 09",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "116": {
+    "title": "单式",
+    "betLength": 7,
+    "placeholder": "从01-10输入号码，7个号码一组每个号码用（，分隔符）隔开,如：01 02 03 04 05 06 07",
+    "hintText": "从01-11共11个号码中选择7个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 10 04 11 03 08 09",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "117": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "八中五",
+        "num": [
+          {
+            "value": "01",
+            "state": false
+          },
+          {
+            "value": "02",
+            "state": false
+          },
+          {
+            "value": "03",
+            "state": false
+          },
+          {
+            "value": "04",
+            "state": false
+          },
+          {
+            "value": "05",
+            "state": false
+          },
+          {
+            "value": "06",
+            "state": false
+          },
+          {
+            "value": "07",
+            "state": false
+          },
+          {
+            "value": "08",
+            "state": false
+          },
+          {
+            "value": "09",
+            "state": false
+          },
+          {
+            "value": "10",
+            "state": false
+          },
+          {
+            "value": "11",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从01-11共11个号码中选择8个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 10 04 11 03 08 09 01",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "118": {
+    "title": "单式",
+    "betLength": 8,
+    "placeholder": "从01-10输入号码，8个号码一组每个号码用（，分隔符）隔开,如：01 02 03 04 05 06 07 08",
+    "hintText": "从01-11共11个号码中选择8个号码进行购买，只要当期顺序摇出的5个开奖号码中包含所选号码，即为中奖",
+    "hintTitle": "05 10 04 11 03 08 09 01",
+    "hintContent": "08 04 11 05 03，即为中奖"
+  },
+  "119": {
+    "title": "直选和值",
+    "num": [
+      {
+        "value": "3",
+        "state": false
+      },
+      {
+        "value": "4",
+        "state": false
+      },
+      {
+        "value": "5",
+        "state": false
+      },
+      {
+        "value": "6",
+        "state": false
+      },
+      {
+        "value": "7",
+        "state": false
+      },
+      {
+        "value": "8",
+        "state": false
+      },
+      {
+        "value": "9",
+        "state": false
+      },
+      {
+        "value": "10",
+        "state": false
+      },
+      {
+        "value": "11",
+        "state": false
+      },
+      {
+        "value": "12",
+        "state": false
+      },
+      {
+        "value": "13",
+        "state": false
+      },
+      {
+        "value": "14",
+        "state": false
+      },
+      {
+        "value": "15",
+        "state": false
+      },
+      {
+        "value": "16",
+        "state": false
+      },
+      {
+        "value": "17",
+        "state": false
+      },
+      {
+        "value": "18",
+        "state": false
+      }
+    ],
+    "hintText": "至少选择1个和值（3个号码之和）进行投注，所选和值与开奖的3个号码的和值相同即中奖。(和值型态3～10为小，11～18为大)",
+    "hintTitle": "5",
+    "hintContent": "113,即中和值"
+  },
+  "183": {
+    "title": "大小单双",
+    "num": [
+      {
+        "value": "大",
+        "state": false,
+        "odds": 0
+      },
+      {
+        "value": "小",
+        "state": false,
+        "odds": 0
+      },
+      {
+        "value": "单",
+        "state": false,
+        "odds": 0
+      },
+      {
+        "value": "双",
+        "state": false,
+        "odds": 0
+      }
+    ],
+    "hintText": "至少选择1个值(大小单双)进行投注，所选和值3-10为小,11-18为大,3.5.7..为单,4.6.8..为双",
+    "hintTitle": "大",
+    "hintContent": "556,即中奖"
+  },
+  "120": {
+    "title": "三同号通选",
+    "num": [
+      {
+        "value": "三同号通选",
+        "state": false,
+        "odds": 0
+      }
+    ],
+    "hintText": "对所有相同的三个号码（111、222、333、444、555、666）进行投注，任意号码开出即中奖",
+    "hintTitle": "三同号通选",
+    "hintContent": "111,即中三同号通选"
+  },
+  "121": {
+    "type": [
+      {
+        "digit": "三同号单选",
+        "num": [
+          {
+            "value": "1",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "2",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "3",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "4",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "5",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "6",
+            "state": false,
+            "odds": 0
+          }
+        ]
+      }
+    ],
+    "hintText": "对所有相同的三个号码（111、222、333、444、555、666）进行投注，任意号码开出即中奖",
+    "hintTitle": "111",
+    "hintContent": "111,即中三同号通选"
+  },
+  "122": {
+    "type": [
+      {
+        "digit": "三不同号单选",
+        "num": [
+          {
+            "value": "1",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "2",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "3",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "4",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "5",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "6",
+            "state": false,
+            "odds": 0
+          }
+        ]
+      }
+    ],
+    "hintText": "从1～6中任选3个或多个号码，所选号码与开奖号码的3个号码相同即中奖",
+    "hintTitle": "123",
+    "hintContent": "123,即中三不同号单选"
+  },
+  "123": {
+    "title": "三连号通选",
+    "num": [
+      {
+        "value": "三连号通选",
+        "state": false,
+        "odds": 0
+      }
+    ],
+    "hintText": "对所有3个相连的号码（123、234、345、456）进行投注，任意号码开出即中奖",
+    "hintTitle": "三连号通选",
+    "hintContent": "456,即中三连号通选"
+  },
+  "124": {
+    "type": [
+      {
+        "digit": "二同号",
+        "imgLength": 2,
+        "num": [
+          {
+            "value": "1",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "2",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "3",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "4",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "5",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "6",
+            "state": false,
+            "odds": 0
+          }
+        ]
+      }
+    ],
+    "hintText": "从1～6中任选1个或多个号码，选号与奖号（包含两个1～6，不限顺序）相同，即中奖",
+    "hintTitle": "1",
+    "hintContent": "开奖号码：456,即中二同号复选"
+  },
+  "125": {
+    "type": [
+      {
+        "digit": "二同号",
+        "imgLength": 2,
+        "num": [
+          {
+            "value": "1",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "2",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "3",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "4",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "5",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "6",
+            "state": false,
+            "odds": 0
+          }
+        ]
+      },
+      {
+        "digit": "不同号",
+        "imgLength": 1,
+        "num": [
+          {
+            "value": "1",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "2",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "3",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "4",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "5",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "6",
+            "state": false,
+            "odds": 0
+          }
+        ]
+      }
+    ],
+    "hintText": "选择1对相同号码和1个不同号码投注，选号与奖号相同（顺序不限，投注的二同号和不同号不可相同），即中奖",
+    "hintTitle": "二同号1，不同号2",
+    "hintContent": "112,即中二同号单选"
+  },
+  "126": {
+    "type": [
+      {
+        "digit": "二不同号",
+        "imgLength": 1,
+        "num": [
+          {
+            "value": "1",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "2",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "3",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "4",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "5",
+            "state": false,
+            "odds": 0
+          },
+          {
+            "value": "6",
+            "state": false,
+            "odds": 0
+          }
+        ]
+      }
+    ],
+    "hintText": "从1～6中任选2个或多个号码，所选号码与开奖号码任意2个号码相同，即中奖",
+    "hintTitle": "二同号12，不同号2",
+    "hintContent": "112,即中二不同号"
+  },
+  "168": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从百位、十位、个位任意1个位置或多个位置上选择1个号码，所选号码与相同位置上的开奖号码一致，即为中奖",
+    "hintTitle": "123",
+    "hintContent": "123，即为中奖"
+  },
+  "169": {
+    "title": "单式",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "从百位、十位、个位任意1个位置或多个位置上选择1个号码，所选号码与相同位置上的开奖号码一致，即为中奖",
+    "hintTitle": "123",
+    "hintContent": "123，即为中奖"
+  },
+  "170": {
+    "title": "和值",
+    "betLength": 1,
+    "num": [
+      {
+        "value": 0,
+        "state": false
+      },
+      {
+        "value": 1,
+        "state": false
+      },
+      {
+        "value": 2,
+        "state": false
+      },
+      {
+        "value": 3,
+        "state": false
+      },
+      {
+        "value": 4,
+        "state": false
+      },
+      {
+        "value": 5,
+        "state": false
+      },
+      {
+        "value": 6,
+        "state": false
+      },
+      {
+        "value": 7,
+        "state": false
+      },
+      {
+        "value": 8,
+        "state": false
+      },
+      {
+        "value": 9,
+        "state": false
+      },
+      {
+        "value": 10,
+        "state": false
+      },
+      {
+        "value": 11,
+        "state": false
+      },
+      {
+        "value": 12,
+        "state": false
+      },
+      {
+        "value": 13,
+        "state": false
+      },
+      {
+        "value": 14,
+        "state": false
+      },
+      {
+        "value": 15,
+        "state": false
+      },
+      {
+        "value": 16,
+        "state": false
+      },
+      {
+        "value": 17,
+        "state": false
+      },
+      {
+        "value": 18,
+        "state": false
+      },
+      {
+        "value": 19,
+        "state": false
+      },
+      {
+        "value": 20,
+        "state": false
+      },
+      {
+        "value": 21,
+        "state": false
+      },
+      {
+        "value": 22,
+        "state": false
+      },
+      {
+        "value": 23,
+        "state": false
+      },
+      {
+        "value": 24,
+        "state": false
+      },
+      {
+        "value": 25,
+        "state": false
+      },
+      {
+        "value": 26,
+        "state": false
+      },
+      {
+        "value": 27,
+        "state": false
+      }
+    ],
+    "hintText": "所选数值等于开奖号码的三个数字相加之和，即为中奖",
+    "hintTitle": "6",
+    "hintContent": "123、141、114、006、060等任意一个和值为6的结果，即为中奖"
+  },
+  "171": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组三",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中任意选择2个数字组成两注，所选号码与开奖号码相同，顺序不限，即为中奖",
+    "hintTitle": "12（展开为122，212，221 和 112、121、211）",
+    "hintContent": "212 或 121，即为中奖"
+  },
+  "172": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组六",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中任意选择3个号码组成一注，所选号码与开奖号码相同，顺序不限，即为中奖",
+    "hintTitle": "123（展开为123，132，231，213，312，321）",
+    "hintContent": "321，即为中奖"
+  },
+  "173": {
+    "title": "单式",
+    "betLength": 3,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如012 789",
+    "hintText": "手动输入购买号码，3个数字为一注，开奖号码符合组三或组六均为中奖",
+    "hintTitle": "123、455",
+    "hintContent": "321即中组六奖，开奖 545即中组三奖"
+  },
+  "174": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "万位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "千位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从万位、千位中选择一个2位数号码组成一注，所选号码与开奖号码的前2位相同，且顺序一致，即为中奖",
+    "hintTitle": "58",
+    "hintContent": "前二位：58，即为中奖"
+  },
+  "175": {
+    "title": "单式",
+    "betLength": 2,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如01 78",
+    "hintText": "从万位、千位中选择一个2位数号码组成一注，所选号码与开奖号码的前2位相同，且顺序一致，即为中奖",
+    "hintTitle": "58",
+    "hintContent": "前二位：58，即为中奖"
+  },
+  "176": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组二",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中选2个号码组成一注，所选号码与开奖号码的百位、十位相同，顺序不限（不含对子号），即中奖",
+    "hintTitle": "58",
+    "hintContent": "前二位：85 或58(顺序不限，不含对子号)，即中前二组选复式"
+  },
+  "177": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从万位、千位中选择一个2位数号码组成一注，所选号码与开奖号码的后2位相同，且顺序一致，即为中奖",
+    "hintTitle": "58",
+    "hintContent": "后二位：58，即为中奖"
+  },
+  "178": {
+    "title": "单式",
+    "betLength": 2,
+    "placeholder": "每组号码之间的间隔符支持空格[ ]逗号[,],如01 78",
+    "hintText": "从万位、千位中选择一个2位数号码组成一注，所选号码与开奖号码的后2位相同，且顺序一致，即为中奖",
+    "hintTitle": "58",
+    "hintContent": "后二位：58，即为中奖"
+  },
+  "179": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "组二",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中选2个号码组成一注，所选号码与开奖号码的十位、个位相同，顺序不限（不含对子号），即中奖",
+    "hintTitle": "58",
+    "hintContent": "后二位：85 或58(顺序不限，不含对子号)，即中后二组选复式"
+  },
+  "180": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "百位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 2,
+        "digit": "十位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      },
+      {
+        "ids": 3,
+        "digit": "个位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从百位、十位、个位任意1个位置或多个位置上选择1个号码，所选号码与相同位置上的开奖号码一致，即为中奖",
+    "hintTitle": "百位3",
+    "hintContent": "3**，即为中奖"
+  },
+  "181": {
+    "type": [
+      {
+        "ids": 1,
+        "digit": "不定位",
+        "num": [
+          {
+            "value": "0",
+            "state": false
+          },
+          {
+            "value": "1",
+            "state": false
+          },
+          {
+            "value": "2",
+            "state": false
+          },
+          {
+            "value": "3",
+            "state": false
+          },
+          {
+            "value": "4",
+            "state": false
+          },
+          {
+            "value": "5",
+            "state": false
+          },
+          {
+            "value": "6",
+            "state": false
+          },
+          {
+            "value": "7",
+            "state": false
+          },
+          {
+            "value": "8",
+            "state": false
+          },
+          {
+            "value": "9",
+            "state": false
+          }
+        ]
+      }
+    ],
+    "hintText": "从0-9中选择1个号码，每注由1个号码组成，只要开奖结果中包含所选号码，即为中奖",
+    "hintTitle": "4",
+    "hintContent": "4**、*4*、**4，即为中奖"
+  }
+}

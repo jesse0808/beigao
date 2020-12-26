@@ -1,0 +1,595 @@
+<template>
+  <div class="tema">
+    <div class="pick_area">
+      <div :class="['numerical_selection',item.selectStatus?'select_numerical':'no_select_numerical']"
+           @click="clickNumerical(item,index)" v-for="(item,index) in playData" :key="index">
+        <div :class="item.class">{{item.text}}</div>
+        <p>x{{item.pText}}</p>
+        <label>
+          <input type="text" @click.stop="" v-model="item.num" @input="inputChange(index)"/>
+        </label>
+      </div>
+    </div>
+    <funArea :shen-xiao-number="shenXiaoNumber" ref="funArea" @returnClickFun="disposeSelect"></funArea>
+  </div>
+</template>
+
+<script>
+  import funArea from "./funArea";
+
+  export default {
+    name: "tema",
+    components: {funArea},
+    props: {
+      noteMoney: {
+        type: Number,
+        required: true
+      },
+      resetFun: {
+        type: Boolean,
+        required: true
+      },
+      playList: {
+        type: Object,
+        required: true
+      },
+      shenXiaoNumber: {
+        type: Array,
+        required: true
+      }
+    },
+    data() {
+      return {
+        playData: [
+          {
+            text: '01',
+            selectStatus: false,//0未选中，选中
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '02',
+            selectStatus: false,//0未选中，选中
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '03',
+            selectStatus: false,//0未选中，选中
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '04',
+            selectStatus: false,//0未选中，选中
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '05',
+            selectStatus: false,//0未选中，选中
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '06',
+            selectStatus: false,//0未选中，选中
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '07',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '08',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '09',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '10',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '11',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '12',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '13',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '14',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '15',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '16',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '17',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '18',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '19',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '20',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '21',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '22',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '23',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '24',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '25',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '26',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '27',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '28',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '29',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '30',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '31',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '32',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '33',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '34',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '35',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '36',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '37',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '38',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '39',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '40',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '41',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '42',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '43',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '44',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '45',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '46',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '47',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '48',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          },
+          {
+            text: '49',
+            selectStatus: false,
+            num: '',
+            class: '',
+            pText: 47.92
+          }
+        ]
+      }
+    },
+    watch: {
+      resetFun() {
+        if (this.resetFun) {
+          this.$emit('returnResetStatus')
+          this.playData.forEach(item => {
+            item.selectStatus = false
+            item.num = ''
+          })
+          this.$refs.funArea.resetData()
+          this.dataChange()
+        }
+      },
+      noteMoney() {
+        if (this.noteMoney > 0) {
+          this.playData.forEach(item => {
+            if (item.selectStatus) {
+              item.num = this.noteMoney
+            }
+          })
+        } else {
+          this.playData.forEach(item => {
+            if (item.selectStatus) {
+              item.num = ''
+            }
+          })
+        }
+        this.dataChange()
+      },
+      playList() {
+        this.setPlayData()
+      }
+    },
+    created() {
+      this.setPlayData()
+      this.$emit('returnResetStatus')
+    },
+    methods: {
+      //设置玩法
+      setPlayData() {
+        let that = this
+        let playList = that.playList.PlayContentList
+        this.playData.forEach((item, index) => {
+          for (let i = 0; i < playList.length; i++) {
+            if (index === i) {
+              item.text = playList[i].Content
+              item.pText = playList[i].Odds
+              item.class = that.returnClass(item.text)
+            }
+          }
+        })
+      },
+      //数据变化是操作
+      dataChange() {
+        let sum = []
+        this.playData.forEach(item => {
+          if (Number(item.num) > 0) {
+            sum.push(item)
+          }
+        })
+        this.$emit('returnSelectNum', sum)
+      },
+      //input输入处理
+      inputChange(index) {
+        this.playData[index].num = parseInt(this.playData[index].num.toString().replace(/[^\d]/g, ''))
+        if (this.playData[index].num > 0) {
+          this.playData[index].selectStatus = true
+        } else {
+          this.playData[index].num = ''
+        }
+        this.dataChange()
+      },
+      //处理右侧导航选中返回数据事件
+      disposeSelect(data) {
+        let that = this
+        if (data.status) {
+          this.playData.forEach(item => {
+            item.selectStatus = false
+            item.num = ''
+          })
+          if (data.type == 0) {//0 根据选中的索引来设置号码选中状态
+            data.arr.forEach((item) => {
+              that.playData[item].selectStatus = !that.playData[item].selectStatus
+              if (that.playData[item].selectStatus && that.noteMoney > 0) {
+                that.playData[item].num = that.noteMoney
+              }
+            })
+          } else if (data.type == 1) {//1 根据号码来设置选中状态
+            data.arr.forEach((item) => {
+              that.playData.forEach(data => {
+                let num = Number(data.text);
+                if (num == item)
+                  data.selectStatus = !data.selectStatus
+                if ( data.selectStatus && that.noteMoney > 0) {
+                  data.num = that.noteMoney
+                }
+              });
+            })
+          }
+
+        } else {
+          this.playData.forEach(item => {
+            item.selectStatus = false
+            item.num = ''
+          })
+        }
+        this.dataChange()
+      },
+      //选中后得球
+      clickNumerical(item, index) {
+        this.playData[index].selectStatus = !this.playData[index].selectStatus
+        if (this.playData[index].selectStatus && this.noteMoney > 0) {
+          this.playData[index].num = this.noteMoney
+        } else {
+          this.playData[index].num = ''
+        }
+        this.dataChange()
+      },
+      //返回球的颜色
+      returnClass(str) {
+        let num = Number(str)
+        if (num === 1 || num === 2 || num === 7 || num === 8 || num === 12 || num === 13 || num === 18 || num === 19 || num === 23 || num === 24 || num === 29 || num === 30 || num === 34 || num === 35 || num === 40 || num === 45 || num === 46) {
+          return 'red_qiu'
+        }
+        if (num === 3 || num === 4 || num === 9 || num === 10 || num === 14 || num === 15 || num === 20 || num === 25 || num === 26 || num === 31 || num === 36 || num === 37 || num === 41 || num === 42 || num === 47 || num === 48) {
+          return 'blue_qiu'
+        }
+        if (num === 5 || num === 6 || num === 11 || num === 16 || num === 17 || num === 21 || num === 22 || num === 27 || num === 28 || num === 32 || num === 33 || num === 38 || num === 39 || num === 43 || num === 44 || num === 49) {
+          return 'green_qiu'
+        }
+      },
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  .tema {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 8px 0 14px;
+
+    .pick_area {
+      display: flex;
+      justify-content: start;
+      flex-wrap: wrap;
+      width: 709px;
+
+      .numerical_selection {
+        width: 70px;
+        height: 93px;
+        margin-right: 1px;
+        padding-top: 8px;
+        text-align: center;
+        cursor: pointer;
+
+        &:nth-child(10n) {
+          margin-right: 0;
+        }
+
+        div {
+          width: 40px;
+          height: 40px;
+          line-height: 40px;
+          margin: 0 auto;
+          font-size: 22px;
+          color: #ffffff;
+        }
+
+        p {
+
+        }
+
+        label {
+          width: 47px;
+          height: 20px;
+
+          input {
+            background: #ffffff;
+            outline: none;
+            width: 47px;
+            height: 20px;
+            border-radius: 3px;
+            text-align: center;
+            border: solid 1px #cacaca;
+          }
+        }
+      }
+
+      .select_numerical {
+        background: url(../../static/img/lhc/tema_btn_selected.jpg) no-repeat 0 0/100% 100%;
+
+        p {
+          color: #ffffff;
+        }
+      }
+
+      .no_select_numerical {
+        background: url(../../static/img/lhc/tema_btn_default.jpg) no-repeat 0 0/100% 100%;
+
+        &:hover {
+          background: url(../../static/img/lhc/tema_btn_hover.jpg) no-repeat 0 0/100% 100%;
+        }
+      }
+    }
+  }
+</style>

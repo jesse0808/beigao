@@ -1,0 +1,429 @@
+<template>
+  <div>
+    <div class="optional_content_box">
+      <!-- 复选框盒子 -->
+      <div class="optional_centent_checkbox box_h" v-if="checkState">
+        <el-checkbox v-for="(item,index) in digit" :key="index" v-model="item.check" @change="digitSelect">
+          {{item.name}}
+        </el-checkbox>
+
+        <div class="checkbox_select_title box_flex">你选择了{{digAry.length}}个位置，系统自动根据位置组合成 {{ways}} 个方案。</div>
+      </div>
+      <!-- 标准格式样本 -->
+      <div class="optional_standard_box">
+        <div class="optional_standard_contentbox">
+          <textarea class="optional_standard_contenttext" :placeholder="placeholdertext" v-model="val"
+                    @input="judgeVal"></textarea>
+          <div class="box_flex optional_standard_btn">
+            <a @click="deErrText">删除错误项</a>
+            <a @click="deCopyText">删除重复项</a>
+            <a @click="emptyText">清空文本框</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+    // 选项数组
+    export default {
+        props: {
+            gameid: {
+                type: Number,
+                required: true
+            }
+        },
+        data() {
+            return {
+                digit: [{check: false, name: "万位", dig: "万"}, {check: false, name: "千位", dig: "千"}, {
+                    check: false,
+                    name: "百位",
+                    dig: "百"
+                }, {check: false, name: "十位", dig: "十"}, {check: false, name: "个位", dig: "个"}],
+                placeholdertext: "每组号码之间的间隔符支持 回车 空格[ ] 逗号[,]\n如:01234 56789", //输入说明
+                selectAry: [], //返回子组件内容
+                ids: this.gameid, //玩法ID
+                checkState: false, // 是否隐藏多选按钮
+                valLength: 5, //输入的数值长度
+                val: "",  //输入的内容
+                digAry: [], //选择的位数
+                ways: 1 //方案数量
+            }
+        },
+        methods: {
+            // 删除错误项
+            deErrText() {
+                this.val = this.selectAry.join(",")
+                this.judgeVal()
+            },
+            // 删除重复性
+            deCopyText() {
+                let that = this
+                let ary = [...new Set(that.selectAry)]
+                this.val = ary.join(",")
+                this.judgeVal()
+            },
+            // 清空文本
+            emptyText() {
+                this.val = ''
+                this.judgeVal()
+            },
+            // 根据玩法ID设置内容框
+            setInfo(data) {
+                let that = this;
+                let id = 0
+                if (data == undefined || data == '' || data == null) {
+                    id = that.gameid;
+                } else {
+                    id = data
+                }
+                // 五星直选单式
+                if (id == 2) {
+                    that.placeholdertext = "每组号码之间的间隔符支持 回车 空格[ ] 逗号[,]\n如:01234 56789"
+                    that.valLength = 5
+                } else if (id == 14 || id == 20 || id == 62) {
+                    that.placeholdertext = "每组号码之间的间隔符支持 回车 空格[ ] 逗号[,]\n如:如:0123 5678"
+                    that.valLength = 4
+                } else if (id == 67 || id == 64 || id == 26 || id == 31 || id == 33 || id == 38 || id == 40 || id == 45 || id == 169 || id == 173) {
+                    that.placeholdertext = "每组号码之间的间隔符支持 回车 空格[ ] 逗号[,]\n如:如:012 567"
+                    that.valLength = 3
+                } else if (id == 50 || id == 47 || id == 178 || id == 175 || id == 69) {
+                    that.placeholdertext = "每组号码之间的间隔符支持 回车 空格[ ] 逗号[,]\n如:如:01 56"
+                    that.valLength = 2
+                } else if (id == 95 || id == 97) {
+                    that.placeholdertext = "从01-11输入号码,2个号码一组每个号码用(空格)隔开,每组号码用(,分隔符)隔开\n如:01 03 05,05 06 07"
+                    that.valLength = 8
+                } else if (id == 99 || id == 101) {
+                    that.placeholdertext = "从01-11输入号码,2个号码一组每个号码用(空格)隔开,每组号码用(,分隔符)隔开\n如:01 03,05 06"
+                    that.valLength = 5
+                } else if (id == 82 || id == 105) {
+                    that.placeholdertext = "从01-10输入号码,1个号码一组每个号码用(,分隔符)隔开,如:01,03"
+                    that.valLength = 2
+                } else if (id == 84 || id == 182) {
+                    that.placeholdertext = "从01-10输入号码,2个号码一组每个号码用(,分隔符)隔开,如:01 03,05 07"
+                    that.valLength = 5
+                } else if (id == 86 || id == 108) {
+                    that.placeholdertext = "从01-10输入号码,2个号码一组每个号码用(空格)隔开,每组号码用(,分隔符)隔开,\n如:01 02 03,03 05 06"
+                    that.valLength = 8
+                } else if (id == 88 || id == 110) {
+                    that.placeholdertext = "从01-10输入号码,2个号码一组每个号码用(空格)隔开,每组号码用(,分隔符)隔开,\n如:01 02 03 04,03 05 06 07"
+                    that.valLength = 11
+                } else if (id == 90 || id == 112) {
+                    that.placeholdertext = "从01-10输入号码,2个号码一组每个号码用(空格)隔开,每组号码用(,分隔符)隔开,\n如:01 02 01 02 03,03 05 03 05 05"
+                    that.valLength = 14
+                } else if (id == 114) {
+                    that.placeholdertext = "从01-10输入号码,2个号码一组每个号码用(空格)隔开,每组号码用(,分隔符)隔开,\n如:01 02 01 02 03 04,03 05 03 05 05 04"
+                    that.valLength = 17
+                } else if (id == 116) {
+                    that.placeholdertext = "从01-10输入号码,2个号码一组每个号码用(空格)隔开,每组号码用(,分隔符)隔开,\n如:01 02 01 02 03 04 04,03 05 03 05 05 04 04"
+                    that.valLength = 21
+                } else if (id == 118) {
+                    that.placeholdertext = "从01-10输入号码,2个号码一组每个号码用(空格)隔开,每组号码用(,分隔符)隔开,\n如:01 02 01 02 03 04 04 07,03 05 03 05 05 04 04"
+                    that.valLength = 24
+                }
+                // 位数选择
+                if (id == 62 || id == 64 || id == 67 || id == 69) {
+                    this.checkState = true
+                }
+            },
+            // 输入的值判断
+            judgeVal() {
+                let that = this
+                let str = that.val;
+                // that.selectAry = []
+                let reg = /^[0-9]\d*$/g //匹配空格
+                let reg_comma = /^[\d,]*$/g//匹配逗号
+                if (str.length < that.valLength) {
+                    that.selectAry = []
+                }
+                // if(str.length%(that.valLength+1)==0){//刚好在判断位 后面1
+                //     for(var i = 0, length1 = Math.floor(str.length/that.valLength); i < length1; i++){
+                //         let num = that.valLength;//5
+                //         let nums = i*num+num+1+i;//6 12 18  21
+                //         let state = str.slice(nums-1,nums)==" "||str.slice(nums-1,nums)==','
+                //         if(state == true){
+                //             that.selectAry.push(str.slice(i*num+i,i*num+i+num))
+                //         }
+                //     }
+                // }
+                let le = Math.floor(str.length / (that.valLength + 1)) + 1//有几组有效的
+                if (1) {
+                    that.selectAry = []
+                    for (var i = 0, length1 = Math.floor(str.length / that.valLength); i < length1; i++) {
+                        let num = that.valLength;//5
+                        let nums = i * num + num + 1 + i;//6 12 18  21
+                        let state = str.slice(nums - 1, nums) == " " || str.slice(nums - 1, nums) == ',' || str.slice(nums - 1, nums) == '' || str.slice(nums - 1, nums) == '\n'
+                        if (state == true) {
+                            that.selectAry.push(str.slice(i * num + i, i * num + i + num))
+                        }
+                    }
+                }
+                for (let i = 0; i < that.selectAry.length; i++) {
+                    let element = that.selectAry[i]
+                    if (element.length != that.valLength || element.match(/^[ ]*$/)) {
+                        that.selectAry.splice(i, 1)
+                        i--
+                    }
+                }
+
+                if (that.gameid == 62 || that.gameid == 64 || that.gameid == 67 || that.gameid == 69) {
+                    that.MathBet()
+                } else {
+                    this.$emit("getdata", that.selectAry)
+                }
+            },
+            // 位数选择
+            digitSelect() {
+                let ary = []
+                let that = this
+                this.digit.forEach(item => {
+                    if (item.check) {
+                        ary.push(item.dig)
+                    }
+                })
+                this.digAry = ary
+                this.$emit("getdis", this.digAry)
+                this.MathBet()
+
+            },
+            //初始设置位数
+            digitStar() {
+                let that = this
+                let ids = that.ids
+                if (ids == 62) {
+                    for (let i = 0; i < that.digit.length; i++) {
+                        if (i > 0) {
+                            that.digit[i].check = true
+                        }
+                    }
+                } else if (ids == 64 || ids == 67) {
+                    for (let i = 0; i < that.digit.length; i++) {
+                        if (i > 1) {
+                            that.digit[i].check = true
+                        }
+                    }
+                } else if (ids == 69) {
+                    for (let i = 0; i < that.digit.length; i++) {
+                        if (i > 2) {
+                            that.digit[i].check = true
+                        }
+                    }
+                }
+                this.digitSelect()
+            },
+            // 计算带位数注数
+            MathBet() {
+                let that = this
+                let len = that.digAry.length
+                // 任四自选
+                if (that.gameid == 62) {
+                    if (len >= 4) {
+                        if (len == 4) {
+                            that.ways = 1
+                        } else if (len == 5) {
+                            that.ways = 5
+                        }
+                    } else {
+                        that.ways = 0
+                    }
+                    this.$emit("getdata", that.selectAry)
+                }
+                // 任三自选
+                else if (that.gameid == 64 || that.gameid == 67) {
+                    if (len >= 3) {
+                        if (len == 3) {
+                            that.ways = 1
+                        } else if (len == 4) {
+                            that.ways = 4
+                        } else if (len == 5) {
+                            that.ways = 10
+                        }
+                    } else {
+                        that.ways = 0
+                    }
+                    this.$emit("getdata", that.selectAry)
+                }
+                // 任二
+                else if (that.gameid == 69) {
+                    if (len >= 2) {
+                        if (len == 2) {
+                            that.ways = 1
+                        } else if (len == 3) {
+                            that.ways = 3
+                        } else if (len == 4) {
+                            that.ways = 6
+                        } else if (len == 5) {
+                            that.ways = 10
+                        }
+                    } else {
+                        that.ways = 0
+                    }
+                    this.$emit("getdata", that.selectAry)
+                }
+            }
+        },
+        created() {
+            this.setInfo()
+            this.digitStar()
+
+        },
+        watch: {
+            gameid: function (newValue, oldValue) {
+                this.setInfo()
+
+            }
+        }
+    }
+</script>
+<style>
+  .checkbox_select_title {
+    line-height: 21px;
+    padding-top: 1px;
+  }
+
+  /* 内容 */
+  .optional_content_box {
+    width: 100%;
+    min-height: 180px;
+    padding: 0 20px;
+    overflow: hidden;
+  }
+
+  .optional_centent_checkbox {
+    margin-top: 12px;
+  }
+
+  .el-checkbox__input.is-checked .el-checkbox__inner {
+    background-color: #2ba498;
+    border-color: #2ba498;
+  }
+
+  .el-checkbox__input.is-checked + .el-checkbox__label {
+    color: #232924;
+  }
+
+  .el-checkbox__label {
+    color: #232924;
+  }
+
+  .el-checkbox__inner:hover {
+    border-color: #167e77;
+  }
+
+  .el-checkbox__input.is-focus .el-checkbox__inner {
+    border-color: #167e77 !important;
+  }
+
+  .el-checkbox__label {
+    padding-left: 3px;
+  }
+
+  .el-checkbox {
+    margin-right: 10px;
+  }
+
+  .checkbox_select_title {
+    font-size: 14px;
+    color: #232924;
+  }
+
+  .checkbox_select_title {
+    margin-left: 23px;
+  }
+
+  /* 标准格式样本 */
+  .optional_standard_box {
+    width: 100%;
+    margin-top: 19px;
+
+  }
+
+  .optional_standard_box > div.optional_standard_title {
+    font-size: 14px;
+    font-weight: normal;
+    color: #1f7877;
+    margin-bottom: 14px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .optional_standard_contentbox {
+    width: 100%;
+  }
+
+  div.optional_standard_title:hover .standard_hover_box {
+    display: block;
+  }
+
+  .standard_hover_box {
+    height: 116px;
+    border: 1px solid #bebebe;
+    background: #f7f8f7;
+    position: absolute;
+    top: -7px;
+    left: 100px;
+    width: 32px;
+    border-radius: 5px;
+    text-align: center;
+    color: #232924;
+    font-size: 14px;
+    padding: 8px 0;
+    display: none;
+  }
+
+  /* 输入框 */
+  .optional_standard_contenttext {
+    width: 100%;
+    height: 153px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: solid 1px #d8d8d8;
+    resize: none;
+    outline: none;
+    font-size: 16px;
+    padding: 10px;
+    line-height: 22px;
+    margin-right: 19px;
+  }
+
+  .optional_standard_contenttext:focus {
+    border-color: #bcc0d8;
+
+  }
+
+  textarea::-webkit-input-placeholder {
+    line-height: 24px;
+  }
+
+  .optional_standard_btn {
+    padding-bottom: 10px;
+    margin-top: 11px;
+    text-align: right;
+  }
+
+  .optional_standard_btn > a {
+    display: inline-block;
+    width: 130px;
+    height: 39px;
+    margin-left: 10px;
+    background-color: #ececec;
+    border-radius: 5px;
+    border: solid 1px #d8d8d8;
+    font-size: 14px;
+    line-height: 37px;
+    letter-spacing: 0px;
+    color: #000000;
+    text-align: center;
+    cursor:pointer;
+  }
+
+  .optional_standard_btn > *:last-child {
+    margin-bottom: 0px;
+  }
+
+  .optional_standard_btn > *:hover {
+    opacity: 0.7;
+  }
+</style>
+
+

@@ -1,0 +1,604 @@
+<template>
+  <div id="fjx"
+       v-loading="loading"
+       element-loading-text="加载中"
+       element-loading-spinner="el-icon-loading"
+  >
+    <div class="fjx_main">
+      <div class="query_info">
+        <!-- 报表类型 -->
+        <div class="options_group">
+          <div class="options_group_item" @click="someDel(-1)">批量删除</div>
+        </div>
+      </div>
+      <!-- 彩票的表格 -->
+      <div class="czTable">
+        <el-table
+          :data="czTableData"
+          border
+          stripe
+          style="width: 100%;">
+          <el-table-column label="选择" width="100" align="center">
+            <template slot-scope="scope">
+              <div :class="scope.row.choosed?'choosed':'nochoose_square'"
+                   @click="changeChoosed(scope.$index, scope.row)"></div>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="SendUName"
+            label="发件人">
+          </el-table-column>
+          <el-table-column
+            prop="Title"
+            label="主题">
+            <template slot-scope="scope">
+              <div class="UmContent">{{scope.row.Title}}</div>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="UmContent"
+            label="内容">
+            <template slot-scope="scope">
+              <div class="UmContent">{{scope.row.UmContent}}</div>
+            </template>
+          </el-table-column>
+          <el-table-column
+            prop="CreateTime"
+            label="时间" width="144">
+          </el-table-column>
+          <el-table-column
+            prop="Flg"
+            label="状态">
+            <template slot-scope="scope">
+              <span class="cancelState" v-if="scope.row.property === '已读'">已读</span>
+              <span v-if="scope.row.property === '未读'">未读</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="操作" width="100" align="center">
+            <template slot-scope="scope">
+              <span class="to_view" @click="lookDetails(scope.row)">查看</span>
+              <span class="to_del" @click="someDel(scope.row.UmId)">删除</span>
+            </template>
+          </el-table-column>
+          <div slot="empty"></div>
+        </el-table>
+      </div>
+      <div class="my-paging" v-show="czTableData.length!=0">
+        <div class="everyPageShow">每页显示 10 条</div>
+        <!--<el-select v-model="paginationArray.currpageSize" :placeholder='paginationArray.currpageSize+"条"' @change="pageChange" class="choosePage">
+                    <el-option
+                      v-for="item in pageSize"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value"
+                      :disabled="item.disabled">
+                    </el-option>
+                </el-select>-->
+        <div class="totalNum">共{{paginationArray.total}}条</div>
+        <div class="jumpPage">跳转</div>
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :page-size="paginationArray.currpageSize"
+          layout="prev, pager, next, jumper"
+          :total="paginationArray.total">
+        </el-pagination>
+      </div>
+      <!-- 表格为空的样式 -->
+      <div class="table-empty" v-show="czTableData.length==0">
+        <img src="../../assets/zjzh/empty.png" style="width: 102px;height: 78px;">
+        <div class="table-empty-text">暂无记录</div>
+      </div>
+    </div>
+    <!-- 详细信息 -->
+    <el-dialog
+      title="消息详情"
+      :visible.sync="dialogVisible"
+      width="30%"
+    >
+      <div class="details_dialog"><span class="details_left">收件人：</span>{{detailsInfo.ReceiveUName}}</div>
+      <div class="details_dialog"><span class="details_left">主题：</span>
+        <div class="details_content">{{detailsInfo.Title}}</div>
+      </div>
+      <div class="details_dialog"><span class="details_left">消息内容：</span>
+        <div class="details_content">{{detailsInfo.UmContent}}</div>
+      </div>
+      <span slot="footer" class="dialog-footer">
+		    <el-button class="pop_sure_btn" type="primary" @click="delDeatils">删除</el-button>
+		    <el-button class="pop_sure_btn pop_exit" type="primary" @click="dialogVisible = false">关闭</el-button>
+		  </span>
+    </el-dialog>
+  </div>
+</template>
+<script>
+  // 引用axios封装文件
+  import {postAjax, getAjax} from "../../util/ajax.js"
+
+  export default {
+    data() {
+      return {
+        loading: false,
+        dialogVisible: false,
+        //平台账号
+        platformAccount: '',
+        //日期
+        beginDate: '',
+        endDate: '',
+        //表格数据
+        czTableData: [
+          {
+            choosed: false,
+            UmId: 3,
+            platformAccount: '123',
+            intoMoney: '￥500',
+            outMoney: '￥300',
+            betMoney: '￥300',
+            winning: 0,
+            rebates: 0,
+            profitLoss: 0,
+          },
+        ],
+        // czTableData:[],
+        paginationArray: {
+          total: 0,
+          currpageSize: 10,
+          currPage: 1,//当前页数
+        },
+        //每页展示多少条
+        pageSize: [
+          {value: 10, label: '10条'},
+          {value: 20, label: '20条'},
+          {value: 30, label: '30条'},
+        ],
+        //详情信息
+        detailsInfo: '',
+      }
+    },
+    methods: {
+      //改变分页条数
+      pageChange(val) {
+        this.paginationArray.currpageSize = val;
+        this.getSendBoxInfo();
+      },
+      //改变选中或未选中状态
+      changeChoosed(index, row) {
+        console.log(111);
+        this.$nextTick(function () {
+          this.czTableData[index].choosed = !this.czTableData[index].choosed;
+        })
+        console.log(this.czTableData[index].choosed);
+      },
+      //查询发件箱的情况
+      getSendBoxInfo() {
+        let that = this;
+        let url = "api/User/GetUserMessageInfo";
+        let data = {
+          Type: 2,
+          PIndex: this.paginationArray.currPage,
+          PSize: this.paginationArray.currpageSize,
+        };
+        this.loading = true
+        postAjax(url, data).then((data) => {
+          this.loading = false
+          if (data.IsSucess) {
+            //给数据加一个选中或未选中的字段
+            for (var i = 0, length = data.Data.rows.length; i < length; i++) {
+              data.Data.rows[i].choosed = false;
+            }
+            that.czTableData = data.Data.rows;
+            that.paginationArray.total = data.Data.total;
+          }
+        }).catch(() => {
+          this.loading = false
+        })
+      },
+      //查看详细信息
+      lookDetails(info) {
+        this.dialogVisible = true;
+        this.detailsInfo = info;
+      },
+      //查看详细信息的删除
+      delDeatils() {
+        this.del(this.detailsInfo.UmId);
+        this.dialogVisible = false;
+      },
+      //删除
+      someDel(umid) {
+        //umid为-1表示批量删除，否则为单个删除
+        if (umid == -1) {
+          if (this.getChoosedIds()) {
+            this.del(this.getChoosedIds());
+          } else {
+            this.$message.error('请选择需要批量删除的数据');
+          }
+        } else {
+          this.del(umid);
+        }
+      },
+      //删除请求的接口
+      del(ids) {
+        var that = this;
+        let url = "/api/User/DelMessages?ids=" + ids;
+        // let data={ids:ids};
+        postAjax(url, null).then(function (data) {
+          if (data.IsSucess) {
+            that.getSendBoxInfo();
+          } else {
+            that.$message.error('删除失败');
+          }
+        })
+      },
+      //得到已被选中的id
+      getChoosedIds() {
+        let ids = [];
+        for (var i = 0, length = this.czTableData.length; i < length; i++) {
+          if (this.czTableData[i].choosed) {
+            ids.push(this.czTableData[i].UmId);
+          }
+        }
+        return ids.join(",");
+      },
+      handleSizeChange(e) {
+        // console.log(1);
+      },
+      handleCurrentChange(e) {
+        //回调为当前跳转的第几页
+        this.paginationArray.currPage = e;
+        this.getSjxInfo();
+      },
+      //时间格式化
+      formatDate(row, column) {
+        if (row[column.property]) {
+          var arr = row[column.property].split("T");
+          var arr1 = arr[1].split(".")
+          return arr[0] + ' ' + arr1[0]
+        } else {
+          return '-'
+        }
+      },
+      //是否已读
+      formatFlg(row, column) {
+        return row[column.property] ? '已读' : '未读'
+      }
+
+    },
+    mounted() {
+      this.getSendBoxInfo();
+    },
+  }
+</script>
+
+<style lang="scss">
+  #fjx {
+    .el-loading-spinner {
+      margin-top: -100px;
+      .el-icon-loading {
+        color: #1d7272;
+      }
+
+      .el-loading-text {
+        color: #1d7272;
+      }
+    }
+
+    .el-loading-mask {
+      background: rgba(255, 255, 255, 0.8);
+    }
+  }
+</style>
+
+<style type="scss">
+  #fjx {
+    height: 759px;
+    background-color: white;
+  }
+
+  .fjx_main {
+    padding: 15px 23px 0 20px
+  }
+
+  .options_group {
+    padding-bottom: 15px;
+    width: 100%
+  }
+
+  .options_group_item {
+    display: inline-block;
+    width: 106px;
+    height: 37px;
+    margin-bottom: 16px;
+    background-image: linear-gradient(0deg,
+      #e2e2e2 0%,
+      #ffffff 100%);
+    border-radius: 5px;
+    border: solid 1px #dddddd;
+    color: #707070;
+    font-size: 14px;
+    float: left;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 35px;
+  }
+
+  .options_group_item:hover {
+    cursor: pointer;
+  }
+
+  #fjx .query_info .el-select {
+    width: 180px;
+  }
+
+  .query_info .el-input__inner {
+    height: 28px;
+    border-radius: 0;
+    padding-left: 11px !important;
+    font-size: 12px;
+  }
+
+  .query_info .el-select .el-input .el-select__caret {
+    line-height: 28px;
+  }
+
+  .query_info .el-input {
+    width: 180px
+  }
+
+  .czdateStyle {
+    width: 180px;
+  }
+
+  /*未选择的*/
+  .nochoose_square {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #b3b3b3;
+    border-radius: 2px;
+    display: inline-block;
+    border-radius: 50%;
+  }
+
+  .choosed {
+    width: 18px;
+    height: 18px;
+    background-image: url("../../assets/zjzh/choosed.png");
+    border-radius: 50%;
+  }
+
+  .el-table .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .czdateStyle .el-input__prefix {
+    left: 150px;
+  }
+
+  .czdateStyle .el-input__icon {
+    line-height: 28px;
+    color: #000;
+  }
+
+  .czdateStyle .el-input__inner {
+    padding-left: 11px !important;
+    height: 28px;
+    font-size: 12px;
+    line-height: 28px;
+    border-radius: 0;
+  }
+
+  .czCxBtn {
+    width: 75px;
+    height: 37px;
+    background-color: #008573;
+    text-align: center;
+    line-height: 37px;
+    font-size: 12px;
+    color: #fff;
+    display: inline-block;
+    border-radius: 2px;
+  }
+
+  .czTable {
+    margin-top: 20px;
+  }
+
+  .czTable .el-table td, .czTable .el-table th {
+    padding: 0;
+    height: 35px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: normal;
+  }
+
+  .czTable .el-table thead th {
+    font-size: 14px;
+  }
+
+  .czTable .el-table th {
+    background-color: #2ba396;
+    color: #fff;
+  }
+
+  /*去掉表格为空的样式*/
+  .czTable .el-table__empty-block {
+    display: none;
+  }
+
+  /*自定义样式*/
+  .table-empty {
+    padding-top: 80px;
+    text-align: center;
+  }
+
+  .table-empty-text {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #8b918b;
+  }
+
+  .my-paging {
+    padding-top: 12px;
+  }
+
+  .everyPageShow {
+    width: 84px;
+    height: 27px;
+    font-size: 12px;
+    color: #67707c;
+    line-height: 27px;
+    text-align: center;
+    float: left;
+  }
+
+  .my-paging .el-pagination {
+    float: right;
+    padding: 0;
+  }
+
+  .choosePage .el-input__inner {
+    height: 27px;
+    border-radius: 0;
+    margin-left: 5px;
+    width: 65px;
+    padding: 0;
+    padding-left: 8px;
+    font-size: 12px;
+  }
+
+  .choosePage .el-input__icon {
+    line-height: 27px;
+  }
+
+  #dljl .choosePage input::-webkit-input-placeholder {
+    color: #67707c !important;
+  }
+
+  .el-pager li.active {
+    color: #008573;
+  }
+
+  .el-pager {
+    font-weight: normal;
+  }
+
+  /*总共多少条的样式*/
+  .totalNum {
+    display: inline-block;
+    font-size: 12px;
+    margin-left: 15px;
+  }
+
+  .jumpPage {
+    float: right;
+    width: 54px;
+    height: 27px;
+    line-height: 27px;
+    font-size: 14px;
+    text-align: center;
+    color: #008573;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+
+  /*弹窗样式*/
+  .my_dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    margin: 0;
+    z-index: 2003;
+    background-color: rgba(149, 150, 153, 0.3);
+  }
+
+  .my_dialog_main {
+    position: absolute;
+    width: 30%;
+    background: #fff;
+    z-index: 2004;
+    top: 20%;
+    left: 35%;
+  }
+
+  /*弹窗样式*/
+  #fjx .el-dialog__header {
+    border-top: 4px solid #2ba498;
+    height: 42px;
+    background: #f3f3f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  #fjx .el-dialog__body {
+    padding: 0;
+  }
+
+  .warning_img {
+    margin: 34px 0 28px;
+    text-align: center;
+  }
+
+  #fjx .el-dialog__footer {
+    padding: 25px 0 60px;
+    text-align: center;
+  }
+
+  #fjx .pop_sure_btn {
+    color: #fff;
+    background-color: #2ba498;
+    border-color: #2ba498;
+    width: 120px;
+  }
+
+  #fjx .pop_exit {
+    background: #fafafa;
+    color: #333;
+    border: 0;
+  }
+
+  #fjx .details_dialog {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding-left: 20px;
+  }
+
+  #fjx .details_left {
+    width: 100px;
+    text-align: right;
+  }
+
+  #fjx .details_content {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    word-break: break-all;
+  }
+
+  #fjx .UmContent {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  #fjx .czTable .el-table th {
+    color: #171717;
+    height: 35px;
+    background-image: linear-gradient(0deg,
+      #e7e6e7 0%,
+      #ffffff 100%);
+  }
+  #fjx table thead tr th {
+    border-right: 1px solid #dddddd !important;
+  }
+  #fjx .is-in-pagination .el-input__inner,#fjx .is-in-pagination{
+    width: auto;
+    height: auto;
+    color: #008573;
+  }
+</style>

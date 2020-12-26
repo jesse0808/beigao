@@ -1,0 +1,350 @@
+<template>
+    <div class="lhc_sx">
+        <div class="lhc_sx_left">
+            <div :class="['lhc_sx_item',item.selectStatus?'sx_item':'no_sx_item']" v-for="(item,index) in listData"
+                 :key="index" @click="clickSxItem(index)">
+                <span :class="['iconfont',item.iconClass]"></span>
+                <div class="sx_item_title">
+                    <p>{{item.text}}</p>
+                    <span>x{{item.Odds}}</span>
+                </div>
+                <div class="sx_item_content">
+                    <div v-for="(val,num) in item.Content.split('|')[1].split(',')" :class="[returnClass(val)]"
+                         :key="num">{{val}}
+                    </div>
+                </div>
+                <label v-if="playList.LpId == 248 || playList.LpId == 249">
+                    <input type="text" @click.stop="" v-model="item.num" @input="inputChange(index)"></input>
+                </label>
+                <span v-else :class="['iconfont','icon-gouxuanxuan',item.selectStatus?'checked_item':'no_checked_item']"></span>
+            </div>
+        </div>
+        <sxNav ref="sxNav" class="lhc_sx_right" @returnData="getSelectData" :index-id="playList.LpId"></sxNav>
+    </div>
+</template>
+
+<script>
+  import sxNav from "./sxNav";
+
+  export default {
+    name: "sx",
+    components: {sxNav},
+    props: {
+      noteMoney: {
+        type: Number,
+        required: true
+      },
+      playList: {
+        type: Object,
+        required: true
+      },
+      resetFun:{
+        type: Boolean,
+        required: true
+      },
+    },
+    data() {
+      return {
+        listData: [
+          {
+            text: '鼠',
+            iconClass: 'icon-shu',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '牛',
+            iconClass: 'icon-niu',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '虎',
+            iconClass: 'icon-hu',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '兔',
+            iconClass: 'icon-leibieicon-tuzi',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '龙',
+            iconClass: 'icon-longruanlogo-',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '蛇',
+            iconClass: 'icon-shexiao',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '马',
+            iconClass: 'icon-you',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '羊',
+            iconClass: 'icon-yang',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '猴',
+            iconClass: 'icon-houxiao',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '鸡',
+            iconClass: 'icon-ji',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '狗',
+            iconClass: 'icon-maogoumaogouxinxing',
+            selectStatus: false,
+            num: ''
+          },
+          {
+            text: '猪',
+            iconClass: 'icon-pig-raising',
+            selectStatus: false,
+            num: ''
+          }
+        ]
+      }
+    },
+    watch: {
+      noteMoney() {
+        if (this.noteMoney > 0) {
+          this.listData.forEach(item => {
+            if (item.selectStatus) {
+              item.num = this.noteMoney
+            }
+          })
+        } else {
+          this.listData.forEach(item => {
+            if (item.selectStatus) {
+              item.num = ''
+            }
+          })
+        }
+        this.dataChange()
+      },
+      resetFun(){
+        if (this.resetFun){
+          this.$emit('returnResetStatus')
+          this.listData.forEach(item => {
+            item.selectStatus = false
+            item.num = ''
+          })
+          this.$refs.sxNav.resetNav()
+          this.dataChange()
+        }
+      },
+    },
+    created() {
+      this.$emit('returnResetStatus')
+      this.listData.forEach(item => {
+        this.playList.PlayContentList.forEach(val => {
+          if (item.text === val.Content.split('|')[0]) {
+            item.Content = val.Content
+            item.Odds = val.Odds
+          }
+        })
+      })
+    },
+    methods: {
+      //右边导航选中后返回的数据
+      getSelectData(data) {
+        if (data.length > 0) {
+          this.listData.forEach(item=>{
+            item.selectStatus = false
+            item.num = ''
+          })
+          data.forEach(item=>{
+            this.listData[item].selectStatus = !this.listData[item].selectStatus
+            this.listData[item].num = this.noteMoney > 0?this.noteMoney:''
+          })
+
+        } else {
+          this.listData.forEach(item => {
+            item.selectStatus = false
+            item.num = ''
+          })
+        }
+        this.dataChange()
+      },
+      //数据变化是操作
+      dataChange() {
+        let sum = []
+        this.listData.forEach(item => {
+          if (Number(item.num) > 0) {
+            sum.push(item)
+          }
+        })
+        this.$emit('returnSelectNum', sum)
+      },
+      //选中
+      clickSxItem(index) {
+        this.listData[index].selectStatus = !this.listData[index].selectStatus
+        if (this.listData[index].selectStatus && this.noteMoney > 0) {
+          this.listData[index].num = this.noteMoney
+        } else {
+          this.listData[index].num = ''
+        }
+        this.dataChange()
+      },
+      //返回球的颜色
+      returnClass(str) {
+        let num = Number(str)
+        if (num === 1 || num === 2 || num === 7 || num === 8 || num === 12 || num === 13 || num === 18 || num === 19 || num === 23 || num === 24 || num === 29 || num === 30 || num === 34 || num === 35 || num === 40 || num === 45 || num === 46) {
+          return 'red_qiu'
+        }
+        if (num === 3 || num === 4 || num === 9 || num === 10 || num === 14 || num === 15 || num === 20 || num === 25 || num === 26 || num === 31 || num === 36 || num === 37 || num === 41 || num === 42 || num === 47 || num === 48) {
+          return 'blue_qiu'
+        }
+        if (num === 5 || num === 6 || num === 11 || num === 16 || num === 17 || num === 21 || num === 22 || num === 27 || num === 28 || num === 32 || num === 33 || num === 38 || num === 39 || num === 43 || num === 44 || num === 49) {
+          return 'green_qiu'
+        }
+      },
+      //input输入处理
+      inputChange(index){
+        this.listData[index].num = parseInt(this.listData[index].num.toString().replace(/[^\d]/g, ''))
+        if (this.listData[index].num > 0){
+          this.listData[index].selectStatus = true
+        }else{
+          this.listData[index].num = ''
+        }
+        this.dataChange()
+      },
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+    .lhc_sx {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: 16px 10px 0 15px;
+
+        .lhc_sx_left {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            flex-wrap: wrap;
+            width: 709px;
+            height: 400px;
+
+            .lhc_sx_item {
+                display: flex;
+                align-items: center;
+                width: 354px;
+                height: 65px;
+                padding: 0 15px 0 17px;
+                margin-bottom: 1px;
+                cursor: pointer;
+
+                .iconfont {
+                    display: block;
+                    width: 30px;
+                    color: #63b3d1;
+                    font-size: 26px;
+                    text-align: center;
+                }
+
+                .sx_item_title {
+                    width: 40px;
+                    margin-left: 8px;
+
+                    p {
+                        font-size: 14px;
+                        color: #333333;
+                    }
+
+                    span {
+                        font-size: 12px;
+                        letter-spacing: 1px;
+                        color: #666666;
+                    }
+                }
+
+                .sx_item_content {
+                    display: flex;
+                    width: 200px;
+                    margin-left: 4px;
+
+                    div {
+                        width: 36px;
+                        height: 36px;
+                        margin-right: 2px;
+                        line-height: 36px;
+                        text-align: center;
+                        font-size: 20px;
+                        color: #ffffff;
+                    }
+                }
+                label{
+                    input{
+                        width: 45px;
+                        height: 23px;
+                        background-color: #ffffff;
+                        box-shadow: inset 1px 2px 4px 0px
+                        rgba(0, 0, 0, 0.11);
+                        border-radius: 3px;
+                        text-align: center;
+                        border: solid 1px #d8d8d8;
+                        outline: none;
+                    }
+                }
+                .checked_item {
+                    margin-left: 10px;
+                    color: #ffffff;
+                }
+
+                .no_checked_item {
+                    margin-left: 20px;
+                    color: #b8b9b9;
+                }
+            }
+
+            .no_sx_item {
+                background: url(../../static/img/lhc/zongfen_btn_default.jpg) no-repeat 0 0/100% 100%;
+
+                &:hover {
+                    background: url(../../static/img/lhc/zongfen_btn_hover.jpg) no-repeat 0 0/100% 100%;
+                }
+            }
+
+            .sx_item {
+                background: url(../../static/img/lhc/zongfen_btn_selected.jpg) no-repeat 0 0/100% 100%;
+
+                .sx_item_title {
+                    p {
+                        color: #ffffff;
+                    }
+
+                    span {
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+
+        .lhc_sx_right {
+            width: 170px;
+            height: max-content;
+            background-color: #f4f4f4;
+            border-radius: 15px;
+            border: solid 1px #d8d8d8;
+        }
+    }
+</style>

@@ -1,0 +1,249 @@
+<template>
+    <!-- 充值大放送 -->
+    <div class="preM_every_signbox">
+        <img :src="url" class="preM_recharge_banner"/>
+        <!-- 主要内容 -->
+        <div class="preM_recharge_maincontent">
+
+            <!-- 内容按钮 -->
+            <div class="preM_content_centetbox">
+                <p>您今日首充金额<span>{{betInfo.FirstRechargeMoney}}</span>元, 可领取<span>{{betInfo.CashGift}}</span>元</p>
+                <diV class="preM_content_btnbox box_h">
+                    <template v-if="betInfo.bl">
+                        <el-button size="medium" type="success" @click="getMoney">领取</el-button>
+                    </template>
+                    <template v-else>
+                        <el-button size="medium" type="success" plain disabled >已领取</el-button>
+                    </template>
+                </diV>
+            </div>
+            <!-- 通用规则模块  -->
+            <div class="prefec_allac_rulesbox">
+                <img src="../../static/img/sign/active_rules.png" class="allac_rules_title"/>
+                <div v-html="acObj.Description"></div>
+            </div>
+        </div>
+        <div class="success_alter">
+            <el-button :plain="true" @click="openSuccess"></el-button>
+            <el-button :plain="true" @click="openMessAge"></el-button>
+        </div>
+    </div>
+
+</template>
+<script>
+import {postAjax,getAjax} from "../../util/ajax.js";
+import {SysKey} from "../../util/sysconfig";
+export default {
+    data(){
+        return{
+            url:SysKey("ImgServerUrl").SysValue, //图片地址
+            ids:5,  //活动ID
+            acObj:{}, // 活动内容
+            betInfo:{}, //投注信息
+        }
+    },
+    methods:{
+
+        // 获取活动信息
+        getActive(){
+            let that =this
+            let url ="api/Activity/GetActList"
+            postAjax(url)
+            .then(function(data){
+                if(data.IsSucess==true){
+                    data.Data.forEach(item => {
+                        if(item.AcType == that.ids){
+                            that.acObj=item
+                            that.url = that.url + that.acObj.ImgUrl
+                        }
+                    });
+                }
+            })
+        },
+        // 获取礼金信息
+        getBetInfo(){
+            let that = this
+            let url ="api/Activity/GetRechargeInfo"
+            postAjax(url)
+            .then(function(data){
+                if(data.IsSucess == true){
+                    that.betInfo = data.Data
+
+                }
+            })
+        },
+        //成功提示
+        openSuccess(data){
+            let that = this
+            this.$message({
+                message: data,
+                type: 'success',
+                duration:2000,
+                onClose:function(){
+                    that.getBetInfo()
+                }
+            });
+        },
+        // 领取
+        getMoney(){
+            let that = this
+            let url ="api/Activity/GetRechargeGift"
+            postAjax(url)
+            .then(function(data){
+                if(data.IsSucess==true){
+                    that.openSuccess(data.Message)
+                }
+                else{
+                    that.openMessAge(data.Message)
+                }
+            })
+        },
+        // 失败提示
+        openMessAge(data){
+            this.$message.error(data);
+        },
+
+    },
+    created(){
+        this.getActive()
+        this.getBetInfo()
+    }
+}
+</script>
+<style>
+    .preM_sign_banner{
+        display: block;
+        width: 100%;
+        height: 180px;
+        margin-bottom: 10px;
+    }
+    /* 签到按钮 */
+    .preM_sign_topbtn{
+        margin-bottom: 10px;
+    }
+    .preM_sign_itembtn{
+        float: left;
+        width: 99px;
+        height: 45px;
+        border-radius: 3px;
+        border:1px dashed #cccccc;
+        text-align: center;
+        color:#232924;
+        cursor: pointer;
+        font-size: 14px;
+        padding-top: 5px;
+        line-height: 18px;
+        margin-right: 12px;
+    }
+    .preM_sign_itembtn:last-child{
+        margin-right: 0px
+    }
+    .preM_sign_itembtn>div{
+        color:#898c8a;
+        font-size: 12px;
+
+    }
+    .preM_sign_itembtn.preM_aready_btn{
+        background-color:#405e5e;
+        color:#ffffff;
+        border:1px solid #ffffff;
+    }
+    /* 内容按钮 */
+    .preM_content_centetbox{
+        height:96px;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        background-color: #f3f3f3;
+        padding: 14px 0;
+        margin-bottom: 25px;
+    }
+    .preM_content_centetbox>p{
+        color:#666666;
+        padding-bottom: 10px;
+    }
+    .preM_content_centetbox>p>span{
+        color:#ff4d4d;
+        margin: 0 2px;
+    }
+    .preM_content_btnbox{
+        justify-content: center;
+        align-items: center;
+    }
+    .preM_content_btnbox>div{
+        width: 121px;
+        height:36px;
+        background-color: #1f7877;
+        border-radius: 3px;
+        color:white;
+        letter-spacing: 1px;
+        font-size: 16px;
+        line-height: 36px;
+    }
+    /* 未签到样式 */
+    .preM_content_btnbox>.has_not_sign{
+        background-color: #8fbcbb;
+    }
+    /* 通用规则 */
+    .prefec_allac_rulesbox{
+        width: 100%;
+    }
+    .prefec_allac_rulesbox .allac_rules_title{
+        width:100%;
+        display: block;
+        margin-bottom: 30px;
+    }
+    .prefec_allac_rulesbox>div{
+        font-weight: bold;
+        font-size: 18px;
+        color:#141414;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+    .prefec_allac_rulesbox>div>span{
+         color:#ff4d4d;
+         margin: 0 2px;
+    }
+    .prefec_allac_rulesbox>div>a{
+        color:#414141;
+        font-size: 16px;
+
+    }
+    .prefec_allac_rulesbox>div>p{
+        font-size: 14px;
+        margin: 10px 0;
+    }
+    .prefec_allac_rulesbox .intro_allac_item{
+        color:#6b6b6b;
+        font-size: 15px;
+        line-height: 24px;
+    }
+    .prefec_allac_rulesbox .intro_allac_item>span{
+        color:#ff4d4d;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 2px;
+    }
+    /* 按钮样式 */
+    .preM_content_btnbox>.el-button--medium{
+        padding: 10px 40px;
+    }
+    .preM_content_btnbox>.el-button--medium：hover{
+        background-color: #1f7877;
+        border-color:#1f7877
+    }
+    .preM_content_btnbox>.el-button--success{
+        background-color: #1f7877;
+        border-color:#1f7877
+    }
+    .el-button--success.is-plain.is-disabled, .el-button--success.is-plain.is-disabled:active, .el-button--success.is-plain.is-disabled:focus, .el-button--success.is-plain.is-disabled:hover{
+        background-color: #8fbcbb;
+        border-color:#8fbcbb;
+        color:white;
+    }
+    .success_alter .el-button{
+        display: none;
+    }
+</style>
+
+

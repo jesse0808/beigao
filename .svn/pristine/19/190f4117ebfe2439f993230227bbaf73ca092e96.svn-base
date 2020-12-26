@@ -1,0 +1,421 @@
+/*游戏界面公共样式*/
+
+//首页
+.betting_page {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 4.3911rem;
+  background-color: #eeeeee;
+
+  .top_title {
+    display: flex;
+    justify-content: center;
+    width: auto !important;
+    //margin-top: .19rem;
+    line-height: normal !important;
+    align-items: center;
+    .title_sty {
+      display: inline-block;
+      font-size: .24rem;
+      color: #ffffff;
+      //writing-mode:vertical-lr;
+      letter-spacing: .05rem;
+      text-align: center;
+      width: .4rem;
+      white-space:normal !important;
+      //margin-right: -.3rem;
+    }
+
+    .title_text {
+      width: auto;
+      height: .81333rem;
+      line-height: .81333rem;
+      padding: 0 .26666rem 0 .49333rem;
+      border-radius: .08rem;
+      border: solid 0.014rem white;
+      font-size: .37333rem;
+      font-weight: normal;
+      font-stretch: normal;
+      letter-spacing: .04rem;
+      color: #ffffff;
+
+      .iconfont {
+        margin-left: .3rem;
+        font-size: .3rem;
+      }
+    }
+  }
+
+  .count_pos {
+    position: fixed;
+    top: 1.17777rem;
+    left: 0;
+    width: 100%;
+    border-bottom: #eeeeee .01333rem solid;
+    z-index: 100;
+  }
+
+  .right_button {
+    position: fixed;
+    top: 1.17777rem;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 1.17777rem);
+    z-index: 100;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .right_button_div {
+      position: absolute;
+      top: 0;
+      right: .2rem;
+      width: 3.23rem;
+      background-color: white;
+      border: .01333rem solid #e2e2e2;
+      border-radius: .06666rem;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: -.3rem;
+        right: .2rem;
+        border-bottom: solid .3rem #fff;
+        border-left: solid .2rem transparent;
+        border-right: solid .2rem transparent;
+      }
+
+      a {
+        display: block;
+        width: 100%;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        font-size: .4rem;
+        color: #000000;
+        border-bottom: .01333rem solid #e2e2e2;
+
+        img {
+          width: .35rem;
+        }
+      }
+    }
+  }
+
+  //游戏选择组件不能用v-show来控制显示隐藏 会让tab组件默认选中的项不能被默认选中和居中
+  .topFull {
+    top: 100%;
+  }
+
+  .up_plan {
+    position: fixed;
+    top: 3.3111rem;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 1.08rem;
+    background-color: #fff;
+    border-bottom: #eeeeee .01333rem solid;
+    z-index: 100;
+
+    a {
+      display: inline-block;
+      width: 5rem;
+      height: 1.04rem;
+      line-height: 1.04rem;
+      font-size: .42666rem;
+    }
+
+    .check_a {
+      color: #008573;
+    }
+
+    .uncheck_a {
+      color: #333333;
+    }
+
+    span {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      display: block;
+      width: 5rem;
+      height: 0.04rem;
+      background-color: #008573;
+      transition: left .3s;
+    }
+
+    .animation_wi {
+      left: 5rem;
+    }
+  }
+}
+
+//底部
+.foot_info {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3.14666rem;
+  z-index: 100;
+  background-color: white;
+
+  .foot_sum {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: .78666rem;
+    padding: 0 .15rem;
+    border-top: solid 1px #e3e3e3;
+    border-bottom: solid 1px #e3e3e3;
+    background-color: #f4f4f4;
+    font-size: .32rem;
+    color: #333333;
+
+    div {
+      span {
+        color: #ff6200;
+      }
+
+      .bonusInput {
+        position: relative;
+        display: inline-block;
+        width: auto;
+        height: .64rem;
+        padding: 0 .7rem 0 .3rem;
+        line-height: .64rem;
+        background-color: #ffffff;
+        border-radius: .04rem;
+        border: solid .01333rem #ede8d1;
+
+        .iconfont {
+          position: absolute;
+          top: 0;
+          right: .2rem;
+          bottom: 0;
+          margin: auto;
+          font-size: .25rem;
+          color: #000000;
+        }
+      }
+    }
+
+    .bonus {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .pattern {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 1.05333rem;
+    background-color: #ffffff;
+    font-size: .35rem;
+    padding: 0 .15rem;
+    border-bottom: solid .01333rem #e3e3e3;
+
+    .money_tex {
+      display: flex;
+      align-items: center;
+      font-size: .32rem;
+      color: #333333;
+      //修改van  输入框样式
+      .van-field {
+        margin: 0 0.06666rem;
+        width: 1.81333rem !important;
+      }
+
+      /deep/ .van-field__control {
+        display: block;
+        width: 1.81333rem !important;
+        height: 0.74666rem !important;
+        line-height: 0.74666rem !important;
+        background-color: #f3f3f3 !important;
+        border-radius: .04rem !important;
+        border: none;
+        outline: none;
+        text-align: center;
+      }
+      //隐藏van 键盘的扩展格 让0跟8对齐
+      /deep/ .van-number-keyboard__keys {
+        .van-key__wrapper:last-child {
+          display: none;
+        }
+      }
+    }
+
+    .multiple_div {
+      display: flex;
+      align-items: center;
+      color: #333333;
+
+      .multiple {
+        display: flex;
+        flex-wrap: nowrap;
+        width: 2.96rem;
+        height: .74666rem;
+        background-color: #f3f3f3;
+        border-radius: .04rem;
+        margin: 0 0.06666rem;
+
+        a {
+          display: inline-block;
+          width: .74666rem;
+          height: .74666rem;
+          color: #555555;
+          line-height: .74666rem;
+          border: solid 1px #f3f3f3;
+          border-radius: .04rem;
+          background-color: white;
+
+          .iconfont {
+            font-size: .35rem;
+          }
+        }
+
+        label {
+          width: 1.46668rem;
+          height: .74666rem;
+
+          .van-field {
+            background: none;
+          }
+
+          //修改van input样式
+          /deep/ .van-field__control {
+            width: 1.46668rem;
+            height: .74666rem;
+            line-height: .74666rem;
+            outline: none;
+            border: none;
+            text-align: center;
+            background: none;
+          }
+        }
+
+
+        //隐藏van 键盘的扩展格 让0跟8对齐
+        /deep/ .van-number-keyboard__keys {
+          .van-key__wrapper:last-child {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .on_mode {
+      a {
+        display: inline-block;
+        width: 1.14666rem;
+        height: .74666rem;
+        line-height: .74666rem;
+        margin-right: .13333rem;
+        border-radius: .04rem;
+        font-size: .32rem;
+        letter-spacing: 1px;
+        color: #333333;
+
+        &:last-child{
+          margin-right: 0;
+        }
+      }
+
+      .check_mode {
+        background-color: #e6f7f5;
+      }
+
+      .uncheck_mode {
+        background-color: #f3f3f3;
+      }
+    }
+  }
+
+  .user_balance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 1.33334rem;
+    background-color: #ffffff;
+    padding-right: .15rem;
+
+    a {
+      display: block;
+      text-align: center;
+    }
+
+    .clear_a {
+      position: relative;
+      width: 1.36rem;
+      //height: 1.3rem;
+
+      img {
+        width: .53333rem;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        width: .01333rem;
+        height: .8rem;
+        background-color: #e3e3e3;
+      }
+    }
+
+    .bet_add {
+      width: 2.1rem;
+      font-size: .34666rem;
+      color: #333333;
+    }
+
+    .bet_a {
+      width: 6.28rem;
+      height: 1.18666rem;
+      padding-top: .12rem;
+      background-color: #008573;
+      border-radius: .04rem;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+
+      p:nth-child(1) {
+        font-size: .4rem;
+        margin-top: .05rem;
+      }
+
+      p:nth-child(2) {
+        font-size: .32rem;
+        height: .5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        i{
+          font-size: .5rem;
+          margin-left: .1rem;
+        }
+      }
+    }
+  }
+}
+
+//数字键盘显示时 底部向上移动
+.show_keyboard {
+  margin-bottom: 6.3rem;
+}
+
+//底部特殊
+.foot_info2 {
+  .user_balance {
+    justify-content: space-between;
+    padding: 0 .2rem;
+  }
+}

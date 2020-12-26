@@ -1,0 +1,287 @@
+<template>
+    <div class="helpcenter_chidrenbox">
+        <div class="helpcenter_item1_title">彩种介绍</div>
+        <div class="helpcenter_item1_content">
+            <h4 class="item1_top_title">彩种介绍</h4>
+            <div class="item1_small_title1">高频彩</div>
+            <div class="item1_small_title2">时时彩</div>
+            <p>时时彩属于高频彩，投注区分为万位、千位、百位、十位和个位，各位号码范围为0~9，每期从各位上开出1个号码组成中奖号码。玩法既是竞猜5为开奖号码的全部号码，部分号码或者部分号码特征。时时彩分星彩玩法和大小单双玩法。{{SysValue}}目前上线了重庆、江西、新疆、天津、三省市的时时彩。</p>
+            <div>
+                <table class="help_table">
+                    <thead>
+                        <tr>
+                            <th>彩种</th>
+                            <th>销售时间</th>
+                            <th>期数间隔</th>
+                            <th>总期数</th>
+                            <th>第一截止时间</th>
+                            <th>最后截止时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="2">重庆时时彩</td>
+                            <td>07:10 - 23:50</td>
+                            <td>每期20分钟</td>
+                            <td>50期</td>
+                            <td>07:30:00</td>
+                            <td>23:50:00</td>
+                        </tr>
+                        <tr>
+                            <td>00:10 - 03:10</td>
+                            <td>每期20分钟</td>
+                            <td>9期</td>
+                            <td>00:30:00</td>
+                            <td>03:10:00</td>
+                        </tr>
+                        <tr>
+                            <td>黑龙江时时彩</td>
+                            <td>08:40 - 22:40</td>
+                            <td>每期20分钟</td>
+                            <td>42期</td>
+                            <td>09:00:00</td>
+                            <td>22:40:00</td>
+                        </tr>
+                        <tr>
+                            <td>新疆时时彩</td>
+                            <td>10:00 - 02:00</td>
+                            <td>每期20分钟</td>
+                            <td>48期</td>
+                            <td>10:20:00</td>
+                            <td>02:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>天津时时彩</td>
+                            <td>09:00 - 23:00</td>
+                            <td>每期20分钟</td>
+                            <td>42期</td>
+                            <td>09:20:00</td>
+                            <td>23:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>腾讯分分彩</td>
+                            <td>00:00 - 24:00</td>
+                            <td>每期1分钟</td>
+                            <td>1440期</td>
+                            <td>00:01:00</td>
+                            <td>00:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>上海时时乐</td>
+                            <td>10:00 - 21:30</td>
+                            <td>每期30分钟</td>
+                            <td>23期</td>
+                            <td>10:30:00</td>
+                            <td>21:30:00</td>
+                        </tr>
+                        <!-- <tr>
+                            <td>{{SysValue}}分分彩</td>
+                            <td>24小时</td>
+                            <td>每期1分钟</td>
+                            <td>1440期</td>
+                            <td>00:00:00</td>
+                            <td>23:59:59</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="item1_small_title1">11选5</div>
+            <p>11选5是从01-11共11个号码中任选1-8个号码进行投注，每期开出5个号码为中奖号码，竞猜5位开奖号码的全部或部分号码。投注方式灵活，开奖频次高，全面满足不同彩民的投注需要。{{SysValue}}目前上线了广东、山东四省的11选5，另有高速11选5与秒秒11选5.</p>
+            <div>
+                <table class="help_table">
+                    <thead>
+                        <tr>
+                            <th>彩种</th>
+                            <th>销售时间</th>
+                            <th>期数间隔</th>
+                            <th>总期数</th>
+                            <th>第一截止时间</th>
+                            <th>最后截止时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>山东11选5</td>
+                            <td>08:41 - 23:01</td>
+                            <td>每期20分钟</td>
+                            <td>43期</td>
+                            <td>09:01:00</td>
+                            <td>23:01:00</td>
+                        </tr>
+                        <tr>
+                            <td>江西11选5</td>
+                            <td>09:10 - 23:10</td>
+                            <td>每期20分钟</td>
+                            <td>42期</td>
+                            <td>09:30:00</td>
+                            <td>23:10:00</td>
+                        </tr>
+                        <tr>
+                            <td>广东11选5</td>
+                            <td>09:10 - 23:10</td>
+                            <td>每期20分钟</td>
+                            <td>42期</td>
+                            <td>09:30:00</td>
+                            <td>23:10:00</td>
+                        </tr>
+                        <tr>
+                            <td>上海11选5</td>
+                            <td>09:00 - 24:00</td>
+                            <td>每期20分钟</td>
+                            <td>45期</td>
+                            <td>09:20:00</td>
+                            <td>00:00:00</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="item1_small_title1">低频彩</div>
+            <div class="dpSSC">
+                <table class="help_table">
+                    <thead>
+                        <tr>
+                            <th>3D</th>
+                            <th>P3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="big">中国福利彩票3D游戏（以下简称3D），是以一个3位自然数为投注号码的彩票，投注者从000-999的数字中选择一个3位数进行投注。3D在各省（区、市）保留各自奖池、单独派奖的基础上实行三统一，即统一名称标识、统一游戏规则、统一开奖号码。开奖时间是每晚20:30。</td>
+                            <td class="big">排列3电脑体育彩票由国家体育总局体育彩票管理中心(以下简称“中体彩中心”)统一发行。购买“排列3”时，购买者需从000-999的数字中选取1个3位数为投注号码进行投注。彩票不记名、不挂失，不返还本金，不流通使用。购买者可在{{SysValue}}进行投注。投注号码可由投注机随机产生，也可通过投注单将购买者选定的号码输入确定。投注号码经系统确认后即为“排列3” 体育彩票。开奖时间是每晚20:30。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="item1_small_title1">快乐彩</div>
+            <div class="dpSSC">
+                <table class="help_table">
+                    <thead>
+                        <tr>
+                            <th>快3</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="big">快3是一种由中国福利彩票发行管理中心组织销售，江苏省福利彩票发行中心承销的福彩快开彩票，2元1注，每10分钟开一期奖，每期摇出3个号码，每个号码从1-6中开出，有通选，有单选，根据号码组合共分为“和值”、“三同号”、“二同号”、“三不同号”、“二不同号”、“三连号通选”投注方式，简单好玩又易中。 </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+  import {SysKey} from "../../util/sysconfig";
+
+  export default {
+    data() {
+      return {
+        SysValue:SysKey("SysName").SysValue
+
+      }
+    },
+    created(){
+      if(!window.userInfo || window.userInfo == null){
+        // this.$router.push("/login");
+      }
+    }
+  }
+</script>
+<style>
+.helpcenter_chidrenbox{
+    overflow: hidden;
+}
+.helpcenter_item1_title{
+    height: 42px;
+    border-bottom: 2px solid #2ba498;
+    line-height: 42px;
+    padding: 0 20px;
+    font-size: 16px;
+}
+.helpcenter_item1_content{
+    padding: 16px 31px;
+    color:#606060;
+}
+.helpcenter_item1_content p{
+    text-indent: 28px;
+    font-size: 14px;
+    padding: 11px 0;
+}
+.item1_top_title{
+    color:#1f7879;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+}
+.item1_small_title2{
+    color:#1f7879;
+    margin-top: 8px;
+    padding-left: 13px;
+}
+.item1_small_title1{
+    background: #f3f9f8;
+    line-height: 30px;
+    height: 30px;
+    color:#1f7879;
+    font-weight:bold;
+    padding: 0 12px;
+    font-size: 16px;
+    margin-top: 16px;
+}
+.rules_box{
+    font-size: 14px;
+    padding: 0 28px;
+}
+.rules_box>h4{
+    font-size: 14px;
+    padding: 12px 0 0;
+}
+.rules_box>.titlecolor1{
+    color:#000;
+}
+.rules_box>.titlecolor2{
+    color:#1f7879;
+}
+.rules_box>div{
+    text-indent: 28px;
+}
+.rules_box>.intro{
+    padding: 18px 0;
+}
+/* 表格 */
+.help_table{
+    width: 100%;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+}
+.help_table td{
+    line-height: 24px;
+    border: 1px solid #e2e3e4;
+    text-align: center;
+}
+.help_table tbody{
+    background: #f6f6f6;
+    border-right:1px solid #e2e3e4;
+}
+.help_table>thead{
+    background: #1f7879;
+    color:#fff;
+}
+.help_table>thead th{
+    font-weight: normal;
+    height: 27px;
+    line-height: 27px;
+    border: 1px solid #e2e3e4;
+    text-align: center;
+}
+.dpSSC>table td{
+    text-align: justify;
+    font-weight: bold;
+    padding: 20px;
+}
+</style>
+

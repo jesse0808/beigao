@@ -1,0 +1,3773 @@
+<template>
+    <!-- 历史开奖 -->
+    <div class="historyLottery trend">
+
+        <!-- 导航 -->
+        <div class="history_lottery_navbox">
+            <ul class="cf">
+                <li
+                        @mouseover="navlotteryShow"
+                        @mouseleave="navlotteryHide"
+                        class="history_select_tab">
+                    <div class="pathname">{{navName}}</div>
+                    <ul v-show="isShowDrow" class="history_drop_down">
+                        <li class="history_drop_item box_h" v-for="(item,index) in navAry" :key="index">
+                            <img :src="url+item.WebIco" :alt="item.NvgName"/>
+                            <div class="box_flex cf">
+                                <a class="navlotter_game_btn" v-for="value in item.LotteryList" :key="value.LgId"
+                                   :data-id="value.LgId" :data-index="value.LsId" @click="getDescribe(value)">{{value.Name}}</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- 选项卡 -->
+        <div class="box_h trend_tabbox">
+            <!-- 多选框 -->
+            <div class="trend_tab_checkbox box_h" v-if="tablenum != 7">
+                <el-checkbox v-model="check.subline">辅助线</el-checkbox>
+                <el-checkbox v-model="check.miss" @change="handleMissing">遗漏</el-checkbox>
+                <el-checkbox v-model="check.missArticle" @change="handleline">遗漏条</el-checkbox>
+                <el-checkbox v-model="check.movements" @change="changeMovement">走势</el-checkbox>
+                <el-checkbox v-model="check.hotNumber">热号</el-checkbox>
+            </div>
+            <!--选项 -->
+            <div class="trend_tab_mainbox box_h">
+                <a :class="currentType === 0? 'activeType':''" @click="handleType(0)" href="javascript:void(0)">近30期</a>
+                <a :class="currentType === 1? 'activeType':'' " @click="handleType(1)"
+                   href="javascript:void(0)">近50期</a>
+                <a :class="currentType === 2? 'activeType':'' " @click="handleType(2)"
+                   href="javascript:void(0)">近100期</a>
+                <a :class="currentType === 3? 'activeType':''" @click="handleType(3)" href="javascript:void(0)">今天</a>
+            </div>
+        </div>
+        <div class="box_h trend_tabbox" v-if="tablenum == 2">
+            <el-radio-group v-model="radio" @change="handleChangeRadio">
+                <el-radio :label="1">前五名</el-radio>
+                <el-radio :label="2">后五名</el-radio>
+            </el-radio-group>
+        </div>
+        <!-- 数据表格 -->
+
+        <div v-loading="loading"
+             element-loading-text="加载中"
+             element-loading-spinner="el-icon-loading">
+
+            <!-- 时时彩 和 基诺彩 -->
+            <div class="trend_tab_tablebox" v-if="tablenum == 1">
+                <table class="trend_tab_table" border="0">
+                    <thead class="tab_head">
+                    <tr>
+                        <th rowspan="2">期号</th>
+                        <th rowspan="2">开奖号码</th>
+                        <th colspan="12">万位</th>
+                        <th colspan="12">千位</th>
+                        <th colspan="12">百位</th>
+                        <th colspan="12">十位</th>
+                        <th colspan="12">个位</th>
+                    </tr>
+                    <tr class="table_head_num">
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody v-if="isRender == true && lotteryArr.length !== 0">
+                    <tr class="trend_tab_tablecontent "
+                        v-for="(item,index) in lotteryArr"
+                        :key="index"
+                        :class="showAuxLine(index)? 'auxLineActive':''">
+                        <td class="tab_issue">{{item.FormatLssue}}</td>
+                        <td class="tab_open_num">{{item.OpenNumber}}</td>
+                        <!-- 万位 -->
+                        <td colspan="12" class="cf">
+               <span class="trend_tablenum"
+                     :class="{'Omission_select_num':getStyle(Iindex,index)}"
+                     :key="Iindex"
+                     v-for="(item,Iindex) in newNum">
+                  <span
+                          :class="{
+                      'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,wwArr),
+                      'options':check.miss === false,
+                      'hotActive':check.hotNumber && hotArrNumber == getHotNumber(Iindex,index,tenThousandArr) && wwArr[Iindex][index].number === getWwValue(Iindex,index)
+                    }">
+                    {{getWwValue(Iindex,index,true)}}
+                  </span>
+               </span>
+                        </td>
+                        <!-- 千位 -->
+                        <td colspan="12" class="cf">
+            <span class="trend_tablenum"
+                  :class="{'Omission_select_num' :getStyleqw(Iindex,index)}"
+                  :key="Iindex"
+                  v-for="(item,Iindex) in newNum">
+                    <span
+                            :class="{
+                        'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,qwArr),
+                        'options':check.miss === false,
+                        'hotActive':check.hotNumber && hotqwArrNumber == getHotQwNumber(Iindex,index,thousandArr) && qwArr[Iindex][index].number === getqwValue(Iindex,index)
+                      }">
+                    {{getqwValue(Iindex,index,true)}}
+                  </span>
+              </span>
+                        </td>
+                        <!-- 百位 -->
+                        <td colspan="12" class="cf">
+            <span class="trend_tablenum"
+                  :class="{'Omission_select_num':getStylebw(Iindex,index)}"
+                  :key="Iindex"
+                  v-for="(item,Iindex) in newNum">
+                  <span
+                          :class="{
+                          'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,bwArr),
+                          'options':check.miss === false,
+                          'hotActive':check.hotNumber && hotbwArrNumber == getHotBwNumber(Iindex,index,hundredArr) && bwArr[Iindex][index].number === getbwValue(Iindex,index)
+                        }">
+                    {{getbwValue(Iindex,index,true)}}
+                  </span>
+            </span>
+                        </td>
+                        <!-- 十位 -->
+                        <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num':getStylesw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in newNum">
+                <span
+                        :class="{
+                   'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,swArr),
+                   'options':check.miss === false,
+                   'hotActive':check.hotNumber && hotswArrNumber == getHotSwNumber(Iindex,index,tenArr) && swArr[Iindex][index].number === getswValue(Iindex,index)
+                  }">
+                  {{getswValue(Iindex,index,true)}}</span>
+              </span>
+                        </td>
+                        <!-- 个位 -->
+                        <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num' :getStylegw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in newNum">
+                <span
+                        :class="{
+                   'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,gwArr),
+                   'options':check.miss === false,
+                   'hotActive':check.hotNumber && hotgwArrNumber == getHotgwNumber(Iindex,index,bitsArr) && gwArr[Iindex][index].number === getgwValue(Iindex,index)
+                  }">
+                  {{getgwValue(Iindex,index,true)}}</span>
+              </span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor">
+                        <td>出现总系数</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenThousandShowNum" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in thousandShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <td>平均遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenThousandAverageMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in thousandAverageMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredAverageMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenAverageMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsAverageMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <td>最大遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenThousandMaxMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in thousandMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <td>最大连出值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenThousandMaxConnected" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in thousandMaxConnected" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredMaxConnected" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenMaxConnected" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxConnected" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <td rowspan="2">期号</td>
+                        <td rowspan="2">开奖号码</td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <td colspan="12">万位</td>
+                        <td colspan="12">千位</td>
+                        <td colspan="12">百位</td>
+                        <td colspan="12">十位</td>
+                        <td colspan="12">个位</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 11选5 -->
+            <div class="trend_tab_tablebox" v-if="tablenum == 3">
+                <table class="trend_tab_table" border="0">
+                    <thead class="tab_head">
+                    <tr>
+                        <th rowspan="2">期号</th>
+                        <th rowspan="2">开奖号码</th>
+                        <th colspan="12">第一位</th>
+                        <th colspan="12">第二位</th>
+                        <th colspan="12">第三位</th>
+                        <th colspan="12">第四位</th>
+                        <th colspan="12">第五位</th>
+                    </tr>
+                    <tr class="table_head_num">
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span selected11">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span selected11">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span selected11">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span selected11">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span selected11">{{item}}</span>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody v-if="isRender == true && lotteryArr.length !== 0">
+                    <tr class="trend_tab_tablecontent selected11"
+                        v-for="(item,index) in lotteryArr"
+                        :key="index"
+                        :class="showAuxLine(index)? 'auxLineActive':''">
+                        <td class="tab_issue">{{item.FormatLssue}}</td>
+                        <td class="tab_open_num">{{item.OpenNumber}}</td>
+                        <!-- 第一位 -->
+                        <td colspan="12" class="cf">
+                 <span class="trend_tablenum"
+                       v-for="(item,Iindex) in selected11and5" :key="Iindex"
+                       :class="{'Omission_select_num':getStyle(Iindex,index)}">
+                    <span
+                            :class="{
+                        'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,wwArr),
+                        'options':check.miss === false,
+                        'hotActive':check.hotNumber && hotArrNumber == getHotNumber(Iindex,index,tenThousandArr) && wwArr[Iindex][index].number === getWwValue(Iindex,index)
+                      }">
+                      {{getWwValue(Iindex,index,true)}}
+                    </span>
+                 </span>
+                        </td>
+                        <!-- 第二位 -->
+                        <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num' :getStyleqw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in selected11and5">
+                      <span
+                              :class="{
+                          'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,qwArr),
+                          'options':check.miss === false,
+                          'hotActive':check.hotNumber && hotqwArrNumber == getHotQwNumber(Iindex,index,thousandArr) && qwArr[Iindex][index].number === getqwValue(Iindex,index)
+                        }">
+                      {{getqwValue(Iindex,index,true)}}
+                    </span>
+                </span>
+                        </td>
+                        <!-- 第三位 -->
+                        <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num':getStylebw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in selected11and5">
+                    <span
+                            :class="{
+                            'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,bwArr),
+                            'options':check.miss === false,
+                            'hotActive':check.hotNumber && hotbwArrNumber == getHotBwNumber(Iindex,index,hundredArr) && bwArr[Iindex][index].number === getbwValue(Iindex,index)
+                          }">
+                      {{getbwValue(Iindex,index,true)}}
+                    </span>
+              </span>
+                        </td>
+                        <!-- 第四位 -->
+                        <td colspan="12" class="cf">
+                <span class="trend_tablenum"
+                      :class="{'Omission_select_num':getStylesw(Iindex,index)}"
+                      :key="Iindex"
+                      v-for="(item,Iindex) in selected11and5">
+                  <span
+                          :class="{
+                     'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,swArr),
+                     'options':check.miss === false,
+                     'hotActive':check.hotNumber && hotswArrNumber == getHotSwNumber(Iindex,index,tenArr) && swArr[Iindex][index].number === getswValue(Iindex,index)
+                    }">
+                    {{getswValue(Iindex,index,true)}}</span>
+                </span>
+                        </td>
+
+                        <!-- 第五位 -->
+                        <td colspan="12" class="cf">
+                <span class="trend_tablenum"
+                      :class="{'Omission_select_num' :getStylegw(Iindex,index)}"
+                      :key="Iindex"
+                      v-for="(item,Iindex) in selected11and5">
+                  <span
+                          :class="{
+                     'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,gwArr),
+                     'options':check.miss === false,
+                     'hotActive':check.hotNumber && hotgwArrNumber == getHotgwNumber(Iindex,index,bitsArr) && gwArr[Iindex][index].number === getgwValue(Iindex,index)
+                    }">
+                    {{getgwValue(Iindex,index,true)}}</span>
+                </span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor selected11">
+                        <td>出现总系数</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenThousandShowNum" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in thousandShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor selected11">
+                        <td>平均遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenThousandAverageMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in thousandAverageMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredAverageMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenAverageMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsAverageMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor selected11">
+                        <td>最大连出值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenThousandMaxConnected" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in thousandMaxConnected" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredMaxConnected" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenMaxConnected" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxConnected" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor selected11">
+                        <td>最大遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenThousandMaxMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in thousandMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor selected11">
+                        <td rowspan="2">期号</td>
+                        <td rowspan="2">开奖号码</td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in selected11and5" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor selected11">
+                        <td colspan="12">第一位</td>
+                        <td colspan="12">第二位</td>
+                        <td colspan="12">第三位</td>
+                        <td colspan="12">第四位</td>
+                        <td colspan="12">第五位</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 快3 -->
+            <div class="trend_tab_tablebox" v-if="tablenum == 4">
+                <table class="trend_tab_table" border="0">
+                    <thead class="tab_head">
+                    <tr>
+                        <th rowspan="2">期号</th>
+                        <th rowspan="2">开奖号码</th>
+                        <th colspan="12">第一位</th>
+                        <th colspan="12">第二位</th>
+                        <th colspan="12">第三位</th>
+                        <th rowspan="2">和值</th>
+                        <th rowspan="2">和值大小单双</th>
+                    </tr>
+                    <tr class="table_head_num queryThree">
+                        <td colspan="12">
+                            <span v-for="(item,index) in quickThree" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in quickThree" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in quickThree" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody v-if="isRender == true && lotteryArr.length !== 0">
+                    <tr class="trend_tab_tablecontent queryThree"
+                        v-for="(item,index) in lotteryArr"
+                        :key="index"
+                        :class="showAuxLine(index)? 'auxLineActive':''">
+                        <td class="tab_issue">{{item.FormatLssue}}</td>
+                        <td class="tab_open_num">{{item.OpenNumber}}</td>
+                        <!-- 百位 -->
+                        <td colspan="12" class="cf">
+            <span class="trend_tablenum"
+                  :class="{'Omission_select_num':getStylebw(Iindex,index)}"
+                  :key="Iindex"
+                  v-for="(item,Iindex) in quickThree">
+                  <span
+                          :class="{
+                          'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,bwArr),
+                          'options':check.miss === false,
+                          'hotActive':check.hotNumber && hotbwArrNumber == getHotBwNumber(Iindex,index,hundredArr) && bwArr[Iindex][index].number === getbwValue(Iindex,index)
+                        }">
+                    {{getbwValue(Iindex,index,true)}}
+                  </span>
+            </span>
+                        </td>
+                        <!-- 十位 -->
+                        <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num':getStylesw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in quickThree">
+                <span
+                        :class="{
+                   'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,swArr),
+                   'options':check.miss === false,
+                   'hotActive':check.hotNumber && hotswArrNumber == getHotSwNumber(Iindex,index,tenArr) && swArr[Iindex][index].number === getswValue(Iindex,index)
+                  }">
+                  {{getswValue(Iindex,index,true)}}</span>
+              </span>
+                        </td>
+                        <!-- 个位 -->
+                        <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num' :getStylegw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in quickThree">
+                <span
+                        :class="{
+                   'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,gwArr),
+                   'options':check.miss === false,
+                   'hotActive':check.hotNumber && hotgwArrNumber == getHotgwNumber(Iindex,index,bitsArr) && gwArr[Iindex][index].number === getgwValue(Iindex,index)
+                  }">
+                  {{getgwValue(Iindex,index,true)}}</span>
+              </span>
+                        </td>
+
+                        <td class="cf">{{computedTotal(item)}}</td>
+                        <td class="cf">{{computedTotalType(item)}}</td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor queryThree">
+                        <td>出现总系数</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor queryThree">
+                        <td>平均遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredAverageMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenAverageMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsAverageMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor queryThree">
+                        <td>最大遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor queryThree">
+                        <td>最大连出值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredMaxConnected" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenMaxConnected" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxConnected" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor queryThree">
+                        <td rowspan="2">期号</td>
+                        <td rowspan="2">开奖号码</td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in quickThree" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in quickThree" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in quickThree" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor queryThree">
+                        <th colspan="12">第一位</th>
+                        <th colspan="12">第二位</th>
+                        <th colspan="12">第三位</th>
+                        <th rowspan="2">和值</th>
+                        <th rowspan="2">和值大小单双</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 幸运28 -->
+            <div class="trend_tab_tablebox" v-if="tablenum == 5">
+                <table class="trend_tab_table" border="0">
+                    <thead class="tab_head">
+                    <tr>
+                        <th rowspan="2">期号</th>
+                        <th rowspan="2">开奖号码</th>
+                        <th colspan="12">总和</th>
+                        <th rowspan="2">大小单双</th>
+                    </tr>
+                    <tr class="table_head_num lucky28">
+                        <td colspan="12">
+                            <span v-for="(item,index) in total28" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody v-if="isRender == true && lotteryArr.length !== 0">
+                    <tr class="trend_tab_tablecontent lucky28"
+                        v-for="(item,index) in lotteryArr"
+                        :key="index"
+                        :class="showAuxLine(index)? 'auxLineActive':''">
+                        <td class="tab_issue">{{item.FormatLssue}}</td>
+                        <td class="tab_open_num">{{item.OpenNumber}}</td>
+                        <!-- 总和 -->
+                        <td colspan="12" class="cf">
+            <span class="trend_tablenum"
+                  :class="{'Omission_select_num':getStylegw(Iindex,index)}"
+                  :key="Iindex"
+                  v-for="(item,Iindex) in total28">
+                  <span
+                          :class="{
+                          'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,gwArr),
+                          'options':check.miss === false,
+                          'hotActive':check.hotNumber && hotgwArrNumber == getHotgwNumber(Iindex,index,bitsArr) && gwArr[Iindex][index].number === getgwValue(Iindex,index)
+                        }">
+                    {{getgwValue(Iindex,index)}}
+                  </span>
+            </span>
+                        </td>
+                        <td class="cf">{{computed28(item)}}</td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor lucky28">
+                        <td>出现总系数</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor lucky28">
+                        <td>平均遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsAverageMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor lucky28">
+                        <td>最大遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor lucky28">
+                        <td>最大连出值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxConnected" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor lucky28">
+                        <td rowspan="2">期号</td>
+                        <td rowspan="2">开奖号码</td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in total28" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td class="cf"></td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor queryThree">
+                        <th colspan="12">总和</th>
+                        <th rowspan="2">大小单双</th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 低频彩 -->
+            <div class="trend_tab_tablebox" v-if="tablenum == 6">
+                <table class="trend_tab_table" border="0">
+                    <thead class="tab_head">
+                    <tr>
+                        <th rowspan="2">期号</th>
+                        <th rowspan="2">开奖号码</th>
+                        <th colspan="12">百位</th>
+                        <th colspan="12">十位</th>
+                        <th colspan="12">个位</th>
+                    </tr>
+                    <tr class="table_head_num">
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody v-if="isRender == true && lotteryArr.length !== 0">
+                    <tr class="trend_tab_tablecontent"
+                        v-for="(item,index) in lotteryArr"
+                        :key="index"
+                        :class="showAuxLine(index)? 'auxLineActive':''">
+                        <td class="tab_issue">{{item.FormatLssue}}</td>
+                        <td class="tab_open_num">{{item.OpenNumber}}</td>
+                        <!-- 百位 -->
+                        <td colspan="12" class="cf">
+            <span class="trend_tablenum"
+                  :class="{'Omission_select_num':getStylebw(Iindex,index)}"
+                  :key="Iindex"
+                  v-for="(item,Iindex) in newNum">
+                  <span
+                          :class="{
+                          'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,bwArr),
+                          'options':check.miss === false,
+                          'hotActive':check.hotNumber && hotbwArrNumber == getHotBwNumber(Iindex,index,hundredArr) && bwArr[Iindex][index].number === getbwValue(Iindex,index)
+                        }">
+                    {{getbwValue(Iindex,index,true)}}
+                  </span>
+            </span>
+                        </td>
+                        <!-- 十位 -->
+                        <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num':getStylesw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in newNum">
+                <span
+                        :class="{
+                   'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,swArr),
+                   'options':check.miss === false,
+                   'hotActive':check.hotNumber && hotswArrNumber == getHotSwNumber(Iindex,index,tenArr) && swArr[Iindex][index].number === getswValue(Iindex,index)
+                  }">
+                  {{getswValue(Iindex,index,true)}}</span>
+              </span>
+                        </td>
+                        <!-- 个位 -->
+                        <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num' :getStylegw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in newNum">
+                <span
+                        :class="{
+                   'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,gwArr),
+                   'options':check.miss === false,
+                   'hotActive':check.hotNumber && hotgwArrNumber == getHotgwNumber(Iindex,index,bitsArr) && gwArr[Iindex][index].number === getgwValue(Iindex,index)
+                  }">
+                  {{getgwValue(Iindex,index,true)}}</span>
+              </span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor">
+                        <td>出现总系数</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsShowNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor">
+                        <td>平均遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredAverageMiss" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenAverageMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsAverageMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor">
+                        <td>最大遗漏值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxMiss" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor">
+                        <td>最大连出值</td>
+                        <td></td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in hundredMaxConnected" :key="index"
+                                  class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in tenMaxConnected" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in bitsMaxConnected" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor">
+                        <td rowspan="2">期号</td>
+                        <td rowspan="2">开奖号码</td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in newNum" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor">
+                        <td colspan="12">百位</td>
+                        <td colspan="12">十位</td>
+                        <td colspan="12">个位</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 六合彩 -->
+            <div class="trend_tab_tablebox" v-if="tablenum == 7">
+                <div class="data_box">
+                    <el-row>
+                        <el-col :span="3">时间</el-col>
+                        <el-col :span="2">期数</el-col>
+                        <el-col :span="8">正码</el-col>
+                        <el-col :span="2">特码</el-col>
+                        <el-col :span="4" style="line-height: normal;font-size: 14px;">
+                            <el-row style="height: 22px;">
+                                <el-col style="line-height: normal;" :span="24">总和</el-col>
+                            </el-row>
+                            <el-row style="height: 22px;border-top: solid 1px #d4d4d4;">
+                                <el-col style="line-height: normal;" :span="6">总数</el-col>
+                                <el-col style="line-height: normal;" :span="6">单双</el-col>
+                                <el-col style="line-height: normal;" :span="6">大小</el-col>
+                                <el-col style="line-height: normal;" :span="6">七色波</el-col>
+                            </el-row>
+                        </el-col>
+                        <el-col :span="5" style="line-height: normal;font-size: 14px;">
+                            <el-row style="height: 22px;">
+                                <el-col style="line-height: normal;" :span="24">特码</el-col>
+                            </el-row>
+                            <div style="display:flex;justify-content:center;height: 22px;border-top: solid 1px #d4d4d4;">
+                                <span style="width:20%;line-height: normal;border-right: solid 1px #d4d4d4;">单双</span>
+                                <span style="width:20%;line-height: normal;border-right: solid 1px #d4d4d4;">大小</span>
+                                <span style="width:20%;line-height: normal;border-right: solid 1px #d4d4d4;">合单双</span>
+                                <span style="width:20%;line-height: normal;border-right: solid 1px #d4d4d4;">合大小</span>
+                                <span style="width:20%;line-height: normal;">尾大小</span>
+                            </div>
+                        </el-col>
+                    </el-row>
+                    <el-row v-for="(item, index) in lotteryArr" :key="index">
+                        <el-col :span="3">{{item.OpenTime}}</el-col>
+                        <el-col :span="2">{{item.FormatLssue}}</el-col>
+                        <el-col :span="8" class="lhc_num_box">
+                            <div>
+                                <span :class="returnClass(item.OpenNumber.split(',')[0])">{{item.OpenNumber.split(',')[0]}}</span>
+                                <span>{{item.animal[0]}}</span>
+                            </div>
+                            <div>
+                                <span :class="returnClass(item.OpenNumber.split(',')[1])">{{item.OpenNumber.split(',')[1]}}</span>
+                                <span>{{item.animal[1]}}</span>
+                            </div>
+                            <div>
+                                <span :class="returnClass(item.OpenNumber.split(',')[2])">{{item.OpenNumber.split(',')[2]}}</span>
+                                <span>{{item.animal[2]}}</span>
+                            </div>
+                            <div>
+                                <span :class="returnClass(item.OpenNumber.split(',')[3])">{{item.OpenNumber.split(',')[3]}}</span>
+                                <span>{{item.animal[3]}}</span>
+                            </div>
+                            <div>
+                                <span :class="returnClass(item.OpenNumber.split(',')[4])">{{item.OpenNumber.split(',')[4]}}</span>
+                                <span>{{item.animal[4]}}</span>
+                            </div>
+                            <div>
+                                <span :class="returnClass(item.OpenNumber.split(',')[5])">{{item.OpenNumber.split(',')[5]}}</span>
+                                <span>{{item.animal[5]}}</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="2" class="lhc_num_box">
+                            <div>
+                                <span :class="returnClass(item.OpenNumber.split(',')[6])">{{item.OpenNumber.split(',')[6]}}</span>
+                                <span>{{item.animal[6]}}</span>
+                            </div>
+                        </el-col>
+                        <el-col :span="1" class="sum"><strong>{{item.sum}}</strong></el-col>
+                        <el-col :span="1"><strong :class="[item.sum%2 === 0 ? 'red': '']">{{item.sum |
+                            disposeOdd}}</strong></el-col>
+                        <el-col :span="1"><strong :class="[item.sum > 174.5 ?'red':'']">{{item.sum |
+                            disposeSize}}</strong></el-col>
+                        <el-col :span="1"><strong :class="returnColor(item.OpenNumber)">{{returnColorText(item.OpenNumber)}}</strong>
+                        </el-col>
+                        <el-col :span="1"><strong :class="[teCountOdd(item.OpenNumber.split(',')[6])]">{{item.OpenNumber.split(',')[6]
+                            | teCountFilter}}</strong></el-col>
+                        <el-col :span="1"><strong :class="[teSize(item.OpenNumber.split(',')[6])]">{{item.OpenNumber.split(',')[6]
+                            | teSizeFilter}}</strong></el-col>
+                        <el-col :span="1"><strong :class="[teHeCount(item.OpenNumber.split(',')[6])]">{{item.OpenNumber.split(',')[6]
+                            | teHeCountFilter}}</strong></el-col>
+                        <el-col :span="1"><strong :class="[teHeSize(item.OpenNumber.split(',')[6])]">{{item.OpenNumber.split(',')[6]
+                            | teHeSizeFilter}}</strong></el-col>
+                        <el-col :span="1"><strong :class="[teWeSize(item.OpenNumber.split(',')[6])]">{{item.OpenNumber.split(',')[6]
+                            | teWeSizeFilter}}</strong></el-col>
+                    </el-row>
+                </div>
+            </div>
+            <!-- 赛车系列 -->
+            <div class="trend_tab_tablebox" v-if="tablenum == 2">
+                <table class="trend_tab_table" border="0">
+                    <thead class="tab_head">
+                    <tr>
+                        <th rowspan="2">期号</th>
+                        <th rowspan="2">开奖号码</th>
+                        <template v-if="radio == '1'">
+                            <th colspan="12">冠军</th>
+                            <th colspan="12">亚军</th>
+                            <th colspan="12">季军</th>
+                            <th colspan="12">第四名</th>
+                            <th colspan="12">第五名</th>
+                        </template>
+                        <template v-if="radio == '2'">
+                            <th colspan="12">第六名</th>
+                            <th colspan="12">第七名</th>
+                            <th colspan="12">第八名</th>
+                            <th colspan="12">第九名</th>
+                            <th colspan="12">第十名</th>
+                        </template>
+                    </tr>
+                    <tr class="table_head_num">
+                        <template v-if="radio == '1'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                        <template v-if="radio == '2'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                    </tr>
+                    </thead>
+                    <tbody v-if="isRender == true">
+                    <tr class="trend_tab_tablecontent "
+                        v-for="(item,index) in lotteryArr"
+                        :key="index"
+                        :class="showAuxLine(index)? 'auxLineActive':''">
+                        <td class="tab_issue">{{item.FormatLssue}}</td>
+                        <td class="tab_open_num">{{item.OpenNumber}}</td>
+                        <template v-if="radio == '1'">
+                            <!-- 万位 -->
+                            <td colspan="12" class="cf">
+                 <span class="trend_tablenum"
+                       :class="{'Omission_select_num':getStyle(Iindex,index)}"
+                       :key="Iindex"
+                       v-for="(item,Iindex) in carTotal">
+                    <span
+                            :class="{
+                        'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,wwArr),
+                        'options':check.miss === false,
+                        'hotActive':check.hotNumber && hotArrNumber == getHotNumber(Iindex,index,tenThousandArr) && wwArr[Iindex][index].number === getWwValue(Iindex,index)
+                      }">
+                      {{getWwValue(Iindex,index,true)}}
+                    </span>
+                 </span>
+                            </td>
+                            <!-- 千位 -->
+                            <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num' :getStyleqw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in carTotal">
+                      <span
+                              :class="{
+                          'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,qwArr),
+                          'options':check.miss === false,
+                          'hotActive':check.hotNumber && hotqwArrNumber == getHotQwNumber(Iindex,index,thousandArr) && qwArr[Iindex][index].number === getqwValue(Iindex,index)
+                        }">
+                      {{getqwValue(Iindex,index,true)}}
+                    </span>
+                </span>
+                            </td>
+                            <!-- 百位 -->
+                            <td colspan="12" class="cf">
+              <span class="trend_tablenum"
+                    :class="{'Omission_select_num':getStylebw(Iindex,index)}"
+                    :key="Iindex"
+                    v-for="(item,Iindex) in carTotal">
+                    <span
+                            :class="{
+                            'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,bwArr),
+                            'options':check.miss === false,
+                            'hotActive':check.hotNumber && hotbwArrNumber == getHotBwNumber(Iindex,index,hundredArr) && bwArr[Iindex][index].number === getbwValue(Iindex,index)
+                          }">
+                      {{getbwValue(Iindex,index,true)}}
+                    </span>
+              </span>
+                            </td>
+                            <!-- 十位 -->
+                            <td colspan="12" class="cf">
+                <span class="trend_tablenum"
+                      :class="{'Omission_select_num':getStylesw(Iindex,index)}"
+                      :key="Iindex"
+                      v-for="(item,Iindex) in carTotal">
+                  <span
+                          :class="{
+                     'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,swArr),
+                     'options':check.miss === false,
+                     'hotActive':check.hotNumber && hotswArrNumber == getHotSwNumber(Iindex,index,tenArr) && swArr[Iindex][index].number === getswValue(Iindex,index)
+                    }">
+                    {{getswValue(Iindex,index,true)}}</span>
+                </span>
+                            </td>
+                            <!-- 个位 -->
+                            <td colspan="12" class="cf">
+                <span class="trend_tablenum"
+                      :class="{'Omission_select_num' :getStylegw(Iindex,index)}"
+                      :key="Iindex"
+                      v-for="(item,Iindex) in carTotal">
+                  <span
+                          :class="{
+                     'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,gwArr),
+                     'options':check.miss === false,
+                     'hotActive':check.hotNumber && hotgwArrNumber == getHotgwNumber(Iindex,index,bitsArr) && gwArr[Iindex][index].number === getgwValue(Iindex,index)
+                    }">
+                    {{getgwValue(Iindex,index,true)}}</span>
+                </span>
+                            </td>
+                        </template>
+                        <template v-if="radio == '2'">
+                            <!-- 第六名 -->
+                            <td colspan="12" class="cf">
+                 <span class="trend_tablenum"
+                       :class="{'Omission_select_num':getOther5Style(Iindex,index)}"
+                       :key="Iindex"
+                       v-for="(item,Iindex) in carTotal">
+                    <span
+                            :class="{
+                        'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,FivesArr),
+                        'options':check.miss === false,
+                        'hotActive':check.hotNumber && hotOther5ArrNumber == getHotOther5QwNumber(Iindex,index,other5Arr) && FivesArr[Iindex][index].number === getOther5Value(Iindex,index)
+                      }">
+                      {{getOther5Value(Iindex,index)}}
+                    </span>
+                 </span>
+                            </td>
+                            <!-- 第七名 -->
+                            <td colspan="12" class="cf">
+                <span class="trend_tablenum"
+                      :class="{'Omission_select_num' :getOther6Style(Iindex,index)}"
+                      :key="Iindex"
+                      v-for="(item,Iindex) in carTotal">
+                        <span
+                                :class="{
+                            'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,sixArr),
+                            'options':check.miss === false,
+                            'hotActive':check.hotNumber && hotOther6ArrNumber == getHotOther6QwNumber(Iindex,index,other6Arr) && sixArr[Iindex][index].number === getOther6Value(Iindex,index)
+                          }">
+                        {{getOther6Value(Iindex,index,true)}}
+                      </span>
+                  </span>
+                            </td>
+                            <!-- 第八名 -->
+                            <td colspan="12" class="cf">
+                <span class="trend_tablenum"
+                      :class="{'Omission_select_num':getOther7Style(Iindex,index)}"
+                      :key="Iindex"
+                      v-for="(item,Iindex) in carTotal">
+                      <span
+                              :class="{
+                              'Omisson_active':check.missArticle && getYlBarStyle(Iindex,index,SevenArr),
+                              'options':check.miss === false,
+                              'hotActive':check.hotNumber && hotOther7ArrNumber == getHotOther7QwNumber(Iindex,index,other7Arr) && SevenArr[Iindex][index].number === getOther7Value(Iindex,index)
+                            }">
+                        {{getOther7Value(Iindex,index,true)}}
+                      </span>
+                </span>
+                            </td>
+                            <!-- 第九名 -->
+                            <td colspan="12" class="cf">
+                  <span class="trend_tablenum"
+                        :class="{'Omission_select_num':getOther8Style(Iindex,index)}"
+                        :key="Iindex"
+                        v-for="(item,Iindex) in carTotal">
+                    <span
+                            :class="{
+                       'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,EightArr),
+                       'options':check.miss === false,
+                       'hotActive':check.hotNumber && hotOther8ArrNumber == getHotOther8QwNumber(Iindex,index,other8Arr) && swArr[Iindex][index].number === getOther8Value(Iindex,index)
+                      }">
+                      {{getOther8Value(Iindex,index,true)}}</span>
+                  </span>
+                            </td>
+                            <!-- 第十名 -->
+                            <td colspan="12" class="cf">
+                  <span class="trend_tablenum"
+                        :class="{'Omission_select_num' :getOther9Style(Iindex,index)}"
+                        :key="Iindex"
+                        v-for="(item,Iindex) in carTotal">
+                    <span
+                            :class="{
+                       'Omisson_active': check.missArticle && getYlBarStyle(Iindex,index,nineArr),
+                       'options':check.miss === false,
+                       'hotActive':check.hotNumber && hotOther9ArrNumber == getHotOther9QwNumber(Iindex,index,other9Arr) && nineArr[Iindex][index].number === getOther9Value(Iindex,index)
+                      }">
+                      {{getOther9Value(Iindex,index,true)}}</span>
+                  </span>
+                            </td>
+                        </template>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor">
+                        <td>出现总系数</td>
+                        <td></td>
+                        <template v-if="radio == '1'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in tenThousandShowNum" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in thousandShowNum" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in hundredShowNum" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in tenShowNum" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in bitsShowNum" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                        <template v-if="radio == '2'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in other5ShowNum" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other6ShowNum" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other7ShowNum" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other8ShowNum" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other9ShowNum" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <td>平均遗漏值</td>
+                        <td></td>
+                        <template v-if="radio == '1'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in tenThousandAverageMiss" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in thousandAverageMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in hundredAverageMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in tenAverageMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in bitsAverageMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                        <template v-if="radio == '2'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in other5AverageMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other6AverageMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other7AverageMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other8AverageMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other9AverageMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <td>最大遗漏值</td>
+                        <td></td>
+                        <template v-if="radio == '1'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in tenThousandMaxMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in thousandMaxMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in hundredMaxMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in tenMaxMiss" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in bitsMaxMiss" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                        <template v-if="radio == '2'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in other5MaxMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other6MaxMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other7MaxMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other8MaxMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other9MaxMiss" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <td>最大连出值</td>
+                        <td></td>
+                        <template v-if="radio == '1'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in tenThousandMaxConnected" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in thousandMaxConnected" :key="index" class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in hundredMaxConnected" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in tenMaxConnected" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in bitsMaxConnected" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                        <template v-if="radio == '2'">
+                            <td colspan="12">
+                                <span v-for="(item,index) in other5MaxConnected" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other6MaxConnected" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other7MaxConnected" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other8MaxConnected" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                            <td colspan="12">
+                                <span v-for="(item,index) in other9MaxConnected" :key="index"
+                                      class="new_span">{{item}}</span>
+                            </td>
+                        </template>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <td rowspan="2">期号</td>
+                        <td rowspan="2">开奖号码</td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                        <td colspan="12">
+                            <span v-for="(item,index) in carTotal" :key="index" class="new_span">{{item}}</span>
+                        </td>
+                    </tr>
+                    <tr class="trend_tab_tablebgcolor ">
+                        <template v-if="radio == '1'">
+                            <th colspan="12">冠军</th>
+                            <th colspan="12">亚军</th>
+                            <th colspan="12">季军</th>
+                            <th colspan="12">第四名</th>
+                            <th colspan="12">第五名</th>
+                        </template>
+                        <template v-if="radio == '2'">
+                            <th colspan="12">第六名</th>
+                            <th colspan="12">第七名</th>
+                            <th colspan="12">第八名</th>
+                            <th colspan="12">第九名</th>
+                            <th colspan="12">第十名</th>
+                        </template>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="otips" v-if="isRender != true"></div>
+            <div class="noresult" v-if="lotteryArr.length === 0">
+                <img src="../../assets/zjzh/empty.png" alt="">
+                <p>暂无数据</p>
+            </div>
+
+        </div>
+
+
+    </div>
+</template>
+<script>
+  import {postAjax, getAjax} from "../../util/ajax.js"
+  import {SysKey} from "../../util/sysconfig";
+
+  export default {
+    data() {
+      return {
+        wetTitle: "",//网页标题
+        loading: false,
+        isShowDrow: false,
+        isClickTime: false,
+        isRender: false,
+        newNum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        selected11and5: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11'],
+        total28: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27'],
+        carTotal: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10'],
+        quickThree: [1, 2, 3, 4, 5, 6],
+        // 控制那些选项走势，遗漏，辅助线，热号
+        check: {
+          subline: true,//辅助线
+          miss: true,//遗漏
+          missArticle: false,//遗漏条
+          movements: true,//走势
+          hotNumber: false //热号
+        },
+        radio: 1,
+        //显示哪个趋势图
+        tablenum: this.$route.query.index,
+        //切换头部
+        changTab: 'hs',
+        //游戏id
+        lgId: this.$route.query.id,
+        lsId: this.$route.query.index,
+        lgIdType: 0, //默认最近30天
+        currentType: 0,
+        //万位数组
+        tenThousandArr: [],
+        //万位的走势图数据
+        tenThousandMovements: [],
+        //万位所有数字出现总次数数组
+        tenThousandShowNum: [],
+        //万位出现最大遗漏值数组
+        tenThousandMaxMiss: [],
+        //万位平均遗漏值数组
+        tenThousandAverageMiss: [],
+
+        // 最大连出值
+        tenThousandMaxConnected: [],  //万
+        thousandMaxConnected: [],  //千
+        hundredMaxConnected: [],  // 百
+        tenMaxConnected: [],  //十
+        bitsMaxConnected: [], // 个
+
+        //千位数组
+        thousandArr: [],
+        //千位的走势图数据
+        thousandArrMovements: [],
+        //千位所有数字出现总次数数组
+        thousandShowNum: [],
+        //千位出现最大遗漏值数组
+        thousandMaxMiss: [],
+        //千位平均遗漏值数组
+        thousandAverageMiss: [],
+
+        //百位数组
+        hundredArr: [],
+        //百位的走势图数据
+        hundredMovements: [],
+        //百位所有数字出现总次数数组
+        hundredShowNum: [],
+        //百位出现最大遗漏值数组
+        hundredMaxMiss: [],
+        //百位平均遗漏值数组
+        hundredAverageMiss: [],
+
+        //十位数组
+        tenArr: [],
+        //十位的走势图数据
+        tenMovements: [],
+        //十位所有数字出现总次数数组
+        tenShowNum: [],
+        //十位出现最大遗漏值数组
+        tenMaxMiss: [],
+        //十位平均遗漏值数组
+        tenAverageMiss: [],
+
+        //个位数组:
+        bitsArr: [],
+        //个位的走势图数据
+        bitsMovements: [],
+        //个位所有数字出现总次数数组
+        bitsShowNum: [],
+        //个位出现最大遗漏值数组
+        bitsMaxMiss: [],
+        //个位平均遗漏值数组
+        bitsAverageMiss: [],
+
+        //开奖数组
+        lotteryArr: [],
+        //行数据
+        rowData: [
+          {val: 1, missVal: 1}, {val: 1, missVal: 1}, {val: 1, missVal: 1}, {val: 1, missVal: 1},
+          {val: 1, missVal: 1}, {val: 1, missVal: 1}, {val: 1, missVal: 1}, {val: 1, missVal: 1},
+          {val: 1, missVal: 1}, {val: 1, missVal: 1}
+        ],
+        //宽高的数据
+        WidthHight: {},
+        //多少期
+        issChoosed: 0,
+        wwArr: [],
+        hotArrNumber: 0,
+        qwArr: [],
+        hotqwArrNumber: 0,
+        bwArr: [],
+        hotbwArrNumber: 0,
+        swArr: [],
+        hotswArrNumber: 0,
+        gwArr: [],
+        hotgwArrNumber: 0,
+        url: SysKey("ImgServerUrl").SysValue, //图片地址
+        navAry: "", //下拉框数据
+        navName: '',
+        pathQuert: '',
+
+        other5Arr: [],
+        other6Arr: [],
+        other7Arr: [],
+        other8Arr: [],
+        other9Arr: [],
+
+        // 保存中奖信息
+        FivesArr: [],
+        sixArr: [],
+        SevenArr: [],
+        EightArr: [],
+        nineArr: [],
+
+        //出现次数
+        other5ShowNum: [],
+        other6ShowNum: [],
+        other7ShowNum: [],
+        other8ShowNum: [],
+        other9ShowNum: [],
+
+        // 最大遗漏值
+        other5MaxMiss: [],
+        other6MaxMiss: [],
+        other7MaxMiss: [],
+        other8MaxMiss: [],
+        other9MaxMiss: [],
+
+        // 最大连出值
+        other5MaxConnected: [],
+        other6MaxConnected: [],
+        other7MaxConnected: [],
+        other8MaxConnected: [],
+        other9MaxConnected: [],
+
+        hotOther5ArrNumber: 0,
+        hotOther6ArrNumber: 0,
+        hotOther7ArrNumber: 0,
+        hotOther8ArrNumber: 0,
+        hotOther9ArrNumber: 0,
+      }
+    },
+    created() {
+      //隐藏顶部
+      this.$store.commit('setHead', false)
+      this.$store.commit('setFoot', false)
+    },
+    mounted() {
+      this.headNavAjax()
+      this.getGameHistoryInfo();
+      window.addEventListener('resize', () => {
+        if (this.check.movements) {
+          try {
+            let node = document.getElementsByTagName('canvas');
+            let parent = node[0].parentNode;
+            for (let i = 0, len = node.length; i < len; i++) {
+              parent.removeChild(node[0]);
+            }
+          } catch (ig) {
+          }
+          this.$nextTick(() => {
+            this._renderDraw()
+          })
+        }
+      })
+    },
+    methods: {
+
+      navlotteryShow() {
+        this.isShowDrow = true
+      },
+      navlotteryHide() {
+        this.isShowDrow = false
+      },
+
+      handleType(val) {
+        this.lgIdType = val
+        this.currentType = val
+        this.isClickTime = true
+
+        this.wwArr = []
+        this.qwArr = []
+        this.bwArr = []
+        this.swArr = []
+        this.gwArr = []
+        this.FivesArr = []
+        this.sixArr = []
+        this.SevenArr = []
+        this.EightArr = []
+        this.nineArr = []
+        this.isRender = false
+
+        // 如果是分分彩，添加一个loading
+        /* if (this.navName.indexOf('分分彩') > -1) {
+           this.isClickTime = false
+         } else {
+           this.isClickTime = true
+         }*/
+
+        // 切换的时候，重置数据
+        if (this.check.movements) {
+          try {
+            let node = document.getElementsByTagName('canvas');
+            let parent = node[0].parentNode;
+            for (let i = 0, len = node.length; i < len; i++) {
+              parent.removeChild(node[0]);
+            }
+          } catch (ig) {
+          }
+          this.$nextTick(() => {
+            this.getGameHistoryInfo()
+          })
+        } else {
+          this.$nextTick(() => {
+            this.getGameHistoryInfo()
+          })
+        }
+      },
+
+      handleChangeRadio(val) {
+        try {
+          let node = document.getElementsByTagName('canvas');
+          let parent = node[0].parentNode;
+          for (let i = 0, len = node.length; i < len; i++) {
+            parent.removeChild(node[0]);
+          }
+        } catch (ig) {
+        }
+        this.check.movements = false
+        this.$nextTick(() => {
+          this.check.movements = true
+          this._renderDraw()
+        })
+      },
+
+      // 计算和值
+      computedTotal(data) {
+        let OpenNumber = data.OpenNumber
+        let number = OpenNumber.split(',')
+        let total = number.reduce((acc, cur) => {
+          return Number(acc) + Number(cur)
+        }, 0);
+        return total
+      },
+
+      computedTotalType(data) {
+        let OpenNumber = data.OpenNumber
+        let number = OpenNumber.split(',')
+        var total = number.reduce((acc, cur) => {
+          return Number(acc) + Number(cur)
+        }, 0);
+        // 和值>=11 为 大 否则 小
+        //和值%2==0 为 双 否则 单
+        let html = ''
+        if (total >= 11) {
+          html = '大'
+        } else {
+          html = '小'
+        }
+
+        if (total % 2 == 0) {
+          html += ' 双'
+        } else {
+          html += ' 单'
+        }
+        return html
+      },
+
+      computed28(data) {
+        let OpenNumber = data.OpenNumber
+        let number = OpenNumber.split('=')[1]
+        // 总和>=14为 大 否则 小
+        // 总和%2==0 为 双 否则 单
+        let html = ''
+        if (number >= 14) {
+          html = '大'
+        } else {
+          html = '小'
+        }
+        if (number % 2 == 0) {
+          html += ' 双'
+        } else {
+          html += ' 单'
+        }
+        return html
+      },
+
+      computedTotalMount(hundredArr, tenArr, bitsArr) {
+        let hundredArrTotal = hundredArr.reduce((acc, cur) => {
+          return Number(acc) + Number(cur)
+        }, 0);
+        let tenArrTotal = tenArr.reduce((acc, cur) => {
+          return Number(acc) + Number(cur)
+        }, 0);
+        let bitsArrTotal = bitsArr.reduce((acc, cur) => {
+          return Number(acc) + Number(cur)
+        }, 0);
+        return hundredArrTotal + tenArrTotal + bitsArrTotal
+      },
+
+
+      // 点击切换彩种
+      getDescribe(value) {
+        this.wwArr = []
+        this.qwArr = []
+        this.bwArr = []
+        this.swArr = []
+        this.gwArr = []
+        this.FivesArr = []
+        this.sixArr = []
+        this.SevenArr = []
+        this.EightArr = []
+        this.nineArr = []
+        this.isRender = false
+        this.isShowDrow = false
+        this.radio = 1
+
+        this.lgId = value.LgId
+        this.lsId = value.LsId
+        this.tablenum = value.LsId
+        this.isClickTime = false
+        this.lgIdType = 0  // 切换彩种，重置为30期
+        this.currentType = 0
+
+        if (this.check.movements) {
+          try {
+            let node = document.getElementsByTagName('canvas');
+            let parent = node[0].parentNode;
+            for (let i = 0, len = node.length; i < len; i++) {
+              parent.removeChild(node[0]);
+            }
+          } catch (ig) {
+          }
+        }
+        // 点选
+        this.getGameHistoryInfo()
+
+
+        this.$router.push({
+          path: '/trend',
+          query: {
+            id: JSON.stringify({
+              id: value.LgId,
+              index: value.LsId
+            })
+          }
+        })
+      },
+
+      // 设置遗漏条样式
+      getYlBarStyle(i, j, source) {
+        let arr = source[i]
+        for (let k = 0; k < j; k++) {
+          let item = arr[k]
+          if (!item.isFlag) {
+            return false
+          }
+        }
+        return true
+      },
+
+      // 设置热号样式
+      getHotNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotArrNumber) {
+          this.hotArrNumber = ret.length
+        }
+        return ret.length
+      },
+      getHotQwNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotqwArrNumber) {
+          this.hotqwArrNumber = ret.length
+        }
+        return ret.length
+      },
+      getHotBwNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotbwArrNumber) {
+          this.hotbwArrNumber = ret.length
+        }
+        return ret.length
+      },
+      getHotSwNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotswArrNumber) {
+          this.hotswArrNumber = ret.length
+        }
+        return ret.length
+      },
+      getHotgwNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotgwArrNumber) {
+          this.hotgwArrNumber = ret.length
+        }
+        return ret.length
+      },
+
+
+      _initCommonNumber(i, j, source) {
+        let ret = []
+        let item = source[j]
+        for (let k = 0; k < source.length; k++) {
+          if (item == source[k]) {
+            ret.push(item)
+          }
+        }
+        return ret
+      },
+
+      getWwValue(i, j) {
+        return this.wwArr[i][j].number
+      },
+      getStyle(i, j) {
+        return this.wwArr[i][j].isFlag == false
+      },
+      getqwValue(i, j) {
+        return this.qwArr[i][j].number
+      },
+      getStyleqw(i, j) {
+        return this.qwArr[i][j].isFlag == false
+      },
+
+      getbwValue(i, j) {
+        return this.bwArr[i][j].number
+      },
+      getStylebw(i, j) {
+        return this.bwArr[i][j].isFlag == false
+      },
+      getswValue(i, j) {
+        return this.swArr[i][j].number
+      },
+      getStylesw(i, j) {
+        return this.swArr[i][j].isFlag == false
+      },
+
+      getgwValue(i, j) {
+        return this.gwArr[i][j].number
+      },
+      getStylegw(i, j) {
+        return this.gwArr[i][j].isFlag == false
+      },
+
+      // 赛车系列扩展
+      // 第五位
+      getHotOther5QwNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotOther5ArrNumber) {
+          this.hotOther5ArrNumber = ret.length
+        }
+        return ret.length
+      },
+      getOther5Value(i, j) {
+        return this.FivesArr[i][j].number
+      },
+      getOther5Style(i, j) {
+        return this.FivesArr[i][j].isFlag == false
+      },
+      // 第六位
+      getHotOther6QwNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotOther6ArrNumber) {
+          this.hotOther6ArrNumber = ret.length
+        }
+        return ret.length
+      },
+      getOther6Value(i, j) {
+        return this.sixArr[i][j].number
+      },
+      getOther6Style(i, j) {
+        return this.sixArr[i][j].isFlag == false
+      },
+      // 第七位
+      getHotOther7QwNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotOther7ArrNumber) {
+          this.hotOther7ArrNumber = ret.length
+        }
+        return ret.length
+      },
+      getOther7Value(i, j) {
+        return this.SevenArr[i][j].number
+      },
+      getOther7Style(i, j) {
+        return this.SevenArr[i][j].isFlag == false
+      },
+      // 第八位
+      getHotOther8QwNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotOther8ArrNumber) {
+          this.hotOther8ArrNumber = ret.length
+        }
+        return ret.length
+      },
+      getOther8Value(i, j) {
+        return this.EightArr[i][j].number
+      },
+      getOther8Style(i, j) {
+        return this.EightArr[i][j].isFlag == false
+      },
+      // 第九位
+      getHotOther9QwNumber(i, j, source) {
+        let ret = this._initCommonNumber(i, j, source)
+        if (ret.length > this.hotOther9ArrNumber) {
+          this.hotOther9ArrNumber = ret.length
+        }
+        return ret.length
+      },
+      getOther9Value(i, j) {
+        return this.nineArr[i][j].number
+      },
+      getOther9Style(i, j) {
+        return this.nineArr[i][j].isFlag == false
+      },
+
+
+      handleMissing() {
+      },
+
+      handleline() {
+
+      },
+
+      // 显示辅助线逢五
+      showAuxLine(index) {
+        if (index === 0) return
+        if (this.check.subline && index % 5 === 0) {
+          return true
+        }
+      },
+
+
+      cimSelect(data) {
+
+      },
+
+      cimYl(data) {
+        let restww = [];
+        let restwq = [];
+        let rest = [];
+        let restsw = [];
+        let restgw = [];
+
+        for (let i = 0; i < 10; i++) {
+          restww[i] = []
+          restwq[i] = []
+          rest[i] = []
+          restsw[i] = []
+          restgw[i] = []
+          let wwTm = 1
+          let qwTm = 1
+          let tm = 1
+          let swTm = 1
+          let gwTm = 1
+          for (let j = data.length - 1; j >= 0; j--) {
+            data[j].OpenNumber.split(',')
+            let ww = data[j].OpenNumber.split(',')[0] // 万位
+            let qw = data[j].OpenNumber.split(',')[1] // 千位
+            let bw = data[j].OpenNumber.split(',')[2] // 百位
+            let sw = data[j].OpenNumber.split(',')[3] // 十位
+            let gw = data[j].OpenNumber.split(',')[4] // 个位
+
+            if (ww == i) {
+              restww[i][j] = {number: ww, isFlag: false}
+              wwTm = 1
+            } else {
+              restww[i][j] = {number: wwTm, isFlag: true}
+              wwTm++
+            }
+
+            if (qw == i) {
+              restwq[i][j] = {number: i, isFlag: false}
+              qwTm = 1
+            } else {
+              restwq[i][j] = {number: qwTm, isFlag: true}
+              qwTm++
+            }
+
+            if (bw == i) {
+              rest[i][j] = {number: i, isFlag: false}
+              tm = 1
+            } else {
+              rest[i][j] = {number: tm, isFlag: true}
+              tm++
+            }
+
+            if (sw == i) {
+              restsw[i][j] = {number: i, isFlag: false}
+              swTm = 1
+            } else {
+              restsw[i][j] = {number: swTm, isFlag: true}
+              swTm++
+            }
+
+            if (gw == i) {
+              restgw[i][j] = {number: i, isFlag: false}
+              gwTm = 1
+            } else {
+              restgw[i][j] = {number: gwTm, isFlag: true}
+              gwTm++
+            }
+          }
+
+          this.wwArr = restww
+          this.qwArr = restwq
+          this.bwArr = rest
+          this.swArr = restsw
+          this.gwArr = restgw
+        }
+      },
+
+      /* 11选3 */
+      cimYlSelect(data) {
+        let restww = [];
+        let restwq = [];
+        let rest = [];
+        let restsw = [];
+        let restgw = [];
+
+        for (let i = 0; i < 11; i++) {
+          restww[i] = []
+          restwq[i] = []
+          rest[i] = []
+          restsw[i] = []
+          restgw[i] = []
+          let wwTm = 1
+          let qwTm = 1
+          let tm = 1
+          let swTm = 1
+          let gwTm = 1
+          for (let j = data.length - 1; j >= 0; j--) {
+            data[j].OpenNumber.split(',')
+            let ww = data[j].OpenNumber.split(',')[0] // 万位
+            let qw = data[j].OpenNumber.split(',')[1] // 千位
+            let bw = data[j].OpenNumber.split(',')[2] // 百位
+            let sw = data[j].OpenNumber.split(',')[3] // 十位
+            let gw = data[j].OpenNumber.split(',')[4] // 个位
+
+            if ((parseInt(ww) - 1) == i) {
+              restww[i][j] = {number: ww, isFlag: false}
+              wwTm = 1
+            } else {
+              restww[i][j] = {number: wwTm, isFlag: true}
+              wwTm++
+            }
+
+            if ((parseInt(qw) - 1) == i) {
+              restwq[i][j] = {number: qw, isFlag: false}
+              qwTm = 1
+            } else {
+              restwq[i][j] = {number: qwTm, isFlag: true}
+              qwTm++
+            }
+
+            if ((parseInt(bw) - 1) == i) {
+              rest[i][j] = {number: bw, isFlag: false}
+              tm = 1
+            } else {
+              rest[i][j] = {number: tm, isFlag: true}
+              tm++
+            }
+
+            if ((parseInt(sw) - 1) == i) {
+              restsw[i][j] = {number: sw, isFlag: false}
+              swTm = 1
+            } else {
+              restsw[i][j] = {number: swTm, isFlag: true}
+              swTm++
+            }
+
+            if ((parseInt(gw) - 1) == i) {
+              restgw[i][j] = {number: gw, isFlag: false}
+              gwTm = 1
+            } else {
+              restgw[i][j] = {number: gwTm, isFlag: true}
+              gwTm++
+            }
+          }
+        }
+        this.wwArr = restww
+        this.qwArr = restwq
+        this.bwArr = rest
+        this.swArr = restsw
+        this.gwArr = restgw
+      },
+
+      cimLowYl(data) {
+        let rest = [];
+        let restsw = [];
+        let restgw = [];
+
+        for (let i = 0; i < 10; i++) {
+          rest[i] = []
+          restsw[i] = []
+          restgw[i] = []
+          let tm = 1
+          let swTm = 1
+          let gwTm = 1
+          for (let j = data.length - 1; j >= 0; j--) {
+            data[j].OpenNumber.split(',')
+            let bw = data[j].OpenNumber.split(',')[0] // 百位
+            let sw = data[j].OpenNumber.split(',')[1] // 十位
+            let gw = data[j].OpenNumber.split(',')[2] // 个位
+
+            if (bw == i) {
+              rest[i][j] = {number: i, isFlag: false}
+              tm = 1
+            } else {
+              rest[i][j] = {number: tm, isFlag: true}
+              tm++
+            }
+
+            if (sw == i) {
+              restsw[i][j] = {number: i, isFlag: false}
+              swTm = 1
+            } else {
+              restsw[i][j] = {number: swTm, isFlag: true}
+              swTm++
+            }
+
+            if (gw == i) {
+              restgw[i][j] = {number: i, isFlag: false}
+              gwTm = 1
+            } else {
+              restgw[i][j] = {number: gwTm, isFlag: true}
+              gwTm++
+            }
+          }
+          this.bwArr = rest
+          this.swArr = restsw
+          this.gwArr = restgw
+        }
+      },
+
+      // 快3
+      cimQuickYl(data) {
+        let rest = [];
+        let restsw = [];
+        let restgw = [];
+        for (let i = 0; i < 6; i++) {
+          rest[i] = []
+          restsw[i] = []
+          restgw[i] = []
+          let tm = 1
+          let swTm = 1
+          let gwTm = 1
+          for (let j = data.length - 1; j >= 0; j--) {
+            data[j].OpenNumber.split(',')
+            let bw = data[j].OpenNumber.split(',')[0] // 百位
+            let sw = data[j].OpenNumber.split(',')[1] // 十位
+            let gw = data[j].OpenNumber.split(',')[2] // 个位
+
+            if ((parseInt(bw) - 1) == i) {
+              rest[i][j] = {number: bw, isFlag: false}
+              tm = 1
+            } else {
+              rest[i][j] = {number: tm, isFlag: true}
+              tm++
+            }
+
+            if ((parseInt(sw) - 1) == i) {
+              restsw[i][j] = {number: sw, isFlag: false}
+              swTm = 1
+            } else {
+              restsw[i][j] = {number: swTm, isFlag: true}
+              swTm++
+            }
+
+            if ((parseInt(gw) - 1) == i) {
+              restgw[i][j] = {number: gw, isFlag: false}
+              gwTm = 1
+            } else {
+              restgw[i][j] = {number: gwTm, isFlag: true}
+              gwTm++
+            }
+          }
+        }
+        this.bwArr = rest
+        this.swArr = restsw
+        this.gwArr = restgw
+      },
+
+      // 赛车系列
+      cimCarYl(data) {
+        let restww = [];
+        let restwq = [];
+        let rest = [];
+        let restsw = [];
+        let restgw = [];
+        let other5 = []
+        let other6 = []
+        let other7 = []
+        let other8 = []
+        let other9 = []
+
+        for (let i = 0; i < 10; i++) {
+          restww[i] = []
+          restwq[i] = []
+          rest[i] = []
+          restsw[i] = []
+          restgw[i] = []
+          other5[i] = []
+          other6[i] = []
+          other7[i] = []
+          other8[i] = []
+          other9[i] = []
+          let wwTm = 1
+          let qwTm = 1
+          let tm = 1
+          let swTm = 1
+          let gwTm = 1
+          let other5Tm = 1
+          let other6Tm = 1
+          let other7Tm = 1
+          let other8Tm = 1
+          let other9Tm = 1
+          for (let j = data.length - 1; j >= 0; j--) {
+            data[j].OpenNumber.split(',')
+            let ww = data[j].OpenNumber.split(',')[0] // 冠军
+            let qw = data[j].OpenNumber.split(',')[1] // 亚军
+            let bw = data[j].OpenNumber.split(',')[2] // 季军
+            let sw = data[j].OpenNumber.split(',')[3] // 第四位
+            let gw = data[j].OpenNumber.split(',')[4] // 第五位
+            let other5Split = data[j].OpenNumber.split(',')[5] // 第六位
+            let other6Split = data[j].OpenNumber.split(',')[6] // 第七位
+            let other7Split = data[j].OpenNumber.split(',')[7] // 第八位
+            let other8Split = data[j].OpenNumber.split(',')[8] // 第九位
+            let other9Split = data[j].OpenNumber.split(',')[9] // 第十位
+
+            if ((parseInt(ww) - 1) == i) {
+              restww[i][j] = {number: ww, isFlag: false}
+              wwTm = 1
+            } else {
+              restww[i][j] = {number: wwTm, isFlag: true}
+              wwTm++
+            }
+
+            if ((parseInt(qw) - 1) == i) {
+              restwq[i][j] = {number: qw, isFlag: false}
+              qwTm = 1
+            } else {
+              restwq[i][j] = {number: qwTm, isFlag: true}
+              qwTm++
+            }
+
+            if ((parseInt(bw) - 1) == i) {
+              rest[i][j] = {number: bw, isFlag: false}
+              tm = 1
+            } else {
+              rest[i][j] = {number: tm, isFlag: true}
+              tm++
+            }
+
+            if ((parseInt(sw) - 1) == i) {
+              restsw[i][j] = {number: sw, isFlag: false}
+              swTm = 1
+            } else {
+              restsw[i][j] = {number: swTm, isFlag: true}
+              swTm++
+            }
+
+            if ((parseInt(gw) - 1) == i) {
+              restgw[i][j] = {number: gw, isFlag: false}
+              gwTm = 1
+            } else {
+              restgw[i][j] = {number: gwTm, isFlag: true}
+              gwTm++
+            }
+
+            if ((parseInt(other5Split) - 1) == i) {
+              other5[i][j] = {number: other5Split, isFlag: false}
+              other5Tm = 1
+            } else {
+              other5[i][j] = {number: other5Tm, isFlag: true}
+              other5Tm++
+            }
+
+            if ((parseInt(other6Split) - 1) == i) {
+              other6[i][j] = {number: other6Split, isFlag: false}
+              other6Tm = 1
+            } else {
+              other6[i][j] = {number: other6Tm, isFlag: true}
+              other6Tm++
+            }
+
+            if ((parseInt(other7Split) - 1) == i) {
+              other7[i][j] = {number: other7Split, isFlag: false}
+              other7Tm = 1
+            } else {
+              other7[i][j] = {number: other7Tm, isFlag: true}
+              other7Tm++
+            }
+
+            if ((parseInt(other8Split) - 1) == i) {
+              other8[i][j] = {number: other8Split, isFlag: false}
+              other8Tm = 1
+            } else {
+              other8[i][j] = {number: other8Tm, isFlag: true}
+              other8Tm++
+            }
+            if ((parseInt(other9Split) - 1) == i) {
+              other9[i][j] = {number: other9Split, isFlag: false}
+              other9Tm = 1
+            } else {
+              other9[i][j] = {number: other9Tm, isFlag: true}
+              other9Tm++
+            }
+          }
+
+          this.wwArr = restww
+          this.qwArr = restwq
+          this.bwArr = rest
+          this.swArr = restsw
+          this.gwArr = restgw
+          this.FivesArr = other5
+          this.sixArr = other6
+          this.SevenArr = other7
+          this.EightArr = other8
+          this.nineArr = other9
+
+        }
+      },
+
+      // 幸运28
+      cim28Yl(data) {
+        let restgw = [];
+        for (let i = 0; i < 28; i++) {
+          restgw[i] = []
+          let gwTm = 1
+          for (let j = data.length - 1; j >= 0; j--) {
+            let gw = data[j].OpenNumber.split('=')[1]
+            if (gw == i) {
+              restgw[i][j] = {number: i, isFlag: false}
+              gwTm = 1
+            } else {
+              restgw[i][j] = {number: gwTm, isFlag: true}
+              gwTm++
+            }
+          }
+        }
+        this.gwArr = restgw
+      },
+
+      //获取游戏30期的数据(默认)
+      getGameHistoryInfo() {
+        let that = this;
+        //置空所有数据
+        that.tenThousandArr = [];
+        that.thousandArr = [];
+        that.hundredArr = [];
+        that.tenArr = [];
+        that.bitsArr = [];
+        that.other5Arr = []
+        that.other6Arr = []
+        that.other7Arr = []
+        that.other8Arr = []
+        that.other9Arr = []
+
+        that.hotArrNumber = 0
+        that.hotqwArrNumber = 0
+        that.hotbwArrNumber = 0
+        that.hotswArrNumber = 0
+        that.hotgwArrNumber = 0
+        let url = `api/Lssue/GetLssueOpenHistory?lgId=${this.lgId}&type=${this.lgIdType}`;
+        this.loading = true
+        postAjax(url, null).then((data) => {
+          this.loading = false
+          if (this.check.movements) {
+            this.check.movements = true
+          }
+          if (data.IsSucess) {
+            // 时时彩 和 基诺彩
+            if (this.tablenum == 1) {
+              for (var i = 0, length = data.Data.length; i < length; i++) {
+                let temp = data.Data[i].OpenNumber.split(",");
+                that.tenThousandArr.push(temp[0]);
+                that.thousandArr.push(temp[1]);
+                that.hundredArr.push(temp[2]);
+                that.tenArr.push(temp[3]);
+                that.bitsArr.push(temp[4]);
+              }
+              that.lotteryArr = data.Data;
+              for (let i = 0; i < that.lotteryArr.length; i++) {
+                // extend
+                that.$set(that.lotteryArr[i], 'tenThousandArr', that.tenThousandArr)
+                that.$set(that.lotteryArr[i], 'thousandArr', that.thousandArr)
+                that.$set(that.lotteryArr[i], 'hundredArr', that.hundredArr)  //  百
+                that.$set(that.lotteryArr[i], 'tenArr', that.tenArr)
+                that.$set(that.lotteryArr[i], 'bitsArr', that.bitsArr)  // 个
+              }
+              that.cimYl(data.Data)
+              that.tenThousandShowNum = that.getNumShowArr(that.wwArr)
+              that.thousandShowNum = that.getNumShowArr(that.qwArr)
+              that.hundredShowNum = that.getNumShowArr(that.bwArr)
+              that.tenShowNum = that.getNumShowArr(that.swArr)
+              that.bitsShowNum = that.getNumShowArr(that.gwArr)
+
+              //计算最大遗漏值
+              that.tenThousandMaxMiss = that.getMaxMissValArr(that.tenThousandArr, that.wwArr)
+              that.thousandMaxMiss = that.getMaxMissValArr(that.thousandArr, that.qwArr)
+              that.hundredMaxMiss = that.getMaxMissValArr(that.hundredArr, that.bwArr)
+              that.tenMaxMiss = that.getMaxMissValArr(that.tenArr, that.swArr)
+              that.bitsMaxMiss = that.getMaxMissValArr(that.bitsArr, that.gwArr)
+
+
+              // 计算最大连出值
+              that.tenThousandMaxConnected = that.getMaxConnectedValArr(that.tenThousandArr, that.wwArr)
+              that.thousandMaxConnected = that.getMaxConnectedValArr(that.thousandArr, that.qwArr)
+              that.hundredMaxConnected = that.getMaxConnectedValArr(that.hundredArr, that.bwArr)
+              that.tenMaxConnected = that.getMaxConnectedValArr(that.tenArr, that.swArr)
+              that.bitsMaxConnected = that.getMaxConnectedValArr(that.bitsArr, that.gwArr)
+
+              //计算平均遗漏值
+              that.tenThousandAverageMiss = that.getAverageMissArr(that.tenThousandArr, that.wwArr)
+              that.thousandAverageMiss = that.getAverageMissArr(that.thousandArr, that.qwArr)
+              that.hundredAverageMiss = that.getAverageMissArr(that.hundredArr, that.bwArr)
+              that.tenAverageMiss = that.getAverageMissArr(that.tenArr, that.swArr)
+              that.bitsAverageMiss = that.getAverageMissArr(that.bitsArr, that.gwArr)
+              this.isRender = true
+            }
+
+            // 赛车
+            if (this.tablenum == 2) {
+              for (var i = 0, length = data.Data.length; i < length; i++) {
+                let temp = data.Data[i].OpenNumber.split(",");
+                that.tenThousandArr.push(temp[0]);
+                that.thousandArr.push(temp[1]);
+                that.hundredArr.push(temp[2]);
+                that.tenArr.push(temp[3]);
+                that.bitsArr.push(temp[4]);
+                that.other5Arr.push(temp[5]);
+                that.other6Arr.push(temp[6]);
+                that.other7Arr.push(temp[7]);
+                that.other8Arr.push(temp[8]);
+                that.other9Arr.push(temp[9]);
+              }
+              that.lotteryArr = data.Data;
+              for (let i = 0; i < that.lotteryArr.length; i++) {
+                // extend
+                that.$set(that.lotteryArr[i], 'tenThousandArr', that.tenThousandArr)
+                that.$set(that.lotteryArr[i], 'thousandArr', that.thousandArr)
+                that.$set(that.lotteryArr[i], 'hundredArr', that.hundredArr)  //  百
+                that.$set(that.lotteryArr[i], 'tenArr', that.tenArr)
+                that.$set(that.lotteryArr[i], 'bitsArr', that.bitsArr)  // 个
+                // code
+              }
+              that.cimCarYl(data.Data)
+              setTimeout(() => {
+
+                that.tenThousandShowNum = that.getNumShowArr(that.wwArr)
+                that.thousandShowNum = that.getNumShowArr(that.qwArr)
+                that.hundredShowNum = that.getNumShowArr(that.bwArr)
+                that.tenShowNum = that.getNumShowArr(that.swArr)
+                that.bitsShowNum = that.getNumShowArr(that.gwArr)
+                that.other5ShowNum = that.getNumShowArr(that.FivesArr)
+                that.other6ShowNum = that.getNumShowArr(that.sixArr)
+                that.other7ShowNum = that.getNumShowArr(that.SevenArr)
+                that.other8ShowNum = that.getNumShowArr(that.EightArr)
+                that.other9ShowNum = that.getNumShowArr(that.nineArr)
+
+                //计算最大遗漏值
+                that.tenThousandMaxMiss = that.getMaxMissValArr(that.tenThousandArr, that.wwArr)
+                that.thousandMaxMiss = that.getMaxMissValArr(that.thousandArr, that.qwArr)
+                that.hundredMaxMiss = that.getMaxMissValArr(that.hundredArr, that.bwArr)
+                that.tenMaxMiss = that.getMaxMissValArr(that.tenArr, that.swArr)
+                that.bitsMaxMiss = that.getMaxMissValArr(that.bitsArr, that.gwArr)
+                that.other5MaxMiss = that.getMaxMissValArr(that.other5Arr, that.FivesArr)
+                that.other6MaxMiss = that.getMaxMissValArr(that.other6Arr, that.sixArr)
+                that.other7MaxMiss = that.getMaxMissValArr(that.other7Arr, that.SevenArr)
+                that.other8MaxMiss = that.getMaxMissValArr(that.other8Arr, that.EightArr)
+                that.other9MaxMiss = that.getMaxMissValArr(that.other9Arr, that.nineArr)
+
+
+                // 计算最大连出值
+                that.tenThousandMaxConnected = that.getMaxConnectedValArr(that.tenThousandArr, that.wwArr)
+                that.thousandMaxConnected = that.getMaxConnectedValArr(that.thousandArr, that.qwArr)
+                that.hundredMaxConnected = that.getMaxConnectedValArr(that.hundredArr, that.bwArr)
+                that.tenMaxConnected = that.getMaxConnectedValArr(that.tenArr, that.swArr)
+                that.bitsMaxConnected = that.getMaxConnectedValArr(that.bitsArr, that.gwArr)
+                that.other5MaxConnected = that.getMaxConnectedValArr(that.other5Arr, that.FivesArr)
+                that.other6MaxConnected = that.getMaxConnectedValArr(that.other6Arr, that.sixArr)
+                that.other7MaxConnected = that.getMaxConnectedValArr(that.other7Arr, that.SevenArr)
+                that.other8MaxConnected = that.getMaxConnectedValArr(that.other8Arr, that.EightArr)
+                that.other9MaxConnected = that.getMaxConnectedValArr(that.other9Arr, that.nineArr)
+
+
+                //计算平均遗漏值
+                that.tenThousandAverageMiss = that.getAverageMissArr(that.tenThousandArr, that.wwArr)
+                that.thousandAverageMiss = that.getAverageMissArr(that.thousandArr, that.qwArr)
+                that.hundredAverageMiss = that.getAverageMissArr(that.hundredArr, that.bwArr)
+                that.tenAverageMiss = that.getAverageMissArr(that.tenArr, that.swArr)
+                that.bitsAverageMiss = that.getAverageMissArr(that.bitsArr, that.gwArr)
+                that.other5AverageMiss = that.getAverageMissArr(that.other5Arr, that.FivesArr)
+                that.other6AverageMiss = that.getAverageMissArr(that.other6Arr, that.sixArr)
+                that.other7AverageMiss = that.getAverageMissArr(that.other7Arr, that.SevenArr)
+                that.other8AverageMiss = that.getAverageMissArr(that.other8Arr, that.EightArr)
+                that.other9AverageMiss = that.getAverageMissArr(that.other9Arr, that.nineArr)
+
+              }, 16)
+              this.isRender = true
+            }
+
+
+            if (this.tablenum == 3) {
+              for (var i = 0, length = data.Data.length; i < length; i++) {
+                let temp = data.Data[i].OpenNumber.split(",");
+                that.tenThousandArr.push(temp[0]);
+                that.thousandArr.push(temp[1]);
+                that.hundredArr.push(temp[2]);
+                that.tenArr.push(temp[3]);
+                that.bitsArr.push(temp[4]);
+              }
+
+              that.lotteryArr = data.Data;
+              for (let i = 0; i < that.lotteryArr.length; i++) {
+                // extend
+                that.$set(that.lotteryArr[i], 'tenThousandArr', that.tenThousandArr)
+                that.$set(that.lotteryArr[i], 'thousandArr', that.thousandArr)
+                that.$set(that.lotteryArr[i], 'hundredArr', that.hundredArr)  //  百
+                that.$set(that.lotteryArr[i], 'tenArr', that.tenArr)
+                that.$set(that.lotteryArr[i], 'bitsArr', that.bitsArr)  // 个
+              }
+              that.cimYlSelect(data.Data)
+              setTimeout(() => {
+                //计算出现总次数
+                that.tenThousandShowNum = that.getNumShowArr(that.wwArr)
+                that.thousandShowNum = that.getNumShowArr(that.qwArr)
+                that.hundredShowNum = that.getNumShowArr(that.bwArr)
+                that.tenShowNum = that.getNumShowArr(that.swArr)
+                that.bitsShowNum = that.getNumShowArr(that.gwArr)
+
+                //计算最大遗漏值
+                that.tenThousandMaxMiss = that.getMaxMissValArr(that.tenThousandArr, that.wwArr)
+                that.thousandMaxMiss = that.getMaxMissValArr(that.thousandArr, that.qwArr)
+                that.hundredMaxMiss = that.getMaxMissValArr(that.hundredArr, that.bwArr)
+                that.tenMaxMiss = that.getMaxMissValArr(that.tenArr, that.swArr)
+                that.bitsMaxMiss = that.getMaxMissValArr(that.bitsArr, that.gwArr)
+
+
+                // 计算最大连出值
+                that.tenThousandMaxConnected = that.getMaxConnectedValArr(that.tenThousandArr, that.wwArr)
+                that.thousandMaxConnected = that.getMaxConnectedValArr(that.thousandArr, that.qwArr)
+                that.hundredMaxConnected = that.getMaxConnectedValArr(that.hundredArr, that.bwArr)
+                that.tenMaxConnected = that.getMaxConnectedValArr(that.tenArr, that.swArr)
+                that.bitsMaxConnected = that.getMaxConnectedValArr(that.bitsArr, that.gwArr)
+
+                //计算平均遗漏值
+                that.tenThousandAverageMiss = that.getAverageMissArr(that.tenThousandArr, that.wwArr)
+                that.thousandAverageMiss = that.getAverageMissArr(that.thousandArr, that.qwArr)
+                that.hundredAverageMiss = that.getAverageMissArr(that.hundredArr, that.bwArr)
+                that.tenAverageMiss = that.getAverageMissArr(that.tenArr, that.swArr)
+                that.bitsAverageMiss = that.getAverageMissArr(that.bitsArr, that.gwArr)
+                this.isRender = true
+              }, 10)
+            }
+
+            /* 快3 */
+            if (this.tablenum == 4) {
+              for (var i = 0, length = data.Data.length; i < length; i++) {
+                let temp = data.Data[i].OpenNumber.split(",");
+                that.hundredArr.push(temp[0]);
+                that.tenArr.push(temp[1]);
+                that.bitsArr.push(temp[2]);
+              }
+              that.lotteryArr = data.Data;
+              for (let i = 0; i < that.lotteryArr.length; i++) {
+                // extend
+                that.$set(that.lotteryArr[i], 'tenThousandArr', that.tenThousandArr)
+                that.$set(that.lotteryArr[i], 'thousandArr', that.thousandArr)
+                that.$set(that.lotteryArr[i], 'hundredArr', that.hundredArr)  //  百
+                that.$set(that.lotteryArr[i], 'tenArr', that.tenArr)
+                that.$set(that.lotteryArr[i], 'bitsArr', that.bitsArr)  // 个
+              }
+              that.cimQuickYl(data.Data)
+              setTimeout(() => {
+                that.hundredShowNum = that.getNumShowArr(that.bwArr)
+                that.tenShowNum = that.getNumShowArr(that.swArr)
+                that.bitsShowNum = that.getNumShowArr(that.gwArr)
+
+                //计算最大遗漏值
+                that.hundredMaxMiss = that.getMaxMissValArr(that.hundredArr, that.bwArr)
+                that.tenMaxMiss = that.getMaxMissValArr(that.tenArr, that.swArr)
+                that.bitsMaxMiss = that.getMaxMissValArr(that.bitsArr, that.gwArr)
+
+                // 计算最大连出值
+                that.hundredMaxConnected = that.getMaxConnectedValArr(that.hundredArr, that.bwArr)
+                that.tenMaxConnected = that.getMaxConnectedValArr(that.tenArr, that.swArr)
+                that.bitsMaxConnected = that.getMaxConnectedValArr(that.bitsArr, that.gwArr)
+
+                //计算平均遗漏值
+                that.hundredAverageMiss = that.getAverageMissArr(that.hundredArr, that.bwArr)
+                that.tenAverageMiss = that.getAverageMissArr(that.tenArr, that.swArr)
+                that.bitsAverageMiss = that.getAverageMissArr(that.bitsArr, that.gwArr)
+                this.isRender = true
+              }, 16)
+            }
+
+            // 幸运28
+            if (this.tablenum == 5) {
+              for (var i = 0, length = data.Data.length; i < length; i++) {
+                let temp = data.Data[i].OpenNumber.split("=");
+                that.bitsArr.push(temp[1]);
+              }
+              that.lotteryArr = data.Data;
+              for (let i = 0; i < that.lotteryArr.length; i++) {
+                that.$set(that.lotteryArr[i], 'tenThousandArr', that.tenThousandArr)
+                that.$set(that.lotteryArr[i], 'thousandArr', that.thousandArr)
+                that.$set(that.lotteryArr[i], 'hundredArr', that.hundredArr)  //  百
+                that.$set(that.lotteryArr[i], 'tenArr', that.tenArr)
+                that.$set(that.lotteryArr[i], 'bitsArr', that.bitsArr)  // 个
+              }
+              that.cim28Yl(data.Data)
+              setTimeout(() => {
+                that.bitsShowNum = that.getNumShowArr(that.gwArr)  //个
+                //计算最大遗漏值
+                that.bitsMaxMiss = that.getMaxMissValArr(that.bitsArr, that.gwArr)
+                // 计算最大连出值
+                that.bitsMaxConnected = that.getMaxConnectedValArr(that.bitsArr, that.gwArr)
+                //计算平均遗漏值
+                that.bitsAverageMiss = that.getAverageMissArr(that.bitsArr, that.gwArr)
+              }, 16)
+              this.isRender = true
+            }
+
+            /* 低频彩 */
+            if (this.tablenum == 6) {
+              for (var i = 0, length = data.Data.length; i < length; i++) {
+                let temp = data.Data[i].OpenNumber.split(",");
+                that.hundredArr.push(temp[0]);
+                that.tenArr.push(temp[1]);
+                that.bitsArr.push(temp[2]);
+              }
+              that.lotteryArr = data.Data;
+              for (let i = 0; i < that.lotteryArr.length; i++) {
+                // extend
+                that.$set(that.lotteryArr[i], 'tenThousandArr', that.tenThousandArr)
+                that.$set(that.lotteryArr[i], 'thousandArr', that.thousandArr)
+                that.$set(that.lotteryArr[i], 'hundredArr', that.hundredArr)  //  百
+                that.$set(that.lotteryArr[i], 'tenArr', that.tenArr)
+                that.$set(that.lotteryArr[i], 'bitsArr', that.bitsArr)  // 个
+              }
+              that.cimLowYl(data.Data)
+              setTimeout(() => {
+                that.hundredShowNum = that.getNumShowArr(that.bwArr)
+                that.tenShowNum = that.getNumShowArr(that.swArr)
+                that.bitsShowNum = that.getNumShowArr(that.gwArr)
+
+                //计算最大遗漏值
+                that.hundredMaxMiss = that.getMaxMissValArr(that.hundredArr, that.bwArr)
+                that.tenMaxMiss = that.getMaxMissValArr(that.tenArr, that.swArr)
+                that.bitsMaxMiss = that.getMaxMissValArr(that.bitsArr, that.gwArr)
+
+                // 计算最大连出值
+                that.hundredMaxConnected = that.getMaxConnectedValArr(that.hundredArr, that.bwArr)
+                that.tenMaxConnected = that.getMaxConnectedValArr(that.tenArr, that.swArr)
+                that.bitsMaxConnected = that.getMaxConnectedValArr(that.bitsArr, that.gwArr)
+
+                //计算平均遗漏值
+                that.hundredAverageMiss = that.getAverageMissArr(that.hundredArr, that.bwArr)
+                that.tenAverageMiss = that.getAverageMissArr(that.tenArr, that.swArr)
+                that.bitsAverageMiss = that.getAverageMissArr(that.bitsArr, that.gwArr)
+                this.isRender = true
+              }, 16)
+            }
+            /* 六合彩 */
+            if (this.tablenum == 7) {
+              this.lotteryArr = data.Data.map(item => {
+                let newData = item
+                newData.animal = item.Explain?item.Explain.split(''):['','','','','','']
+                newData.sum = this.disposeArray(item.OpenNumber)
+                return newData
+              })
+              this.isRender = true
+            }
+
+            // 根据id和index获取navName
+            this._initNormal(this.navAry)
+
+            setTimeout(() => {
+              this.$nextTick(() => {
+                if (this.check.movements) {
+                  this._renderDraw()
+                }
+              })
+            }, 100)
+
+          }
+        }).catch(() => {
+          this.loading = false
+          if (this.check.movements) {
+            this.check.movements = true
+          }
+        })
+      },
+      disposeArray (arr) {
+        let newArr = arr.split(',')
+        return newArr.reduce((old, add) => {
+          return Number(old) + Number(add)
+        }, 0)
+      },
+      //取消或选中走势
+      changeMovement(val) {
+        if (val) {
+          // 时时彩
+          if (this.tablenum == 1) {
+            this.drawLine(5)
+          }
+          if (this.tablenum == 2) {
+            this.drawLine(5)
+          }
+          if (this.tablenum == 3) {
+            this.drawLine(5)
+          }
+          if (this.tablenum == 4) {
+            this.drawLine(3)
+          }
+          if (this.tablenum == 5) {
+            this.drawLine(1)
+          }
+          if (this.tablenum == 6) {
+            this.drawLine(3)
+          }
+        } else {
+          try {
+            let node = document.getElementsByTagName('canvas');
+            let parent = node[0].parentNode;
+            for (let i = 0, len = node.length; i < len; i++) {
+              parent.removeChild(node[0]);
+            }
+          } catch (ig) {
+          }
+        }
+      },
+
+      _renderDraw() {
+        if (this.tablenum == 1) {
+          this.drawLine(5)
+        }
+        if (this.tablenum == 2) {
+          this.drawLine(5)
+        }
+        if (this.tablenum == 3) {
+          this.drawLine(5)
+        }
+        if (this.tablenum == 4) {
+          this.drawLine(3)
+        }
+        if (this.tablenum == 5) {
+          this.drawLine(1)
+        }
+        if (this.tablenum == 6) {
+          this.drawLine(3)
+        }
+      },
+
+      // 走势
+      drawLine(bit) {
+        // 定义画板
+        let cvs = document.createElement('canvas');
+        cvs.style.position = 'absolute';
+        cvs.style['pointer-events'] = 'none';
+        cvs.width = $('body').width();
+        cvs.height = $('body').height();
+        cvs.style.left = 0 + 'px';
+        cvs.style.top = 0 + 'px';
+        let ctx = cvs.getContext('2d');
+        ctx.strokeStyle = '#1d1716';
+        ctx.lineWidth = 1;
+
+        // 选取所有中奖号
+        let cs = $(".Omission_select_num").children()
+
+        // bit 作为间隔使用
+        for (let index = 0; index < bit; index++) {
+          ctx.moveTo($(cs[index]).offset().left + 8, $(cs[index]).offset().top + 8);
+          for (let i = index + bit; i < cs.length;) {
+            let p = $(cs[i]).offset();
+            ctx.lineTo(p.left + 8, p.top + 8)
+            i = i + bit
+          }
+        }
+        ctx.stroke();
+        $('body')[0].append(cvs);
+      },
+
+      //计算出现总次数的数组
+      getNumShowArr(arr) {
+        let temp = [];
+        for (let i = 0; i < arr.length; i++) {
+          let numTemp = 0;
+          let item = arr[i]
+          for (let j = 0; j < item.length; j++) {
+            if (item[j].isFlag === false) {
+              numTemp++
+            }
+          }
+          temp.push(numTemp)
+        }
+        return temp
+      },
+
+      //计算最大遗漏值数组
+      getMaxMissValArr(arr, ret) {
+        let result = []
+        for (let i = 0; i < ret.length; i++) {
+          let item = ret[i]
+          let maxNumber = 0
+          for (let j = 0; j < item.length; j++) {
+            let subItem = item[j]
+            if (maxNumber <= subItem.number) {
+              maxNumber = subItem.number
+            }
+          }
+          result.push(maxNumber)
+        }
+        return result
+      },
+
+      // 计算最大连出值
+      getMaxConnectedValArr(arr, ret) {
+        let result = []
+        for (let i = 0; i < ret.length; i++) {
+          let subSult = []
+          let item = ret[i]
+          let num = 0
+          for (let j = 0; j < item.length; j++) {
+            if (item[j].isFlag === true) {
+              num = 0
+            }
+            // 中奖值
+            if (item[j].isFlag === false) {
+              num += 1
+            }
+            subSult.push(num)
+            var filterArr = Math.max.apply(null, subSult);
+          }
+          result.push(filterArr)
+        }
+        return result
+      },
+
+      // 计算平均遗漏值数组
+      getAverageMissArr(arr, ret) {
+        let temp = [];
+        let result = []
+        for (let i = 0; i < ret.length; i++) {
+          let numTemp = 0;
+          let item = ret[i]
+          for (let j = 0; j < item.length; j++) {
+            if (item[j].isFlag === false) {
+              numTemp++
+            }
+          }
+          temp.push(numTemp)
+        }
+        let currentQshu = arr.length
+        for (let k = 0; k < temp.length; k++) {
+          if (temp[k] === 0) {
+            result.push(currentQshu)
+          } else {
+            result.push(Math.floor(currentQshu / temp[k]))
+          }
+        }
+        return result
+      },
+      headNavAjax() {
+        let url = "Api/Lnc/Get";
+        getAjax(url, 1).then((data) => {
+
+          this.navAry = data.Data;
+          this._initNormal(this.navAry)
+          // if()
+        })
+      },
+      _initNormal(data) {
+        for (let i = 0; i < data.length; i++) {
+          let item = data[i]
+          for (let j = 0; j < item.LotteryList.length; j++) {
+            let subItem = item.LotteryList[j]
+            if (subItem.LgId == this.lgId && subItem.LsId == this.lsId) {
+              this.navName = subItem.Name
+              let str = this.navName + "号码走势"
+              $('title').html(str)
+            }
+          }
+        }
+      },
+      returnClass(str) {
+        let num = Number(str)
+        if (num === 1 || num === 2 || num === 7 || num === 8 || num === 12 || num === 13 || num === 18 || num === 19 || num === 23 || num === 24 || num === 29 || num === 30 || num === 34 || num === 35 || num === 40 || num === 45 || num === 46) {
+          return 'red_bo'
+        }
+        if (num === 3 || num === 4 || num === 9 || num === 10 || num === 14 || num === 15 || num === 20 || num === 25 || num === 26 || num === 31 || num === 36 || num === 37 || num === 41 || num === 42 || num === 47 || num === 48) {
+          return 'blue_bo'
+        }
+        if (num === 5 || num === 6 || num === 11 || num === 16 || num === 17 || num === 21 || num === 22 || num === 27 || num === 28 || num === 32 || num === 33 || num === 38 || num === 39 || num === 43 || num === 44 || num === 49) {
+          return 'greed_bo'
+        }
+      },
+      // 色波计算 颜色
+      returnColor(data) {
+        let blue = 0;
+        let red = 0;
+        let greed = 0
+        data.split(',').forEach((item, index) => {
+          let num = Number(item)
+          if (index === 6) {
+            if (num === 1 || num === 2 || num === 7 || num === 8 || num === 12 || num === 13 || num === 18 || num === 19 || num === 23 || num === 24 || num === 29 || num === 30 || num === 34 || num === 35 || num === 40 || num === 45 || num === 46) {
+              red += 1.5
+            }
+            if (num === 3 || num === 4 || num === 9 || num === 10 || num === 14 || num === 15 || num === 20 || num === 25 || num === 26 || num === 31 || num === 36 || num === 37 || num === 41 || num === 42 || num === 47 || num === 48) {
+              blue += 1.5
+            }
+            if (num === 5 || num === 6 || num === 11 || num === 16 || num === 17 || num === 21 || num === 22 || num === 27 || num === 28 || num === 32 || num === 33 || num === 38 || num === 39 || num === 43 || num === 44 || num === 49) {
+              greed += 1.5
+            }
+          } else {
+            if (num === 1 || num === 2 || num === 7 || num === 8 || num === 12 || num === 13 || num === 18 || num === 19 || num === 23 || num === 24 || num === 29 || num === 30 || num === 34 || num === 35 || num === 40 || num === 45 || num === 46) {
+              red += 1
+            }
+            if (num === 3 || num === 4 || num === 9 || num === 10 || num === 14 || num === 15 || num === 20 || num === 25 || num === 26 || num === 31 || num === 36 || num === 37 || num === 41 || num === 42 || num === 47 || num === 48) {
+              blue += 1
+            }
+            if (num === 5 || num === 6 || num === 11 || num === 16 || num === 17 || num === 21 || num === 22 || num === 27 || num === 28 || num === 32 || num === 33 || num === 38 || num === 39 || num === 43 || num === 44 || num === 49) {
+              greed += 1
+            }
+          }
+        })
+        let dataArr = [blue, red, greed]
+        let colorArr = ['text_blue', 'text_red', 'text_greed']
+        let indexNum = dataArr.indexOf(Math.max(...dataArr))
+        if (blue === red || red === greed || blue === greed || blue === red === greed) {
+          return ''
+        } else {
+          return colorArr[indexNum]
+        }
+      },
+      // 色波计算 文本
+      returnColorText(data) {
+        let blue = 0;
+        let red = 0;
+        let greed = 0
+        data.split(',').forEach((item, index) => {
+          let num = Number(item)
+          if (index === 6) {
+            if (num === 1 || num === 2 || num === 7 || num === 8 || num === 12 || num === 13 || num === 18 || num === 19 || num === 23 || num === 24 || num === 29 || num === 30 || num === 34 || num === 35 || num === 40 || num === 45 || num === 46) {
+              red += 1.5
+            }
+            if (num === 3 || num === 4 || num === 9 || num === 10 || num === 14 || num === 15 || num === 20 || num === 25 || num === 26 || num === 31 || num === 36 || num === 37 || num === 41 || num === 42 || num === 47 || num === 48) {
+              blue += 1.5
+            }
+            if (num === 5 || num === 6 || num === 11 || num === 16 || num === 17 || num === 21 || num === 22 || num === 27 || num === 28 || num === 32 || num === 33 || num === 38 || num === 39 || num === 43 || num === 44 || num === 49) {
+              greed += 1.5
+            }
+          } else {
+            if (num === 1 || num === 2 || num === 7 || num === 8 || num === 12 || num === 13 || num === 18 || num === 19 || num === 23 || num === 24 || num === 29 || num === 30 || num === 34 || num === 35 || num === 40 || num === 45 || num === 46) {
+              red += 1
+            }
+            if (num === 3 || num === 4 || num === 9 || num === 10 || num === 14 || num === 15 || num === 20 || num === 25 || num === 26 || num === 31 || num === 36 || num === 37 || num === 41 || num === 42 || num === 47 || num === 48) {
+              blue += 1
+            }
+            if (num === 5 || num === 6 || num === 11 || num === 16 || num === 17 || num === 21 || num === 22 || num === 27 || num === 28 || num === 32 || num === 33 || num === 38 || num === 39 || num === 43 || num === 44 || num === 49) {
+              greed += 1
+            }
+          }
+        })
+        let dataArr = [blue, red, greed]
+        let colorArr = ['蓝', '红', '绿']
+        let indexNum = dataArr.indexOf(Math.max(...dataArr))
+        if (blue === red || red === greed || blue === greed || blue === red === greed) {
+          return '和'
+        } else {
+          return colorArr[indexNum]
+        }
+      },
+      // 特码计算单双
+      teCountOdd(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return ''
+        } else {
+          return num % 2 === 0 ? 'red' : ''
+        }
+      },
+      teSize(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return ''
+        } else {
+          return num > 24.5 ? 'red' : ''
+        }
+      },
+      teHeCount(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return ''
+        } else {
+          let newNum = num > 9 ? Number(str.split('')[0]) + Number(str.split('')[1]) : num
+          return newNum % 2 === 0 ? 'red' : ''
+        }
+      },
+      teHeSize(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return ''
+        } else {
+          let newNum = num > 9 ? Number(str.split('')[0]) + Number(str.split('')[1]) : num
+          return newNum > 6.5 ? 'red' : ''
+        }
+      },
+      teWeSize(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return ''
+        } else {
+          let newNum = num > 9 ? Number(str.split('')[1]) : num
+          return newNum > 4.5 ? 'red' : ''
+        }
+      }
+    },
+    destroyed() {
+      try {
+        let node = document.getElementsByTagName('canvas');
+        let parent = node[0].parentNode;
+        for (let i = 0, len = node.length; i < len; i++) {
+          parent.removeChild(node[0]);
+        }
+      } catch (ig) {
+      }
+      // 页面被销毁时恢复
+      this.$store.commit('setHead', true)
+      this.$store.commit('setFoot', true)
+    },
+    filters: {
+      disposeOdd(val) {
+        return (val % 2) === 0 ? '双' : '单'
+      },
+      disposeSize(val) {
+        return val > 174.5 ? '大' : '小'
+      },
+      // 特码计算单双
+      teCountFilter(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return '和'
+        } else {
+          return num % 2 === 0 ? '双' : '单'
+        }
+      },
+      // 特码大小
+      teSizeFilter(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return '和'
+        } else {
+          return num > 24.5 ? '大' : '小'
+        }
+      },
+      // 特码合单双
+      teHeCountFilter(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return '和'
+        } else {
+          let newNum = num > 9 ? Number(str.split('')[0]) + Number(str.split('')[1]) : num
+          return newNum % 2 === 0 ? '合双' : '合单'
+        }
+      },
+      // 特码合大小
+      teHeSizeFilter(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return '和'
+        } else {
+          let newNum = num > 9 ? Number(str.split('')[0]) + Number(str.split('')[1]) : num
+          return newNum > 6.5 ? '合大' : '合小'
+        }
+      },
+      // 尾大小
+      teWeSizeFilter(str) {
+        let num = Number(str)
+        if (num === 49) {
+          return '和'
+        } else {
+          let newNum = num > 9 ? Number(str.split('')[1]) : num
+          return newNum > 4.5 ? '尾大' : '尾小'
+        }
+      },
+      // 期号过长修整
+      returnLssue(num) {
+        if (num.length > 8) {
+          return num.substring(num.length - 9)
+        } else {
+          return num
+        }
+      }
+    },
+  }
+</script>
+<style lang="scss">
+    .historyLottery {
+        .el-loading-spinner {
+            .el-icon-loading {
+                color: #1d7272;
+            }
+
+            .el-loading-text {
+                color: #1d7272;
+            }
+        }
+
+        .el-loading-mask {
+            background: rgba(255, 255, 255, .5);
+        }
+    }
+</style>
+<style lang="scss" scoped>
+    .historyLottery {
+        width: 100%;
+        background-color: #fff;
+    }
+
+    .fixedFull {
+        position: fixed;
+        top: 140px;
+        bottom: 0;
+        left: 0px;
+        right: 0px;
+        z-index: 1002;
+        background: -webkit-gradient(linear, center top, center bottom, from(rgba(0, 0, 0, 0)), to(#fff));
+
+        .trend_tab_table {
+            z-index: 9999;
+        }
+    }
+
+    /* .tab_head {
+       th:nth-child(1) {
+         min-width: 219px;
+       }
+     }*/
+
+    .otips {
+        width: 100%;
+        height: 800px;
+        text-align: center;
+        line-height: 800px;
+    }
+
+    .noresult {
+        width: 100%;
+        padding: 200px 0;
+        text-align: center;
+        color: #aba6a6;
+    }
+
+    .history_lottery_navbox {
+        width: 100%;
+        height: 80px;
+        background-color: #303134;
+        z-index: 10001;
+    }
+
+    .history_lottery_navbox > ul > li {
+        float: left;
+        text-align: center;
+        font-size: 18px;
+        color: #fff;
+        cursor: pointer;
+        position: relative;
+        width: 160px;
+    }
+
+    .history_lottery_navbox > ul .trendmap_select_nav {
+        color: #2ebcbc;
+    }
+
+    .history_lottery_navbox > ul > li:first-child {
+        width: 300px;
+    }
+
+    .history_lottery_navbox > ul > li > div {
+        display: block;
+        background-image: url(../../static/img/arrow_down.png);
+        background-position: center right 46px;
+        background-repeat: no-repeat;
+        background-size: 18px 15px;
+        height: 80px;
+        line-height: 80px;
+    }
+
+    .history_lottery_navbox > ul > li > p {
+        height: 80px;
+        line-height: 80px;
+    }
+
+    .history_select_tab {
+        background-color: #1d7272;
+
+        &:hover {
+            /*.history_drop_down {
+              display: block;
+            }*/
+        }
+
+        .history_drop_down {
+            position: absolute;
+            width: 512px;
+            /*height: 480px;*/
+            background-image: url(../../static/img/lottry_bg2.png);
+            z-index: 10001;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            left: 60px;
+            top: 69px;
+            padding: 25px 30px;
+            font-size: 0px;
+            overflow: hidden;
+            display: block;
+        }
+    }
+
+    /* 下拉框 */
+    /* .history_select_tab:hover .history_drop_down {
+       display: block;
+     }*/
+
+
+    .history_drop_item {
+        align-items: center;
+        font-size: 0px;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
+
+    .history_drop_item img {
+        margin-right: 30px;
+        width: 55px;
+    }
+
+    .trend .history_drop_item .navlotter_game_btn {
+        width: 118px;
+        height: 24px;
+        border: 1px solid #559798;
+        text-align: center;
+        display: block;
+        color: #cfe3ff;
+        cursor: pointer;
+        font-size: 12px;
+        line-height: 22px;
+        margin: 0 1px;
+        float: left;
+        margin-bottom: 2px;
+    }
+
+    .trend .history_drop_item .navlotter_game_btn:hover {
+        background-color: #1f7877;
+    }
+
+    /* 选项卡 */
+    .trend_tabbox {
+        height: 60px;
+        align-items: center;
+        padding: 0 20px;
+        font-size: 15px;
+    }
+
+    .trend_tab_checkbox .el-checkbox__label {
+        padding-left: 5px;
+    }
+
+    .trend_tab_checkbox .el-checkbox {
+        margin-right: 10px;
+    }
+
+    .trend_tab_checkbox .el-checkbox__input.is-checked + .el-checkbox__label {
+        color: #3a3a3a;
+    }
+
+    .trend_tab_checkbox .el-checkbox__label {
+        font-size: 15px;
+    }
+
+    .trend_tab_checkbox .el-checkbox__inner {
+        width: 15px;
+        height: 15px;
+    }
+
+    .trend_tab_checkbox .el-checkbox__inner::after {
+        height: 8px;
+        left: 4px;
+        width: 4px;
+        top: 1px;
+    }
+
+    .trend_tab_mainbox {
+        font-size: 0px;
+        padding-left: 24px;
+    }
+
+    .trend_tab_mainbox > a {
+        color: #1d7272;
+        border: 1px solid #1d7272;
+        padding: 0 6px;
+        font-size: 15px;
+        margin: 0 5px;
+
+        &.activeType {
+            background: #1d7272;
+            color: #fff;
+        }
+    }
+
+    /* 表格 */
+    .trend_tab_tablebox {
+        padding: 0 20px;
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+    }
+
+    .trend_tab_table {
+        width: 100%;
+        text-align: center;
+        border-right: 1px solid #d6d9dd;
+        border-bottom: 1px solid #d6d9dd;
+        border-spacing: 0;
+    }
+
+    .trend_tab_table thead th {
+        height: 34px;
+        font-weight: normal;
+        background: #f4fafd;
+    }
+
+    .trend_tab_tablebox > table td, .trend_tab_tablebox > table th {
+        border-top: 1px solid #d6d9dd;
+        border-left: 1px solid #d6d9dd;
+        border-right: 1px solid #d6d9dd;
+    }
+
+    /* 表格标题字体大小 */
+    .trend_tab_table .fontsize_small {
+        font-size: 14px;
+    }
+
+    .trend_tab_tablecontent {
+        height: 49px;
+        vertical-align: middle;
+
+        .tab_issue {
+            padding: 0 10px;
+        }
+
+        .tab_open_num {
+            padding: 0 10px;
+        }
+
+        &.auxLineActive {
+            td {
+                border-bottom: 1px solid #7a7777 !important;
+            }
+        }
+
+        &.selected11 {
+            .trend_tablenum {
+                width: 9.08% !important;
+                min-width: 0;
+            }
+        }
+
+        &.queryThree {
+            .trend_tablenum {
+                width: 16.66% !important;
+            }
+        }
+
+        &.lucky28 {
+            .trend_tablenum {
+                width: 3.57% !important;
+            }
+        }
+
+    }
+
+    .trend_tab_tablecontent td {
+        height: 49px;
+        text-align: center;
+    }
+
+    .trend_tablenum {
+        width: 10%;
+        /* min-width: 33px;*/
+        text-align: center;
+        float: left;
+        height: 49px;
+        line-height: 49px;
+        table-layout: fixed;
+
+        span {
+            display: inline-block;
+            width: 100%;
+        }
+
+        &.Omission_select_num {
+            > span {
+                background-color: #000000;
+                border-radius: 100%;
+                color: #fff;
+                width: 16px;
+                height: 16px;
+                line-height: 17px;
+                font-size: 12px;
+                display: inline-block;
+                font-style: normal;
+                position: relative;
+                z-index: 1000;
+            }
+
+            .hotActive {
+                background: #f76e1e !important;
+            }
+
+            .options {
+                opacity: 1;
+            }
+        }
+
+        .Omisson_active {
+            background: #cee8e6;
+        }
+
+        .options {
+            opacity: 0;
+        }
+    }
+
+    .Dragon_Tiger_table .trend_tablenum {
+        width: 33.3333%
+    }
+
+    tbody {
+        font-size: 14px;
+    }
+
+    .trend_table_tdbgcolor1 {
+        background-color: #088e84 !important;
+        color: #fff;
+    }
+
+    .trend_table_tdbgcolor2 {
+        background-color: #1d7272 !important;
+        color: #fff;
+    }
+
+    .trend_table_tdbgcolor3 {
+        background-color: #ff9200 !important;
+        color: #fff;
+    }
+
+    .trend_tab_tablecontent .Sizeshape {
+        font-size: 0px;
+    }
+
+    .trend_tab_tablecontent .Sizeshape > span {
+        font-size: 14px;
+    }
+
+    .Dragon_Tiger_table .table_head_num > th {
+        width: 2.8%;
+    }
+
+    .taber_last_two .table_head_num > th {
+        width: 3%;
+    }
+
+
+    .table_head_num > td {
+        padding: 0;
+    }
+
+    .table_head_num {
+        &.queryThree {
+            .new_span {
+                width: 16.6% !important;
+            }
+        }
+
+        &.lucky28 {
+            .new_span {
+                width: 3.57% !important;
+            }
+        }
+    }
+
+
+    .table_head_num > th
+    .Omission_slip {
+        background: #cbe6e4;
+    }
+
+    i {
+        font-style: normal;
+    }
+
+    .Omission_select_num > i {
+        background-color: #000000;
+        border-radius: 100%;
+        color: #fff;
+        width: 16px;
+        height: 16px;
+        line-height: 17px;
+        font-size: 12px;
+        display: inline-block;
+        font-style: normal;
+        position: relative;
+        z-index: 1000;
+    }
+
+    .trend_tab_tablebgcolor {
+        background-color: #f4fafd;
+        height: 34px;
+
+        &.selected11 {
+            .new_span {
+                width: 9.08% !important;
+            }
+        }
+
+        &.queryThree {
+            .new_span {
+                width: 16.66% !important;
+            }
+        }
+
+        &.lucky28 {
+            .new_span {
+                width: 3.57% !important;
+            }
+        }
+
+    }
+
+    .Dragon_Tiger_table .trend_tab_tablebgcolor {
+        height: 68px;
+
+    }
+
+    .trend_tab_tablecontent:nth-child(even) {
+        background-color: #fcfcfc;
+    }
+
+    .trend_table_sure {
+        background-image: url(../../static/img/icon/table_sure.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 23px 17px;
+    }
+
+    .new_span {
+        width: 10%;
+        float: left;
+        text-align: center;
+        height: 49px;
+        line-height: 49px;
+        table-layout: fixed;
+        border-right: 1px solid #d6d9dd;
+        background: #f4fafd;
+
+        &.selected11 {
+            width: 9.08%;
+        }
+    }
+
+    .new_span:last-child {
+        border: 0;
+    }
+
+    /* 彩票游戏下拉 */
+    .navlottery_gamebox_show:hover .navlottery_gamebox {
+        display: block;
+    }
+
+    .navlottery_gamebox {
+        width: 512px;
+        position: absolute;
+        top: 53px;
+        left: -211px;
+        background-image: url(../../static/img/lottry_bg.png);
+        z-index: 66;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 25px 30px;
+        display: none;
+    }
+
+    /*六合彩球的颜色*/
+    .red_bo {
+        background: linear-gradient(180deg, #e94e4d 2%, #e0060f);
+    }
+
+    .blue_bo {
+        background: linear-gradient(180deg, #46a7d3 2%, #0689cd);
+    }
+
+    .greed_bo {
+        background: linear-gradient(180deg, #4cbf80 2%, #0da85d);
+    }
+
+    .data_box {
+        border-radius: 5px;
+        border: 1px solid #d4d4d4
+    }
+    .data_box .el-row:nth-of-type(odd) {
+      background-color: #e7e7e7;
+    }
+    .data_box .el-row {
+      height: 45px;
+    }
+    .data_box .el-row .el-col:not(:last-child) {
+      border-right: 1px solid #d4d4d4;
+    }
+    .data_box .el-row .el-col {
+      height: 100%;
+      line-height: 45px;
+    }
+    .data_box .el-row > div{
+      text-align: center;
+      font-size: 14px;
+    }
+    .data_box .lhc_num_box {
+      display: flex;
+      height: 45px;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 700;
+    }
+    .data_box .lhc_num_box div span {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+    }
+    .data_box .lhc_num_box div span:first-child {
+      color: #fff;
+      border-radius: 100%;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .data_box .lhc_num_box div span:last-child {
+      width: 25px;
+      font-size: 14px;
+    }
+    .data_box .sum {
+        color: #820007;
+    }
+    .data_box .red {
+        color: #cf181f;
+    }
+    .text_blue {
+        color: #00f;
+    }
+    .text_greed {
+        color: green;
+    }
+</style>
+
+

@@ -1,0 +1,695 @@
+<template>
+  <div id="zjzh">
+    <div class="zjzh_main">
+      <div style="font-size:16px;color: #171717;">游戏平台</div>
+      <div class="roll-out">
+        <div class="roll-out-item" :class="item.choosed?'roll-in-item-active':''" v-for="(item,index) in games"
+             :key="index">
+          <div class="item-top">
+            <span>{{item.CN_Name}}</span>
+            <div class="item-mid" v-if="loading">
+              <span style="font-size:16px;color:#d6d6d6;">加载中...</span>
+            </div>
+            <div class="item-mid" v-else>
+              <span v-if="currentIndex == item.GameId">加载中...</span>
+              <span v-else>￥{{item.GameId|getMoney(thirdBalance)}}</span>
+              <img class="refresh_money" src="../../assets/zjzh/reset.png"
+                   v-bind:class="refreshAni && currentIndex == item.GameId?'refresh_anima':''"
+                   @click="refreshMoney(item.GameId)">
+            </div>
+
+          </div>
+          <div class="item-bottom">
+            <a @click="shiftTo" :data-id="item.GameId">转入</a>
+            <a @click="shiftGo" :data-id="item.GameId">转出</a>
+          </div>
+          <!-- <div class="item-bottom">
+            <el-input type="number" @blur="checkMoney(index)" v-model="item.money" placeholder="请输入金额"></el-input><div class="all-btn" @click="inputAll(index)">全部</div>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="total-money">
+        平台余额：
+        <span style="font-size:18px;color: #008573;">{{userInfo.Balance}}元</span>
+        <img :class="['refreesh_icon',Refresh==true?'refresh_anima':'']" src="../../assets/zjzh/reset.png"
+             @click="resetInfo">
+      </div>
+      <div class="total-money" v-show="type == 1">
+        <label>转出：</label>
+        <input type="text" value="主账户" disabled="true">
+        <i></i>
+        <el-select v-model="chooseGame" placeholder="请选择游戏平台">
+          <el-option
+            v-for="item in games"
+            :key="item.GameId"
+            :label="item.CN_Name"
+            :value="item.GameId">
+          </el-option>
+        </el-select>
+      </div>
+      <div class="total-money" v-show="type==2">
+        <label>转入：</label>
+        <el-select v-model="chooseGame" placeholder="请选择游戏平台">
+          <el-option
+            v-for="item in games"
+            :key="item.GameId"
+            :label="item.CN_Name"
+            :value="item.GameId">
+          </el-option>
+        </el-select>
+        <i></i>
+        <input type="text" value="主账户" disabled="true">
+      </div>
+      <!--      <div class="total-money">游戏平台：-->
+      <!--        <el-select v-model="chooseGame" placeholder="请选择游戏平台">-->
+      <!--          <el-option-->
+      <!--            v-for="item in games"-->
+      <!--            :key="item.GameId"-->
+      <!--            :label="item.CN_Name"-->
+      <!--            :value="item.GameId">-->
+      <!--          </el-option>-->
+      <!--        </el-select>-->
+      <!--      </div>-->
+      <!--      <div class="roll-in">-->
+      <!--        <div style="font-size:14px;line-height: 42px;">转账类型：</div>-->
+      <!--        <div class="roll-in-group">-->
+
+      <!--          <div class="roll-in-item" @click="choosedType(index)" :class="item.choosed?'roll-in-active':''"-->
+      <!--               v-for="(item,index) in rollOut" :key="index">{{item.CN_Name}}-->
+      <!--          </div>-->
+      <!--          &lt;!&ndash; <div class="roll-in-item">棋牌账户</div>-->
+      <!--          <div class="roll-in-item roll-in-active">VR账户</div>-->
+      <!--          <div class="roll-in-item">AG账户</div>-->
+      <!--          <div class="roll-in-item">PT账户</div> &ndash;&gt;-->
+      <!--          &lt;!&ndash; <div class="roll-in-item roll-in-sure" @click="sureTransfer">确定</div> &ndash;&gt;-->
+      <!--        </div>-->
+      <!--      </div>-->
+      <div class="total-money"><span>转移金额：</span>
+        <el-input class="import_input" v-model="money" type="number" placeholder="请输入转移金额"></el-input>
+      </div>
+      <div class="roll-in-item roll-in-sure" @click="sureTransfer"
+           v-loading="transferLoading"
+           element-loading-text="转账中"
+           element-loading-spinner="el-icon-loading"
+           element-loading-background="rgba(0, 0, 0, 0.8)"
+      >确定
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+    // 引用axios封装文件
+    import {postAjax, getAjax, postAjax4time} from "../../util/ajax.js"
+    import {getUserInfo} from "../../util/getdata";
+
+    export default {
+        data() {
+            return {
+                Refresh: false,//刷新动画
+                loading: false,
+                transferLoading: false,
+                refreshAni: false,
+                //游戏平台数组
+                games: [],
+                //第三方余额数据
+                thirdBalance: [],
+                //选择的游戏
+                chooseGame: '',
+                //金额
+                money: '',
+                //转出账户
+                rollOut: [{CN_Name: '转入游戏平台', choosed: false, type: '1'}, {
+                    CN_Name: '转出到主账户',
+                    choosed: false,
+                    type: '2'
+                }],
+                type: 1,
+                currentIndex: null
+            }
+        },
+        computed: {
+            userInfo() {
+                return this.$store.state.userInfo
+            }
+        },
+        methods: {
+            resetInfo() {
+                this.Refresh = true;
+                getUserInfo();
+                setTimeout(() => {
+                    this.Refresh = false;
+                }, 1500)
+            },
+            //转入
+            shiftTo(e) {
+                this.type = this.rollOut[0].type;
+                this.chooseGame = Number(e.target.dataset.id);
+            },
+            //转出
+            shiftGo(e) {
+                this.type = this.rollOut[1].type;
+                this.chooseGame = Number(e.target.dataset.id);
+            },
+            //点击刷新单个余额
+            refreshMoney(gameId) {
+                // let text = ''
+                // for (let index = 0; index < 1000; index++) {
+                // 	text += `00${index}`.slice(-3)+' '
+                // }
+                // console.log(text);
+                this.currentIndex = gameId
+                this.refreshAni = true;
+                let that = this;
+                let url = "api/ThirdGame/GetGameBlance?game=" + gameId;
+                postAjax(url, null).then((data) => {
+                    if (data.IsSucess) {
+                        for (let i = 0, length = that.thirdBalance.length; i < length; i++) {
+                            if (gameId == that.thirdBalance[i].GameId) {
+                                that.thirdBalance[i].Balance = data.Data;
+                            }
+                        }
+
+                    }
+                })
+                setTimeout(() => {
+                    this.currentIndex = -1
+                    this.refreshAni = false;
+                }, 1500)
+            },
+            //确定转账
+            sureTransfer() {
+                if (this.loading) {
+                    this.$message.error('请稍后再试!');
+                    return
+                }
+                if (!this.chooseGame) {
+                    this.$message.error('请选择游戏平台');
+                    return
+                }
+                if (!this.money) {
+                    this.$message.error("请输入金额")
+                    return
+                }
+                // if (!this.getChoosedData(this.rollOut)) {
+                //     this.$message.error("请选择转账类型")
+                //     return
+                // }
+                if (!this.checkMoney(this.type)) {
+                    return
+                }
+                let that = this;
+                let url = "api/ThirdGame/Transfer";
+                let data = {
+                    game: this.chooseGame,
+                    plat: this.getGamePlat(this.games, this.chooseGame).PlatID,
+                    amount: this.money,
+                    type: this.type
+                };
+                this.transferLoading = true
+                postAjax(url, data).then(function (data) {
+                    that.transferLoading = false
+                    if (data.IsSucess && data.Data) {
+                        //刷新钱数
+                        getUserInfo();
+                        that.refreshMoney(that.chooseGame)
+                        that.$message({
+                            message: '转账成功',
+                            type: 'success'
+                        });
+                        that.money = ''
+                    } else {
+                        that.$message.error(data.Message);
+                    }
+                })
+            },
+            //得到选中的游戏平台
+            getGamePlat(arr, id) {
+                var temp = '';
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i].GameId == id) {
+                        temp = arr[i];
+                    }
+                }
+                return temp;
+            },
+            //得到选中的数据
+            getChoosedData(arr) {
+                var temp = '';
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i].choosed) {
+                        temp = arr[i];
+                    }
+                }
+                return temp;
+            },
+            //获取所有第三方游戏平台
+            getGames() {
+                let that = this;
+                let url = "api/ThirdGame/GetGames";
+                postAjax(url, null).then(function (data) {
+                    if (data.IsSucess) {
+                        that.games = that.pushGames(data.Data);
+                    }
+                })
+            },
+
+            //给游戏平台数组加字段
+            pushGames(arr) {
+                for (let i = 0; i < arr.length; i++) {
+                    arr[i].choosed = false;
+                    //输入的钱
+                    arr[i].money = '';
+                    if (i === 0) {
+                        this.chooseGame = arr[0].GameId;
+                    }
+                }
+                return arr;
+            },
+            //改变转出的账户
+            changeRollOut(index) {
+                this.games = this.pushChoosed(this.games);
+                this.games[index].choosed = !this.games[index].choosed;
+            },
+            //选择转入账户类型
+            choosedType(index) {
+                this.rollOut = this.pushChoosed(this.rollOut);
+                this.rollOut[index].choosed = !this.rollOut[index].choosed;
+                if (this.rollOut[index].choosed) {
+                    this.type = this.rollOut[index].type;
+                }
+            },
+            //校验金额
+            checkMoney(type) {
+                if (type == 2) {
+                    let index = '';
+                    for (var i = 0, len = this.games.length; i < len; i++) {
+                        if (this.chooseGame == this.games[i].GameId) {
+                            index = i;
+                        }
+                    }
+                    if (index == '' && index != 0) {
+                        this.$message.error('请选择游戏平台');
+                        return false
+                    }
+                    let temp = 0;//临时变量
+                    // let money=parseInt(this.games[index].money);//输入的金额
+                    let money = parseFloat(this.money).toFixed(2);
+                    let min = parseFloat(this.games[index].TMin).toFixed(2);//最小转账金额
+                    let max = parseFloat(this.games[index].TMax).toFixed(2);//最大转账金额
+                    let haveMoney = parseFloat(this.getGamesBalance(this.games[index].GameId)).toFixed(2);//有的余额
+                    if (haveMoney == 0 || money == 0) {
+                        if (haveMoney == 0) {
+                            this.$message.error('余额不足');
+                            return false
+                        }
+                        if (money == 0) {
+                            this.$message.error('最少转' + min);
+                            return false
+                        }
+                    } else {
+                        //如果有的余额>=输入的
+                        if (haveMoney >= money) {
+                            if (parseFloat(money) < parseFloat(min)) {
+                                temp = min;
+                                this.$message.error('最少转' + min);
+                                return false
+                            } else if (parseFloat(money) > parseFloat(max)) {
+                                temp = max;
+                                this.$message.error('最多转' + max);
+                                return false
+                            } else {
+                                temp = money;
+                            }
+                        } else {//有的<输入的
+                            if (haveMoney < min) {
+                                temp = min;
+                                this.$message.error('余额不足');
+                                return false
+                            } else if (haveMoney > max) {
+                                temp = max;
+                                this.$message.error('最多转' + max);
+                                return false
+                            } else {
+                                temp = haveMoney;
+                            }
+                        }
+                    }
+                    this.money = temp;
+                } else if (type == 1) {
+                    if (this.money < 1) {
+                        this.$message.error('最少转账1元');
+                        return false
+                    } else if (this.money > this.userInfo.Balance) {
+                        this.$message.error('余额不足');
+                        return false
+                    }
+                } else {
+                    this.$message.error('请选择转账类型');
+                    return false
+                }
+                return true
+            },
+            //全部金额
+            inputAll(index) {
+                let temp = 0;//临时变量
+                let max = parseInt(this.games[index].TMax);//最大转账金额
+                let haveMoney = parseInt(this.getGamesBalance(this.games[index].GameId));//有的余额
+                if (haveMoney == 0) {
+                    this.games[index].money = '';
+                    return
+                } else {
+                    if (haveMoney > max) {
+                        temp = max;
+                    } else {
+                        temp = haveMoney;
+                    }
+                }
+                this.games[index].money = temp;
+            },
+            //得到当前游戏的剩余金额
+            getGamesBalance(id) {
+                let money = null;
+                for (var i = 0, length = this.thirdBalance.length; i < length; i++) {
+                    if (id == this.thirdBalance[i].GameId) {
+                        money = this.thirdBalance[i].Balance;
+                    }
+                }
+                return money == null ? 0 : money
+            },
+            //获取第三方账户余额
+            getBalance() {
+                // this.games.map(item=>{
+                // 	this.refreshMoney(item.GameId)
+                // })
+                let that = this;
+                that.loading = true
+                let url = "api/ThirdGame/GetGameAccAll";
+                postAjax4time(url, null, 1000 * 10).then(function (data) {
+                    that.loading = false
+                    if (data == null || data == undefined) {
+                        that.$message.error('获取账户余额失败,请联系客服!')
+                        return
+                    }
+                    if (data.IsSucess) {
+                        that.thirdBalance = data.Data;
+                    }
+                })
+
+                // //假数据走一波
+                // var arr=[
+                // 	{Uid:'123',GameId:'2',PlatID:'789',Balance:'555'},
+                // 	{Uid:'123',GameId:'3',PlatID:'789',Balance:'554'},
+                // 	{Uid:'123',GameId:'4',PlatID:'789',Balance:'223'},
+                // 	{Uid:'123',GameId:'5',PlatID:'789',Balance:'333'}
+                // ];
+                // that.thirdBalance=arr;
+            },
+            //给当前数据加选中未选中状态
+            pushChoosed(arr) {
+                for (var i = 0, length = arr.length; i < length; i++) {
+                    arr[i].choosed = false;
+                }
+                return arr;
+            },
+        },
+        mounted() {
+            this.getGames()
+            this.getBalance()
+        },
+        filters: {
+            //通过id得到金额
+            getMoney(id, arr) {
+                let money = null;
+                // // let countNum=0;
+                for (var i = 0, length = arr.length; i < length; i++) {
+                    if (id == arr[i].GameId) {
+                        money = arr[i].Balance;
+                    }
+                }
+                return money == null ? '0' : money
+            },
+            //将余额变为数组分成小数点钱和小数点后
+            getMoneyArr0(arr) {
+                // console.log(arr)
+                return parseFloat(arr).toFixed(2).split('.')[0]
+            },
+            //将余额变为数组分成小数点钱和小数点后
+            getMoneyArr1(arr) {
+                // console.log(arr)
+                return parseFloat(arr).toFixed(2).split('.')[1]
+            },
+        }
+    }
+</script>
+<style type="scss">
+
+  .el-loading-mask {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  #zjzh {
+    height: 759px;
+    background-color: white;
+  }
+
+  .zjzh_main {
+    padding: 20px 23px 0 20px
+  }
+
+  .roll-out {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .roll-out-item {
+    width: 217px;
+    height: 111px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: solid 1px #d8d8d8;
+    margin-bottom: 10px;
+    /*margin-right: 29px;*/
+  }
+
+  .roll-out-item:not(:nth-child(4n+4)) {
+    margin-right: 29px;
+  }
+
+  .item-top {
+    padding: 15px 12px 0 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .item-top > span {
+    font-size: 14px;
+    color: #171717;
+  }
+
+  .item-mid {
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+
+  .item-mid > span {
+    margin-right: 5px;
+    font-size: 16px;
+    color: #008573;
+  }
+
+  .item-bottom {
+    margin-top: 24px;
+    padding: 0 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .item-bottom a {
+    width: 88px;
+    height: 30px;
+    border: solid 1px #008573;
+    font-size: 14px;
+    line-height: 28px;
+    letter-spacing: 0px;
+    color: #008573;
+    text-align: center;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+
+  .all-btn {
+    width: 36%;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    background-color: #ffbd1e;
+    font-size: 12px;
+  }
+
+  .total-money {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  .import_input {
+    width: 300px !important;
+  }
+
+  .import_input > input {
+    width: 100% !important;
+  }
+
+  .total-money > label {
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+  }
+
+  #zjzh .total-money input {
+    width: 117px;
+    height: 37px;
+    background-image: linear-gradient(0deg,
+      #e5e5e4 0%,
+      #ffffff 100%);
+    border-radius: 5px;
+    border: solid 1px #dddddd;
+    font-size: 14px;
+    color: #9b9b9b;
+  }
+
+  .import_input > input::placeholder {
+    color: #9b9b9b;
+  }
+
+  #zjzh .total-money .el-select {
+    width: 117px;
+    height: 37px;
+  }
+
+  #zjzh .total-money > input {
+    text-align: center;
+  }
+
+  #zjzh .total-money > i {
+    display: inline-block;
+    width: 45px;
+    height: 24px;
+    margin: 0 5px;
+    background: url(../../assets/grsy/transition_icon.png) no-repeat 0 0/cover;
+    vertical-align: middle;
+  }
+
+  .refreesh_icon {
+    width: 32px;
+    height: 28px;
+    margin-left: 30px;
+    cursor: pointer;
+    vertical-align: bottom;
+  }
+
+  .roll-in {
+    display: flex;
+    margin-top: 15px;
+  }
+
+  .roll-in-group {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-left: 5px;
+  }
+
+  .roll-in-item {
+    width: 120px;
+    height: 42px;
+    text-align: center;
+    line-height: 42px;
+    font-size: 14px;
+    border: 1px solid #d4d4d4;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+  }
+
+  .roll-in-item-active {
+    border: 1px solid red;
+  }
+
+  .roll-in-sure {
+    width: 300px;
+    height: 38px;
+    background-color: #008573;
+    border-radius: 5px;
+    color: #fff;
+    margin-top: 15px;
+    margin-left: 74px;
+    font-size: 16px;
+    line-height: 38px;
+    letter-spacing: 2px;
+  }
+
+  .roll-in-active {
+    border: 0;
+    background-color: #f1a104;
+    color: #fff
+  }
+
+  .all-btn:hover {
+    cursor: pointer;
+  }
+
+  .roll-in-item:hover {
+    cursor: pointer;
+  }
+
+  .roll-in-sure:hover {
+    cursor: pointer;
+  }
+
+  .refresh_money {
+    width: 25px;
+    height: 22px;
+  }
+
+  .refresh_money:hover {
+    cursor: pointer;
+  }
+
+  /*去掉type为number带的箭头*/
+  #zjzh input[type="number"] {
+    -moz-appearance: textfield;
+    -webkit-appearance: none !important;
+  }
+
+  #zjzh input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+  }
+
+  @keyframes refresh {
+    from {
+      transform: rotateZ(0deg)
+    }
+    to {
+      transform: rotateZ(360deg)
+    }
+  }
+
+  /* 刷新旋转动画 */
+  .refresh_anima {
+    animation: refresh 0.5s ease-in-out 0s 1 alternate forwards;
+  }
+</style>
+
+<style lang="scss">
+  .roll-in-sure {
+    .el-loading-text {
+      display: inline;
+    }
+  }
+</style>

@@ -1,0 +1,700 @@
+{
+  "1-0": {
+    "name": "时时彩官方系列",
+     "defaultPlayId":1,
+    "nav": [
+      {
+        "navName": "五星",
+        "id": 0,
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [
+              0,
+              2
+            ]
+          },
+          {
+            "name": "组选",
+            "childData": [
+              2,
+              8
+            ]
+          },
+          {
+            "name": "趣味",
+            "childData": [
+              8,
+              12
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "四星",
+        "id": 1,
+        "childList": [
+          {
+            "name": "前四",
+            "childData": [
+              12,
+              18
+            ]
+          },
+          {
+            "name": "后四",
+            "childData": [
+              18,
+              24
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "前三",
+        "id": 2,
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [
+              24,
+              28
+            ]
+          },
+          {
+            "name": "组选",
+            "childData": [
+              28,
+              31
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "中三",
+        "id": 3,
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [
+              31,
+              35
+            ]
+          },
+          {
+            "name": "组选",
+            "childData": [
+              35,
+              38
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "后三",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [
+              38,
+              42
+            ]
+          },
+          {
+            "name": "组选",
+            "childData": [
+              42,
+              45
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "二星",
+        "childList": [
+          {
+            "name": "前二",
+            "childData": [
+              45,
+              48
+            ]
+          },
+          {
+            "name": "后二",
+            "childData": [
+              48,
+              51
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "定位胆",
+        "childList": [
+          {
+            "name": "定位胆",
+            "childData": [
+              51,
+              52
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "不定位",
+        "childList": [
+          {
+            "name": "三星",
+            "childData": [
+              52,
+              56
+            ]
+          },
+          {
+            "name": "四星",
+            "childData": [
+              56,
+              58
+            ]
+          },
+          {
+            "name": "五星",
+            "childData": [
+              58,
+              60
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "龙虎",
+        "childList": [
+          {
+            "name": "龙虎和",
+            "childData": [
+              69,
+              79
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "任四",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [
+              60,
+              62
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "任三",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [
+              62,
+              64
+            ]
+          },
+          {
+            "name": "复选",
+            "childData": [
+              64,
+              67
+            ]
+          }
+        ]
+      },
+      {
+        "navName": "任二",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [
+              67,
+              69
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "0": {
+    "name":"腾讯分分官方系列",
+    "defaultPlayId":25,
+    "nav": [
+      {
+        "navName": "前三",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [24, 28]
+          },
+          {
+            "name": "组选",
+            "childData": [28, 31]
+          }
+        ]
+      },
+      {
+        "navName": "中三",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [31,35]
+          },
+          {
+            "name": "组选",
+            "childData": [35, 38]
+          }
+        ]
+      },
+      {
+        "navName": "后三",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [38, 42]
+          },
+          {
+            "name": "组选",
+            "childData": [42, 45]
+          }
+        ]
+      },
+      {
+        "navName": "二星",
+        "childList": [
+          {
+            "name": "前二",
+            "childData": [45, 48]
+          },
+          {
+            "name": "后二",
+            "childData": [48, 51]
+          }
+        ]
+      },
+      {
+        "navName": "定位胆",
+        "childList": [
+          {
+            "name": "定位胆",
+            "childData": [51, 52]
+          }
+        ]
+      },
+      {
+        "navName": "不定位",
+        "childList": [
+          {
+            "name": "三星",
+            "childData": [52, 56]
+          },
+          {
+            "name": "四星",
+            "childData": [56, 58]
+          }
+        ]
+      },
+      {
+        "navName": "龙虎",
+        "childList": [
+          {
+            "name": "龙虎和",
+            "childData": [69,79]
+          }
+        ]
+      }
+    ]
+  },
+  "2-0": {
+    "name": "赛车官方系列",
+    "defaultPlayId":81,
+    "nav": [
+      {
+        "navName" : "猜冠军",
+        "childList": [
+          {
+            "name": "猜冠军",
+            "childData": [0,2]
+          }
+        ]
+      },
+      {
+        "navName" : "冠亚",
+        "childList": [
+          {
+            "name": "冠亚",
+            "childData": [13,15]
+          }
+        ]
+      },
+      {
+        "navName" : "猜前二",
+        "childList": [
+          {
+            "name": "猜前二",
+            "childData": [2,4]
+          }
+        ]
+      },
+      {
+        "navName" : "猜前三",
+        "childList": [
+          {
+            "name": "猜前三",
+            "childData": [4,6]
+          }
+        ]
+      },
+      {
+        "navName" : "猜前四",
+        "childList": [
+          {
+            "name": "猜前四",
+            "childData": [6,8]
+          }
+        ]
+      },
+      {
+        "navName" : "猜前五",
+        "childList": [
+          {
+            "name": "猜前五",
+            "childData": [8,10]
+          }
+        ]
+      },
+      {
+        "navName" : "定位胆",
+        "childList": [
+          {
+            "name": "定位胆",
+            "childData": [10,11]
+          }
+        ]
+      },
+      {
+        "navName" : "大小单双",
+        "childList": [
+          {
+            "name": "猜大小单双",
+            "childData": [11,12]
+          }
+        ]
+      },
+      {
+        "navName" : "龙虎斗",
+        "childList": [
+          {
+            "name": "龙虎斗",
+            "childData": [12,13]
+          }
+        ]
+      }
+    ]
+  },
+  "3-0": {
+    "name": "11选5官方系列",
+    "defaultPlayId":94,
+    "nav": [
+      {
+        "navName" : "三码",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [0,2]
+          },
+          {
+            "name": "组选",
+            "childData": [2,4]
+          }
+        ]
+      },
+      {
+        "navName": "二码",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [4,6]
+          },
+          {
+            "name": "组选",
+            "childData": [6,8]
+          }
+        ]
+      },
+      {
+        "navName": "不定位胆",
+        "childList": [
+          {
+            "name": "前三不定位",
+            "childData": [8,9]
+          }
+        ]
+      },
+      {
+        "navName": "定位胆",
+        "childList": [
+          {
+            "name": "前三定位胆",
+            "childData": [9,10]
+          }
+        ]
+      },
+      {
+        "navName": "任选复式",
+        "childList": [
+          {
+            "name": "任选复式",
+            "childData": [10,18]
+          }
+        ]
+      },
+      {
+        "navName": "任选单式",
+        "childList": [
+          {
+            "name": "任选单式",
+            "childData": [18]
+          }
+        ]
+      }
+    ]
+  },
+  "4-0": {
+    "name": "快3官方系列",
+    "defaultPlayId":119,
+    "nav": [
+      {
+        "navName" : "和值",
+        "childList": [
+          {
+            "name": "和值",
+            "childData": [0,2]
+          }
+        ]
+      },
+      {
+        "navName" : "三同号",
+        "childList": [
+          {
+            "name": "三同号",
+            "childData": [2,4]
+          }
+        ]
+      },
+      {
+        "navName" : "三不同号",
+        "childList": [
+          {
+            "name": "三不同号",
+            "childData": [4,5]
+          }
+        ]
+      },{
+        "navName" : "三连号",
+        "childList": [
+          {
+            "name": "三连号",
+            "childData": [5,6]
+          }
+        ]
+      },
+      {
+        "navName" : "二同号",
+        "childList": [
+          {
+            "name": "二同号",
+            "childData": [6,8]
+          }
+        ]
+      },
+      {
+        "navName" : "二不同号",
+        "childList": [
+          {
+            "name": "二不同号",
+            "childData": [8,9]
+          }
+        ]
+      }
+    ]
+  },
+  "6-0": {
+    "name": "低频彩彩典系列",
+    "defaultPlayId":168,
+    "nav": [
+      {
+        "navName": "三星",
+        "childList": [
+          {
+            "name": "直选",
+            "childData": [0,3]
+          },
+          {
+            "name": "组选",
+            "childData": [3,6]
+          }
+        ]
+      },
+      {
+        "navName": "二星",
+        "childList": [
+          {
+            "name": "前二",
+            "childData": [6,9]
+          },
+          {
+            "name": "后二",
+            "childData": [9,12]
+          }
+        ]
+      },
+      {
+        "navName": "定位胆",
+        "childList": [
+          {
+            "name": "定位胆",
+            "childData": [12,13]
+          }
+        ]
+      },
+      {
+        "navName": "不定位胆",
+        "childList": [
+          {
+            "name": "不定位",
+            "childData": [13]
+          }
+        ]
+      }
+    ]
+  },
+  "7-2": {
+    "name": "六合彩经典系列",
+    "defaultPlayId":240,
+    "nav": [
+      {
+        "navName": "特码",
+        "childList": [
+          {
+            "name": "特码",
+            "childData": [0,1]
+          }
+        ]
+      },
+      {
+        "navName": "正特",
+        "childList": [
+          {
+            "name": "正特",
+            "childData": [1,7]
+          }
+        ]
+      },
+      {
+        "navName": "半波",
+        "childList": [
+          {
+            "name": "半波",
+            "childData": [7,8]
+          }
+        ]
+      },
+      {
+        "navName": "生肖",
+        "childList": [
+          {
+            "name": "生肖",
+            "childData": [8,11]
+          }
+        ]
+      },
+      {
+        "navName": "尾数",
+        "childList": [
+          {
+            "name": "尾数",
+            "childData": [11,12]
+          }
+        ]
+      },
+      {
+        "navName": "总分",
+        "childList": [
+          {
+            "name": "总分",
+            "childData": [12,13]
+          }
+        ]
+      },
+      {
+        "navName": "不中",
+        "childList": [
+          {
+            "name": "不中",
+            "childData": [13,19]
+          }
+        ]
+      }
+    ]
+  },
+  "1-2": {
+    "name": "时时彩经典系列",
+    "defaultPlayId":0,
+    "nav": [
+      {
+        "navName": "数字盘",
+        "playIdSlice": [0,5]
+      },
+      {
+        "navName": "双面盘",
+        "playIdSlice": [5,14]
+      },
+      {
+        "navName": "龙虎斗",
+        "playIdSlice": [14,24]
+      },
+      {
+        "navName": "全五中一",
+        "playIdSlice": [24,58]
+      }
+    ]
+  },
+  "2-2": {
+    "name": "赛车经典系列",
+    "defaultPlayId":0,
+    "nav": [
+      {
+        "navName": "双面",
+        "playIdSlice": [0,11]
+      },
+      {
+        "navName": "冠亚和值",
+        "playIdSlice": [11,12]
+      },
+      {
+        "navName": "冠亚季和值",
+        "playIdSlice": [12,13]
+      },
+      {
+        "navName": "首尾和值",
+        "playIdSlice": [13,14]
+      },
+      {
+        "navName": "1-10名",
+        "playIdSlice": [14,24]
+      },
+      {
+        "navName": "龙虎斗",
+        "playIdSlice": [24,29]
+      }
+    ]
+  }
+}

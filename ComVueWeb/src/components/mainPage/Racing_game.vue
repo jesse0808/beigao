@@ -1,0 +1,2089 @@
+<template>
+    <!-- 赛车 -->
+    <div class="allgame-mainbox racing">
+        <div class="box_center">
+            <!-- 中奖信息 -->
+            <div class="title_box box_h">
+                <div class="title_logo">
+                    <img :src="logoImgUrl" alt=""/>
+                </div>
+                <!--投注时间-->
+                <div class="title_countdown_box">
+                    <h3 class="titles_box">投注倒计时&emsp;<strong>{{NowLssue}}</strong>&ensp;期</h3>
+                    <div>
+                        <countDown :time="NowTime" @upTimeData="upTimeData"></countDown>
+                    </div>
+                </div>
+                <!-- 往期中奖号码 -->
+                <div class="title_countdown_box">
+                    <h3>开奖号码&emsp;<strong>{{LastLssue}}</strong>&emsp;期
+                        <router-link class="to_zst"
+                                     :to="{name:'Trendmap',query:{id:$route.query.id,index:$route.query.index}}"
+                                     target="_blank">
+                            <span class="iconfont icon-zoushitu"></span>&ensp;走势
+                        </router-link>
+                    </h3>
+                    <!-- 中奖号码盒子 -->
+                    <div class="winning_main" style="margin-top: 8px;">
+                        <div class="winning_item racing_car_iconbox" v-for="(item,index) in LastNum" :key="index">
+                            <p class="racing_car_rank">{{LastNumRank[index]}}</p>
+                            <img :src='"../../static/img/gametype/racing_car"+item+".png"'/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 玩法内容 -->
+            <div class="gametype_center">
+                <!-- 主要内容 -->
+                <div class="racing_game_box1 gametype_topnav">
+                    <div class="content_info">
+                        <div class="content_box_left">
+                            <!-- 导航 -->
+                            <div class="content_nav">
+                                <!-- 导航栏 -->
+                                <ul class="content_nav_top box_h">
+                                    <li><a :class="nav_Racing == 0?'select_a':''" data-index="0"
+                                           @click="RacNavSwitch">猜冠军 </a>
+                                    </li>
+                                    <li><a :class="nav_Racing == 1?'select_a':''" data-index="1"
+                                           @click="RacNavSwitch">猜前二 </a>
+                                    </li>
+                                    <li><a :class="nav_Racing == 2?'select_a':''" data-index="2"
+                                           @click="RacNavSwitch">猜前三 </a>
+                                    </li>
+                                    <li><a :class="nav_Racing == 3?'select_a':''" data-index="3"
+                                           @click="RacNavSwitch">猜前四 </a>
+                                    </li>
+                                    <li><a :class="nav_Racing == 4?'select_a':''" data-index="4"
+                                           @click="RacNavSwitch">猜前五 </a>
+                                    </li>
+                                    <li><a :class="nav_Racing == 5?'select_a':''" data-index="5"
+                                           @click="RacNavSwitch">定位胆 </a>
+                                    </li>
+                                    <li><a :class="nav_Racing == 6?'select_a':''" data-index="6"
+                                           @click="RacNavSwitch">大小单双 </a>
+                                    </li>
+                                    <li><a :class="nav_Racing == 7?'select_a':''" data-index="7"
+                                           @click="RacNavSwitch">龙虎斗 </a>
+                                    </li>
+                                  <li style="margin-left: 20px;"><router-link :to="{name:'gamePanel',query: {id:$route.query.id,index:$route.query.index}}" class="change_bth">官方玩法<div></div></router-link></li>
+                                </ul>
+                                <!-- 次级选项卡 -->
+                                <!-- 猜冠军 -->
+                                <ul class="content_nav_secondary" v-if="nav_Racing == 0">
+                                    <li class="second_navitembox box_h">
+                                        <label>猜冠军</label>
+                                        <div class="box_flex second_item_mainbox cf">
+                                            <div :class="[NavListState==item.LpId?'select_two_a':'']"
+                                                 v-for="(item,index) in gameNavList" :key="index" :data-id="item.LpId"
+                                                 @click="RacSwitch"
+                                                 :data-name="item.Name">{{item.Alias}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- 猜前二 -->
+                                <ul class="content_nav_secondary" v-if="nav_Racing == 1">
+                                    <li class="second_navitembox box_h">
+                                        <label>猜前二</label>
+                                        <div class="box_flex second_item_mainbox cf">
+                                            <div :class="[NavListState==item.LpId?'select_two_a':'']"
+                                                 v-for="(item,index) in gameNavList" :key="index" :data-id="item.LpId"
+                                                 @click="RacSwitch"
+                                                 :data-name="item.Name">{{item.Alias}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- 猜前三 -->
+                                <ul class="content_nav_secondary" v-if="nav_Racing == 2">
+                                    <li class="second_navitembox box_h">
+                                        <label>猜前三</label>
+                                        <div class="box_flex second_item_mainbox cf">
+                                            <div :class="[NavListState==item.LpId?'select_two_a':'']"
+                                                 v-for="(item,index) in gameNavList" :key="index" :data-id="item.LpId"
+                                                 @click="RacSwitch"
+                                                 :data-name="item.Name">{{item.Alias}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- 猜前四 -->
+                                <ul class="content_nav_secondary" v-if="nav_Racing == 3">
+                                    <li class="second_navitembox box_h">
+                                        <label>猜前四</label>
+                                        <div class="box_flex second_item_mainbox cf">
+                                            <div :class="[NavListState==item.LpId?'select_two_a':'']"
+                                                 v-for="(item,index) in gameNavList" :key="index" :data-id="item.LpId"
+                                                 @click="RacSwitch"
+                                                 :data-name="item.Name">{{item.Alias}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- 猜前五 -->
+                                <ul class="content_nav_secondary" v-if="nav_Racing == 4">
+                                    <li class="second_navitembox box_h">
+                                        <label>猜前五</label>
+                                        <div class="box_flex second_item_mainbox cf">
+                                            <div :class="[NavListState==item.LpId?'select_two_a':'']"
+                                                 v-for="(item,index) in gameNavList" :key="index" :data-id="item.LpId"
+                                                 @click="RacSwitch"
+                                                 :data-name="item.Name">{{item.Alias}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- 定位胆 -->
+                                <ul class="content_nav_secondary" v-if="nav_Racing == 5">
+                                    <li class="second_navitembox box_h">
+                                        <label>定位胆</label>
+                                        <div class="box_flex second_item_mainbox cf">
+                                            <div :class="[NavListState==item.LpId?'select_two_a':'']"
+                                                 v-for="(item,index) in gameNavList" :key="index" :data-id="item.LpId"
+                                                 @click="RacSwitch"
+                                                 :data-name="item.Name">{{item.Alias}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- 猜大小 -->
+                                <ul class="content_nav_secondary" v-if="nav_Racing == 6">
+                                    <li class="second_navitembox box_h">
+                                        <label>猜大小单双</label>
+                                        <div class="box_flex second_item_mainbox cf">
+                                            <div :class="[NavListState==item.LpId?'select_two_a':'']"
+                                                 v-for="(item,index) in gameNavList" :key="index" :data-id="item.LpId"
+                                                 @click="RacSwitch"
+                                                 :data-name="item.Name">{{item.Alias}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <!-- 龙虎斗 -->
+                                <ul class="content_nav_secondary" v-if="nav_Racing == 7">
+                                    <li class="second_navitembox box_h">
+                                        <label>龙虎斗</label>
+                                        <div class="box_flex second_item_mainbox cf">
+                                            <div :class="[NavListState==item.LpId?'select_two_a':'']"
+                                                 v-for="(item,index) in gameNavList" :key="index" :data-id="item.LpId"
+                                                 @click="RacSwitch"
+                                                 :data-name="item.Name">{{item.Alias}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <!-- 选号内容 -->
+                            <template>
+                                <!-- 示例内容 -->
+                                <div class="demo_case">
+                                    <div class="demo_left">{{exampleObj[NavListState].showTest || ''}}
+                                        <div>
+                                            <span class="iconfont icon-dengpao"/>选号示例
+                                            <div>
+                                                <p v-for="(item,index) in exampleObj[NavListState].arr" :key="index">投注：{{item.title || ''}} <br/> 开奖：{{item.content || ''}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bonus_select">
+                                        <span>奖金调节：</span>
+                                        <label>
+                                            <select @change="adjustMent" autocomplete="off">
+                                                <option :selected="index == 0 ? 'selected':''" v-for="(item,index) in userSelect" :value="index" :key="index">{{item}}%</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                                <template v-if="NavListState==81">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>从01-10共10个号码中选择1个号码组成一注，所选号码与当期摇出的10个号码中的第1个号码相同，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div>-->
+<!--                                                    <p>如：选择01 <br/>开奖号码的第1个号码为01，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <gameCom ref="drag" @setdata="setGdata" :gameary="gameAry" :gameid="NavListState"
+                                             @setbet="setBetNum"
+                                             v-if="GameState"></gameCom>
+                                </template>
+                                <template v-if="NavListState==82">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>手动输入1个号码组成一注，所输入的号码与当期摇出的10个号码中的第1个号码相同，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div>-->
+<!--                                                    <p>如：手动输入01， <br/>开奖号码的第1个号码为01，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <optionvalue ref="drag" :gameid="NavListState" @getdata="OptionGdata"></optionvalue>
+                                </template>
+                                <template v-if="NavListState==83">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>从01-10共10个号码中选择2个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前2个号码相同，且顺序一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:350px;left:-350px">-->
+<!--                                                    <p>如：选择01，02， <br/>开奖号码的前2个号码顺序为01，02，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <gameCom ref="drag" @setdata="setGdata" :gameary="gameAry" :gameid="NavListState"
+                                             @setbet="setBetNum"
+                                             v-if="GameState"></gameCom>
+                                </template>
+                                <template v-if="NavListState==84">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>手动输入2个号码组成一注，所输入的号码与当期顺序摇出的10个号码中的前2个号码相同，且顺序一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:350px;left:-350px">-->
+<!--                                                    <p>如：手动输入01 02， <br/>开奖号码的前2个号码顺序为01 02，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <optionvalue ref="drag" :gameid="NavListState" @getdata="OptionGdata"></optionvalue>
+                                </template>
+                                <template v-if="NavListState==85">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>从01-10共10个号码中选择3个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前3个号码相同，且顺序一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:370px;left:-370px">-->
+<!--                                                    <p>如：选择01，02，03， <br/>开奖号码的前3个号码顺序为01，02，03，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <gameCom ref="drag" @setdata="setGdata" :gameary="gameAry" :gameid="NavListState"
+                                             @setbet="setBetNum"
+                                             v-if="GameState"></gameCom>
+                                </template>
+                                <template v-if="NavListState==86">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>手动输入3个号码组成一注，所输入的号码与当期顺序摇出的10个号码中的前3个号码相同，且顺序一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:370px;left:-370px">-->
+<!--                                                    <p>如：手动输入01 02 03， <br/>开奖号码的前3个号码顺序为01 02 03，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <optionvalue ref="drag" :gameid="NavListState" @getdata="OptionGdata"></optionvalue>
+                                </template>
+                                <template v-if="NavListState==87">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>从01-10共10个号码中选择4个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前4个号码相同，且顺序一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:390px;left:-390px">-->
+<!--                                                    <p>如：选择01，02，03，04 <br/>开奖号码的前4个号码顺序为01，02，03，04即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <gameCom ref="drag" @setdata="setGdata" :gameary="gameAry" :gameid="NavListState"
+                                             @setbet="setBetNum"
+                                             v-if="GameState"></gameCom>
+                                </template>
+                                <template v-if="NavListState==88">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>手动输入4个号码组成一注，所输入的号码与当期顺序摇出的10个号码中的前4个号码相同，且顺序一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:390px;left:-390px">-->
+<!--                                                    <p>如：手动输入01 02 03 04， <br/>开奖号码的前4个号码顺序为01 02 03 04，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <optionvalue ref="drag" :gameid="NavListState" @getdata="OptionGdata"></optionvalue>
+                                </template>
+                                <template v-if="NavListState==89">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>从01-10共10个号码中选择5个不重复的号码组成一注，所选号码与当期顺序摇出的10个号码中的前5个号码相同，且顺序一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:390px;left:-390px">-->
+<!--                                                    <p>如：手动输入01 02 03 04 08， <br/>开奖号码的前5个号码顺序为01 02 03 04 08，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <gameCom ref="drag" @setdata="setGdata" :gameary="gameAry" :gameid="NavListState"
+                                             @setbet="setBetNum"
+                                             v-if="GameState"></gameCom>
+                                </template>
+                                <template v-if="NavListState==90">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>手动输入5个号码组成一注，所输入的号码与当期顺序摇出的10个号码中的前5个号码相同，且顺序一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:390px;left:-390px">-->
+<!--                                                    <p>如：手动输入01 02 03 04 06， <br/>开奖号码的前5个号码顺序为01 02 03 04 06，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <optionvalue ref="drag" :gameid="NavListState" @getdata="OptionGdata"></optionvalue>
+                                </template>
+                                <template v-if="NavListState==91">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>从第1-10名任意1个位置或多个位置上选择1个号码，所选号码与相同位置上的开奖号码一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:290px;left:-290px">-->
+<!--                                                    <p>如：第一名选择01， <br/>开奖号码的第1个号码为01，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <gameCom ref="drag" @setdata="setGdata" :gameary="gameAry" :gameid="NavListState"
+                                             @setbet="setBetNum"
+                                             v-if="GameState"></gameCom>
+                                </template>
+                                <template v-if="NavListState==92">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>对第1、2、3、4、5、6、7、8、9、10名的“大（06 07 08 09 10）小（01 02 03 04 05）单（01 03 05 07-->
+<!--                                            09）双（02-->
+<!--                                            04 06 08 10）”<br>形态进行购买，所选号码的位置、形态与开奖号码的位置、形态相同，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:290px;left:-290px">-->
+<!--                                                    <p>投注方案：第一名的大； <br/>开奖号码第1个号码：大，即为中奖。</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <gameCom ref="drag" @setdata="setGdata" :gameary="gameAry" :gameid="NavListState"
+                                             @setbet="setBetNum"
+                                             v-if="GameState"></gameCom>
+                                </template>
+                                <template v-if="NavListState==93">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>对开奖号码前五位的“龙虎”形态进行购买，所选“龙虎”与开奖号码的“龙虎”形态一致，即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:290px;left:-290px">-->
+<!--                                                    <p>投注方案：龙1虎10； <br/>第一位的开奖号码大于第十位，即中奖</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <dragon :gameary="DorSomeAry" @setdata="setGdata" ref="drag" @setbet="setBetNum"
+                                            :gameid="NavListState"></dragon>
+                                </template>
+                                <!-- 直选和值 -->
+                                <template v-if="NavListState==184">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>所选数值等于冠军和亚军数字之和即为中奖。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:290px;left:-290px">-->
+<!--                                                    <p>和值3 冠军和亚军分别为1号和2号顺序不限即为中奖</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <!-- 号码列表 -->
+                                    <div class="quick_three_numlist cf">
+                                        <div :class='["quick_three_numitem"," box_s",item.state == "true"?"numitem_select big_icon":""]'
+                                             v-for="(item,index) in gameAry" :key="index" @click="select_num"
+                                             :data-state="item.state"
+                                             :data-index="index">
+                                            <strong class="quick_three_num">{{item.name}}</strong>
+                                            <p>￥{{item.odds}}</p>
+                                        </div>
+                                    </div>
+                                </template>
+                                <!-- 大小单双 -->
+                                <template v-if="NavListState==185">
+<!--                                    <div class="demo_case">-->
+<!--                                        <p><span class="iconfont icon-dengpao"></span>冠军和亚军和值 3至11为小，12至19为大，偶数为双，奇数为单。</p>-->
+<!--                                        <div>-->
+<!--                                            <div>-->
+<!--                                                示例-->
+<!--                                                <div class="Example_hover_main" style="width:290px;left:-290px">-->
+<!--                                                    <p>投注方案：大； <br/>冠军和亚军分别为 8号和6号顺序不限即为中奖</p>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <!-- 号码列表 -->
+                                    <div class="quick_three_numlist cf">
+                                        <div :class='["quick_three_numitem"," box_s",item.state == "true"?"numitem_select big_icon":""]'
+                                             v-for="(item,index) in gameAry" :key="index" @click="select_num"
+                                             :data-state="item.state"
+                                             :data-index="index">
+                                            <strong class="quick_three_num">{{item.name}}</strong>
+                                            <p>￥{{item.odds}}</p>
+                                        </div>
+                                    </div>
+                                </template>
+                            </template>
+                            <!-- 用户投注 -->
+                            <userpay ref="userPay" :mult="gameMultiplying" @bonus="Bonusadjust" :betnum="BetNum" :betmoney="BetMoney"
+                                     @typeset="TypeSet"
+                                     @gamemultiply="selectGameMultiply" :userselect="userSelect" @openmess="openMessAge"
+                                     :mounttype="mountType" @dirbet="Directbet" :balance="userBalace"
+                                     @allin="AllIN"></userpay>
+                            <!-- 表单 -->
+                            <betting :time="NowTime" @settrack="setTrack" :ids="NavListState" :betary="betAry"
+                                     :gameindex="GameIndex" @addnum="addNum"
+                                     @emptynum="EmptyNum" @deletenum="deleteNum" @direct="AryDirectbet"></betting>
+                        </div>
+                        <!-- 右边近15期开奖历史 -->
+                        <div class="content_box_right">
+                            <history :historyData="allLotterydata" :id=9></history>
+                        </div>
+                    </div>
+
+                    <!-- 表格 -->
+                    <tablelist :tablist="tableList" @setinfo="infoData" :tracklist="trackList"
+                               :indexs="GameIndex"></tablelist>
+                    <!-- 详情弹框 -->
+                    <detali :getinfo="infoList" ref="dragDetali" @list="ListAjax" @getinfo="getUserInfo"></detali>
+                    <zhDetali :zhdata="zhList" ref="dragZhDetali" @list="ListAjax" @getinfo="getUserInfo"></zhDetali>
+                </div>
+            </div>
+            <!-- 投注成功 -->
+            <betElast v-if="betMinA" @bethide="betMinAHide"></betElast>
+            <betSuccess v-if="betSuccess" @bethide="hideBetSuc"></betSuccess>
+            <!-- 提示框 -->
+            <div class="game_message_box">
+                <el-button :plain="true" @click="openMessAge"></el-button>
+            </div>
+            <openResult v-if="openFrame" :redata="openDataRe" @hidere="hideOpenRe"></openResult>
+            <!-- 追号 -->
+            <trackNum v-if="trackState" @hidetrack="hideTrack" :ary="betAry" @clearbet="clearBetAry" @list="ListAjax"
+                      @getinfo="getUserInfo"></trackNum>
+        </div>
+    </div>
+</template>
+<script>
+  //系统设置
+  import {SysKey} from "../../util/sysconfig"
+  // 倒计时结束后显示
+  import openResult from "../Elasticframe/Number_change"
+  // 追号详情
+  import zhDetali from "../Elasticframe/zhdetails"
+  // 追号投注
+  import trackNum from "../Elasticframe/Track_num"
+  // 投注成功
+  import betSuccess from "../Elasticframe/Betting_success"
+  // 最少选择一注弹框
+  import betElast from "../Elasticframe/Betting_minone"
+  // 详情弹框
+  import detali from "../Elasticframe/infodetails"
+  // 引用axios封装文件
+  import {postAjax, getAjax} from "../../util/ajax.js"
+  // 投注记录组件
+  import betting from "../Subcomponents/Betting"
+  // 表格组件
+  import tablelist from "../Subcomponents/Tablelist"
+  // 用户投注组件
+  import userpay from "../Subcomponents/user_pay"
+  // 选号组件
+  import gameCom from "../Subcomponents/game_content"
+  // 输入框组件
+  import optionvalue from "../Subcomponents/Optionalvalue"
+  // 悬浮组件
+  import flextab from "../Subcomponents/flex_tab"
+  // 秒数转化
+  import {SecondToHHSSMM} from "../../static/js/changeTime.js"
+
+  import dragon from "../Subcomponents/Dragon_Tiger"
+  //开奖历史
+  import history from "../conmon/history";
+  //倒计时组件
+  import countDown from "../conmon/countDown";
+  //提示信息
+  import sscJson from "../../json/ssc"
+  export default {
+    // 刷新页面
+    inject: ["reload"],
+    data() {
+      return {
+        selectTwoNav: 0,//默认选中第一个
+        timeNum: 0, //请求次数
+        GameState: true, //组件状态
+        openTime: "",//开奖期数
+        openDataRe: {}, //开奖弹框数据
+        openFrame: false, //倒计时结束弹框
+        trackState: false, //追号弹框
+        userBalace: 0, //用户余额
+        betMinA: false, //是否显示弹框
+        imgUrl: SysKey("ImgServerUrl").SysValue, //图片地址
+        logoImgUrl: '',//彩票图标
+        choicenum: true,
+        allLotterydata: [], //近五期数据
+        nav_Racing: 0, //顶部导航状态
+        GameIds: parseInt(this.$route.query.id), //游戏ID
+        GameIndex: this.$route.query.index.toString(),  //游戏种类
+        NowLssue: "", //当前期号
+        dirNowLssue: "", //期号时间
+        LastLssue: "", //上一期
+        navAllList: [],
+        LastNum: "", //上一期开奖号码
+        NowTime: {}, //投注倒计时
+        gameName: "", //游戏名称
+        gameNavList: [], //次级导航栏数据
+        NavListState: 1, //改变次级导航栏状态值
+        selectGName: "",//选中的内容
+        CurrentPoint: 0, //赔率数组
+        gameOdds: "", //玩法赔率
+        gamePoint: "", //游戏返点
+        gameMultiplying: 1, //游戏倍率
+        BetNum: 0, //投注数量
+        BetMoney: 0, //投注金额
+        mountType: [], //模式
+        mountTypeId: 1, //模式Id
+        mountTypeName: "2元", //模式名称
+        mountNum: 2,
+        // 传入子组件玩法赔率数组
+        userSelect: [],
+        betAry: [], //传入投注卡组件的内容
+        betSuccess: false, //投注成功
+        // 传入玩法子组件的数据
+        gameAry: [{
+          ids: 1,
+          digit: '猜冠军',
+          num: [{value: "01", state: false}, {value: "02", state: false}, {
+            value: "03",
+            state: false
+          }, {value: "04", state: false}, {value: "05", state: false}, {
+            value: "06",
+            state: false
+          }, {value: "07", state: false}, {value: "08", state: false}, {
+            value: "09",
+            state: false
+          }, {value: "10", state: false}]
+        }],
+        LastNumRank: ["冠", "亚", "季", "四", "五", "六", "七", "八", "九", "十"],
+        //龙虎斗子组件数据
+        DorSomeAry: [
+          {name: "龙1虎10", odds: "", state: "false"},
+          {name: "虎1龙10", odds: "", state: "false"},
+          {name: "龙2虎9", odds: "", state: "false"},
+          {name: "虎2龙9", odds: "", state: "false"},
+          {name: "龙3虎8", odds: "", state: "false"},
+          {name: "虎3龙8", odds: "", state: "false"},
+          {name: "龙4虎7", odds: "", state: "false"},
+          {name: "虎4龙7", odds: "", state: "false"},
+          {name: "龙5虎6", odds: "", state: "false"},
+          {name: "虎5龙6", odds: "", state: "false"}],
+        tableList: [], //表格数据
+        infoList: {}, // 详情数据
+        trackList: [],
+        zhList: [], //追号详情信息
+        timer: null, //设置倒计时函数
+        exampleObj:sscJson
+      }
+    },
+    methods: {
+      //当前选中的二级导航栏
+      selectTwoNavFun(e) {
+        this.selectTwoNav = e.target.dataset.id;
+      },
+      // 列表选择
+      select_num(e) {
+        let that = this
+        let sta = e.currentTarget.dataset.state
+        let indexs = e.currentTarget.dataset.index
+        if (sta == "false") {
+          that.gameAry[indexs].state = "true"
+          that.selectGName.push(that.gameAry[indexs].name)
+          that.BetNum = parseInt(that.selectGName.length)
+          that.CalcMount()
+        } else if (sta == "true") {
+
+          that.gameAry[indexs].state = "false"
+          let ids = that.selectGName.indexOf(that.gameAry[indexs].name)
+          if (ids > -1) {
+            that.selectGName.splice(ids, 1)
+          }
+          that.BetNum = parseInt(that.selectGName.length)
+          that.CalcMount()
+        }
+
+
+      },
+      //计算投注金额
+      CalcMount() {
+        let that = this
+        let type = that.mountType; //模式数组
+        let name = that.mountTypeName;
+        let num = that.gameMultiplying; //倍率
+        type.forEach(item => {
+          if (item.Name == name) {
+            that.BetMoney = parseInt(that.BetNum) * parseInt(num) * parseFloat(item.Rate)
+          }
+        })
+      },
+      // 加载中
+      _initOpenLoading(isFlag = true) {
+        this.loading = this.$loading({
+          lock: true,
+          text: `${isFlag ? '投注中' : '加载中'}...`,
+          spinner: 'el-icon-loading',
+          background: 'rgba(255, 255, 255, 0.4)'
+        })
+      },
+      _initCloseLoading() {
+        this.loading.close()
+      },
+      //请求用户数据
+      getUserInfo() {
+        let that = this;
+        let url = "Api/User/GetUserInfo";
+        postAjax(url)
+          .then(function (data) {
+            that.userBalace = data.Data.Balance
+          })
+          .catch(() => {
+            that.openMessAge("网络出现异常，请刷新后重试")
+          })
+      },
+      // 一键梭哈
+      AllIN() {
+        let that = this
+        let userMoney = parseFloat(that.userBalace) //用户余额
+        let betnum = parseInt(that.BetNum)  //投注数量
+        let money = that.mountNum   //基数金钱
+
+        if (that.BetNum < 1) {
+          that.betMinAShow()
+        } else if (userMoney < betnum * money) {
+          that.openMessAge("您的余额不足，请充值")
+        } else {
+          // 当前梭哈倍数
+          let num = Math.floor(userMoney / parseFloat(betnum * money)) //获取倍数
+          let intMoney = parseFloat(num * money * betnum) //获取金额
+          that.gameMultiplying = num
+          that.BetMoney = intMoney
+        }
+      },
+      // 获取开奖号码
+      getResultNum() {
+        let that = this
+        let url = "Api/Lssue/GetLssueOpenInfo?lgId=" + that.GameIds + "&lssue=" + that.openTime
+        getAjax(url)
+          .then(function (data) {
+            window.lgText = data.Data.lgText
+            if (data.Data.OpenNumber == null || data.Data.OpenNumber == "") {
+
+            } else {
+              // 显示开奖号码
+              that.LastNum = data.Data.OpenNumber.split(",")
+              // 显示弹框
+              that.openDataRe["LastOpenNumber"] = data.Data.OpenNumber.split(",")
+              that.openDataRe["Time"] = that.LastLssue
+              that.openDataRe["Name"] = data.Data.lgText
+              that.openFrame = true
+              // 清除倒计时
+              clearInterval(that.timer)
+              that.timer = null
+              // 请求近5期期号数据
+              that.PhaseAjax()
+              // 请求表单数据
+              that.ListAjax()
+              // 请求用户数据
+              that.getUserInfo()
+            }
+
+          })
+          .catch(() => {
+            that.openMessAge("网络出现异常，请刷新后重试")
+          })
+      },
+      // 关闭开奖弹框
+      hideOpenRe() {
+        this.openFrame = false
+        this.timeNum = 0
+      },
+      //显示追号弹框
+      setTrack() {
+        let that = this
+        if (that.betAry.length < 1) {
+          that.betMinAShow()
+        } else {
+          if (that.betAry.length > 1) {
+            that.openMessAge("追号投注,订单列表不能大于1项")
+          } else {
+            that.trackState = true
+          }
+        }
+      },
+      // 关闭追号弹框
+      hideTrack() {
+        this.trackState = false
+      },
+      // 追号投注后清除数组
+      clearBetAry() {
+        this.betAry = []
+      },
+      // 接受子组件的值
+      infoData(data, num) {
+        let that = this
+        let index = num  //1为普通订单，2位追号订单
+        let obj = data
+        let ptid = data.OrderNumber  //普通订单号
+        let zhid = data.ZhNumber     //追号订单号
+        //获取普通投注数据
+        if (index == 1) {
+          let url = "Api/Order/GetDetailByOrderNumber?" + "number=" + ptid + "&type=" + index
+          postAjax(url)
+            .then(function (data) {
+              if (data.IsSucess) {
+                that.infoList = data.Data[0]
+              } else {
+                that.openMessAge("获取信息错误，请重试")
+                return false
+              }
+            })
+            .then(function () {
+              that.$refs.dragDetali.dialogTableVisible = true
+            })
+        }
+        //追号记录 详情
+        else if (index == 2) {
+          let url = "Api/Order/GetDetailByOrderNumber?" + "number=" + zhid + "&type=" + index
+          postAjax(url)
+            .then(function (data) {
+              if (data.IsSucess) {
+                that.zhList = data.Data
+                let allmoney = 0 //总金额
+                let ykmoney = 0  //盈亏金额
+                //计算总金额
+                data.Data.forEach(item => {
+                  allmoney += item.BetMoney
+                  ykmoney += item.WinBonus - item.BetMoney
+                })
+                //添加到第一个数组
+                data.Data[0]["allMoney"] = allmoney
+                data.Data[0]["ykMoney"] = ykmoney
+
+              } else {
+                that.openMessAge("获取信息错误，请重试")
+                return false
+              }
+            })
+            .then(function () {
+              that.$refs.dragZhDetali.dialogVisible = true
+            })
+            .catch(() => {
+              that.openMessAge("网络出现异常，请刷新后重试")
+            })
+        }
+
+      },
+      // 显示投注成功框
+      showBetSuc() {
+        this.betSuccess = true
+        this.autoHideBetSuc = setTimeout(this.hideBetSuc, 2000);
+      },
+      hideBetSuc() {
+        this.betSuccess = false
+        this.autoHideBetSuc = null
+      },
+      // 输入返回数组
+      OptionGdata(data) {
+        this.selectGName = data
+        this.BetNum = data.length;
+        this.CalcMount()
+      },
+      // 设置模式ID
+      typeSetId() {
+        let that = this
+        that.mountType.forEach(item => {
+          if (item.Name == that.mountTypeName) {
+            that.mountTypeId = item.Id
+            that.mountNum = item.Rate
+          }
+
+        })
+      },
+      // 显示弹框 隐藏弹框
+      betMinAShow() {
+        this.betMinA = true
+      },
+      betMinAHide() {
+        this.betMinA = false
+      },
+      // 清空投注卡列表
+      EmptyNum(Data) {
+        let that = this
+        that.betAry = Data
+      },
+      deleteNum(Data) {
+        let that = this
+        that.betAry.splice(Data, 1)
+      },
+      // 计算金额
+      CalcMount(data) {
+        let that = this
+        if (data == undefined || data == null || data == "") {
+          that.BetNum = that.BetNum //当前投注数量
+        } else {
+          that.BetNum = data
+        }
+        let type = that.mountType; //模式
+        let name = that.mountTypeName;
+        let num = that.gameMultiplying; //倍率
+        type.forEach(item => {
+          if (item.Name == name) {
+            that.BetMoney = parseInt(that.BetNum) * parseInt(num) * parseFloat(item.Rate)
+          }
+        })
+      },
+      //设置传入投注卡的数组
+      addNum() {
+        let that = this
+        let obj = {};
+        obj["name"] = that.gameName  //名称
+        obj["GAry"] = that.selectGName //投注内容
+        obj["num"] = that.BetNum   //注数
+        obj["mount"] = that.BetMoney  //投注金额
+        obj["type"] = that.mountTypeName //投注模式
+        obj["Odds"] = that.gameOdds + "-" + that.gamePoint //奖金返点
+        obj["GMult"] = that.gameMultiplying  //倍率
+        obj["ids"] = that.NavListState
+        obj["reba"] = that.gamePoint
+        obj['gameOdd'] = that.gameOdds
+        obj['bon'] = that.mountTypeId
+        obj['Gids'] = that.GameIds
+        obj["data"] = that.NowLssue
+        obj["time"] = that.dirNowLssue
+        if (that.BetNum < 1) {
+          that.betMinAShow()
+        } else {
+          that.betAry.push(obj)
+          //初始化数组状态
+          that.clearDrag()
+
+        }
+      },
+      //设置玩法赔率数组
+      setUserSelect() {
+        let that = this;
+        let ids = that.NavListState;
+        that.gameNavList.forEach(item => {
+          if (ids == item.LpId) {
+            let ary = item.JjList
+            let setAry = []
+            for (let i = 0; i < 2; i++) {
+              let str = [ary[i].Jj.toFixed(3), ary[i].Rebate.toFixed(2)].join("-")
+              setAry.push(str)
+            }
+            that.userSelect = setAry
+          }
+        })
+      },
+      // 设置获取赔率数据
+      setDorOdds() {
+        let that = this;
+        let ids = that.NavListState;
+        let list = that.navAllList;
+        list.forEach(item => {
+          if (ids == item.LpId) {
+            that.gameOdds = item.JjList[that.CurrentPoint].Jj
+            that.gamePoint = item.JjList[that.CurrentPoint].Rebate
+          }
+        })
+      },
+      //选择游戏倍率
+      selectGameMultiply(data) {
+        this.gameMultiplying = data
+        this.CalcMount()
+      },
+      // 设置玩法模式
+      TypeSet(data) {
+        let that = this
+        that.mountTypeName = data
+        that.CalcMount()
+        that.mountType.forEach(item => {
+          if (item.Name == that.mountTypeName) {
+            that.mountTypeId = item.Id
+          }
+
+        })
+      },
+      // 选择玩法返点
+      Bonusadjust(data) {
+        let that = this
+        if (data == "" || data == undefined) {
+          that.CurrentPoint = 0
+        } else {
+          that.CurrentPoint = data
+        }
+        this.setDorOdds()
+        // this.setGameAry()
+      },
+      // 设置玩法内容数组
+      setGameAry() {
+        let that = this
+        that.gameAry = []
+        if (that.NavListState == 81) {
+          that.gameAry = [{
+            ids: 1,
+            digit: '猜冠军',
+            num: [{value: "01", state: false}, {value: "02", state: false}, {
+              value: "03",
+              state: false
+            }, {value: "04", state: false}, {value: "05", state: false}, {
+              value: "06",
+              state: false
+            }, {value: "07", state: false}, {value: "08", state: false}, {
+              value: "09",
+              state: false
+            }, {value: "10", state: false}]
+          }]
+        } else if (that.NavListState == 83) {
+          that.gameAry = [
+            {
+              ids: 1,
+              digit: '冠军',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 2,
+              digit: '亚军',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            }]
+        } else if (that.NavListState == 83) {
+          that.gameAry = [
+            {
+              ids: 1,
+              digit: '冠军',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 2,
+              digit: '亚军',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            }
+          ]
+        } else if (that.NavListState == 85) {
+          that.gameAry = [
+            {
+              ids: 1,
+              digit: '冠军',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 2,
+              digit: '亚军',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 3,
+              digit: '季军',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            }
+          ]
+        } else if (that.NavListState == 87) {
+          that.gameAry = [
+            {
+              ids: 1,
+              digit: '第一名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 2,
+              digit: '第二名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 3,
+              digit: '第三名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 4,
+              digit: '第四名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            }
+          ]
+        } else if (that.NavListState == 89) {
+          that.gameAry = [
+            {
+              ids: 1,
+              digit: '第一名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 2,
+              digit: '第二名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 3,
+              digit: '第三名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 4,
+              digit: '第四名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 5,
+              digit: '第五名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            }
+          ]
+        } else if (that.NavListState == 91) {
+          that.gameAry = [
+            {
+              ids: 1,
+              digit: '第一名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 2,
+              digit: '第二名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 3,
+              digit: '第三名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 4,
+              digit: '第四名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 5,
+              digit: '第五名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 6,
+              digit: '第六名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 7,
+              digit: '第七名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 8,
+              digit: '第八名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 9,
+              digit: '第九名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            },
+            {
+              ids: 10,
+              digit: '第十名',
+              num: [{value: "01", state: false}, {value: "02", state: false}, {
+                value: "03",
+                state: false
+              }, {value: "04", state: false}, {value: "05", state: false}, {
+                value: "06",
+                state: false
+              }, {value: "07", state: false}, {value: "08", state: false}, {
+                value: "09",
+                state: false
+              }, {value: "10", state: false}]
+            }
+          ]
+        } else if (that.NavListState == 92) {
+          that.gameAry = [
+            {
+              ids: 1,
+              digit: '第一名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            },
+            {
+              ids: 2,
+              digit: '第二名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            },
+            {
+              ids: 3,
+              digit: '第三名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            },
+            {
+              ids: 4,
+              digit: '第四名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            },
+            {
+              ids: 5,
+              digit: '第五名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            },
+            {
+              ids: 6,
+              digit: '第六名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            },
+            {
+              ids: 7,
+              digit: '第七名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            },
+            {
+              ids: 8,
+              digit: '第八名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            },
+            {
+              ids: 9,
+              digit: '第九名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            },
+            {
+              ids: 10,
+              digit: '第十名',
+              num: [{value: "大", state: false}, {value: "小", state: false}, {
+                value: "单",
+                state: false
+              }, {value: "双", state: false}]
+            }
+          ]
+        } else if (that.NavListState == 184) {
+          that.gameAry = [
+            {name: 3, odds: "", state: "false"}, {name: 4, odds: "", state: "false"}, {
+              name: 5,
+              odds: "",
+              state: "false"
+            }, {name: 6, odds: "", state: "false"},
+            {name: 7, odds: "", state: "false"}, {name: 8, odds: "", state: "false"}, {
+              name: 9,
+              odds: "",
+              state: "false"
+            }, {name: 10, odds: "", state: "false"},
+            {name: 11, odds: "", state: "false"}, {name: 12, odds: "", state: "false"}, {
+              name: 13,
+              odds: "",
+              state: "false"
+            }, {name: 14, odds: "", state: "false"},
+            {name: 15, odds: "", state: "false"}, {name: 16, odds: "", state: "false"}, {
+              name: 17,
+              odds: "",
+              state: "false"
+            }, {name: 18, odds: "", state: "false"}, {name: 19, odds: "", state: "false"}
+          ]
+          let y = that.gameOdds
+          that.gameAry.forEach(item => {
+
+            if (item.name == 3 || item.name == 4 || item.name == 18 || item.name == 19) {
+              item.odds = parseFloat(y).toFixed(3)
+            } else if (item.name == 5 || item.name == 6 || item.name == 16 || item.name == 17) {
+              item.odds = parseFloat(y / 2).toFixed(3)
+            } else if (item.name == 7 || item.name == 8 || item.name == 14 || item.name == 15) {
+              item.odds = parseFloat(y / 3).toFixed(3)
+            } else if (item.name == 9 || item.name == 10 || item.name == 12 || item.name == 13) {
+              item.odds = parseFloat(y / 4).toFixed(3)
+            } else if (item.name == 11) {
+              item.odds = parseFloat(y / 5).toFixed(3)
+            }
+          })
+
+        } else if (that.NavListState == 185) {
+          let y = that.gameOdds
+          that.gameAry = [
+            {name: "大", odds: "" + parseFloat(y).toFixed(3), state: "false"}, {
+              name: "单",
+              odds: "" + parseFloat(y / 1.25).toFixed(3),
+              state: "false"
+            },
+            {name: "小", odds: "" + parseFloat(y / 1.25).toFixed(3), state: "false"}, {
+              name: "双",
+              odds: "" + parseFloat(y).toFixed(3),
+              state: "false"
+            }
+          ]
+        }
+      },
+      //计算投注数量
+      setBetNum(data) {
+        this.BetNum = 0
+        this.BetNum = data
+        this.CalcMount(data)
+      },
+      // 投注后返回的数据
+      setGdata(data) {
+        this.selectGName = data
+        this.BetNum = 0;
+      },
+      //导航栏点击切换
+      RacNavSwitch(e) {
+        this.nav_Racing = e.target.dataset.index
+        this.setGameNav()
+      },
+      // 次级导航栏点击切换
+      RacSwitch(e) {
+        this.NavListState = parseInt(e.target.dataset.id)
+        this.gameName = e.target.dataset.name
+        this.setDorOdds()
+        // 设置玩法内容
+        this.setGameAry()
+        // 设置玩法下拉内容
+        this.setUserSelect()
+        // 设置玩法赔率数据
+        this.setDorOdds()
+        //添加成功后初始化数据
+        this.BetMoney = 0
+        this.BetNum = 0
+        this.selectGName = []
+        //初始化数组状态
+        this.clearDrag()
+        this.DorSomeAry.forEach(item => {
+          item.state = false
+        })
+
+      },
+      // 获取近5期投注期号
+      PhaseAjax() {
+        let that = this;
+        let url = "Api/Lssue/GetLssueHistoryInfo"
+        let data = {
+          lgId: that.GameIds
+        }
+        getAjax(url, data)
+          .then(function (data) {
+            that.allLotterydata = data.Data;
+          })
+      },
+      upTimeData(){
+        if(this.NowLssue){
+          this.$notify({
+            title: '温馨提示',
+            type: 'warning',
+            showClose: false,
+            message: this.NowLssue+ ' 已停止销售,请注意当前期号',
+            position: 'bottom-right'
+          });
+        }
+        this.timeAjax();
+      },
+      //请求投注期号
+      timeAjax() {
+        let that = this
+        that.NowTime = {
+          state: false
+        }
+        let url = "Api/Lssue/GetBetLssueInfo"
+        let data = {
+          lgId: that.GameIds
+        }
+        let openState = true   //是否需要请求开奖
+        getAjax(url, data)
+        // 请求成功后赋值
+          .then(function (data) {
+            window.NowLssue = data.Data.NowLssueFormat
+            that.NowLssue = data.Data.NowLssueFormat
+            that.LastLssue = data.Data.LastLssueFormat
+            that.NowTime = {
+              time: data.Data.NowLssueRemainTime,
+              state: true
+            }
+            that.dirNowLssue = data.Data.NowLssue
+            that.openTime = data.Data.LastLssue  //开奖期号
+            if (data.Data.LastOpenNumber == null || data.Data.LastOpenNumber == "") {
+              that.LastNum = ["00", "00", "00", "00", "00", "00", "00", "00", "00", "00"]
+              openState = true //无开奖号码
+            } else {
+              that.LastNum = data.Data.LastOpenNumber.split(',')
+              openState = false //有开奖号码
+            }
+          })
+          .then(function () {
+            // 如果没有开奖号，开始执行倒计时请求开奖号码
+            if (openState) {
+              that.setTimer()
+            }
+          })
+          .catch(() => {
+            that.openMessAge("网络出现异常，请刷新后重试")
+          })
+      },
+      // 设置倒计时请求开奖号码
+      setTimer() {
+        let that = this
+        if (this.timer == null) {
+          this.timer = setInterval(() => {
+            that.getResultNum()
+          }, 5000)
+        }
+      },
+      // 获取玩法数据
+      gameAjax() {
+        let that = this
+        let getPlayList = JSON.parse(window.sessionStorage.getItem("0playList" + that.GameIds))
+        if (getPlayList) {
+          that.navAllList = getPlayList
+          that.setGameNav()
+          return false
+        }
+        let url = "Api/Lp/GetPlayList?lpId=" + that.GameIds + "&pattern=0"
+        this._initOpenLoading(false)
+        getAjax(url).then(function (data) {
+          that._initCloseLoading()
+          if (data.IsSucess) {
+            that.navAllList = data.Data
+            window.sessionStorage.setItem("0playList" + that.GameIds, JSON.stringify(data.Data))
+            that.setGameNav()
+          } else {
+            that.openMessAge("数据请求出错，请检查网络设置")
+          }
+        })
+          .catch(() => {
+            that._initCloseLoading()
+            that.openMessAge("网络出现异常，请刷新后重试")
+          })
+
+
+      },
+      //  设置导航栏内容
+      setGameNav() {
+        let that = this
+        that.gameNavList = that.navAllList.concat()
+        // 截取数据
+        if (that.nav_Racing == 0) {
+          that.gameNavList = that.gameNavList.slice(0, 2)
+        } else if (that.nav_Racing == 1) {
+          that.gameNavList = that.gameNavList.slice(2, 4)
+          that.gameNavList = that.gameNavList.concat(that.navAllList.concat().slice(13, 15))
+        } else if (that.nav_Racing == 2) {
+          that.gameNavList = that.gameNavList.slice(4, 6)
+        } else if (that.nav_Racing == 3) {
+          that.gameNavList = that.gameNavList.slice(6, 8)
+        } else if (that.nav_Racing == 4) {
+          that.gameNavList = that.gameNavList.slice(8, 10)
+        } else if (that.nav_Racing == 5) {
+          that.gameNavList = that.gameNavList.slice(10, 11)
+        } else if (that.nav_Racing == 6) {
+          that.gameNavList = that.gameNavList.slice(11, 12)
+        } else if (that.nav_Racing == 7) {
+          that.gameNavList = that.gameNavList.slice(12, 13)
+        }
+        // 设置次级导航栏状态
+        that.NavListState = that.gameNavList[0].LpId
+        // 设置玩法赔率数据
+        that.setDorOdds()
+        that.setGameAry()
+        // 设置玩法倍率
+        that.setUserSelect()
+        //获取模式数组
+        that.gameNavList.forEach(item => {
+          if (that.NavListState == item.LpId) {
+            that.mountType = item.AmList
+          }
+
+        })
+
+        //初始化数组状态
+        that.clearDrag()
+      },
+      // 显示提示框
+      openMessAge(data) {
+        this.$message.error(data);
+      },
+      // 初始化子组件状态
+      clearDrag() {
+        let that = this
+        try {
+          that.GameState = false
+          that.GameState = true
+          this.DorSomeAry.forEach(item => {
+            item.state = "false"
+          })
+          this.gameName = this.gameNavList[0].Name
+          //添加成功后初始化数据
+          this.BetMoney = 0
+          this.BetNum = 0
+          this.selectGName = []
+          this.gameMultiplying = 1
+          this.setGameAry()
+          this.$refs.drag.selectAry = [];
+          this.$refs.drag.val = ""
+        } catch (e) {
+
+        }
+
+
+      },
+      // 投注数据
+      ListAjax() {
+        let that = this
+        let url = "api/OrderReport/BetHistory" + "?lgid=" + that.GameIds
+        postAjax(url)
+          .then(function (data) {
+            that.tableList = data.Data;
+          })
+        // 追号数据
+        let url2 = "api/OrderReport/ZHHistory?lgid=" + that.GameIds
+        postAjax(url2)
+          .then(function (data) {
+            that.trackList = data.Data
+          })
+          .catch(() => {
+            that.openMessAge("网络出现异常，请刷新后重试")
+          })
+      },
+      // 直接投注
+      Directbet() {
+        let that = this
+        let bContent = ''
+        if (this.NavListState == 92) {
+          that.selectGName.map((m, ii) => {
+            if (m.length > 1) {
+              m = m.replace(/(.{1})/g, '$1 ').replace(/(\s*$)/g, "");
+            }
+            bContent += m
+            if (ii < that.selectGName.length - 1) {
+              bContent += ','
+            }
+          })
+        } else {
+          bContent = that.selectGName.join(",")
+        }
+
+        let url = "Api/Bet/AddClassicPatternOrder?" + "lssue=" + that.dirNowLssue + "&LgId=" + that.GameIds
+        let order = [{
+          BetMoney: that.BetMoney,
+          BetMultiple: that.gameMultiplying,
+          LpId: that.NavListState,
+          PlayName: that.gameName,
+          BetContent: bContent,
+          BetCount: that.BetNum,
+          BetRebate: that.gamePoint,
+          BetBonus: that.gameOdds,
+          BonusMode: that.mountTypeId,
+          RxDsFormart: null
+        }]
+
+        if (that.BetNum < 1) {
+          that.betMinAShow()
+        } else if (that.BetMoney > that.userBalace) {
+          that.openMessAge("您的可用余额不足，请重新选择")
+          return
+        } else {
+          this._initOpenLoading(true)
+          postAjax(url, order, 1)
+            .then(function (data) {
+              that._initCloseLoading()
+              if (data.IsSucess) {
+                if (data.IsSucess == true) {
+                  that.showBetSuc()
+                  that.getUserInfo()
+                }
+
+              } else if (data.IsSucess == false) {
+                that.openMessAge(data.Message)
+              }
+            })
+            .then(function () {
+              //添加成功后初始化数据
+              that.BetMoney = 0
+              that.BetNum = 0
+              // 请求数据记录
+              that.ListAjax()
+              that.clearDrag()
+            })
+            .catch(() => {
+              this._initCloseLoading()
+              that.openMessAge("网络出现异常，请刷新后重试")
+            })
+        }
+      },
+      // 请求用户数据
+      getUserInfo() {
+        let that = this;
+        let url = "Api/User/GetUserInfo";
+        postAjax(url)
+          .then(function (data) {
+            that.userBalace = data.Data.Balance
+            // 提交用户信息到vuex
+            that.$store.commit('setUserInfo', data.Data);
+          })
+          .catch(() => {
+            that.openMessAge("网络出现异常，请刷新后重试")
+          })
+      },
+      // 数据投注
+      AryDirectbet() {
+        let that = this
+        if (that.betAry.length < 1) {
+          that.betMinAShow()
+        } else {
+          let order = []
+          this._initOpenLoading(true)
+          that.betAry.forEach(item => {
+            let bContent = ''
+            if (this.NavListState == 92) {
+              item.GAry.map((m, ii) => {
+                if (m.length > 1) {
+                  m = m.replace(/(.{1})/g, '$1 ').replace(/(\s*$)/g, "");
+                }
+                bContent += m
+                if (ii < item.GAry.length - 1) {
+                  bContent += ','
+                }
+              })
+            } else {
+              bContent = item.GAry.join(",")
+            }
+            let obj = {}
+            obj["BetMoney"] = item.mount
+            obj["BetMultiple"] = item.GMult
+            obj["LpId"] = item.ids
+            obj["PlayName"] = item.name
+            obj["BetContent"] = bContent
+            obj["BetCount"] = item.num
+            obj["BetRebate"] = item.reba
+            obj["BetBonus"] = item.gameOdd
+            obj["BonusMode"] = item.bon
+            order.push(obj)
+          })
+          let url = "Api/Bet/AddClassicPatternOrder?" + "lssue=" + that.dirNowLssue + "&LgId=" + that.GameIds
+          postAjax(url, order, 1)
+            .then(function (data) {
+              that._initCloseLoading()
+              if (data.IsSucess) {
+
+                if (data.Data.ErrorInfos.length > 0) {
+                  that.openMessAge("成功投注：" + data.Data.SuccessCount + "注，投注失敗：" + data.Data.ErrorInfos.length + "注")
+                } else {
+                  that.showBetSuc()
+                }
+                that.getUserInfo()
+                // 请求数据记录
+                that.ListAjax()
+              } else {
+                that.openMessAge(data.Message)
+              }
+              that.selectGName = []
+            })
+            .then(function () {
+              that.BetMoney = 0
+              that.BetNum = 0
+              that.betAry = []
+
+            })
+            .catch(() => {
+              this._initCloseLoading()
+              that.openMessAge("网络出现异常，请刷新后重试")
+            })
+
+        }
+      },
+      getGameIcon() {
+        this.navAry.forEach(item => {
+          item.LotteryList.forEach(e => {
+            if (e.LgId == this.GameIds) {
+              this.logoImgUrl = ''
+              this.logoImgUrl = this.imgUrl + e.WebIco
+            }
+          })
+        })
+      },
+      handleWinFocus() {
+        this.timeAjax();
+      },
+      //奖金调节
+      adjustMent(e) {
+        let value = e.target.value
+        this.Bonusadjust(Number(value))
+      },
+    },
+    components: {
+      openResult,
+      betting,
+      tablelist,
+      userpay,
+      gameCom,
+      optionvalue,
+      dragon,
+      detali,
+      betElast,
+      betSuccess,
+      flextab,
+      trackNum,
+      zhDetali,
+      history,
+      countDown
+    },
+    created() {
+      // 请求当前期投注数据
+      this.timeAjax()
+      // 请求玩法数据
+      this.gameAjax()
+      // 设置玩法内容
+      this.setGameAry()
+      // 投注数据
+      this.ListAjax()
+      // 請求用戶數據
+      this.getUserInfo()
+      // 请求近5期期号数据
+      this.PhaseAjax()
+      //
+      this.getGameIcon()
+    },
+    mounted() {
+      window.addEventListener('focus', this.handleWinFocus);
+    },
+    computed: {
+      navAry() {
+        return this.$store.state.navAry //导航栏数据
+      }
+    },
+    watch: {
+      $route() {
+        this.reload()
+      },
+      navAry() {
+        this.getGameIcon()
+      }
+    },
+    beforeDestroy() {
+      // 每次离开当前界面时，清除定时器
+      clearInterval(this.timer)
+      // this.timer = null;
+      // 每次离开当前界面时，清除监听
+      window.removeEventListener('focus', this.handleWinFocus);
+    },
+    destroyed() {
+      // 每次离开当前界面时，清除定时器
+      clearInterval(this.timer)
+      // this.timer = null;
+    },
+    beforeCreate() {
+
+    },
+  }
+</script>
+<style>
+    .time_box {
+        text-align: center;
+    }
+
+    .time_box .count__time__box {
+        margin-top: 16px;
+    }
+
+    .racing_titles_box {
+        background-position: center right;
+        background-repeat: no-repeat;
+        background-size: 25px 25px;
+        cursor: pointer;
+        padding-right: 5px;
+    }
+
+    /* 中奖信息 */
+    .titles_box {
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        line-height: 14px;
+        letter-spacing: 1px;
+        color: #ffffff;
+    }
+
+    .winning_main {
+        display: flex;
+        text-align: center;
+        align-items: center;
+    }
+
+    .racing .winning_item {
+        width: 46px;
+        text-align: center;
+        cursor: pointer;
+        color: white;
+        font-size: 18px;
+        margin: 0 3px;
+        overflow: hidden;
+    }
+
+    .winning_item .racing_car_rank {
+        color: white;
+        font-size: 16px;
+        margin-bottom: 5px;
+        line-height: 16px;
+    }
+
+    .racing .racing_car_iconbox img {
+        display: block;
+        width: 40px;
+        margin: 0 auto;
+    }
+
+    .racing_winning_main .winning_item {
+        width: 56px;
+        height: 56px;
+        text-align: center;
+        line-height: 52px;
+        color: #1a1c21;
+        cursor: pointer;
+        background-color: #fdf7f7;
+        border-radius: 100%;
+        margin: 0 6px;
+        font-size: 36px;
+        font-weight: normal;
+        font-stretch: normal;
+        color: #2c9a92;
+        -webkit-box-shadow: 0 0 5px 0px #ffffff;
+        box-shadow: 0 0 10px 0px #ffffff;
+    }
+
+    /* 主要内容 */
+    .racing_game_box1 {
+        width: 100%;
+
+    }
+
+    .Dragon_Tiger label {
+        margin-right: 24px;
+    }
+
+    .game_message_box .el-button {
+        display: none
+    }
+
+    .racing .quick_three_numlist {
+        padding: 19px 15px 7px 30px;
+        border-bottom: 1px dashed #c7c7c7;
+        background-color: #ffffff;
+    }
+
+    .racing .quick_three_numitem {
+        width: 103px;
+        height: 69px;
+        /*border: 1px solid #d0d0d0;*/
+        border-radius: 5px;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        float: left;
+        margin: 0 3px 9px;
+        /*background: #ececec;*/
+        background: url(../../static/img/gametype/k3_icon_bg.png) no-repeat 0 0/cover;
+    }
+
+    .racing .quick_three_numitem:hover {
+        color: white;
+        background: #008573;
+        border: 1px solid #008573;
+    }
+
+    .racing .quick_three_numitem:hover strong, .racing .quick_three_numitem:hover p {
+        color: #ffffff;
+    }
+
+    .racing .quick_three_numlist .numitem_select {
+        color: white;
+        background: #008573;
+        border: 1px solid #008573;
+    }
+
+    .racing .quick_three_numlist .numitem_select strong {
+        color: #ffffff;
+    }
+
+    .quick_three_numlist .numitem_select > p {
+        color: white;
+    }
+
+    .quick_three_numlist .numitem_select > strong {
+        color: #ffffff;
+    }
+
+    .racing .quick_three_numitem > .quick_three_num {
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .quick_three_numitem > p {
+        font-size: 14px;
+        color: #8e8e8e;
+        margin-top: 5px;
+    }
+</style>

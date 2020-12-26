@@ -1,0 +1,198 @@
+import {postAjax, getAjax} from "./ajaxjson";
+import store from "../store";
+import {Toast} from "vant";
+import router from "../router";
+import CryptoJS from 'crypto-js'
+//获取系统所有线路
+export function GetSysLines() {
+    let lines = [];
+    if (process.env.NODE_ENV === "development") {
+        //开发环境线路
+        lines.push({Name: "线路一", Url: "http://202.133.242.100:81/"});
+        lines.push({Name: "线路二", Url: "http://localhost:56104/"});
+        lines.push({Name: "线路三", Url: "http://202.133.242.100:81/"});
+        lines.push({Name: "线路四", Url: "http://202.133.242.100:81/"});
+    } else {
+        //生产环境线路
+       lines.push({Name: "线路一(推荐)", Url: "https://api.mllbj.com/"});
+       lines.push({Name: "线路二(推荐)", Url: "https://api.beijie01.com/"});
+       lines.push({Name: "线路三", Url: "https://api.beijie02.com/"});
+       lines.push({Name: "线路四", Url: "https://api.beijie03.com/"});
+        //生产环境测试服务器线路
+        // lines.push({Name: "线路一", Url: "http://202.133.242.100:81/"});
+        // lines.push({Name: "线路二", Url: "http://localhost:56104/"});
+        // lines.push({Name: "线路二", Url: "http://localhost:56104/"});
+        // lines.push({Name: "线路二", Url: "http://localhost:56104/"});
+    }
+    return lines;
+}
+
+/*
+* 获取系统初始化数据 存放到store中 刷新页面后则需要重新获取
+* User 当前登录的用户信息 为null表示未登录
+* DicConfig 系统配置Key-Value
+* LotteryNvgData 彩票游戏数组
+* Notice 紧急公告 如果不为空则需要弹出
+* ThirdGames 三方游戏数组
+* ThirdCategory 三方游戏分类数组
+* */
+export function selfConfig() {
+    let url = '/api/Sys/GetMoreInitData';
+    return getAjax(url).then(res => {
+        return res.Data;
+    })
+}
+
+//获取配置 根据Key
+export function SysKey(key) {
+    const sysData = store.state.sysConfig;
+    return sysData[key]
+}
+
+//试玩 path为空刷新当前页 否则跳转到 path
+export function GetTempUser(path) {
+    Toast.loading({
+        overlay: true,
+        message: '获取账号...',
+        duration: 0
+    });
+    let that = this;
+    postAjax('api/User/GetTmepUser').then((data) => {
+        if (!data.IsSucess) {
+            Toast.fail(data.Message);
+            return;
+        }
+        if (data.IsSucess) {
+            Toast.loading({overlay: true, message: '获取成功，跳转中...', duration: 0});
+            localStorage.setItem('token', "Basic" + " " + data.Data.Token);
+            if(!path)
+            router.replace({path:'/refresh'});
+            else
+                router.replace({path:path});
+        }
+    })
+}
+
+//获取终端类型
+export  function GetTerm(){
+   if(InWebView()){
+       if(window.MyIosWebView)
+           return 2;
+       else  if(window.AndroidWebView)
+           return 3;
+       else
+           return 4;
+   }else
+       return 4;
+}
+
+//加密
+export function encrypt(word, keyStr){
+    keyStr = keyStr ? keyStr : 'erer24!323wrfsdf';
+    var key  = CryptoJS.enc.Utf8.parse(keyStr);
+    var srcs = CryptoJS.enc.Utf8.parse(word);
+    var encrypted = CryptoJS.AES.encrypt(srcs, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
+    return encrypted.toString();
+}
+
+//解密
+export function decrypt(word, keyStr){
+    keyStr = keyStr ? keyStr : 'erer24!323wrfsdf';
+    var key  = CryptoJS.enc.Utf8.parse(keyStr);
+    var decrypt = CryptoJS.AES.decrypt(word, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
+    return CryptoJS.enc.Utf8.stringify(decrypt).toString();
+}
+
+window.MyIosWebView = null;//调用ios方法的对象  安卓会自动注册一个 window.AndroidWebView 的对象
+//注册调用Ios方法的对象
+export function SetupIosWebView() {
+    function _regIosBridgeCallback(bridge) {
+        window.MyIosWebView=bridge;//注册成功回调给对象赋值
+    }
+    console.log("开始注册IosWebView对象")
+    if (window.WebViewJavascriptBridge) {
+        _regIosBridgeCallback(WebViewJavascriptBridge);
+    } else {
+        document.addEventListener(
+            'WebViewJavascriptBridgeReady'
+            , function () {
+                _regIosBridgeCallback(WebViewJavascriptBridge);
+            },
+            false
+        );
+    }
+    if (window.WVJBCallbacks) {
+        return window.WVJBCallbacks.push(_regIosBridgeCallback);
+    }
+    window.WVJBCallbacks = [_regIosBridgeCallback];
+    var WVJBIframe = document.createElement('iframe');
+    WVJBIframe.style.display = 'none';
+    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+    document.documentElement.appendChild(WVJBIframe);
+    setTimeout(function () {
+        document.documentElement.removeChild(WVJBIframe)
+    }, 0);
+}
+
+//判断返回当前是否运行在webview中
+export function InWebView() {
+    if (window.MyIosWebView || window.AndroidWebView)
+        return true;
+    else
+        return false;
+}
+
+/*
+打开一个新窗口
+url 打开的地址
+如果当前运行环境在WebView中则调用app注册的方法打开 否则使用 window.open()打开
+*/
+export function OpenWindow(url) {
+  if(InWebView()){//如果当前
+     if(window.MyIosWebView){//当前运行在Ios WebView
+         window.MyIosWebView.callHandler('openbrowser', { url: url }, function (response) { });
+     }else if(window.AndroidWebView)//当前运行在 Android WebView
+         window.AndroidWebView.OpenBrowserss(url);
+     else
+         Toast('打开窗口失败,未注册对象');
+  }else
+      window.open(url);
+}
+
+//调用app方法显示版本信息 由app内弹窗
+export  function OpenVersion() {
+    if(InWebView()){
+        if(window.MyIosWebView){//当前运行在Ios WebView
+            window.MyIosWebView.callHandler('openJsVersion', {}, function (response) { });
+        }else if(window.AndroidWebView)//当前运行在 Android WebView
+            window.AndroidWebView.openJsVersion();
+        else
+            Toast('获取版本信息失败,未注册对象');
+    }
+}
+
+/*
+打开客服
+*/
+export function OpenCustomer() {
+   var kf= SysKey("KfCenterUrl").SysValue;
+    OpenWindow(kf);
+}
+
+//post 表单提交 url 打开新窗口的url p={url:"", param:{key:'',value:''}}
+export  function  OpenPostWindow(url,p) {
+    var paramArr = [];
+    paramArr.push("purl=" + p.url);
+    for (let key in p.param) {
+        paramArr.push(key + "=" + escape(p.param[key]));
+    }
+     url  += "?" + paramArr.join("&");
+    OpenWindow(url);
+}
+
+export function getLotteryNavData() {
+    let url = `Api/Lnc/Get?0=1`
+    return getAjax(url).then(data => {
+        return data
+    })
+}
