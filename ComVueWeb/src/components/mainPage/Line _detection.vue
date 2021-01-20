@@ -212,7 +212,7 @@
 
     }
 </script>
-<style>
+<style lang="scss" scoped>
   .line_detection_box {
     background: url(../../static/img/downbg.png) no-repeat 0 0 /100% 100%;
   }

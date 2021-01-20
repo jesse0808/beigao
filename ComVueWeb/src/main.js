@@ -4,9 +4,15 @@ import {SysKey,loadSystemConfig} from "./util/sysconfig";
 
 // 引入element-ui
 import element_ul from "element-ui"
+
+// 引入vuex状态控制文件
+import store from "../src/store/index.js"
 // 引入公共的CSS文件
-import common_css from "../src/static/css/common.css"
-import icon from "../src/static/css/iconfont.css"
+import light from "../src/assets/css/light/light.scss"
+import black from "../src/assets/css/black/black.scss"
+import common_css from "../src/assets/css/common.css"
+import icon from "../src/assets/css/iconfont.css"
+
 // 手动引入element样式
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -26,7 +32,7 @@ import header from './components/header/header.vue'
 import footer from './components/footer/footer.vue'
 
 // 引入swipecss文件
-import swiper_css from "../src/static/css/swiper.css"
+import swiper_css from "../src/assets/css/swiper.min.css"
 //引入element样式
 import 'element-ui/lib/theme-chalk/base.css';
 if (process.env.NODE_ENV == "development") {
@@ -35,20 +41,23 @@ if (process.env.NODE_ENV == "development") {
   console.log = () => {};
 }
 
+Vue.use(light)
+Vue.use(black)
 Vue.use(swiper_css)
 Vue.use(element_ul)
 Vue.use(icon)
 Vue.use(common_css)
+
 Vue.config.productionTip = false
 // 引入倒计时js文件
-// import timer from "../src/static/js/jquery.countdown.js"
+// import timer from "../src/assets/js/jquery.countdown.js"
 
 // Vue.use(timer)
-// 引入vuex状态控制文件
-import store from "../src/store/index.js"
+
 
 // Vue.use(QRCode)
 import router from './router'
+import vueAwesomeSwiper from "vue-awesome-swiper";
 
 window.eventBus = new Vue();
 

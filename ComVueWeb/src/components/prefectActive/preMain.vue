@@ -8,7 +8,7 @@
         <template slot="title">
           <div class="title">
             <img :src="item.url" alt="">
-            <span>{{item.Name}}</span>
+            <!-- <span>{{item.Name}}</span> -->
           </div>
         </template>
         <div class="content">
@@ -413,7 +413,12 @@
 <style lang="scss" scoped>
   .prefe_sign_box {
     width: 100%;
+    padding-bottom: 11px;
 
+    .el-collapse{
+      border-top: 0;
+      border-bottom: 0; 
+    }
     .div_shadow {
       height: 1px;
       box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
@@ -421,7 +426,6 @@
 
     .box_center {
       margin-top: 33px;
-      margin-bottom: 11px;
 
       .activity_item {
         width: 1200px;

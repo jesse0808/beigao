@@ -2,18 +2,10 @@
   <!-- 注册 -->
   <div class="user_login_box">
     <div class="register_img">
-      <!--<el-carousel height="455px" arrow="never">-->
-<!--&lt;!&ndash;        <el-carousel-item v-for="item in imgarr" :key="item">&ndash;&gt;-->
-<!--&lt;!&ndash;          <img :src="item" alt="">&ndash;&gt;-->
-<!--&lt;!&ndash;        </el-carousel-item>&ndash;&gt;-->
-        <!--<el-carousel-item>-->
-          <!--<img src="../../static/img/register.jpg" alt="">-->
-        <!--</el-carousel-item>-->
-      <!--</el-carousel>-->
-      <img src="../../static/img/register.jpg" alt="">
+      <img src="../../assets/img/registe/register.png" alt="">
     </div>
     <div class="register_content">
-      <h1>用户注册</h1>
+      <div class="register_title"><span><img src="../../assets/img/registe/register_user_inco.png"></span>用户注册</div>
       <div class="user_login_itembox">
         <label>用户名：</label>
         <input type="text" placeholder="输入6-13位字母或者数字" v-model="userID" @blur="judgeUser"
@@ -302,36 +294,69 @@
         }
     }
 </script>
-<style scoped>
+<style lang="scss" scoped>
   /* 登录 */
   .user_login_box {
     display: flex;
     justify-content: space-between;
-    width: 1097px;
+    width: 1060px;
+    padding: 16px 15px 14px;
+    border-radius: 16px;
   }
 
   .register_img {
-    width: 686px;
-    height: 468px;
+    width: 530px;
+    height: 530px;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  .register_img img {
-    width: 686px;
-    height: 468px;
-  }
 
   .register_content {
     width: 384px;
+    margin-right: 50px;
+
+    .register_title{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      color: #2b9c92;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 25px;
+
+      span{
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+      }
+    }
+
+    label {
+      display: inline-block;
+      width: 74px;
+      line-height: 44px;
+      text-align: right;
+      font-size: 14px;
+    }
+
+    input {
+      display: inline-block;
+      width: 308px;
+      height: 44px;
+      outline: none;
+      font-size: 14px;
+      line-height: 50px;
+      padding: 0 14px;
+      border-radius: 10px;
+      border: solid 1px #8e8e8e;
+    }
   }
 
-  .register_content > h1 {
-    padding: 5px 0 20px;
-    line-height: 22px;
-    font-size: 22px;
-    color: #2b9c92;
-    text-align: center;
-    font-weight: normal;
-  }
 
   .user_login_itembox {
     display: flex;
@@ -339,44 +364,26 @@
     color: #444444;
     position: relative;
     padding-bottom: 13px;
+
+    input{
+
+      &::placeholder {
+        color: #8e8e8e;
+      }
+    }
+
+    p {
+      padding: 6px 0px 6px 124px;
+      text-align: left;
+      color: #c93030;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      font-size: 14px;
+      display: none;
+    }
   }
 
-  .register_content label {
-    display: inline-block;
-    width: 74px;
-    line-height: 44px;
-    text-align: right;
-    font-size: 14px;
-    color: #171717;
-    font-weight: bold;
-  }
-
-  .register_content input {
-    display: inline-block;
-    width: 308px;
-    height: 44px;
-    outline: none;
-    font-size: 14px;
-    line-height: 50px;
-    padding: 0 14px;
-    border-radius: 10px;
-    border: solid 1px #8e8e8e;
-  }
-
-  .user_login_itembox input::placeholder {
-    color: #8e8e8e;
-  }
-
-  .user_login_itembox > p {
-    padding: 6px 0px 6px 124px;
-    text-align: left;
-    color: #c93030;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    font-size: 14px;
-    display: none;
-  }
 
   .return__error p {
     display: block;
@@ -385,18 +392,19 @@
   .user_login_btnbox {
     text-align: right;
     margin-top: 4px;
+
+    button {
+      width: 310px;
+      height: 44px;
+      background-color: #2ba59a;
+      border-radius: 10px;
+      color: white;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+    }
   }
 
-  .user_login_btnbox > button {
-    width: 310px;
-    height: 44px;
-    background-color: #2ba59a;
-    border-radius: 10px;
-    color: white;
-    font-size: 18px;
-    border: none;
-    cursor: pointer;
-  }
 
   .user_login_goto {
     float: right;
@@ -405,19 +413,19 @@
     font-size: 14px;
     margin-top: 12px;
     overflow: hidden;
-  }
 
-  .user_login_goto > .user_goto_other {
-    color: #289f92;
-  }
+    .user_goto_other {
+      color: #289f92;
 
-  .user_login_goto > .user_goto_other:hover {
-    text-decoration: underline;
-    color: #167e77;
-  }
+      &:hover {
+        text-decoration: underline;
+        color: #167e77;
+      }
+    }
 
-  .user_login_goto > span {
-    margin: 0 5px;
+    span {
+      margin: 0 5px;
+    }
   }
 
   /* 验证码 */
@@ -429,26 +437,27 @@
   .indenty_code_box {
     display: inline-block;
     position: relative;
-  }
 
-  .indenty_code_box > input {
-    width: 170px;
-  }
+    input {
+      //width: 170px;
+    }
 
-  .indenty_code_btn {
-    float: right;
-    width: 130px;
-    height: 44px;
-    margin-left: 8px;
+    .indenty_code_btn {
+      position: absolute;
+      top: 5px;
+      right: 7px;
+      width: 80px;
+      height: 34px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   .user_login_box > .el-button {
     display: none
-  }
-
-  .indenty_code_btn > img {
-    width: 100%;
-    height: 100%;
   }
 
   .el-carousel__item {

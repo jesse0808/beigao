@@ -1,10 +1,11 @@
 <template>
   <div class="order_cancel_box" v-if="showDialog">
     <div class="oc_mainbox">
-      <div class="oc_top_title">
+      <div class="oc_top_title window_title">
         {{title}}
-        <span class="iconfont icon-guanbi closeIcon" @click="_Cancel"></span>
+        <span class="iconfont closeIcon" @click="_Cancel"><img src="../../assets/img/icon/window/close.png"></span>
       </div>
+      <div class="warring_inco"><img src="../../assets/img/icon/window/warring.png"></div>
       <div class="oc_sure_textbox">
         <slot name="content"></slot>
       </div>
@@ -53,7 +54,7 @@
 
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
   .order_cancel_box {
     position: fixed;
     width: 100%;
@@ -72,7 +73,6 @@
       margin: auto;
       bottom: 0;
       right: 0;
-      background: #ffffff;
       border-radius: 5px;
       /*overflow: hidden;*/
       text-align: center;
@@ -83,23 +83,40 @@
       }
 
       .oc_top_title {
-        color: #ffffff;
-        background: #008573;
-        line-height: 45px;
         position: relative;
+        width:100%;
+        height: 45px;
+        color: #ffffff;
+        line-height: 45px;
         font-size: 16px;
         text-indent: 20px;
         text-align: left;
+        border-radius: 10px 10px 0px 0px;
 
         .closeIcon {
           position: absolute;
-          top: 0;
-          right: 0;
+          top: -18px;
+          right: -18px;
           width: 40px;
-          height: 45px;
+          height: 40px;
           text-align: center;
           text-indent: 0;
           cursor: pointer;
+          border-radius: 50%;
+          box-shadow:-3px 5px 5px 0 rgba(0, 0, 0, 0.5);
+
+          img{
+            width:100%;
+            height: 100%;
+            transition: all .3s;
+          }
+
+          &:hover{
+
+            img{
+              transform:rotate(180deg);
+            }
+          }
         }
       }
     }
@@ -121,33 +138,35 @@
     }
 
     .oc_sure {
-      color: white;
-      background: #008573;
       margin-right: 10px;
     }
+
     .oc_sure_btnbox > div:hover{
       opacity: .9;
     }
-    .oc_exit {
-      border: 1px solid #008573;
-      color: #008573;
+    
+    .warring_inco{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width:100%;
+      height: 100px;
     }
 
     .oc_sure_textbox {
-      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-size: 15px;
     }
 
     .oc_sure_btnbox {
-      position: absolute;
-      bottom: 0;
-      border-top: 1px solid #ccc;
-      padding: 10px 0;
       display: flex;
       justify-content: center;
       width: 100%;
       overflow: hidden;
-      padding: 10px 0;
+      padding: 20px 0;
+      border-radius:0px 0px 10px 10px ;
     }
   }
 

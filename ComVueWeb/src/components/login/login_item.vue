@@ -1,33 +1,28 @@
 <template>
     <div class="user_login_box">
+        <div class="close_login" @click="closeLogin"><img src="../../assets/img/icon/window/close.png"></div>
         <div class="login_img">
-            <!--<el-carousel height="415px" arrow="never">-->
-                <!--&lt;!&ndash;        <el-carousel-item v-for="item in imgarr" :key="item">&ndash;&gt;-->
-                <!--&lt;!&ndash;          <img :src="item" alt="">&ndash;&gt;-->
-                <!--&lt;!&ndash;        </el-carousel-item>&ndash;&gt;-->
-                <!--<el-carousel-item>-->
-                    <!--<img src="../../static/img/loginlunbo1.jpg" alt="">-->
-                <!--</el-carousel-item>-->
-            <!--</el-carousel>-->
-          <img src="../../static/img/loginlunbo1.jpg" alt="">
+          <img src="../../assets/img/head/login_img.png" alt="">
         </div>
         <div class="login_content">
+            <div class="login_title"><span><img src="../../assets/img/icon/head/welcome_login.png"></span>欢迎登陆</div>
             <!-- 输入错误时添加类名 return__error -->
             <div :class='["user_login_itembox",errUser?"return__error":""]'>
-                <span class="iconfont icon-yonghu userclass"></span>
+                <span class="iconfont"><img src="../../assets/img/icon/head/login_user.png"></span>
                 <input type="text" placeholder="请输入用户名" v-model="userLogin" @keyup.enter="userLoginAjax"
                        @click="hideErr"
                        />
                 <!--        <p>{{errText}}</p>-->
             </div>
             <div :class='["user_login_itembox","password_box",errPass?"return__error":""]'>
-                <span class="iconfont icon-mima pasclass"></span>
+                <span class="iconfont"><img src="../../assets/img/icon/head/login_password.png"></span>
                 <input type="password" placeholder="请输入密码" v-model="userPass" @keyup.enter="userLoginAjax"
                        @click="hideErr" />
                 <!--        <p>{{errText}}</p>-->
             </div>
             <div :class='["user_login_itembox","indenty_code",errCode?"return__error":""]'>
                 <div class="indenty_code_box">
+                    <span class="iconfont"><img src="../../assets/img/icon/head/login_verify.png"></span>
                     <input id="code" type="text" placeholder="请输入验证码" v-model.trim="userCode"
                            @keyup.enter="userLoginAjax"
                            @click="hideErr"/>
@@ -40,6 +35,9 @@
             </div>
             <div class="user_login_btnbox">
                 <button @click="userLoginAjax">立即登录</button>
+            </div>
+            <div class="user_login_btnbox shiwan">
+                <button @click="shiwan">试玩一下</button>
             </div>
             <!-- <div class="user_login_goto">
                 <router-link to="/userRegister" class="user_goto_other">前往注册</router-link>
@@ -213,69 +211,193 @@
         that.errUser = false
         that.errPass = false
       },
-    }
+      //关闭登录窗口
+      closeLogin() {
+        this.$store.commit('setLoginAfter', false)
+      },
+      //试玩
+      shiwan() {
+        let that = this;
+        postAjax('/api/User/GetTmepUser').then(data => {
+          if (data.IsSucess) {
+            localStorage.setItem('Authorization', "Basic" + " " + data.Data.Token);
+            localStorage.setItem('shiwan', true);
+            getUserInfo();
+            that.$message.success('登录成功，跳转首页中...');
+            setTimeout(() => {
+              that.closeLogin();
+              that.$router.push('/home')
+            }, 1000)
 
+          } else {
+            Message.error(data.Message)
+          }
+        })
+      },
+    }
+    
   }
 </script>
-<style scoped>
-    /* 登录 */
-    .user_login_box {
-        display: flex;
-        justify-content: space-between;
-        width: 1100px;
+<style lang="scss" scoped>
+  /* 登录 */
+  .user_login_box {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 1000px;
+    height: 495px;
+    border-radius: 10px;
+
+    .close_login {
+      position: absolute;
+      top: -22px;
+      right: -22px;
+      width: 60px;
+      height: 60px;
+      z-index: 1;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow:-3px 3px 5px 1px rgba(0, 0, 0, 0.5);
+
+      img{
+          width:100%;
+          height:100%;
+          transition: all .3s;
+      }
+
+      &:hover{
+
+        img{
+          transform: rotate(180deg);
+        }
+      }
     }
 
     .login_img {
-        width: 690px;
-        height: 415px;
-      border-top-left-radius: 10px;
-      border-bottom-left-radius: 10px;
-        overflow: hidden;
-    }
+      width: 450px;
+      height: 450px;
+      box-shadow: 0px 0px 6px 0px rgba(78, 97, 122, 0.5);
+      border-radius: 10px;
+      margin-top: 22px;
+      margin-left: 23px;
 
-    .login_img img {
-        width: 686px;
-        height: 415px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .login_content {
-        width: 400px;
-        padding: 54px 45px 0;
-    }
+      width: 360px;
+      margin-top: 45px;
+      margin-right: 80px;
 
-    .user_login_itembox {
+      .login_title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:100%;
+        height: 30px;
+        color: #008573;
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        letter-spacing: 5px;
+        
+        span{
+          display: flex;
+          align-items: center;
+          margin-right: 10px;
+          margin-top: 3px;
+        }
+      }
+
+      .user_login_itembox {
         position: relative;
-        padding-bottom: 30px;
-    }
+        padding-bottom: 15px;
 
-    .user_login_itembox input {
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        height: 54px;
-        padding-left: 52px;
-        outline: none;
-        font-size: 14px;
-        line-height: 42px;
-        border-radius: 27px;
-        border: solid 1px #8e8e8e;
-        z-index: 1;
-    }
+        .iconfont{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          top: 13px;
+          left: 20px;
+          width:23px;
+          color: #999;
+          z-index: 2;
 
-    .user_login_itembox input::placeholder {
-        color: #8e8e8e;
-    }
+          img{
+            width:100%;
+            height:100%;
+          }
 
-    .user_login_itembox > p {
-        padding: 6px 0px;
-        text-align: left;
-        padding-left: 130px;
-        color: #c93030;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        font-size: 14px;
-        display: none;
+        }
+
+        input {
+          position: relative;
+          display: inline-block;
+          width: 100%;
+          height: 54px;
+          padding-left: 52px;
+          outline: none;
+          font-size: 16px;
+          line-height: 42px;
+          border-radius: 10px;
+          z-index: 1;
+
+          &::placeholder {
+              color: #666;
+          }
+        }
+
+        p{
+          padding: 6px 0px;
+          text-align: left;
+          padding-left: 130px;
+          color: #c93030;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          font-size: 14px;
+          display: none;
+        }
+
+        /* 验证码 */
+        &.indenty_code{
+
+          input {
+            padding: 3px 10px;
+            line-height: 30px;
+          }
+
+          .indenty_code_box {
+            position: relative;
+
+            input {
+              width: 100%;
+              border-radius: 10px;
+              padding-right: 100px;
+              padding-left: 52px;
+            }
+
+            .indenty_code_btn {
+              position: absolute;
+              top: 9px;
+              right: 9px;
+              width: 84px;
+              height: 36px;
+              cursor: pointer;
+              z-index: 2;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
     }
 
     .return__error p {
@@ -283,105 +405,66 @@
     }
 
     .user_login_btnbox {
-        text-align: center;
-    }
+      text-align: center;
+      margin-top:20px;
 
-    .user_login_btnbox > button {
+      button {
         width: 100%;
-        height: 54px;
+        height: 50px;
         background-color: #008573;
-        border-radius: 27px;
+        border-radius: 10px;
         border: none;
         font-size: 18px;
         color: #ffffff;
         cursor: pointer;
-    }
 
-    .user_login_btnbox > button:hover {
-        opacity: .9;
+        &:hover {
+          opacity: .9;
+        }
+      }
+
+      &.shiwan{
+        margin-top:15px;
+
+        button{
+          background-color: #C19F63;
+        }
+      }
     }
 
     .user_login_goto {
-        text-align: center;
-        width: 100%;
-        font-size: 14px;
-        margin-top: 15px;
+      text-align: center;
+      width: 100%;
+      font-size: 14px;
+      margin-top: 15px;
+      color: #707b83;
+      overflow: hidden;
+      margin-bottom: 9px;
+
+      .user_goto_other {
         color: #707b83;
-        overflow: hidden;
-        margin-bottom: 9px;
-    }
 
-    .user_login_goto > .user_goto_other {
-        color: #707b83;
-    }
+        &:hover {
+          text-decoration: underline;
+          color: #167e77;
+        }
+      }
 
-    .user_login_goto > .user_goto_other:hover {
-        text-decoration: underline;
-        color: #167e77;
-    }
-
-    .user_login_goto > span {
+      span {
         margin: 0 5px;
+      }
     }
+    .user_login_box{
 
-    /* 验证码 */
-    .indenty_code input {
-        padding: 3px 10px;
-        line-height: 30px;
-    }
-
-    .indenty_code_box {
-        display: inline-block;
-        position: relative;
-    }
-
-    .indenty_code_box > input {
-        width: 170px;
-        border-radius: 10px;
-    }
-
-    .indenty_code_btn {
-        float: right;
-        width: 132px;
-        height: 44px;
-        margin-left: 8px;
-        cursor: pointer;
-    }
-
-    .indenty_code_btn > img {
-        width: 100%;
-        height: 54px;
-        border-radius: 10px;
-    }
-
-    .user_login_box > .el-button {
+      .el-button {
         display: none
-    }
-
-    .userclass {
-        display: inline-block;
-        position: absolute;
-        top: 7px;
-        left: 15px;
-        font-size: 26px;
-        color: #999999;
-        z-index: 2;
-    }
-
-    .pasclass {
-        display: inline-block;
-        position: absolute;
-        top: 6px;
-        left: 16px;
-        font-size: 26px;
-        color: #999999;
-        z-index: 2;
+      }
     }
 
     .el-carousel__item {
-        font-size: 0;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
+      font-size: 0;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
     }
+  }   
 </style>
-

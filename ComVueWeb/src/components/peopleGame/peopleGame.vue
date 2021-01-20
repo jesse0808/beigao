@@ -1,32 +1,32 @@
 <template>
     <div class="people_div" ref="minHeight">
         <!--操作区域-->
-        <div class="people-black-bg">
-            <div class="box_center pos_img">
-                <img src="../../static/img/video/classicmetal(bigsize).png" alt="">
+        <div class="box_center people-black-bg">
+            <div class="pos_img">
+                <img src="../../assets/img/video/classicmetal(bigsize).png" alt="">
             </div>
-            <div class="box_center people-handle">
+            <div class="people-handle">
                 <div class="people_play_box">
                     <div class="people-handle-item" @click="startGame2(2)">
-                        <img src="../../static/img/video/poker_AG.png" alt="AG"/>
+                        <img src="../../assets/img/video/ag.png" alt="AG"/>
                         <p>AG真人娱乐</p>
                     </div>
                     <div class="people-handle-item" @click="startGame2(3)">
-                        <img src="../../static/img/video/poker_BBIN.png" alt="BBIN"/>
+                        <img src="../../assets/img/video/bbin.png" alt="BBIN"/>
                         <p>BBIN真人娱乐</p>
+                    </div>
+                    <div class="people-handle-item" @click="startGame2(4)">
+                        <img src="../../assets/img/video/og.png" alt="OG"/>
+                        <p>OG真人娱乐</p>
                     </div>
                 </div>
                 <div class="people_play_box">
-                    <div class="people-handle-item" @click="startGame2(4)">
-                        <img src="../../static/img/video/poker_OG.png" alt="OG"/>
-                        <p>OG真人娱乐</p>
-                    </div>
                     <div class="people-handle-item" @click="startGame2(5)">
-                        <img src="../../static/img/video/poker_SB.png" alt="申博"/>
+                        <img src="../../assets/img/video/shenbo.png" alt="申博"/>
                         <p>申博真人娱乐</p>
                     </div>
                     <div class="people-handle-item" @click="startGame2(6)">
-                        <img src="../../static/img/video/poker_OB.png" alt="欧博"/>
+                        <img src="../../assets/img/video/oubo.png" alt="欧博"/>
                         <p>欧博真人娱乐</p>
                     </div>
                 </div>
@@ -105,64 +105,82 @@
   }
 </script>
 
-<style>
+<style lang="scss" scoped>
     .people_div{
         width: 100%;
         min-width: 1200px;
-        height: 56.4vw;
+        height: 51.82vw;
         min-height: 860px;
-        background: url(../../static/img/video/pokerBG.jpg) no-repeat 0 0/100% 100%;
-    }
-    .people-handle {
-        padding: 70px;
-    }
+        background: url(../../assets/img/video/pokerBG.jpg) no-repeat 0 0/100% 100%;
+        padding-top:80px;
 
-    .pos_img > img {
-        position: absolute;
-        top: 42px;
-        left: 0;
-    }
-    .people_play_box{
-        display: flex;
-        justify-content: center;
-    }
-    .people-handle-item {
-        /*display: flex;*/
-        /*justify-content: end;*/
-        position: relative;
-        /*width: 225px;*/
-        margin: 0 55px;
-        /*font-size: 0;*/
-        cursor: pointer;
-        transition: all .3s linear;
-    }
-    .people-handle-item:hover{
-        animation: gelatine 0.5s 1;
-    }
-    @keyframes gelatine {
-        from, to {
-            -webkit-transform: scale(1, 1);
-            transform: scale(1, 1);
-        }
-        25% {
-            -webkit-transform: scale(0.9, 1.1);
-            transform: scale(0.9, 1.1);
-        }
-        50% {
-            -webkit-transform: scale(1.1, 0.9);
-            transform: scale(1.1, 0.9);
-        }
-        75% {
-            -webkit-transform: scale(0.95, 1.05);
-            transform: scale(0.95, 1.05);
-        }
-    }
-    .people-handle-item > img {
-        width: 266px;
-        height: 370px;
-    }
-    .people-handle-item > p{
-        color: #ffffff;
-        text-align: center;
-    }
+        .people-black-bg{
+            display:table;
+
+            .pos_img{
+                float: left;
+                display: flex;
+                justify-content: center;
+                width:942px;
+
+                img {
+                  width: 327px;
+                  height: 80px;
+                }
+              
+            }
+
+            .people-handle {
+                float: left;
+                width:942px;
+                margin-top: 50px;
+
+                .people_play_box{
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 20px;
+
+                    .people-handle-item {
+                        position: relative;
+                        margin: 0 20px;
+                        cursor: pointer;
+                        transition: all .3s linear;
+
+                        img {
+                            width: 300px;
+                            height: 215px;
+                        }
+
+                        p{
+                            color: #ffffff;
+                            text-align: center;
+                        }
+
+                        &:hover{
+                            animation: gelatine 0.5s 1;
+
+                            @keyframes gelatine {
+                                from, to {
+                                    -webkit-transform: scale(1, 1);
+                                    transform: scale(1, 1);
+                                }
+                                25% {
+                                    -webkit-transform: scale(0.9, 1.1);
+                                    transform: scale(0.9, 1.1);
+                                }
+                                50% {
+                                    -webkit-transform: scale(1.1, 0.9);
+                                    transform: scale(1.1, 0.9);
+                                }
+                                75% {
+                                    -webkit-transform: scale(0.95, 1.05);
+                                    transform: scale(0.95, 1.05);
+                                }
+                            }
+                        }  
+                    }
+                }
+            }
+        } 
+    }  
 </style>

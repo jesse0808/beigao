@@ -1,0 +1,258 @@
+$bgColor:#191A1F; //背景色
+$baseColor:#2C2C2C; //基础色
+$activeColor:#008573;//当前色
+$titleColor:#191A1F; //标题色
+$fontColor:#C6D1D0; //字体色
+
+.black{
+    background-color: $bgColor;
+
+    //顶部
+    .header_topbox{
+        background-color: $titleColor;
+
+        .top_messagebox{
+
+            p{
+
+                div{
+                    color: $fontColor;
+                }
+            }
+        }
+        .user_operation{
+
+            a{
+                color: $fontColor;
+                border-right:1px solid #3C3C3E;
+            }
+        }
+
+        .icon_a{
+            color: $fontColor;
+            border-right:1px solid #3C3C3E;
+        }
+
+        .user_center{
+            border-right:1px solid #3C3C3E;
+
+            p{
+                color: $fontColor;
+            }
+
+            .user_center_listmain{
+                
+                a{
+                    color: $fontColor;
+
+                    &:hover {
+                        color: #2aaca2;
+                    }
+                }
+            }
+        }
+
+        .user_balance{
+            border-right:1px solid #3C3C3E;
+
+            .user_head_box{
+                background-color: rgba(43,43,43,.96);
+                
+                .user_name{
+                    color: $fontColor;
+                }
+
+                .user_exit{
+                    color: $fontColor;
+                }
+            }
+
+        }
+
+        .user_center_listitembox:after, .user_head_box:after{
+            border-top: 6px solid $titleColor;
+        }
+
+        .admin_center{
+            background-color: rgba(43,43,43,.96);
+        }
+
+    }
+
+    //导航
+    .nav_box{
+        background-color: $baseColor;
+        box-shadow: 0px 2px 16px 0px rgba(53, 63, 75, 0.1);
+
+        .nav_item{
+
+            a{
+                color: $fontColor;
+
+                &.router-link-active {
+                    color: $activeColor;
+                    border-bottom: 2px solid $activeColor;
+                }
+
+                &:hover {
+                    color: $activeColor;
+                    border-bottom: 2px solid $activeColor;
+                }
+            }
+        }
+
+        .nav_select_div{
+            box-shadow: 0 -5px 5px -5px #969696 !important;
+            background-color:rgba(44, 44, 44,.96);
+
+            .div_trianglea{
+
+                ul{
+
+                    .navlottery_game_item{
+                        
+                        .nav_name{
+                            color: $fontColor;
+                        }
+
+                        .navlotter_game_btn{
+                            color: $fontColor;
+                            border: 1px solid $fontColor;
+                            background-color: #373739;
+                        }
+                        
+                    }
+                }
+                
+            }
+
+            .Live_video_gamebox{
+
+                li{
+                    border-left: solid 1px #444;
+
+                    &:last-child {
+                        border-right: solid 1px #444;
+                    }
+
+                    p{
+                        color: $fontColor;
+                    }
+                }
+            }
+                
+        }
+    }
+
+    //右侧悬浮
+    .sus_item{
+        background-color: $baseColor;
+
+        .sus_item_inco{
+            background-color: $baseColor;
+        }
+    }
+
+    //公告弹窗
+    /deep/ .card_content{
+        
+        .el-tabs--border-card{
+
+            background-color:$baseColor;
+
+            .el-tabs__header{
+                background-color:$titleColor;
+
+                .el-tabs__nav-scroll{
+
+                    .el-tabs__nav{
+
+                        .el-tabs__item{
+                            color: $fontColor !important;
+                            border-bottom: 1px solid #505050 !important;
+
+                            &:hover, &.is-active{
+                                color: $activeColor !important;
+                                background-color: $baseColor !important;
+                                border-left: 4px solid $activeColor;
+                            }
+                        }
+                    }
+
+                    &::-webkit-scrollbar {
+                        background-color: #333333;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background-color: rgba(0, 0, 0, 0.9);
+
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 1);
+                        }
+                    }
+                }
+            }
+
+            .el-tabs__content{
+                
+                .title1,.title2{
+                    color: $fontColor !important;
+                }
+
+                .content_main{
+                    color: #999;
+                }
+            }
+        }
+    }
+
+    //登录
+    .user_login_box{
+        background-color: $baseColor;
+        box-shadow: 0px 10px 26px 6px rgba(78, 97, 122, 0.5);
+
+        .user_login_itembox{
+
+            input{
+                border: 1px solid #C6D1D0;
+                background-color: $baseColor;
+                color: $fontColor;
+            }
+            
+        }
+    }
+
+    //推出登录提示弹窗
+    /deep/ .order_cancel_box {
+
+        .warring_inco{
+            background-color: $baseColor;
+        }
+
+        .oc_sure_textbox{
+            background-color: $baseColor;
+            color: $fontColor;
+        }
+
+        .oc_sure_btnbox{
+            background-color: $baseColor;
+
+            .oc_sure {
+                color: #fff;
+                background: $activeColor;
+            }
+            .oc_exit {
+                border: 1px solid $fontColor;
+                color: $fontColor;
+            }
+        }
+    }
+
+    //注册
+    .register_content{
+
+        label{
+            color: #999;
+        }
+    }
+}

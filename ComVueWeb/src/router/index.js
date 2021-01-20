@@ -333,8 +333,6 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     store.commit('rightDom',false)
-    document.getElementById('app').style.backgroundImage = `url(../../static/img/bg_B01.jpg)`
-    document.getElementById('app').style.backgroundColor = `#e3e1e6`
     next();
   }
 });

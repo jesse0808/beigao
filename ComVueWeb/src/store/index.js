@@ -10,6 +10,8 @@ const store = new Vuex.Store({
   state: {
     // 存储token
     Authorization: localStorage.getItem('Authorization') ? localStorage.getItem('Authorization') : '',
+    baseUrl:"http://202.133.242.100:81/",
+    theme:0,//主题样式  0：明亮，1：暗夜  默认：0
     header: true, //头部状态
     footer: true, //底部状态
     header_top: true, //顶部状态栏
@@ -74,6 +76,10 @@ const store = new Vuex.Store({
     // 导航栏数据
     setNavAry(state, data) {
       state.navAry = data
+    },
+    //皮肤数据
+    setTheme(state,data){
+      state.theme=data;
     }
   },
   actions: {

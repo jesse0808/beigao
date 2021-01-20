@@ -1,5 +1,5 @@
 <template>
-    <div id="app" v-if="isLoadSysData">
+    <div id="app" v-if="isLoadSysData" :class="changeTheme(this.theme)">
         <!-- 头部组件 -->
         <header-dom v-if="$store.state.header"/>
         <!-- 中间内容组件 -->
@@ -16,19 +16,33 @@
     name: 'App',
     provide() {
       return {
-        reload: this.reload
+        reload: this.reload,
       }
     },
+
     data() {
       return {
         isLoadSysData: false,
-        isRouterAlive: true
+        isRouterAlive: true,
       }
     },
-    mounted() {
 
-
+    computed:{
+      theme(){
+        let lsTheme=localStorage.getItem("theme")-0;
+        if(!lsTheme){
+          return this.$store.state.theme;
+        }else{
+          if(lsTheme==this.$store.state.theme){
+            return this.$store.state.theme;
+          }else{
+            return lsTheme;
+          }
+        }
+        
+      }
     },
+    
     created() {
       let that = this;
       exLoadSystemConfig().then((data) => {
@@ -36,7 +50,7 @@
           return;
         }
         if (data.IsSucess) {
-          window.systemData = data.Data;
+          window.systemData = data.Data
         }
         this.isLoadSysData = true
 
@@ -54,13 +68,26 @@
         // 修改网站标题
       //  document.title = SysKey("SysName").SysValue;
       })
+
     },
+    
     methods: {
       reload() {
         this.isRouterAlive = false
         this.$nextTick(function () {
           this.isRouterAlive = true
         })
+      },
+      changeTheme(val){
+        switch (val) {
+          case 0: //明亮
+            return "light";
+            break;
+
+          case 1: //暗夜
+            return "black";
+            break;
+        };
       }
     }
   }

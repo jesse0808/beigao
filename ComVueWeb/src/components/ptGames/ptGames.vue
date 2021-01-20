@@ -1,29 +1,20 @@
 <template>
-    <div class="change_style_ptgame" ref="minHeight">
-        <!--艺游顶部海报-->
-        <div class="pt-games-adPic">
-            <img src="../../static/img/ptgames/jackpotBannerBG.png" alt=""/>
+    <div class="change_style_ptgame box_center" ref="minHeight">
+        <!--游戏分类导航-->
+        <div class="pt_nav box_center">
+          <ul>
+            <li :class="gameId == 7?'select_ptGames_nav':''" @click="getGameList" data-id="7">PT 电子</li>
+            <li :class="gameId == 10?'select_ptGames_nav':''" @click="getGameList" data-id="10">BS 电子</li>
+            <li :class="gameId == 11?'select_ptGames_nav':''" @click="getGameList" data-id="11">MG 电子</li>
+            <li :class="gameId == 12?'select_ptGames_nav':''" @click="getGameList" data-id="12">CQ9 电子</li>
+            <li :class="gameId == 13?'select_ptGames_nav':''" @click="getGameList" data-id="13">HABA 电子</li>
+            <li :class="gameId == 2?'select_ptGames_nav':''" @click="getGameList" data-id="2">AG 电子</li>
+          </ul>
         </div>
         <!--艺游操作部分-->
         <div class="pt-black-bg">
             <div class="box_center ptGames-handel">
-
-                <!--左侧按钮-->
-                <div>
-          <span :class="['ptGames-button',gameId == 7?'select_ptGames_nav':'']" @click="getGameList"
-                data-id="7">PT</span>
-                    <span :class="['ptGames-button',gameId == 10?'select_ptGames_nav':'']" @click="getGameList"
-                          data-id="10">BetSoft</span>
-                    <span :class="['ptGames-button',gameId == 11?'select_ptGames_nav':'']" @click="getGameList"
-                          data-id="11">MG</span>
-                    <span :class="['ptGames-button',gameId == 12?'select_ptGames_nav':'']" @click="getGameList"
-                          data-id="12">CQ9</span>
-                    <span :class="['ptGames-button',gameId == 13?'select_ptGames_nav':'']" @click="getGameList"
-                          data-id="13">HAB</span>
-                    <span :class="['ptGames-button',gameId == 2?'select_ptGames_nav':'']" @click="getGameList"
-                          data-id="2">AG</span>
-                </div>
-
+                <div class="ptGames_name"><i class="el-icon-guide"></i>{{gameCateName}}</div>
                 <!--右侧搜索-->
                 <div class="search-ptgames-container">
                     <input type="text" v-model="name" @keydown.enter="searchGame" placeholder="查询游戏"/>
@@ -35,25 +26,21 @@
         <!--艺游游戏部分-->
         <div class="pt-gray-bg">
             <div class="pt-games-container">
-                <div class="pt-games-items-container" v-for="(item,index) in gamesArr" :key="index"  @click="noStatus(item)">
-                    <div class="pt-games-items">
-                        <div class="pt-games-item-pic">
-                            <img :src="url+item.imgurl"/>
+                <div class="pt-games-items" v-for="(item,index) in gamesArr" :key="index"  @click="noStatus(item)">
+                    <div class="pt-games-item-pic">
+                        <img :src="url+item.imgurl"/>
+                        <div class="ptGames_cover">
+                          <div class="ptGames_try" v-if="!isLogin && (gameId==7 || gameId==10 || gameId==13)" @click="shiwanGame(item)">试玩一下</div>
+                          <div class="ptGames_go" v-else @click="startGame(item)">开始游戏</div>
                         </div>
-                        <div class="pt-games-item-title">
-                            <span class="PGIT-name">{{item.cn_name}}</span>
-                            <!--               <span class="PGIT-heart"></span>-->
-                        </div>
-                        <div class="pt-games-item-button">
-                            <span v-if="!isLogin && (gameId==7 || gameId==10 || gameId==13)"
-                                  @click="shiwanGame(item)">试玩</span>
-                            <span v-else @click="startGame(item)">开始游戏</span>
-                        </div>
+                    </div>
+                    <div class="pt-games-item-title">
+                        <span class="PGIT-name">{{item.cn_name}}</span>
                     </div>
                 </div>
                 <!--未找到游戏-->
                 <div class="pt-games-noFind" v-if="!gamesArr || gamesArr.length==0">
-                    <img src="../../static/img/ptgames/nofind.png"/>
+                    <img src="../../assets/img/ptgames/nofind.png"/>
                     <span class="pt-games-noFind-text">暂无收录游戏</span>
                 </div>
 
@@ -77,6 +64,7 @@
 </template>
 
 <script>
+import { Switch } from 'element-ui';
   import {postAjax, getAjax} from "../../util/ajax.js";
   import {SysKey} from "../../util/sysconfig";
 
@@ -94,6 +82,7 @@
         url: SysKey("ImgServerUrl").SysValue,
         userinfo: {}, //用户信息
         errorMassge: '',
+        gameCateName:'PT电子',//游戏类目名称
       }
     },
     created() {
@@ -102,11 +91,12 @@
     computed: {
       isLogin() {
         return this.$store.state.loginStatus
-      }
+      },
     },
     watch: {
-      'gameId'() {
+      'gameId'(val) {
         this.getGamesArr();
+        this.setCateName(val);
       },
       '$route'() {
         this.gameId = this.$route.query.id || 7;
@@ -267,6 +257,29 @@
         }
         this.toGame(data);
       },
+      //获取游戏类目名称
+      setCateName(id){
+        switch(id-0){
+          case 7:
+            this.gameCateName="PT电子";
+            break;
+          case 10:
+            this.gameCateName="BS电子";
+            break;
+          case 11:
+            this.gameCateName="MG电子";
+            break;
+          case 12:
+            this.gameCateName="CQ9电子";
+            break;
+          case 13:
+            this.gameCateName="HABA电子";
+            break;
+          case 2:
+            this.gameCateName="AG电子";
+            break;
+        }
+      }
     },
     mounted() {
       // 获取游戏列表
@@ -318,56 +331,124 @@
 <style lang="scss" scoped>
     .change_style_ptgame {
         width: 100%;
-        min-width: 1200px;
-        padding-top: 17px;
+        padding-top: 450px;
         padding-bottom: 71px;
-        background: url(../../static/img/ptgames/jackpotBG.jpg) no-repeat 0 0/100% 100%;
-        .pt-games-adPic {
-            width: 1200px;
-            margin:  0 auto;
-            font-size: 0;
-            img {
-                margin: 0 auto;
+        background: url(../../assets/img/ptgames/jackpotBG.png) no-repeat 0 0/100% 100%;
+
+        .pt_nav{
+          height: 75px;
+          ul{
+            display: flex;
+            justify-content: space-between;
+
+            li{
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              width:196px;
+              height: 71px;
+              padding-top: 19px;
+              padding-right: 20px;
+              cursor: pointer;
+              font-size: 18px;
+              color: #008573;
+              font-weight: bold;
+
+              &:first-child{
+                padding-right: 30px;
+                background-image: url(../../assets/img/ptgames/pt_bg.png);
+              }
+
+              &:nth-child(2){
+                height: 76px;
+                padding-right: 25px;
+                padding-top: 24px;
+                margin-top: -5px;
+                background-image: url(../../assets/img/ptgames/bs_bg.png);
+              }
+
+              &:nth-child(3){
+                height: 73px;
+                padding-top: 21px;
+                margin-top: -2px;
+                background-image: url(../../assets/img/ptgames/mg_bg.png);
+              }
+
+              &:nth-child(4){
+                background-image: url(../../assets/img/ptgames/cq9_bg.png);
+              }
+
+              &:nth-child(5){
+                height: 72px;
+                padding-top: 20px;
+                padding-right: 10px;
+                margin-top: -1px;
+                background-image: url(../../assets/img/ptgames/haba_bg.png);
+              }
+
+              &:last-child{
+                height: 61px;
+                padding-right: 22px;
+                padding-top: 10px;
+                margin-top: 10px;
+                background-image: url(../../assets/img/ptgames/ag_bg.png);
+              }
+
+              &.select_ptGames_nav{
+                color: #fff;
+
+                &:first-child{
+                  background-image: url(../../assets/img/ptgames/pt_bg_a.png);
+                }
+
+                &:nth-child(2){
+                  background-image: url(../../assets/img/ptgames/bs_bg_a.png);
+                }
+
+                &:nth-child(3){
+                  background-image: url(../../assets/img/ptgames/mg_bg_a.png);
+                }
+
+                &:nth-child(4){
+                  background-image: url(../../assets/img/ptgames/cq9_bg_a.png);
+                }
+
+                &:nth-child(5){
+                  background-image: url(../../assets/img/ptgames/haba_bg_a.png);
+                }
+
+                &:last-child{
+                  background-image: url(../../assets/img/ptgames/ag_bg_a.png);
+                }
+              }
             }
+          }
         }
 
         .pt-black-bg {
             width: 1200px;
-            height: 72px;
+            height: 60px;
             margin: 0 auto;
             background-color: #ffffff;
             box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 10px 10px 0 0;
 
             .ptGames-handel {
-                padding: 17px 0 0 19px;
+                padding: 10px 0 0 19px;
 
-                div {
+                .ptGames_name{
                     float: left;
-
-                    .ptGames-button {
-                        display: inline-block;
-                        width: 112px;
-                        height: 40px;
-                        /*background-color: #008573;*/
-                        font-size: 14px;
-                        font-weight: normal;
-                        font-stretch: normal;
-                        line-height: 39px;
-                        letter-spacing: 0px;
-                        color: #171717;
-                        text-align: center;
-                        border-radius: 20px;
-                        cursor: pointer;
-
-                        &:hover {
-                            color: #ffffff;
-                            background-color: #008573;
-                        }
-                    }
-
-                    .select_ptGames_nav {
-                        color: #ffffff;
-                        background-color: #008573;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    font-size: 16px;
+                    color: #000;
+                    font-weight: bold;
+                    letter-spacing: 1px;
+                    
+                    i{
+                      font-size: 18px;
+                      margin-right: 3px;
                     }
                 }
 
@@ -405,7 +486,7 @@
                         top: 12px;
                         right: 5px;
                         padding: 10px 20px;
-                        background-image: url(../../static/img/ptgames/ptsearch.png);
+                        background-image: url(../../assets/img/ptgames/ptsearch.png);
                         background-repeat: no-repeat;
                         background-size: 16px 16px;
                         background-position: 50%;
@@ -424,7 +505,9 @@
             width: 1200px;
             margin: 0 auto;
             padding: 0 5px 36px;
-            background-color: #ececec;
+            background-color: #fff;
+            border-radius:0 0 10px 10px;
+            box-shadow: 0px 2px 16px 0px rgba(53, 63, 75, 0.1);
 
             .pt-games-container {
                 display: flex;
@@ -434,68 +517,92 @@
                 flex-wrap: wrap;
                 padding: 4px 0 27px;
 
-                .pt-games-items-container {
+                .pt-games-items {
                     width: 230px;
-                    height: 206px;
+                    height: 200px;
                     margin: 20px 4px 0;
-                    padding: 17px 15px 0;
-                    background-color: #ffffff;
                     cursor: pointer;
+                    background-color: #E7EBF6;
+                    
+                    .pt-games-item-title {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 12px;
+                        font-stretch: normal;
+                        letter-spacing: 0;
+                        color: #666666;
+                        padding-top: 13px;
+                        font-weight: bold;
+                    }
 
-                    .pt-games-items {
+                    .pt-games-item-pic {
+                        position: relative;
                         width: 100%;
-                        height: 100%;
-                        .pt-games-item-title {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
+                        height: 160px;
+                        font-size: 0;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        .ptGames_cover{
+                          display: none;
+                          justify-content: center;
+                          align-items: center;
+                          flex-direction: column;
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          width:100%;
+                          height: 100%;
+                          background-color: rgba(0,85,73,.8);
+
+                          .ptGames_go,.ptGames_try{
+                            width:90px;
+                            height: 23px;
+                            line-height: 23px;
+                            text-align: center;
+                            border-radius: 5px;
+                            color: #fff;
+                            font-size: 14px;
+                          }
+
+                          .ptGames_go{
+                            background-color: #C19F62;
+                          }
+
+                          .ptGames_try{
+                            background-color: #FF8C83;
+                          }
+
+                        }
+                    }
+
+                    .pt-games-item-button {
+                        width: 100%;
+
+                        span {
+                            display: block;
+                            width: 80px;
+                            margin: 0 auto;
                             font-size: 12px;
+                            font-weight: normal;
                             font-stretch: normal;
-                            letter-spacing: 0;
-                            color: #666666;
-                            padding-top: 13px;
-                            font-weight: bold;
-                        }
-
-                        .pt-games-item-pic {
-                            width: 100%;
-                            font-size: 0;
-
-                            img {
-                                width: 200px;
-                                height: 132px;
-                            }
-                        }
-
-                        .pt-games-item-button {
-                            width: 100%;
-
-                            span {
-                                display: block;
-                                width: 80px;
-                                margin: 0 auto;
-                                font-size: 12px;
-                                font-weight: normal;
-                                font-stretch: normal;
-                                color: #707070;
-                                text-align: center;
-                            }
+                            color: #707070;
+                            text-align: center;
                         }
                     }
 
                     &:hover {
-                        background-color: #008573;
                         box-shadow: 0px 0px 5px 0px rgba(132, 132, 132, 0.5);
-                        .PGIT-name{
-                            color: #ffffff;
-                        }
-                        .pt-games-item-button{
-                            span{
-                                color: #ffffff;
-                            }
+                        
+                        .ptGames_cover{
+                          display: flex;
                         }
                     }
-                }
+                }  
             }
         }
     }

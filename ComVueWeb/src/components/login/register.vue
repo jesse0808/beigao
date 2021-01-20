@@ -21,15 +21,12 @@
     width: 100%;
     min-width: 1200px;
     padding: 50px 0;
+
     .center_box {
       display: table;
       width: auto;
       height: auto;
-      padding: 16px 15px 14px;
       margin: 0 auto;
-      box-shadow: rgba(0, 0, 0, 0.14) 0 2px 18px 0;
-      border-radius: 16px;
-      background-color: #ffffff;
     }
   }
 </style>
