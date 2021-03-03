@@ -1,0 +1,162 @@
+<template>
+    <li>
+        <router-link :to="{name:'Timehonor',query:{id:id,index:gameInfo.LsId}}">
+            <div class="collect_game_inco">{{gameInfo.Name.substr(0,1)}}</div>
+            <div class="collect_game_info">
+                <div class="collect_game_name">{{gameInfo.Name}}</div>
+                <div class="collect_game_time">{{timehleft}}{{timehright}}:{{timemleft}}{{timemright}}:{{timesleft}}{{timesright}}</div>
+            </div>
+            <div v-if="gameInfo.IsHot" class="collect_game_hot"><img src="../../assets/img/icon/hot.png"></div>
+        </router-link>
+    </li>
+</template>
+
+<script>
+    import {getAjax} from "../../util/ajax.js"
+    import {SecondToHHSSMM} from "../../assets/js/changeTime.js"
+
+    export default {
+        name:"collectGame",
+        props:["id"],
+        data(){
+            return{
+                NowTime:'',//游戏剩余时间
+                timehleft: 0,//倒计时小时十位
+                timehright: 0,//倒计时小时个位
+                timemleft: 0,//倒计时分十位
+                timemright: 0,//倒计时分个位
+                timesleft: 0,//倒计时小秒十位
+                timesright: 0,//倒计时小秒个位
+            }
+        },
+        computed:{
+            gameInfo() {
+                let caipiao = new Object();
+                if (this.$store.state.navAry.length!=0){
+                    this.$store.state.navAry.forEach((items) => {
+                        items.LotteryList.forEach((item)=>{
+                            if (item.LgId === this.id) {
+                                return caipiao = item;
+                            }
+                        })
+                    });
+                }
+                return caipiao;
+            },
+        },
+        created(){
+            this.gameTime();
+        },
+        destroyed(){
+            clearInterval(this.timer);
+        },
+        methods:{
+            //游戏剩余时间
+            gameTime(){
+                let url="Api/Lssue/GetBetLssueInfo?lgId="+this.id;
+                getAjax(url).then(data=>{
+                    if(data.IsSucess){
+                        this.NowTime=data.Data.NowLssueRemainTime;
+                        clearTimeout(this.setTimeFun);
+                        this.openTimeDispose();
+                    }
+                })
+            },
+
+            //倒计时时间处理
+            openTimeDispose() {
+                if (this.NowTime < 2) {
+                    clearTimeout(this.setTimeFun);
+                    this.gameTime();
+                }
+                let minute = Math.floor(Number(this.NowTime) / 60); //分钟
+                let timem = Number(this.NowTime) % 60; //秒
+                let timeh = Math.floor(Number(minute) / 60); //小时
+                this.timehleft = Math.floor(Number(timeh) / 10);
+                this.timehright = Number(timeh) % 10;
+                this.timemleft = Math.floor(Number(minute) / 10);
+                this.timemright = Number(minute) % 10;
+                this.timesleft = Math.floor(Number(timem) / 10);
+                this.timesright = Number(timem) % 10;
+                this.setTimeFun = setTimeout(() => {
+                if (this.NowTime > 0) {
+                    this.NowTime -= 1;
+                    this.openTimeDispose();
+                }
+                }, 1000);
+            },
+            
+        }
+    }
+</script>
+
+<style lang="scss" scoped>
+    li{
+        width: 180px;
+        height: 50px;
+        box-shadow: 0px 2px 16px 0px rgba(53, 63, 75, 0.1);
+        border-radius: 25px 0px 25px 0px;
+        margin-left: 15px;
+        transition: all .3s;
+
+        a{
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            .collect_game_inco{
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                text-align: center;
+                color: #fff;
+                font-size: 16px;
+                background-color: #C19F62;
+                border-radius: 50%;
+                font-weight: 500;
+                margin-left: 15px;
+
+            }
+
+            .collect_game_info{
+                width:105px;
+                height: 50px;
+                padding-top: 8px;
+                margin-left: 8px;
+
+                .collect_game_name,.collect_game_time{
+                    width:100%;
+                    height: 15px;
+                    line-height: 15px;
+                    text-align: left;
+                    font-size: 14px;
+                    
+                    &:hover{
+                        transition: all .3s;
+                    }
+                }
+
+                .collect_game_name{
+                    margin-bottom: 3px;
+                }
+            }
+
+            .collect_game_hot{
+                position: absolute;
+                top:-12px;
+                right: 0;
+                width:20px;
+                height: 28px;
+
+                img{
+                    width:100%;
+                    height: 100%;
+                }
+            }
+        }
+
+    }
+</style>
