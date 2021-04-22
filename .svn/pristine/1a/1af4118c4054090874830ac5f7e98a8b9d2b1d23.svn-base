@@ -1,0 +1,1636 @@
+<template>
+    <!-- 快三 -->
+    <div class="allgame-mainbox kuaisan">
+        <!-- 收藏 -->
+        <collectList v-if="isGetCollect"></collectList>
+        <div class="lottery_con box_center">
+            
+            <!-- 玩法内容 -->
+            <div class="gametype_center ">
+                <!--玩法类型-->
+                <div class="official_type">官方玩法</div>
+                <!-- 中奖信息 -->
+                <div class="title_box box_h">
+                    <div class="title_logo">
+                        <img :src="logoImgUrl" alt=""/>
+                    </div>
+                    <!--投注时间-->
+                    <div class="title_countdown_box">
+                        <h3 class="racing_titles_box">第<span>{{NowLssue}}</span>期<br>投注倒计时</h3>
+                        <div>
+                            <countDown :time="NowTime" @upTimeData="upTimeData"/>
+                        </div>
+                    </div>
+                    <!-- 往期中奖号码 -->
+                    <div class="title_countdown_box">
+                        <h3>第<span>{{LastLssue}}</span>期<br>开奖号码</h3>
+                        <!-- 中奖号码盒子 -->
+                        <div class="winning_main box_h">
+                            <div class="quick_winning_item Sievesnum_box" v-for="(item,index) in LastNum" :key="index">
+                                <div class="one" v-if="item==1"></div>
+                                <div class="two" v-if="item==2"></div>
+                                <div class="three" v-if="item==3"></div>
+                                <div class="four" v-if="item==4"></div>
+                                <div class="five" v-if="item==5"></div>
+                                <div class="six" v-if="item==6"></div>
+                                <div class="zero" v-if="item==0"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--走势、收藏-->
+                    <div class="trendCollect">
+                      <div class="trend">
+                        <router-link :to="{name:'Trendmap',query:{id:$route.query.id,index:$route.query.index}}" target="_blank">
+                          <div class="trendCollect_img"><img src="../../assets/img/gametype/trend.png"></div>
+                          <div class="trendCollect_title">开奖走势</div>
+                        </router-link>
+                      </div>
+                      <collect :lgId="$route.query.id"></collect>
+                    </div>
+                </div>
+                <div class="content_info">
+                    <div class="content_box_left">
+                        <!-- 选号 -->
+                        <div class="choice_num">
+                            <div class="quick_three_box1 gametype_topnav">
+                                <!-- 导航 -->
+                                <div class="content_nav">
+                                    <ul class="content_nav_top box_h">
+                                        <li><a :class="nav_Quick == 0?'select_a':''" data-index="0"
+                                              @click="RacNavSwitch">和值</a>
+                                        </li>
+                                        <li><a :class="nav_Quick == 1?'select_a':''" data-index="1" @click="RacNavSwitch">三同号</a>
+                                        </li>
+                                        <li><a :class="nav_Quick == 2?'select_a':''" data-index="2" @click="RacNavSwitch">三不同号</a>
+                                        </li>
+                                        <li><a :class="nav_Quick == 3?'select_a':''" data-index="3" @click="RacNavSwitch">三连号</a>
+                                        </li>
+                                        <li><a :class="nav_Quick == 4?'select_a':''" data-index="4" @click="RacNavSwitch">二同号</a>
+                                        </li>
+                                        <li><a :class="nav_Quick == 5?'select_a':''" data-index="5" @click="RacNavSwitch">二不同号</a>
+                                        </li>
+                                    </ul>
+                                    <!-- 次级导航栏 -->
+                                    <ul class="content_nav_secondary">
+                                        <template v-if="nav_Quick=='0'">
+                                            <li class="second_navitembox box_h">
+                                                <label>和值</label>
+                                                <div class="box_flex second_item_mainbox box_h">
+                                                    <div :class="[navNum==item.LpId?'select_two_a':'']"
+                                                        v-for="item in navList" :key="item.LpId" :data-id="item.LpId"
+                                                        @click="smallSwitch"
+                                                        :data-name="item.Name">{{item.Alias}}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </template>
+                                        <template v-else-if="nav_Quick=='1'">
+                                            <li class="second_navitembox box_h">
+                                                <label>三同号</label>
+                                                <div class="box_flex second_item_mainbox box_h">
+                                                    <div :class="[navNum==item.LpId?'select_two_a':'']"
+                                                        v-for="item in navList" :key="item.LpId" :data-id="item.LpId"
+                                                        @click="smallSwitch"
+                                                        :data-name="item.Name">{{item.Alias}}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </template>
+                                        <template v-else-if="nav_Quick=='2'">
+                                            <li class="second_navitembox box_h">
+                                                <label>三不同号</label>
+                                                <div class="box_flex second_item_mainbox box_h">
+                                                    <div :class="[navNum==item.LpId?'select_two_a':'']"
+                                                        v-for="item in navList" :key="item.LpId" :data-id="item.LpId"
+                                                        @click="smallSwitch"
+                                                        :data-name="item.Name">{{item.Alias}}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </template>
+                                        <template v-else-if="nav_Quick=='3'">
+                                            <li class="second_navitembox box_h">
+                                                <label>三连号</label>
+                                                <div class="box_flex second_item_mainbox box_h">
+                                                    <div :class="[navNum==item.LpId?'select_two_a':'']"
+                                                        v-for="item in navList" :key="item.LpId" :data-id="item.LpId"
+                                                        @click="smallSwitch"
+                                                        :data-name="item.Name">{{item.Alias}}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </template>
+                                        <template v-else-if="nav_Quick=='4'">
+                                            <li class="second_navitembox box_h">
+                                                <label>二同号</label>
+                                                <div class="box_flex second_item_mainbox box_h">
+                                                    <div :class="[navNum==item.LpId?'select_two_a':'']"
+                                                        v-for="item in navList" :key="item.LpId" :data-id="item.LpId"
+                                                        @click="smallSwitch"
+                                                        :data-name="item.Name">{{item.Alias}}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </template>
+                                        <template v-else-if="nav_Quick=='5'">
+                                            <li class="second_navitembox box_h">
+                                                <label>二不同号</label>
+                                                <div class="box_flex second_item_mainbox box_h">
+                                                    <div :class="[navNum==item.LpId?'select_two_a':'']"
+                                                        v-for="item in navList" :key="item.LpId" :data-id="item.LpId"
+                                                        @click="smallSwitch"
+                                                        :data-name="item.Name">{{item.Alias}}
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                                <!-- 说明 -->
+                                <template v-if="GameIndex == 4">
+                                    <!-- 示例内容 -->
+                                    <div class="demo_case">
+                                        <div class="demo_left">{{exampleObj[navNum].showTest || ''}}
+                                            <div>
+                                                <span class="iconfont icon-dengpao"/>选号示例
+                                                <div>
+                                                    <p v-for="(item,index) in exampleObj[navNum].arr" :key="index">投注：{{item.title || ''}} <br/> 开奖：{{item.content || ''}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="bonus_select">
+                                            <span>奖金调节：</span>
+                                            <label>
+                                                <select @change="adjustMent" v-model="selectDate">
+                                                    <option :selected="index == 0" :data-num="index" v-for="(item,index) in userSelect" :value="index" :key="index">{{item}}%</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- 直选和值 -->
+                                    <template v-if="navNum==119">
+                                        <!-- 号码列表 -->
+                                        <div class="quick_three_numlist cf">
+                                            <div :class='["quick_three_numitem","box_s",item.state == "true"?"numitem_select big_icon":""]'
+                                                v-for="(item,index) in gameAry" :key="index" @click="select_num"
+                                                :data-state="item.state"
+                                                :data-index="index">
+                                                <strong class="quick_three_num">{{item.name}}</strong>
+                                                <p>￥{{item.odds}}</p>
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <!-- 大小单双 -->
+                                    <template v-if="navNum==183">
+                                        <!-- 号码列表 -->
+                                        <div class="quick_three_numlist daxiao cf">
+                                            <div :class='["quick_three_numitem"," box_s",item.state == "true"?"numitem_select big_icon":""]'
+                                                v-for="(item,index) in gameAry" :key="index" @click="select_num"
+                                                :data-state="item.state"
+                                                :data-index="index">
+                                                {{item.name}}
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <!-- 三同号通选 -->
+                                    <template v-if="navNum==120">
+                                        <!-- 号码列表 -->
+                                        <div class="quick_three_numlist santongtong cf">
+                                            <div :class='["quick_three_numitem","box_s","dom_center",item.state == "true"?"numitem_select big_icon":""]'
+                                                v-for="(item,index) in gameAry" :key="index" @click="select_num"
+                                                :data-state="item.state"
+                                                :data-index="index">
+                                                {{item.name}}
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <!-- 三同号单选 -->
+                                    <template v-if="navNum==121">
+                                        <!-- 号码列表 -->
+                                        <div class="quick_three_numlist cf">
+                                            <gameType :gametype="gameTypeAry" @setary="setSelectAry" ref="empty" @setbet="setBetNum" :navid="navNum"></gameType>
+                                        </div>
+                                    </template>
+                                    <!-- 三不同号单选 -->
+                                    <template v-if="navNum==122">
+                                        <!-- 号码列表 -->
+                                        <div class="quick_three_numlist">
+                                            <gameType :navid="navNum" :gametype="gameTypeAry" @setary="setSelectAry" ref="empty" @setbet="setBetNum"></gameType>
+                                        </div>
+                                    </template>
+                                    <template v-if="navNum==123">
+                                        <!-- 号码列表 -->
+                                        <div class="quick_three_numlist santongtong cf">
+                                            <div :class='["quick_three_numitem","dom_center"," box_s",item.state == "true"?"numitem_select big_icon":""]'
+                                                v-for="(item,index) in gameAry" :key="index" @click="select_num"
+                                                :data-state="item.state"
+                                                :data-index="index">
+                                                {{item.name}}
+                                            </div>
+                                        </div>
+                                    </template>
+                                    <template v-if="navNum==124">
+                                        <!-- 号码列表 -->
+                                        <div class="quick_three_numlist cf">
+                                            <gameType :navid="navNum" :gametype="gameTypeAry" @setary="setSelectAry" ref="empty" @calc="CalcMount"></gameType>
+                                        </div>
+                                    </template>
+                                    <!-- 二同号单选 -->
+                                    <template v-if="navNum==125">
+                                        <!-- 号码列表 -->
+                                        <div class="quick_three_numlist cf">
+                                            <gameTypes :navid="navNum" :gameAry="gameSenAry" ref="empty" @setbet="setBetNum" @getdata="getData"></gameTypes>
+                                        </div>
+                                    </template>
+                                    <!-- 二不同号 -->
+                                    <template v-if="navNum==126">
+                                        <!-- 号码列表 -->
+                                        <div class="quick_three_numlist cf">
+                                            <gameType :navid="navNum" :gametype="gameTypeAry" @setary="setSelectAry" ref="empty" @setbet="setBetNum"></gameType>
+                                        </div>
+                                    </template>
+                                </template>
+                                <flextab :id="GameIds" :indexs="GameIndex" :gameType=0></flextab>
+                            </div>
+                        
+                            <!-- 用户投注 -->
+                            <userpay ref="userPay" :mult="gameMultiplying" @bonus="Bonusadjust" :betnum="BetNum" :betmoney="BetMoney"
+                                    @typeset="TypeSet"
+                                    @gamemultiply="selectGameMultiply" :userselect="userSelect" @openmess="openMessAge"
+                                    :mounttype="mountType" @dirbet="Directbet" :balance="userBalace"
+                                    @allin="AllIN"></userpay>
+                        </div>                      
+                        <!-- 投注记录 -->
+                        <betting :time="NowTime" :ids="navNum" :betary="betAry" :gameindex="GameIndex" @addnum="addNum"
+                                 @emptynum="EmptyNum"
+                                 @deletenum="deleteNum" @settrack="setTrack" @direct="AryDirectbet" :isZhuihao="zhuihaoState" :balance="userBalace"></betting>
+                    </div>
+                    <div class="content_box_right">
+                        <history :historyData="LastFiveLssue" :id=0></history>
+                    </div>
+                </div>
+                <!-- 表格 -->
+                <tablelist :tablist="tableList" @setinfo="infoData" :tracklist="trackList" :indexs="GameIndex"></tablelist>
+            </div>
+        </div>
+        <!-- 弹框组 -->
+        <betElast v-if="betMinA" @bethide="betMinAHide"></betElast>
+        <zhDetali :zhdata="zhList" ref="dragZhDetali" @list="ListAjax" @getinfo="getUserInfo"></zhDetali>
+        <!-- 追号投注弹框 -->
+        <trackNum v-if="trackState" @hidetrack="hideTrack" :ary="betAry" @clearbet="clearBetAry" @list="ListAjax" @getinfo="getUserInfo"></trackNum>
+        <betSuccess v-if="betSuccess" @bethide="hideBetSuc"></betSuccess>
+        <!-- 详情弹框 -->
+        <detali :getinfo="infoList" ref="dragDetali" @list="ListAjax" @getinfo="getUserInfo"></detali>
+        <!-- 倒计时结束后显示 -->
+        <openResult v-if="openFrame" :redata="openDataRe" @hidere="hideOpenRe"></openResult>
+    </div>
+</template>
+
+<script>
+  //系统设置
+  import {SysKey} from "../../util/sysconfig"
+  //收藏
+  import collect from '../conmon/collect'
+  //收藏列表
+  import collectList from '../conmon/collectList'
+  // 引用axios封装文件
+  import {postAjax, getAjax} from "../../util/ajax.js"
+  // 投注记录组件
+  import betting from "../Subcomponents/Betting"
+  // 悬浮组件
+  import flextab from "../Subcomponents/flex_tab"
+  // 表格组件
+  import tablelist from "../Subcomponents/Tablelist"
+  // 用户投注组件
+  import userpay from "../Subcomponents/user_pay.vue"
+  // 最少选择一注弹框
+  import betElast from "../Elasticframe/Betting_minone"
+  // 追号投注
+  import trackNum from "../Elasticframe/Track_num"
+  // 玩法块
+  import gameType from "../Subcomponents/game_type"
+  // 第二种玩法块
+  import gameTypes from "../Subcomponents/game_types"
+  // 投注成功
+  import betSuccess from "../Elasticframe/Betting_success"
+  // 详情弹框
+  import detali from "../Elasticframe/infodetails"
+  // 秒数转化
+  import {SecondToHHSSMM} from "../../assets/js/changeTime.js"
+  // 追号详情
+  import zhDetali from "../Elasticframe/zhdetails"
+  // 倒计时结束后显示
+  import openResult from "../Elasticframe/Number_change"
+  //开奖历史
+  import history from "../conmon/history";
+  //倒计时组件
+  import countDown from "../conmon/countDown";
+  //提示信息
+  import sscJson from "../../json/ssc"
+  export default {
+    // 刷新页面
+    inject: ["reload"],
+    data() {
+      return {
+        selectTwoNav: 0,//默认选中第一个
+        timeNum: 0, //开奖请求次数
+        AInState: true, //梭哈方法
+        openTime: "",//开奖期数
+        openDataRe: {}, //开奖弹框数据
+        openFrame: false, //倒计时结束弹框
+        userBalace: 0, //用户余额
+        imgUrl: SysKey("ImgServerUrl").SysValue, //图片地址
+        logoImgUrl:'',//游戏图标
+        betSuccess: false, //投注是否成功
+        betElast: false, //请选择投注内容
+        choicenum: true,
+        selectDate:0,//獎金賠率設置
+        gameAry: [
+          {name: 3, odds: "", state: "false"}, {name: 4, odds: "", state: "false"}, {
+            name: 5,
+            odds: "",
+            state: "false"
+          }, {name: 6, odds: "", state: "false"},
+          {name: 7, odds: "", state: "false"}, {name: 8, odds: "", state: "false"}, {
+            name: 9,
+            odds: "",
+            state: "false"
+          }, {name: 10, odds: "", state: "false"},
+          {name: 11, odds: "", state: "false"}, {name: 12, odds: "", state: "false"}, {
+            name: 13,
+            odds: "",
+            state: "false"
+          }, {name: 14, odds: "", state: "false"},
+          {name: 15, odds: "", state: "false"}, {name: 16, odds: "", state: "false"}, {
+            name: 17,
+            odds: "",
+            state: "false"
+          }, {name: 18, odds: "", state: "false"}
+        ],
+        num: 0, //选中玩法
+        nav_Quick: 0, //导航栏选中
+        GameIds: parseInt(this.$route.query.id), //游戏ID
+        GameIndex: this.$route.query.index.toString(),  //游戏种类
+        navList: [], //次级导航栏内容
+        navAllList: [],//次级导航栏全部数据
+        navNum: 0,//次级导航栏选中状态
+        NowLssue: "", //当前期号
+        dirNowLssue: "", //投注期号
+        LastLssue: "", //上一期
+        LastNum: [], //上一期开奖号码
+        NowTime: {}, //投注倒计时
+        LastFiveLssue: [], //近五期数据
+        CurrentPoint: 0, //当前返点
+        gameOdds: "", //玩法赔率
+        gamePoint: "", //游戏返点
+        gameName: "直选和值", //游戏名称
+        gameMultiplying: 1, //游戏倍率
+        BetNum: 0, //投注数量
+        BetMoney: 0, //投注金额
+        mountType: [], //模式
+        mountTypeId: 1, // 模式id
+        mountTypeName: "2元", //模式名称
+        mountNum: 2,
+        selectGName: [], //选择的投注内容数组
+        betMinA: false, //是否显示弹框
+        trackState: false, //是否显示追号弹框
+        // 传入投注卡子组件的内容
+        betAry: [],
+        // 传入子组件玩法赔率数组
+        userSelect: ["414.720-0.00%", "414.720-1.00%"],
+        //  传入玩法子组件的数组
+        gameTypeAry: {},
+        //  传入玩法子组件数组
+        gameSenAry: [
+          {
+            ids: 1,
+            digit: '二同号',
+            num: [{value: "11", state: false, name: "1"}, {
+              value: "22",
+              state: false,
+              name: "2"
+            }, {value: "33", state: false, name: "3"}, {value: "44", state: false, name: "4"}, {
+              value: "55",
+              state: false,
+              name: "5"
+            }, {value: "66", state: false, name: "6"}]
+          },
+          {
+            ids: 2,
+            digit: '不同号',
+            num: [{value: "1", state: false, name: "1"}, {value: "2", state: false, name: "2"}, {
+              value: "3",
+              state: false,
+              name: "3"
+            }, {value: "4", state: false, name: "4"}, {value: "5", state: false, name: "5"}, {
+              value: "6",
+              state: false,
+              name: "6"
+            }]
+          },
+        ],
+        // 传入表单子组件
+        tableList: [],
+        trackList: [],
+        // 详情弹框数据
+        infoList: {},
+        zhList: [], //追号详情信息
+        timer: null, //倒计时
+        exampleObj:sscJson,
+        isGetCollect:false,//是否加载收藏数据
+        playType:true,//是否显示玩法按钮
+        zhuihaoState:false,//追号radio状态
+      }
+    },
+    computed: {
+      navAry() {
+        return this.$store.state.navAry //导航栏数据
+      }
+    },
+    methods: {
+      //当前选中的二级导航栏
+      selectTwoNavFun(e) {
+        this.selectTwoNav = e.target.dataset.id;
+      },
+      getGameIcon() {
+        this.navAry.forEach(item => {
+          item.LotteryList.forEach(e => {
+            if (e.LgId == this.GameIds) {
+              this.logoImgUrl = ''
+              this.logoImgUrl = this.imgUrl + e.WebIco
+            }
+          })
+        })
+      },
+      // 加载中
+      _initOpenLoading(isFlag = true) {
+        this.loading = this.$loading({
+          lock: true,
+          text: `${isFlag ? '投注中' : '加载中'}...`,
+          spinner: 'el-icon-loading',
+          background: 'rgba(255, 255, 255, 0.4)'
+        })
+      },
+      _initCloseLoading() {
+        this.loading.close()
+      },
+      // 追号投注后清除数组
+      clearBetAry() {
+        this.betAry = []
+      },
+      // 接受子组件的值
+      infoData(data, num) {
+        let that = this
+        let index = num  //1为普通订单，2位追号订单
+        let obj = data
+        let ptid = data.OrderNumber  //普通订单号
+        let zhid = data.ZhNumber     //追号订单号
+        //获取普通投注数据
+        if (index == 1) {
+          let url = "Api/Order/GetDetailByOrderNumber?" + "number=" + ptid + "&type=" + index
+          postAjax(url)
+            .then(function (data) {
+              if (data.IsSucess) {
+                that.infoList = data.Data[0]
+              } else {
+                that.openMessAge("获取信息错误，请重试")
+                return false
+              }
+            })
+            .then(function () {
+              that.$refs.dragDetali.dialogTableVisible = true
+            })
+            .catch(() => {
+              that.openMessAge("网络出现异常，请刷新后重试")
+            })
+        }
+        //追号记录 详情
+        else if (index == 2) {
+          let url = "Api/Order/GetDetailByOrderNumber?" + "number=" + zhid + "&type=" + index
+          postAjax(url)
+            .then(function (data) {
+              if (data.IsSucess) {
+                that.zhList = data.Data
+                let allmoney = 0 //总金额
+                let ykmoney = 0  //盈亏金额
+                //计算总金额
+                data.Data.forEach(item => {
+                  allmoney += item.BetMoney
+                  ykmoney += item.WinBonus - item.BetMoney
+                })
+                //添加到第一个数组
+                data.Data[0]["allMoney"] = allmoney
+                data.Data[0]["ykMoney"] = ykmoney
+
+              } else {
+                that.openMessAge("获取信息错误，请重试")
+                return false
+              }
+            })
+            .then(function () {
+              that.$refs.dragZhDetali.dialogVisible = true
+            })
+        }
+
+      },
+      // 显示投注成功框
+      showBetSuc() {
+        this.betSuccess = true
+        this.autoHideBetSuc = setTimeout(this.hideBetSuc, 2000);
+      },
+      hideBetSuc() {
+        this.betSuccess = false
+        this.autoHideBetSuc = null
+      },
+      // 设置传入玩法子组件的数组
+      setTypeAry() {
+        let that = this;
+        that.gameTypeAry = {}
+        // 三同号单选
+        if (that.navNum == 121) {
+          that.gameTypeAry = {
+            GameIds: that.navNum,
+            GameAry: [{
+              Id: 1,
+              List: [{code: "0", text: "111", value: "1"}, {
+                code: "0",
+                text: "222",
+                value: "2"
+              }, {code: "0", text: "333", value: "3"}, {code: "0", text: "444", value: "4"}, {
+                code: "0",
+                text: "555",
+                value: "5"
+              }, {code: "0", text: "666", value: "6"}],
+              Title: "选号区"
+            }]
+          }
+        }
+        //三不同号
+        else if (that.navNum == 122) {
+          that.gameTypeAry = {
+            GameIds: that.navNum,
+            GameAry: [{
+              Id: 1,
+              List: [{code: "0", text: "1", value: "1"}, {code: "0", text: "2", value: "2"}, {
+                code: "0",
+                text: "3",
+                value: "3"
+              }, {code: "0", text: "4", value: "4"}, {code: "0", text: "5", value: "5"}, {
+                code: "0",
+                text: "6",
+                value: "6"
+              }],
+              Title: "选号区"
+            }]
+          }
+        }
+        // 二同号复选
+        else if (that.navNum == 124) {
+          that.gameTypeAry = {
+            GameIds: that.navNum,
+            GameAry: [{
+              Id: 1,
+              List: [{code: "0", text: "11", value: "1"}, {code: "0", text: "22", value: "2"}, {
+                code: "0",
+                text: "33",
+                value: "3"
+              }, {code: "0", text: "44", value: "4"}, {code: "0", text: "55", value: "5"}, {
+                code: "0",
+                text: "66",
+                value: "6"
+              }],
+              Title: "选号区"
+            }]
+          }
+        }
+        // 二不同号
+        else if (that.navNum == 126) {
+          that.gameTypeAry = {
+            GameIds: that.navNum,
+            GameAry: [{
+              Id: 1,
+              List: [{code: "0", text: "1", value: "1"}, {code: "0", text: "2", value: "2"}, {
+                code: "0",
+                text: "3",
+                value: "3"
+              }, {code: "0", text: "4", value: "4"}, {code: "0", text: "5", value: "5"}, {
+                code: "0",
+                text: "6",
+                value: "6"
+              }],
+              Title: "选号区"
+            }]
+          }
+        }
+        // 二同号单选
+        else if (that.navNum == 125) {
+          that.gameTypeAry = {
+            GameIds: that.navNum,
+            GameAry: [{
+              Id: 1,
+              List: [{code: "0", text: "11", value: "1"}, {code: "0", text: "22", value: "1"}, {
+                code: "0",
+                text: "33",
+                value: "3"
+              }, {code: "0", text: "44", value: "4"}, {code: "0", text: "55", value: "5"}, {
+                code: "0",
+                text: "66",
+                value: "6"
+              }],
+              Title: "二同号"
+            }, {
+              Id: 2,
+              List: [{code: "0", text: "1",}, {code: "0", text: "2"}, {code: "0", text: "3"}, {
+                code: "0",
+                text: "4"
+              }, {code: "0", text: "5"}, {code: "0", text: "6"}],
+              Title: "不同号"
+            }]
+          }
+        }
+      },
+      // 显示弹框 隐藏弹框
+      betMinAShow() {
+        this.betMinA = true
+      },
+      betMinAHide() {
+        this.betMinA = false
+      },
+      //切换期号
+      choice_data() {
+        this.choicenum = true
+      },
+      choice_data_other() {
+        this.choicenum = false
+      },
+      // 列表选择
+      select_num(e) {
+        let that = this
+        let sta = e.currentTarget.dataset.state
+        let indexs = e.currentTarget.dataset.index
+        if (sta == "false") {
+          that.gameAry[indexs].state = "true"
+          that.selectGName.push(that.gameAry[indexs].name)
+          that.BetNum = parseInt(that.selectGName.length)
+          that.CalcMount()
+        } else if (sta == "true") {
+
+          that.gameAry[indexs].state = "false"
+          let ids = that.selectGName.indexOf(that.gameAry[indexs].name)
+          if (ids > -1) {
+            that.selectGName.splice(ids, 1)
+          }
+          that.BetNum = parseInt(that.selectGName.length)
+          that.CalcMount()
+        }
+
+
+      },
+      //计算投注金额
+      CalcMount() {
+        let that = this
+        let type = that.mountType; //模式数组
+        let name = that.mountTypeName;
+        let num = that.gameMultiplying; //倍率
+        type.forEach(item => {
+          if (item.Name == name) {
+            that.BetMoney = parseInt(that.BetNum) * parseInt(num) * parseFloat(item.Rate)
+          }
+        })
+      },
+      // 清空投注卡列表
+      EmptyNum(Data) {
+        let that = this
+        that.betAry = Data
+      },
+      // 删除投注卡某一列
+      deleteNum(Data) {
+        let that = this
+        that.betAry.splice(Data, 1)
+      },
+      //导航栏点击切换
+      RacNavSwitch(e) {
+        this.nav_Quick = e.target.dataset.index
+        this.setGameNav()
+        // 初始化投注名称数组
+        this.selectGName = []
+        // 初始化投注金额
+        this.BetMoney = 0
+        // 初始化投注数量
+        this.BetNum = 0
+      },
+      // 次级导航栏点击切换
+      smallSwitch(e) {
+        this.navNum = parseInt(e.target.dataset.id)
+        this.gameName = e.target.dataset.name
+        //修改数组的值
+        this.setSomeAry()
+        // 设置玩法列表
+        this.setGameList()
+        // 设置玩法赔率
+        this.setUserSelect()
+        // 设置选号列表
+        this.setTypeAry()
+        // 初始化投注数量
+        this.BetNum = 0
+        // 出初始化投注名称数组
+        this.selectGName = []
+        // 初始化投注金额
+        this.BetMoney = 0
+        // 修改子组件内容
+        this.emptyAry()
+        //this.$refs.userPay.resetData()
+      },
+      //设置玩法赔率数组
+      setUserSelect() {
+        let that = this;
+        let ids = that.navNum;
+        that.navList.forEach(item => {
+          if (ids == item.LpId) {
+            let ary = item.JjList
+            let setAry = []
+            for (let i = 0; i < 2; i++) {
+              let str = [ary[i].Jj.toFixed(3), ary[i].Rebate.toFixed(2)].join("-")
+              setAry.push(str)
+            }
+            that.userSelect = setAry
+          }
+        })
+      },
+      // 请求玩法接口
+      gameAjax() {
+        let that = this
+        let getPlayList = JSON.parse(window.sessionStorage.getItem("0playList" + that.GameIds))
+        if (getPlayList) {
+          that.navAllList = getPlayList
+          that.setGameNav()
+          return false
+        }
+        let url = "Api/Lp/GetPlayList?lpId=" + that.GameIds + "&pattern=0"
+        this._initOpenLoading(false)
+        getAjax(url)
+          .then(function (data) {
+            if (data.IsSucess) {
+              that.navAllList = data.Data;
+              window.sessionStorage.setItem("0playList" + that.GameIds, JSON.stringify(data.Data))
+              that.setGameNav()
+              that._initCloseLoading()
+            }
+          })
+          .catch(() => {
+            that.openMessAge("网络出现异常，请刷新后重试")
+            that._initCloseLoading()
+          })
+      },
+      // 设置玩法导航栏数据内容
+      setGameNav() {
+        let that = this
+        that.navList = []
+        let ary = that.navAllList
+        ary.forEach(item => {
+          if (that.nav_Quick == 0) {
+            if (item.Name.indexOf("和值") != -1) {
+              that.navList.push(item)
+            }
+          } else if (that.nav_Quick == 1) {
+            if (item.Name.indexOf("三同") != -1) {
+              that.navList.push(item)
+            }
+          } else if (that.nav_Quick == 2) {
+            if (item.Name.indexOf("三不同") != -1) {
+              that.navList.push(item)
+            }
+          } else if (that.nav_Quick == 3) {
+            if (item.Name.indexOf("三连") != -1) {
+              that.navList.push(item)
+            }
+          } else if (that.nav_Quick == 4) {
+            if (item.Name.indexOf("二同") != -1) {
+              that.navList.push(item)
+            }
+          } else if (that.nav_Quick == 5) {
+            if (item.Name.indexOf("二不同") != -1) {
+              that.navList.push(item)
+            }
+          }
+        })
+        // 设置次级导航栏状态
+        that.navNum = that.navList[0].LpId
+        that.navList.forEach(item => {
+          if (that.navNum == item.LpId) {
+            that.mountType = item.AmList
+          }
+        })
+        that.emptyAry()
+        //修改数组的值
+        that.setSomeAry()
+        that.gameName = that.navList[0].Name
+        // 设置玩法赔率
+        that.setGameList()
+        // 设置玩法赔率
+        that.setUserSelect()
+        // 设置选号列表
+        that.setTypeAry()
+      },
+      upTimeData(){
+        if(this.NowLssue){
+          this.$notify({
+            title: '温馨提示',
+            type: 'warning',
+            showClose: false,
+            message: this.NowLssue+ ' 已停止销售,请注意当前期号',
+            position: 'bottom-right'
+          });
+        }
+        this.timeAjax();
+      },
+      //请求投注期号
+      timeAjax() {
+        let that = this
+        that.NowTime = {
+          state:false
+        }
+        let url = "Api/Lssue/GetBetLssueInfo"
+        let data = {
+          lgId: that.GameIds
+        }
+        let openState = true   //是否需要请求开奖
+        getAjax(url, data)
+        // 请求成功后赋值
+          .then(function (data) {
+            window.NowLssue = data.Data.NowLssueFormat
+            that.NowLssue = data.Data.NowLssueFormat
+            that.LastLssue = data.Data.LastLssueFormat
+            that.dirNowLssue = data.Data.NowLssue
+            that.openTime = data.Data.LastLssue  //开奖期号
+            that.NowTime = {
+              time:data.Data.NowLssueRemainTime,
+              state:true
+            }
+            if (data.Data.LastOpenNumber == null || data.Data.LastOpenNumber == "") {
+              that.LastNum = ["0", '0', '0']
+              openState = true //无开奖号码
+            } else {
+              that.LastNum = data.Data.LastOpenNumber.split(',')
+              openState = false //有开奖号码
+            }
+          })
+          .then(function () {
+            // 如果没有开奖号，开始执行倒计时请求开奖号码
+            if (openState) {
+              that.setTimer()
+            }
+          })
+          .catch(() => {
+            that.openMessAge('网络出现异常，请刷新后重试')
+          })
+
+      },
+      // 设置倒计时请求开奖号码
+      setTimer() {
+        let that = this
+        if (this.timer == null) {
+          this.timer = setInterval(() => {
+            that.getResultNum()
+          }, 5000)
+        }
+      },
+      // 获取近5期投注期号
+      PhaseAjax() {
+        let that = this;
+        let url = "Api/Lssue/GetLssueHistoryInfo"
+        let data = {
+          lgId: that.GameIds
+        }
+        getAjax(url, data)
+          .then(function (data) {
+            that.LastFiveLssue = data.Data;
+          })
+      },
+      //设置玩法列表
+      setGameList() {
+        let that = this;
+        let ids = that.navNum
+        let ary = that.navList
+        ary.forEach(item => {
+          if (ids == item.LpId) {
+            that.gameOdds = item.JjList[that.CurrentPoint].Jj
+            that.gamePoint = item.JjList[that.CurrentPoint].Rebate
+          }
+        })
+        that.gameAry.forEach(item => {
+          if (item.name == 3 || item.name == 18) {
+            item.odds = parseFloat(that.gameOdds).toFixed(3)
+          } else if (item.name == 4 || item.name == 17) {
+            item.odds = parseFloat(that.gameOdds / 3).toFixed(3)
+          } else if (item.name == 5 || item.name == 16) {
+            item.odds = parseFloat(that.gameOdds / 6).toFixed(3)
+          } else if (item.name == 6 || item.name == 15) {
+            item.odds = parseFloat(that.gameOdds / 10).toFixed(3)
+          } else if (item.name == 7 || item.name == 14) {
+            item.odds = parseFloat(that.gameOdds / 15).toFixed(3)
+          } else if (item.name == 8 || item.name == 13) {
+            item.odds = parseFloat(that.gameOdds / 21).toFixed(3)
+          } else if (item.name == 9 || item.name == 12) {
+            item.odds = parseFloat(that.gameOdds / 25).toFixed(3)
+          } else if (item.name == 10 || item.name == 11) {
+            item.odds = parseFloat(that.gameOdds / 27).toFixed(3)
+          }
+        })
+      },
+      // 选择玩法返点
+      Bonusadjust(data) {
+        let that = this
+        if (data == "" || data == undefined) {
+          that.CurrentPoint = 0
+        } else {
+          that.CurrentPoint = data
+        }
+        this.setGameList()
+      },
+      // 选择模式
+      TypeSet(data) {
+        let that = this
+        that.mountTypeName = data
+        that.CalcMount()
+        // 设置选择ID
+        that.typeSetId()
+      },
+      //设置游戏ID
+      typeSetId() {
+        let that = this
+        that.mountType.forEach(item => {
+          if (item.Name == that.mountTypeName) {
+            that.mountTypeId = item.Id
+            that.mountNum = item.Rate
+          }
+
+        })
+      },
+      // 选择游戏倍率
+      selectGameMultiply(data) {
+        this.gameMultiplying = data
+        this.CalcMount()
+      },
+      // 显示提示框
+      openMessAge(data) {
+        this.$message.error(data);
+      },
+      //修改初始化数组的值
+      setSomeAry() {
+        let that = this
+        if (that.navNum == 119) {
+          that.gameAry = [
+            {name: 3, odds: "", state: "false"}, {name: 4, odds: "", state: "false"}, {
+              name: 5,
+              odds: "",
+              state: "false"
+            }, {name: 6, odds: "", state: "false"},
+            {name: 7, odds: "", state: "false"}, {name: 8, odds: "", state: "false"}, {
+              name: 9,
+              odds: "",
+              state: "false"
+            }, {name: 10, odds: "", state: "false"},
+            {name: 11, odds: "", state: "false"}, {name: 12, odds: "", state: "false"}, {
+              name: 13,
+              odds: "",
+              state: "false"
+            }, {name: 14, odds: "", state: "false"},
+            {name: 15, odds: "", state: "false"}, {name: 16, odds: "", state: "false"}, {
+              name: 17,
+              odds: "",
+              state: "false"
+            }, {name: 18, odds: "", state: "false"}
+          ]
+
+        } else if (that.navNum == 183) {
+
+          that.gameAry = [
+            {name: "大", odds: "", state: "false"}, {name: "单", odds: "", state: "false"},
+            {name: "小", odds: "", state: "false"}, {name: "双", odds: "", state: "false"}
+          ]
+        } else if (that.navNum == 120) {
+
+          that.gameAry = [{name: "三同号通选", odds: "", state: "false"}]
+        } else if (that.navNum == 123) {
+
+          that.gameAry = [{name: "三连号通选", odds: "", state: "false"}]
+        }
+      },
+      //子组件返回选择内容
+      setSelectAry(data) {
+        let that = this
+        this.selectGName = data
+        this.BetNum = parseInt(that.selectGName.length)
+        this.CalcMount()
+      },
+      //子组件返回多个内容
+      getData(data) {
+        try {
+
+          this.selectGName = data
+        } catch (e) {
+
+        }
+      },
+      //显示追号弹框
+      setTrack() {
+        let that = this
+        if (that.betAry.length < 1) {
+          that.betMinAShow()
+        } else {
+          if (that.betAry.length > 1) {
+            that.openMessAge("追号投注,订单列表不能大于1项")
+          } else {
+            that.trackState = true
+          }
+        }
+      },
+      // 关闭追号弹框
+      hideTrack() {
+        this.trackState = false
+      },
+      // 接受投注数量
+      setBetNum(data) {
+        this.BetNum = data
+        this.CalcMount()
+      },
+      // 清空子组件
+      emptyAry() {
+        let that = this
+        try {
+          if (that.userBalace > that.BetMoney) {
+            that.AInState = true
+          }
+          this.gameMultiplying = 1
+          //添加成功后初始化数据
+          that.BetMoney = 0
+          that.BetNum = 0
+
+          that.gameAry.forEach(item => {
+            item.state = "false"
+          })
+          // 修改子组件的内容
+          that.setTypeAry()
+          // 修改子组件的内容
+          that.setTypeAry()
+          that.selectGName = []
+          that.gameSenAry.forEach(item => {
+            item.num.forEach(e => {
+              e.state = false
+            })
+          })
+          this.$refs.empty.selectAry = []
+        } catch (e) {
+        }
+
+      },
+      //请求用户数据
+      getUserInfo() {
+        let that = this;
+        let url = "Api/User/GetUserInfo";
+        postAjax(url)
+          .then(function (data) {
+            that.userBalace = data.Data.Balance
+            // 提交用户信息到vuex
+            that.$store.commit('setUserInfo', data.Data);
+          })
+          .catch(() => {
+            that.openMessAge("网络出现异常，请刷新后重试")
+          })
+      },
+      //添加号码
+      addNum() {
+        let that = this
+        let obj = {};
+        obj["name"] = that.gameName  //名称
+        obj["GAry"] = that.selectGName //投注内容
+        obj["num"] = that.BetNum   //注数
+        obj["mount"] = that.BetMoney  //投注金额
+        obj["type"] = that.mountTypeName //投注模式
+        obj["Odds"] = that.gameOdds + "-" + that.gamePoint //奖金返点
+        obj["GMult"] = that.gameMultiplying  //倍率
+        obj["ids"] = that.navNum
+        obj["reba"] = that.gamePoint
+        obj['gameOdd'] = that.gameOdds
+        obj['bon'] = that.mountTypeId
+        obj['Gids'] = that.GameIds
+        obj["data"] = that.NowLssue
+        obj["time"] = that.dirNowLssue
+        if (that.BetNum < 1 || that.BetMoney == 0) {
+          that.betMinAShow()
+        } else {
+          that.betAry.push(obj)
+          //添加成功后初始化数据
+          that.emptyAry()
+        }
+      },
+      //数组投注
+      AryDirectbet() {
+        let that = this
+        if (that.betAry.length < 1) {
+          that.betMinAShow()
+        } else {
+          let order = []
+          that.betAry.forEach(item => {
+            let obj = {}
+            obj["BetMoney"] = item.mount
+            obj["BetMultiple"] = item.GMult
+            obj["LpId"] = item.ids
+            obj["PlayName"] = item.name
+            obj["BetContent"] = item.GAry.join(",")
+            obj["BetCount"] = item.num
+            obj["BetRebate"] = item.reba
+            obj["BetBonus"] = item.gameOdd
+            obj["BonusMode"] = item.bon
+            order.push(obj)
+          })
+          let url = "Api/Bet/AddClassicPatternOrder?" + "lssue=" + that.dirNowLssue + "&LgId=" + that.GameIds
+          this._initOpenLoading(true)
+          postAjax(url, order, 1)
+            .then(function (data) {
+              that._initCloseLoading()
+              if (data.IsSucess == true) {
+                if (data.Data.ErrorInfos.length > 0) {
+                  that.openMessAge("成功投注：" + data.Data.SuccessCount + "注，投注失敗：" + data.Data.ErrorInfos.length + "注")
+                } else {
+                  that.showBetSuc()
+                }
+                that.getUserInfo()
+                // 刷新表单数据
+                that.ListAjax()
+              } else if (data.IsSucess == false) {
+                that.openMessAge(data.Message)
+              }
+            })
+            .then(function () {
+              that.emptyAry()
+              that.betAry = []
+              // 请求数据记录
+              that.ListAjax()
+            })
+            .catch(() => {
+              this._initCloseLoading()
+              that.openMessAge("网络出现异常，请刷新后重试")
+            })
+
+        }
+      },
+      //直接投注
+      Directbet() {
+        let that = this
+        let url = "Api/Bet/AddClassicPatternOrder?" + "lssue=" + that.dirNowLssue + "&LgId=" + that.GameIds
+        let order = [{
+          BetMoney: that.BetMoney,
+          BetMultiple: that.gameMultiplying,
+          LpId: that.navNum,
+          PlayName: that.gameName,
+          BetContent: that.selectGName.join(","),
+          BetCount: that.BetNum,
+          BetRebate: that.gamePoint,
+          BetBonus: that.gameOdds,
+          BonusMode: that.mountTypeId,
+          RxDsFormart: null
+        }]
+
+        if (that.BetNum < 1) {
+          that.betMinAShow()
+        } else if (that.BetMoney > that.userBalace) {
+          that.openMessAge("您的可用余额不足，请重新选择")
+          return
+        } else {
+          this._initOpenLoading(true)
+          postAjax(url, order, 1)
+            .then(function (data) {
+              that._initCloseLoading()
+              if (data.IsSucess) {
+                that.showBetSuc()
+                that.getUserInfo()
+              } else {
+                that.openMessAge(data.Message)
+              }
+            })
+            .then(function () {
+
+              that.emptyAry()
+
+              // 请求数据记录
+              that.ListAjax()
+            })
+            .catch(() => {
+              this._initCloseLoading()
+              that.openMessAge("网络出现异常，请刷新后重试")
+            })
+        }
+      },
+      // 一键梭哈
+      AllIN() {
+        let that = this
+        let userMoney = parseFloat(that.userBalace) //用户余额
+        let betnum = parseInt(that.BetNum)  //投注数量
+        let money = that.mountNum   //基数金钱
+
+        if (that.BetNum < 1) {
+          that.betMinAShow()
+        } else if (userMoney < betnum * money) {
+          that.openMessAge("您的余额不足，请充值")
+        } else {
+          // 当前梭哈倍数
+          let num = Math.floor(userMoney / parseFloat(betnum * money)) //获取倍数
+          let intMoney = parseFloat(num * money * betnum) //获取金额
+          that.gameMultiplying = num
+          that.BetMoney = intMoney
+        }
+      },
+      // 投注数据
+      ListAjax() {
+        let that = this
+        let url = "api/OrderReport/BetHistory" + "?lgid=" + that.GameIds
+        // 投注数据
+        postAjax(url)
+          .then(function (data) {
+            that.tableList = data.Data;
+          })
+        // 追号数据
+        let url2 = "api/OrderReport/ZHHistory?lgid=" + that.GameIds
+        postAjax(url2)
+          .then(function (data) {
+            that.trackList = data.Data
+          })
+          .catch(() => {
+            that.openMessAge("网络出现异常，请刷新后重试")
+          })
+      },
+      // 获取开奖号码
+      getResultNum() {
+        let that = this
+        let url = "Api/Lssue/GetLssueOpenInfo?lgId=" + that.GameIds + "&lssue=" + that.openTime
+        getAjax(url)
+          .then(function (data) {
+            window.lgText = data.Data.lgText
+            if (data.Data.OpenNumber == null || data.Data.OpenNumber == "") {
+              return
+            } else {
+              // 显示开奖号码
+              that.LastNum = data.Data.OpenNumber.split(",")
+              // 显示弹框
+              that.openDataRe["LastOpenNumber"] = data.Data.OpenNumber.split(',')
+              that.openDataRe["Time"] = that.LastLssue
+              that.openDataRe["Name"] = data.Data.lgText
+              that.openFrame = true
+              // 清除倒计时
+              clearInterval(that.timer)
+              that.timer = null
+              // 请求近5期期号数据
+              that.PhaseAjax()
+              // 请求表单数据
+              that.ListAjax()
+              // 请求用户数据
+              that.getUserInfo()
+            }
+          })
+          .catch(() => {
+            that.openMessAge("网络出现异常，请刷新后重试")
+          })
+      },
+      // 关闭开奖弹框
+      hideOpenRe() {
+        this.openFrame = false
+        this.timeNum = 0
+      },
+      handleWinFocus() {
+        this.timeAjax();
+      },
+      //奖金调节
+      adjustMent() {
+        let value = this.selectDate
+        this.Bonusadjust(value)
+      },
+      //检查是否有收藏
+      checkCollect(){
+        getAjax("/api/User/GetUserFavoritesLotteryList").then(data=>{
+          if(data.Data.length===0){
+            this.isGetCollect=false;
+          }else{
+            this.isGetCollect=true;
+          }
+        })
+      },
+    },
+    components: {
+      History,
+      // 注册子组件
+      openResult,
+      betting,
+      tablelist,
+      userpay,
+      betElast,
+      trackNum,
+      gameType,
+      gameTypes,
+      betSuccess,
+      detali,
+      flextab,
+      zhDetali,
+      history,
+      countDown,
+      collect,
+      collectList,
+    },
+    // 监听刷新页面
+    watch: {
+      $route() {
+        this.reload()
+        this.setGameList()//设置玩法列表
+      },
+      navAry(val) {
+        this.getGameIcon()
+      },
+      "$store.state.isCollectList"(){
+        this.checkCollect();
+      }
+    },
+    beforeCreate() {
+      // 进入页面时清除定时器
+      clearInterval(this.timer)
+      this.timer = null
+    },
+    created() {
+      // 获取玩法数据
+      this.gameAjax()
+      // 获取投注数据
+      this.timeAjax()
+      //修改数组的值
+      this.setSomeAry()
+      // 投注数据
+      this.ListAjax()
+      // 请求用户数据
+      this.getUserInfo()
+      // 请求近5期期号数据
+      this.PhaseAjax()
+      //
+      this.getGameIcon()
+      //设置玩法列表
+      this.setGameList()
+      //检查是否有收藏游戏
+      this.checkCollect()
+    },
+    beforeDestroy() {
+      // 每次离开当前界面时，清除定时器
+      clearInterval(this.timer)
+      // this.timer = null;
+      window.removeEventListener('focus', this.handleWinFocus);
+    },
+    destroyed() {
+      // 每次离开当前界面时，清除定时器
+      clearInterval(this.timer)
+      // this.timer = null;
+    },
+    mounted() {
+      window.addEventListener('focus', this.handleWinFocus);
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+    .kuaisan{
+
+        .title_countdown_box{
+
+            .winning_main {
+                display: flex;
+                justify-content:space-between;
+                align-items: center;
+                width:190px;
+
+                .quick_winning_item {
+                    width: 55px;
+                    height: 55px;
+                    cursor: pointer;
+
+                    &.Sievesnum_box{
+                        margin-top: 0;
+
+                        div {
+                            width: 55px;
+                            height: 55px;
+                            background-size: 55px 55px;
+                            background-position: center center;
+                            background-repeat: no-repeat;
+                            margin-top: 0;
+
+                            &.zero {
+                                background-image: url(../../assets/img/kuaisan/touzi_Draw0.png);
+                            }
+
+                            &.one {
+                                background-image: url(../../assets/img/kuaisan/touzi_Draw1.png);
+                            }
+
+                            &.two {
+                                background-image: url(../../assets/img/kuaisan/touzi_Draw2.png);
+                            }
+
+                            &.three {
+                                background-image: url(../../assets/img/kuaisan/touzi_Draw3.png);
+                            }
+
+                            &.four {
+                                background-image: url(../../assets/img/kuaisan/touzi_Draw4.png);
+                            }
+
+                            &.five {
+                                background-image: url(../../assets/img/kuaisan/touzi_Draw5.png);
+                            }
+
+                            &.six {
+                                background-image: url(../../assets/img/kuaisan/touzi_Draw6.png);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .content_info{
+
+            .content_box_left{
+
+                .choice_num{
+
+                    .quick_three_box1{
+                         width: 100%;
+
+                        .quick_three_numlist{
+                            display: flex;
+                            justify-content:flex-start;
+                            width:780px;
+                            margin: 0 auto;
+                            margin-top: 15px;
+                            flex-wrap: wrap;
+                            padding: 20px 20px;
+                            border-radius: 10px;
+
+                            .quick_three_numitem {
+                                width: 74px;
+                                height: 56px;
+                                justify-content: center;
+                                align-items: center;
+                                cursor: pointer;
+                                background-image: linear-gradient(90deg, #D6D7D8, #F0F0F0);
+                                box-shadow: 0px 2px 3px 0px #A4A4A4;
+                                border-radius: 10px;
+                                margin:11px 9px;
+
+                                &:hover{
+                                    color: #ffffff;
+                                    background-image: linear-gradient(49deg, #008573, #84E795, #C0FFB4);
+
+                                    strong,p{
+                                        color: #ffffff;
+                                    }
+                                }
+
+                                .quick_three_num {
+                                    font-size: 20px;
+                                    color: #333;
+                                }
+
+                                p {
+                                    font-size: 12px;
+                                    color: #666;
+                                }
+                            }
+
+                            .numitem_select {
+                                color: #ffffff;
+                                background-image: linear-gradient(49deg, #008573, #84E795, #C0FFB4);
+
+                                .quick_three_num{
+                                    color: #fff;
+                                }
+
+                                strong {
+                                    color: white;
+                                }
+
+                                p {
+                                    color: white;
+                                }
+                            }
+
+                            &.daxiao{
+
+                                .quick_three_numitem{
+                                    width: 40px;
+                                    height: 40px;
+                                    background-image: linear-gradient(0deg, #E6E8EC, #EAECEF, #FFFBFF);
+                                    border: 1px solid #C6D1D0;
+                                    border-radius: 50%;
+                                    box-shadow: none;
+                                    font-size: 16px;
+                                    
+                                    &:hover,&.numitem_select{
+                                        background-image: linear-gradient(0deg, #008573, #84E795, #C0FFB4);
+                                        border: 1px solid #77E565;
+                                    }
+                                }
+                            }
+
+                            &.santongtong{
+
+                                .quick_three_numitem{
+                                    width:120px;
+                                    font-size: 16px;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+
+    .check_box {
+        width: 23px;
+        font-size: 12px;
+        margin: 0 14px;
+        letter-spacing: 1px;
+        overflow: hidden;
+
+        div{
+
+            .five_data_check {
+                margin-top: 1px;
+                height: 54px;
+            }
+        }
+    }
+
+
+    /* 近5期 */
+    .five_data_item {
+        overflow: hidden;
+        border-bottom: 1px dashed #cacaca;
+
+        :nth-child(even) {
+            background-color: #eae9e9;
+        }
+    }
+    
+    .five_data .data_time {
+        text-align: center;
+        line-height: 22px;
+        font-size: 13px;
+        overflow: hidden;
+    }
+
+    .data_winningbox {
+        overflow: hidden;
+    }
+
+    .quickthree .data_winningbox .data_item {
+        width: 16px;
+        height: 22px;
+        cursor: pointer;
+        text-align: center;
+        line-height: 21px;
+        font-weight: 500;
+        margin-right: 10px;
+        background-size: 16px 16px;
+    }
+
+    .data_winningbox .icon {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-image: url(../../assets/img/icon/small_circle.png);
+        color: white;
+        font-size: 12px;
+    }
+
+    /* 导航，号码列表 */
+
+</style>
+
+
+// 历史中奖
+<style>
+    .kuaisan .winning_box {
+        width: auto;
+        overflow: hidden;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .check_box div {
+        background-color: #ece5cd;
+        color: #020202;
+        height: 55px;
+        padding-top: 4px;
+        cursor: pointer;
+    }
+</style>
