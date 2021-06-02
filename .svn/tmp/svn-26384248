@@ -1,0 +1,859 @@
+<template>
+    <div class="center_main">
+        <!-- 轮播图 -->
+        <div class="brodact_box">
+            <el-carousel arrow="never" height="auto">
+                <img :src="ary.length > 0 ?url+ary[0].Url:''" alt="">
+                <el-carousel-item v-for="(item,index) in ary" :key="index">
+                    <img :src="url +item.Url" :data-id="item.Id" @click="getGame(item,item.Id)"/>
+                </el-carousel-item>
+            </el-carousel>
+        </div>
+        <!-- 推荐彩票 -->
+        <div class="tuijian">
+            <div class="box_center caipiao">
+                <tetuiCp v-for="item in tetuiId" :id="item" :key="item"></tetuiCp>
+                <div class="putui">
+                    <ul>
+                        <li v-for="(item,index) in putuiCp" :key="index">
+                            <router-link :to="{name:'Timehonor',query:{id:item.LgId,index:item.LsId}}">
+                                <div class="putui_img"><img :src="url+item.H5Ico" ></div>
+                                <div class="putui_name">{{item.Name}}</div>
+                                <div class="putui_go"><span>立即投注</span></div>
+                            </router-link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 游戏类别 -->
+        <div class="category">
+            <div class="winning box_center">
+                <div class="winning_title"><span><img src="../../assets/img/icon/home/gift.png"></span>中奖公告:</div>
+                <div class="winning_con" ref="winning">
+                    <ul>
+                        <li>恭喜j***er在腾讯分分彩赢得<span>1000</span>元</li>
+                        <li>恭喜p***an在腾讯分分彩赢得<span>58154</span>元</li>
+                        <li>恭喜at***ee在腾讯分分彩赢得<span>2360</span>元</li>
+                        <li>恭喜th***sa在腾讯分分彩赢得<span>63200</span>元</li>
+                        <li>恭喜l***a在腾讯分分彩赢得<span>13612</span>元</li>
+                        <li>恭喜ira***le在腾讯分分彩赢得<span>65470</span>元</li>
+                        <li>恭喜ba***n在腾讯分分彩赢得<span>8574</span>元</li>
+                        <li>恭喜w***d在腾讯分分彩赢得<span>7890</span>元</li>
+                        <li>恭喜col***s在腾讯分分彩赢得<span>47012</span>元</li>
+                        <li>恭喜m***s在腾讯分分彩赢得<span>3695</span>元</li>
+                        <li>恭喜B***ie在腾讯分分彩赢得<span>10320</span>元</li>
+                        <li>恭喜H***a在腾讯分分彩赢得<span>85754</span>元</li>
+                        <li>恭喜Hami***on在腾讯分分彩赢得<span>8980</span>元</li>
+                        <li>恭喜J***on在腾讯分分彩赢得<span>64500</span>元</li>
+                        <li>恭喜I***el在腾讯分分彩赢得<span>25680</span>元</li>
+                        <li>恭喜Ru***ph在腾讯分分彩赢得<span>15470</span>元</li>
+                        <li>恭喜Y***g在腾讯分分彩赢得<span>85450</span>元</li>
+                        <li>恭喜Fra***s在腾讯分分彩赢得<span>86952</span>元</li>
+                        <li>恭喜Ben***in在腾讯分分彩赢得<span>3650</span>元</li>
+                        <li>恭喜Ma***e在腾讯分分彩赢得<span>89650</span>元</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="category_con box_center">
+                <ul>
+                    <li><router-link to="/sportGame"><img src="../../assets/img/home/sport.png"></router-link></li>
+                    <li><router-link to="/peopleGame"><img src="../../assets/img/home/live.png"></router-link></li>
+                    <li><router-link :to="{name:'Timehonor',query:{id:1,index:1}}"><img src="../../assets/img/home/lottery.png"></router-link></li>
+                    <li><router-link to="/ptGame"><img src="../../assets/img/home/slot.png"></router-link></li>
+                    <li><router-link to="/qpGame"><img src="../../assets/img/home/card.png"></router-link></li>
+                </ul>
+            </div>
+        </div>
+        <!--下载客户端-->
+        <div class="mobile">
+            <div class="mobile_con box_center">
+                <div class="mobile_img"><img class="slide-bottom" data-plugin-options='{"speed":500}' src="../../assets/img/home/phone.png"></div>
+                <div class="mobile_info slide-right" data-plugin-options='{"speed":500}'>
+                    <div class="mobile_title">手机客户端下载</div>
+                    <div class="mobile_intro">
+                        请使用 QRCode扫描器 扫描二维码进行下载 , iOS 11 以上的朋友可直接使用相机应用扫描 , 安装打开即可使用, 感受流畅的移动投注体验。
+                    </div>
+                    <div class="mobile_scan">
+                        <div class="mobile_QRcode"><img :src="url+appDownloadQrcode"></div>
+                        <div class="mobile_client">
+                            <div class="mobile_client_img"><img src="../../assets/img/home/ios.png"></div>
+                            <div class="mobile_client_text">IOS/安卓客户端下载</div>
+                        </div>
+                    </div>
+                    <div class="mobile_hint">推荐使用以下游览器：</div>
+                    <div class="mobile_browser"><img src="../../assets/img/home/browsers.png"></div>
+                    <div class="mobile_hint">官方推荐最佳分辨率：</div>
+                    <div class="mobile_dpi">
+                        <span>1440px*900px</span>
+                        <span>1680px*900px</span>
+                        <span>1920px*1280px</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--转账介绍-->
+        <div class="transfer">
+            <div class="transfer_con box_center">
+                <div class="transfer_box deposit">
+                    <div class="transfer_time">35
+                        <div class="transfer_time_inco"><img src="../../assets/img/home/miao.png"></div>
+                    </div>
+                    <div class="transfer_title">存款火速到帐</div>
+                    <div class="transfer_intro">平均时间35秒</div>
+                    <div class="transfer_bar">
+                        <div class="transfer_bar_con"></div>
+                    </div>
+                </div>
+                <div class="transfer_box withdrawal">
+                    <div class="transfer_time">2'30
+                        <div class="transfer_time_inco"><img src="../../assets/img/home/miao.png"></div>
+                    </div>
+                    <div class="transfer_title">取款到账</div>
+                    <div class="transfer_intro">平均时间2分30秒</div>
+                    <div class="transfer_bar">
+                        <div class="transfer_bar_con"></div>
+                    </div>
+                </div>
+                <div class="transfer_box bank">
+                    <div class="transfer_time">34
+                        <div class="transfer_time_inco"><img src="../../assets/img/home/jia.png"></div>
+                    </div>
+                    <div class="transfer_title">便捷的银行服务,支持34家支付机构</div>
+                    <div class="transfer_bank"><img src="../../assets/img/home/banks.png"></div>
+                </div>
+            </div>
+        </div>
+        <!--平台优势-->
+        <div class="advantage">
+            <div class="adv_con box_center">
+                <div class="adv_box adv_ios">
+                    <div class="adv_title">
+                        <span><img src="../../assets/img/home/adv_ios.png"></span>
+                        手机客户端
+                    </div>
+                    <div class="adv_intro">
+                        独家提供苹果/安卓客户端，您可以通过手机客户端畅玩所有彩票
+                    </div>
+                </div>
+                <div class="adv_box adv_wap">
+                    <div class="adv_title">
+                        <span><img src="../../assets/img/home/adv_wap.png"></span>
+                        手机触屏版
+                    </div>
+                    <div class="adv_intro">
+                        专注彩票，独家提供手机触屏网页版，无需下载打开网页即可下注畅玩，兼容完美       
+                    </div>
+                </div>
+                <div class="adv_box adv_vip">
+                    <div class="adv_title">
+                        <span><img src="../../assets/img/home/adv_vip.png"></span>
+                        会员优势
+                    </div>
+                    <div class="adv_intro">
+                        成为贝高会员，享受左右在线娱乐优惠及最顶级的游戏体验，超乎您的想象。贝高一直持续为忠实客户提供与众不同的存款优惠机器多种优惠活动    
+                    </div>
+                </div>
+                <div class="adv_box adv_safe">
+                    <div class="adv_title">
+                        <span><img src="../../assets/img/home/adv_safe.png"></span>
+                        隐私安全
+                    </div>
+                    <div class="adv_intro">
+                        一个稳定安全的博彩环境。您的隐私权是贝高极其关注的,所有数据的出入都受到限制及严密监控。   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>     
+</template>
+<script>
+  // 引用axios封装文件
+  import {postAjax, getAjax} from "../../util/ajax.js";
+  // 秒数转化
+  import {SysKey} from "../../util/sysconfig";
+  import tetuiCp from "../Home/tetuiCp";
+
+  //文字滚动
+  import "../../assets/js/textScroll";
+
+  export default {
+    inject: ["reload"],
+    components:{tetuiCp},
+    data() {
+      return {
+        a: null,
+        url: SysKey("ImgServerUrl").SysValue, //图片地址
+        timer_icon: require("../../assets/img/digits.png"), //倒计时背景图
+        ary: [], //轮播图数量
+
+        tetuiId:[34,1],//特推彩票id
+        putuiId:[10,9,28,27],//普推彩票id
+
+        NowLssue: "",//当前日期
+        LastLssue: "", //上一期
+        LastNum: [], //上一期开奖号码
+        NowTime: 0, //倒计时
+        openTime: "", //开奖期号
+
+        btnTop: true, //向上按钮
+        btnBottom: true,//向下按钮
+        scrollTop: {
+          top: ""
+        },  //卷曲高度
+        topNum: 0, //高度值
+        acObj: [], //活动配置
+        timer: null,//设置计时器
+        
+   
+      }
+    },
+    computed: {
+        centerAry() {
+            return this.$store.state.navAry //导航栏数据
+        },
+        putuiCp(){
+            let putui=new Array();
+            this.putuiId.forEach((id)=>{
+                if(this.centerAry.length!=0){
+                    this.centerAry.forEach((items)=>{
+                        items.LotteryList.forEach((cp)=>{
+                            if(cp.LgId===id){
+                                putui.push(cp);
+                            }
+                        })
+                    })
+                }
+            })
+            return putui;
+        },
+        //app下载二维码
+        appDownloadQrcode(){
+            return window.systemData.IosQrCodeUrl.SysValue;
+        }
+    },
+    created() {
+      // 获取轮播图
+      this.getBroPic();
+      localStorage.setItem('alertState', true);
+    },
+    mounted() {
+        this.$store.commit('setHead', true);
+
+        $(this.$refs.winning).scroll({
+            speed: 60,
+            direction: 'horizantal'
+        });
+
+        $(window).fadeThis({reverse:false});
+    },
+    methods: {
+      toLottgame() {
+        this.$router.push({
+          name: 'Timehonor',
+          query: {
+            id: 2,
+            index: 1
+          }
+        });
+      },
+      //导航栏路由跳转
+      getDescribe(e) {
+        let indexs = e.target.dataset.index
+        let ids = e.target.dataset.id
+        let that = this
+        if (indexs == 1) {
+          that.routerName = "Timehonor"
+        } else if (indexs == 2) {
+          that.routerName = "Racing"
+        } else if (indexs == 3) {
+          that.routerName = "Timehonor"
+        } else if (indexs == 4) {
+          that.routerName = "Quickthree"
+        } else if (indexs == 5) {
+          that.routerName = "twenteight"
+        } else if (indexs == 6) {
+          that.routerName = "Timehonor"
+        }
+        this.$router.push({
+          name: that.routerName,
+          query: {
+            id: ids,
+            index: indexs
+          }
+        })
+      },
+      
+      // 获取轮播图
+      getBroPic() {
+        let that = this
+        let url = "api/Sys/GetSysTurns?Divice=1"
+        postAjax(url, 1)
+          .then(function (data) {
+            that.ary = data.Data
+          })
+          .catch(() => {
+            // that.$message.error("网络异常，请刷新后在试");
+          })
+
+      },
+
+      // 三方页面
+      getGame(time, id) {
+        if (!time.Action) {
+          return;
+        }
+        let that = this;
+        let name = '';
+        // let compalte=false;
+        let obj = '';
+        let url = "/api/ThirdGame/GetGameList?g=" + id + "&d=1";
+        if (id == 2) {
+          name = "AG真人"
+        } else if (id == 3) {
+          name = ""
+        } else if (id == 4) {
+          name = ""
+        }
+        let data = {
+          name: name,
+          PIndex: 1,
+          PSize: 1
+        };
+        postAjax(url, data).then(function (data) {
+          if (data.IsSucess) {
+            that.startGame(data.Data.rows[0]);
+          }
+        })
+          .catch(() => {
+            // that.$message.error("网络异常，请刷新后在试");
+          })
+      },
+
+      startGame(arr) {
+        let that = this;
+        let url = "/api/ThirdGame/StartGame";
+        let data = {
+          GameCode: arr.GameCode,
+          game: arr.GameId,
+          plat: 1001
+        };
+        postAjax(url, data, 1).then(function (data) {
+          if (data.IsSucess) {
+            window.open(data.Data);
+          } else {
+            that.$message.error(data.Message);
+          }
+        })
+          .catch(() => {
+            // that.$message.error("网络异常，请刷新后在试");
+          })
+      },
+      
+    }
+  }
+</script>
+<style lang="scss" scoped>
+    .center_main{
+
+        /*banner*/
+        .brodact_box {
+            width: 100%;
+            height: auto;
+            max-height: 560px;
+
+            img {
+                width: 100%;
+                display: block;
+                height: 100%;
+                max-height: 560px;
+            }
+            
+            /deep/ .el-carousel__indicator {
+                background-color: none;
+
+                .el-carousel__button {
+                    width: 55px !important;
+                    height: 6px !important;
+                    background-color: rgba(255,255,255, .3) !important;
+                    border-radius: 3px;
+                }
+
+                &.is-active{
+
+                    .el-carousel__button{
+                        background-color: rgba(255,255,255,.7) !important;
+                    }
+                }
+            }
+
+        }
+        /* 推荐彩票 */
+        .tuijian{
+            width: 100%;
+            height: 290px;
+            background-color: #fff;
+            padding-top:20px;
+
+            .caipiao{
+                display: flex;
+                justify-content: space-between;              
+
+                .putui{
+                    width:232px;
+                    height: 235px;
+
+                    ul{
+                        display: flex;
+                        justify-content:left;
+                        flex-wrap: wrap;
+
+                        li{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            flex-direction:column;
+                            width:116px;
+                            height: 117px;
+
+                            &:nth-child(3),&:last-child{
+                                margin-top: 5px;
+                            }
+
+                            .putui_img{
+                                width: 83px;
+                                height: 83px;
+                                
+                                img{
+                                    width: 100%;
+                                    height: 100%;
+                                    transition: all .3s;
+                                }
+                            }
+                            
+                            .putui_name{
+                                width: 100%;
+                                height: 30px;
+                                line-height: 30px;
+                                text-align: center;
+                                color: #7B7B7B;
+                            }
+
+                            .putui_go{
+                                display: none;
+                                justify-content: center;
+                                align-items: center;
+                                width:100%;
+                                height: 30px;
+
+                                span{
+                                    display: block;
+                                    width:64px;
+                                    height: 17px;
+                                    line-height: 17px;
+                                    text-align: center;
+                                    background-color: #008573;
+                                    color: #fff;
+                                    border-radius: 9px;
+                                }
+                            }
+
+                            &:hover{
+                                .putui_img{
+                                    
+                                    img{
+                                        transform: scale(1.05);
+                                    }
+                                }
+
+                                .putui_name{
+                                    display: none;
+                                }
+
+                                .putui_go{
+                                    display: flex;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /* 游戏类别 */
+        .category{
+            width:100%;
+            height: 490px;
+            background-color: #E3E1E6;
+
+            .winning{
+                display: flex;
+                justify-content: space-between;
+                width: 1200px;
+                height: 38px;
+                background-color: rgba(193, 159, 98,.6);
+                border-radius: 0px 0px 15px 15px;
+
+                .winning_title{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    width:80px;
+                    height: 38px;
+                    margin-left: 25px;
+                    font-size: 14px;
+                    font-weight: bolder;
+                    color: #000;
+
+                    span{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                .winning_con{
+                    width:1060px;
+                    height: 38px;
+                    margin-right: 25px;
+                    overflow: hidden;
+
+                    ul{
+                        display: flex;
+                        justify-content: left;
+                        height: 100%;
+
+                        li{
+                            height: 38px;
+                            line-height: 38px;
+                            text-align: left;
+                            margin-right: 20px;
+                            color: #333;
+                            font-size: 14px;
+                            white-space:nowrap;
+                            
+                            span{
+                                color: #FF0000;
+                            }
+                        }
+                    }
+                 }
+            }
+
+            .category_con{
+                width:1200px;
+                height: 375px;
+                margin-top: 80px;
+                
+                ul{
+                    display: flex;
+                    justify-content:space-between;
+
+                    li{
+                        width:229px;
+                        height: 332px;
+                        transition: all .3s;
+
+                        img{
+                            transition: all .3s;
+                        }
+
+                        &:first-child{
+                            position: relative;
+
+                            img{
+                                position: absolute;
+                                top:-28px;
+                            }
+                        }
+
+                        &:hover{
+                            opacity: .8;
+
+                            img{
+                                transform: translateY(-10px);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /* 下载客户端 */
+        .mobile{
+            width: 100%;
+            height: 467px;
+            background-color: #fff;
+
+            .mobile_con{
+                position: relative;
+                width:1200px;
+                height: 100%;
+
+                .mobile_img{
+                    position: absolute;
+                    bottom: 0;
+                    left: 63px;
+                    width:477px;
+                    height: 342px;
+                    overflow: hidden;
+
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .mobile_info{
+                    float: right;
+                    width:305px;
+                    height: 420px;
+                    margin-top: 50px;
+                    margin-right: 205px;
+
+                    .mobile_title{
+                        width:100%;
+                        height: 30px;
+                        font-size: 26px;
+                        color: #008573;
+                        font-weight: bolder;
+                    }
+
+                    .mobile_intro{
+                        width:100%;
+                        margin-top: 20px;
+                        font-size: 14px;
+                        color: #999;
+                    }
+                    
+                    .mobile_scan{
+                        display: flex;
+                        justify-content: space-between;
+                        width: 100%;
+                        height: 145px;
+                        margin-top: 10px;
+                        margin-left: -5px;
+
+                        .mobile_QRcode{
+                            width: 149px;
+                            height: 145px;
+
+                            img{
+                                width:100%;
+                                height: 100%;
+                            }
+                        }
+
+                        .mobile_client{
+
+                            margin-right: 10px;
+
+                            .mobile_client_img{
+                                display: flex;
+                                justify-content: center;
+                                margin-top: 64px;
+                            }
+
+                            .mobile_client_text{
+                                font-size: 14px;
+                                font-weight: bolder;
+                                color: #000;
+                                margin-top: 13px;
+                            }
+                        }
+                    }
+
+                    .mobile_hint{
+                        width:100%;
+                        height: 25px;
+                        font-size: 14px;
+                        color: #666;
+                        margin-top: 10px;
+                    }
+
+                    .mobile_browser{
+                        margin-top: 5px;
+                    }
+                    .mobile_dpi{
+                        display: flex;
+                        justify-content: space-between;
+                        color: #a3a3a3;
+                    }
+                }
+            }
+        }
+        /* 转账介绍 */
+        .transfer{
+            width:100%;
+            height: 210px;
+            background-color: #E3E1E6;
+
+            .transfer_con{
+                display: flex;
+                justify-content: space-between;
+                width:1200px;
+                height: 100%;
+
+                .transfer_box{
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    
+                    .transfer_time{
+                        width:100%;
+                        height: 80px;
+                        margin-top: 30px;
+                        line-height: 80px;
+                        text-align: center;
+                        position: relative;
+                        font-family: AvantGarde LT ExtraLight;
+                        font-size: 80px;
+                        color: #C19F62;
+
+                        .transfer_time_inco{
+                            display: flex;
+                            justify-content: center;
+                            position: absolute;
+                            top:0;
+                            right: 0;
+                            width:20px;
+                            height: 20px;
+
+                            img{
+                                width:100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+
+                    .transfer_title{
+                        height: 25px;
+                        line-height: 25px;
+                        text-align: center;
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: #008573;
+                    }
+                    .transfer_intro{
+                        height: 25px;
+                        line-height: 25px;
+                        text-align: center;
+                        font-size: 18px;
+                        color: #7F7F7F;
+                    }
+                    
+                    .transfer_bar{
+                        width: 131px;
+                        height: 12px;
+                        background-color: #C19F62;
+                        border-radius: 5px;
+                        padding: 1px;
+                        margin-bottom: 25px;
+
+                        .transfer_bar_con{
+                            width: 60px;
+                            height: 10px;
+                            background-color: #E3E1E6;
+                            border-radius: 5px;
+                        }
+                    }
+                    
+                    .transfer_bank{
+                        margin-top: 5px;
+                        margin-bottom: 10px;
+                    }
+
+                    &.deposit{
+                        width:130px;
+                        margin-left: 95px;
+                    }
+
+                    &.withdrawal{
+                        width:205px;
+
+                        .transfer_time_inco{
+                            right:5px;
+                        }
+
+                        .transfer_bar_con{
+                            width:86px;
+                        }
+                    }
+
+                    &.bank{
+                        width:315px;
+                        margin-right: 95px;
+
+                        .transfer_time_inco{
+                            right:95px;
+                        }
+                    }
+                }
+            }
+        }
+        /*平台优势*/
+        .advantage{
+            width:100%;
+            height: 135px;
+            background-color: #DDDCE0;
+            
+            .adv_con{
+                display: flex;
+                justify-content:flex-start;
+                width:1200px;
+                height: 100%;
+                padding-top: 10px;
+                
+                .adv_box{
+                    height: 115px;
+                    border-left:1px solid #fff;
+                    border-right:1px solid #A3ACAB;
+                    padding: 0 45px;
+
+                    .adv_title{
+                        display: flex;
+                        justify-content: left;
+                        align-items: center;
+                        width:100%;
+                        height: 30px;
+                        font-size: 20px;
+                        color: #C19F62;
+                        
+                        span{
+                            display: flex;
+                            align-items: center;
+                            height: 100%;
+                            margin-right: 15px;
+                        }
+                    }
+
+                    .adv_intro{
+                        width:100%;
+                        font-size: 14px;
+                        color:#4E4E4E;
+                        margin-top: 10px;
+                        line-height: 22px;
+                    }
+
+                    &.adv_ios{
+                        width:240px;
+                        padding-left: 0;
+                        border-left: 0;
+                    }
+
+                    &.adv_wap{
+                        width:293px;
+                    }
+                    
+                    &.adv_vip{
+                        width:429px;
+                    }
+
+                    &.adv_safe{
+                        width:301px;
+                        padding-right: 0;
+                        border-right:0;
+                    }
+                }
+            }
+        }
+    }   
+</style>

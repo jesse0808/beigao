@@ -1,0 +1,2046 @@
+$bgColor:#191A1F; //背景色
+$gameBgColor:#373739;//游戏背景色
+$baseColor:#2C2C2C; //基础色
+$activeColor:#008573;//当前色
+$titleColor:#191A1F; //标题色
+$fontColor:#C6D1D0; //字体色
+
+.black{
+    background-color: $bgColor;
+
+    //顶部
+    .header_topbox{
+        background-color: $titleColor;
+
+        .top_messagebox{
+
+            p{
+
+                div{
+                    color: $fontColor;
+                }
+            }
+        }
+        .user_operation{
+
+            a{
+                color: $fontColor;
+                border-right:1px solid #3C3C3E;
+            }
+        }
+
+        .icon_a{
+            color: $fontColor;
+            border-right:1px solid #3C3C3E;
+        }
+
+        .user_center{
+            border-right:1px solid #3C3C3E;
+
+            p{
+                color: $fontColor;
+            }
+
+            .user_center_listmain{
+                
+                a{
+                    color: #999 !important;
+
+                    &:hover {
+                        color: #2aaca2;
+                    }
+                }
+            }
+        }
+
+        .user_balance{
+            border-right:1px solid #3C3C3E;
+
+            .user_head_box{
+                background-color: rgba(43,43,43,.96);
+                
+                .user_name{
+                    color: $fontColor;
+                }
+
+                .user_exit{
+                    color: $fontColor;
+                }
+            }
+
+        }
+
+        .user_center_listitembox:after, .user_head_box:after{
+            border-top: 6px solid $titleColor;
+        }
+
+        .admin_center{
+            background-color: rgba(43,43,43,.96);
+        }
+
+    }
+
+    //导航
+    .nav_box{
+        background-color: $baseColor;
+        box-shadow: 0px 2px 16px 0px rgba(53, 63, 75, 0.1);
+
+        .nav_item{
+
+            a{
+                color: $fontColor;
+
+                &.router-link-active {
+                    color: $activeColor;
+                    border-bottom: 2px solid $activeColor;
+                }
+
+                &:hover {
+                    color: $activeColor;
+                    border-bottom: 2px solid $activeColor;
+                }
+            }
+        }
+
+        .nav_select_div{
+            box-shadow: 0 -5px 5px -5px #969696 !important;
+            background-color:rgba(44, 44, 44,.96);
+
+            .div_trianglea{
+
+                ul{
+
+                    .navlottery_game_item{
+                        
+                        .nav_name{
+                            color: $fontColor;
+                        }
+
+                        .navlotter_game_btn{
+                            color: $fontColor;
+                            border: 1px solid $fontColor;
+                            background-color: $gameBgColor;
+                        }
+                        
+                    }
+                }
+                
+            }
+
+            .Live_video_gamebox{
+
+                li{
+                    border-left: solid 1px #444;
+
+                    &:last-child {
+                        border-right: solid 1px #444;
+                    }
+
+                    p{
+                        color: $fontColor;
+                    }
+                }
+            }
+                
+        }
+    }
+
+    //右侧悬浮
+    .sus_item{
+        background-color: $baseColor;
+
+        .sus_item_inco{
+            background-color: $baseColor;
+        }
+    }
+
+    //公告弹窗
+    /deep/ .card_content{
+        
+        .el-tabs--border-card{
+
+            background-color:$baseColor;
+
+            .el-tabs__header{
+                background-color:$titleColor;
+
+                .el-tabs__nav-scroll{
+
+                    .el-tabs__nav{
+
+                        .el-tabs__item{
+                            color: $fontColor !important;
+                            border-bottom: 1px solid #505050 !important;
+
+                            &:hover, &.is-active{
+                                color: $activeColor !important;
+                                background-color: $baseColor !important;
+                                border-left: 4px solid $activeColor;
+                            }
+                        }
+                    }
+
+                    &::-webkit-scrollbar {
+                        background-color: #333333;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background-color: rgba(0, 0, 0, 0.9);
+
+                        &:hover {
+                            background-color: rgba(0, 0, 0, 1);
+                        }
+                    }
+                }
+            }
+
+            .el-tabs__content{
+                
+                .title1,.title2{
+                    color: $fontColor !important;
+                }
+
+                .content_main{
+                    color: #999;
+                }
+            }
+        }
+    }
+
+    //登录
+    .login_item{
+
+        .user_login_box{
+            background-color: $baseColor;
+            box-shadow: 0px 10px 26px 6px rgba(78, 97, 122, 0.5);
+    
+            .user_login_itembox{
+    
+                input{
+                    border: 1px solid #C6D1D0;
+                    background-color: $baseColor;
+                    color: $fontColor;
+                }
+                
+            }
+        }
+
+         //使用条款
+        .terms_con{
+
+            p{
+                color: #999;
+            }
+        }
+    }
+    
+
+    //推出登录提示弹窗
+    /deep/ .order_cancel_box {
+
+        .warring_inco{
+            background-color: $baseColor;
+        }
+
+        .oc_sure_textbox{
+            background-color: $baseColor;
+            color: $fontColor;
+        }
+
+        .oc_sure_btnbox{
+            background-color: $baseColor;
+
+            .oc_sure {
+                color: #fff;
+                background: $activeColor;
+            }
+            .oc_exit {
+                border: 1px solid $fontColor;
+                color: $fontColor;
+            }
+        }
+    }
+
+    //注册
+    .register_content{
+
+        label{
+            color: #999;
+        }
+    }
+
+    //彩票游戏
+    .collect_con{
+
+        .swiper-slide{
+            background-color:$baseColor;
+
+            .collect_game_name,.collect_game_time{
+                color: #757569;
+                transition: all .3s;
+            }
+
+            &:hover{
+
+                .collect_game_name,.collect_game_time{
+                    color: $activeColor;
+                }
+            }
+        }
+        
+        .swiper-button-prev,.swiper-button-next{
+
+            i{
+                color: #2C2C2C;
+            }
+        }
+    }
+
+    .gametype_center{
+        background-color: $baseColor;
+
+        .play_type{
+            background-color: $gameBgColor;
+
+            .playType_btn{
+                a{
+                    color: $fontColor;
+                }
+            }
+        }
+
+        .content_info{
+
+            .content_box_left{
+
+                .choice_num{
+                    background-color: $gameBgColor;
+
+                    .content_nav_top{
+                        background-color: $titleColor;
+
+                        li{
+                            a{
+                                color: $fontColor;
+
+                                &.select_a{
+                                    background-color: $gameBgColor;
+                                    color: $activeColor;
+                                    border-top:2px solid $activeColor;
+                                }
+                            }
+                        }
+                    }
+
+                    .content_nav_secondary{
+                        border-bottom: 1px solid #505050;
+
+                        li{
+                            &.second_navitembox{
+
+                                label {
+                                    color: #999;
+                                }
+                            }
+
+                            div{
+
+                                &.second_item_mainbox
+                                {
+                                    div{
+                                        color: $fontColor;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .demo_case{
+
+                        .demo_left{
+                            color: $fontColor;
+                        }
+                        
+                        .bonus_select{
+                            
+                            span{
+                                color: $fontColor;
+                            }
+                        }
+                    }
+
+                    .select_num_div{
+                        background-color:rgba(44, 44, 44,.4);
+
+                        .recing_content_left{
+
+                            p {
+                                color: #999;
+                            }
+                        }
+
+                        .recing_content_center{
+
+                            .recing_con_cenitem{
+                                
+                                a{ 
+                                    border: 1px solid #576B64;
+                                    background: linear-gradient(0deg, #A3ACAB, #B6B9B9, #FFFBFF);
+
+                                    &:hover{
+                                        background: linear-gradient(0deg, #2a9c65, #6dce7d);
+                                        border: 1px solid #77E565;
+                                    }
+                                }
+                            }
+                        }
+
+                        .recing_content_right{
+
+                            .recing_con_rightitem{
+                                color:#4E627A;
+                                background-color: #C9D2D1;
+                                border: solid 1px #C9D2D1;
+
+                                &:hover {
+                                    background-color: #008573;
+                                    color: #ffffff;
+                                    border: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .optional_content_box{
+                        
+                        .optional_standard_box{
+                            border-bottom: 1px solid #505050;
+
+                            .optional_standard_contentbox{
+
+                                .optional_standard_contenttext{
+                                    border: 1px solid #505050;
+                                    color: $fontColor;
+                                }
+                                .optional_standard_btn{
+
+                                    a{
+                                        color: $fontColor;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .optional_centent_checkbox{
+
+                        .checkbox_select_title{
+                            color: #666;
+                        }
+                    }
+                }
+
+                .twenty_record_box{
+                    background-color: $gameBgColor;
+
+                    .twenty_recode_main{
+
+                        .twenty_recode_listbox{
+                            border-bottom: 1px solid #555;
+
+                            .twenty_recode_border{
+                                background-color: $titleColor;
+
+                                span{
+                                    color:$fontColor;
+                                }
+                            }
+
+                            .twenty_recode_list{
+
+                                .twenty_recode_item{
+                                    color: $fontColor;
+
+                                    &:nth-child(even){
+                                        background-color:rgba(44, 44, 44,.4);
+                                    }
+                                }
+
+                                &::-webkit-scrollbar{
+                                    background: none;
+                                }
+
+                                &::-webkit-scrollbar-thumb{
+                                    background-color: #191A1F;
+                                }
+                            }
+                        }
+
+                        .twenty_recode_btnbox{
+
+                            .record_radio{
+                                color: $fontColor;
+
+                                input[type="radio"]{
+                                    color: $fontColor;
+                                }
+                            }
+
+                            .comput_m{
+                                color: $fontColor;
+                            }
+
+                            .comput_btn{
+
+                                .recode_remove{
+                                    color: #999;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .content_box_right{
+                background-color: #373739;
+                box-shadow: 0px 0px 16px 0px rgba(5, 5, 5, 0.2);
+            }
+        }
+    }
+
+    //龙虎斗
+    .Dragon_Tiger_box{
+        background-color:$baseColor;
+
+        .dragon_itembox_big{
+
+            h3{
+                color: #999;
+                background-color: $gameBgColor;
+            }
+        }
+    }
+
+    //PC蛋蛋
+    .twnetyeight{
+
+        .twenty_content_box1{
+
+            .twenty_select_list{
+
+                .twenty_select_item_bg{
+                    
+                    background: linear-gradient(0deg, #A3ACAB, #B6B9B9, #FFFBFF);
+                }
+            }
+        }
+
+        .twenty_content_box2{
+
+            .content_box2_main{
+                background-color: $baseColor;
+                box-shadow: 0px 2px 16px 0px rgba(53, 63, 75, 0.1);
+
+                .content_box2_item{
+                    border-bottom: 1px solid#505050;
+
+                    .box2_content{
+                        border-right: 1px solid #505050;
+                        color: #999;
+
+                        span{
+                            color: $fontColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //快三
+    .kuaisan{
+        
+        .quick_three_numlist{
+            background-color:$baseColor;
+
+            .qu_gamebtn_box{
+            
+                div,a{
+                    background-color: #C9D2D1;
+                    border: solid 1px #D8DEE8;
+                }
+            }
+        }
+    }
+
+    //六合彩
+    .mark_six{
+
+        .content_nav_two{
+            border-bottom:1px solid#505050;
+
+            a{
+                &.no_select_style{
+                    color: $fontColor;
+                }
+            }
+        }
+
+        .lhc_bb{
+
+            .fun_area{
+                background-color: #333334;
+
+                .lhc_bb_nav,.lhc_bb_even{
+                    border-right: 1px solid #505050;
+                }
+
+                .lhc_bb_even,.lhc_bb_odd{
+
+                    .no_select_a{
+                        color: $fontColor;
+                    }
+                }
+            }
+
+            .pick_area{
+                background-color:rgba(44, 44, 44,.4);
+
+                .bb_item{
+
+                    .bb_name{
+
+                        div{
+                            &:first-child{
+                                color: #999;
+                            }
+
+                            &:last-child{
+                                color: #999;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .lhc_sx{
+
+            .sx_sx_nav{
+                background-color: #333334;
+
+                .four_xiao,.five_wuxing,.six_home{
+
+                    border-right:1px solid#505050;
+                    
+                    a{
+                        color: $fontColor;
+
+                        &.no_select_a {
+                            color: $fontColor;
+                        }
+                    }
+                }
+
+                .six_home{
+                    border-right: 0;
+                }
+            }
+            
+            .lhc_sx_con{
+                background-color:rgba(44, 44, 44,.4);
+
+                .lhc_sx_item{
+
+                    .sx_item_title{
+
+                        p,span{
+                            color: #999;
+                        }
+                    }
+                }
+            }
+        }
+
+        .lhc_ws{
+
+            .lhc_ws_fun{
+                background-color: #333334;
+
+                .no_select_div{
+                    color: $fontColor;
+                }
+            }
+
+            .lhc_ws_pick{
+                background-color: rgba(44, 44, 44,.4);
+                
+            }
+        }
+
+        .lhc_zf{
+            
+            .zf_item{
+
+                &.no_select_item{
+                    background-color: $baseColor;
+                    
+                    b,div{
+                        color: #999;
+                    }
+
+                    p{
+                        background-color: $titleColor;
+                        color: #999;
+                    }
+                }
+
+                &.select_item{
+                    p{
+                        background-color: rgba(231, 235, 246,.4);
+                    }
+                }
+            }
+        }
+
+        .lhc_bz{
+            background-color: rgba(44, 44, 44,.4);
+
+            .bz_item{
+
+                p{
+                    color: $fontColor;
+                }
+            }
+        }
+
+        .tema{
+        
+            .fun_area{
+                background-color: #333334;
+    
+                .class_item{
+                    border-right: 1px solid #505050;
+                }
+    
+                .class_sx{
+                    border-right: 1px solid #505050;
+    
+                    .no_select_sx{
+                        color: $fontColor;
+                    }
+                    
+                }
+    
+                .class_three{
+    
+                    .no_select_sx{
+                        color: $fontColor;
+                    }
+                }
+            }
+    
+            .pick_area{
+                background-color:rgba(44, 44, 44,.4);
+    
+                .no_select_numerical{
+    
+                    p{
+                        color: #999;
+                    }
+                }
+            }
+        }
+    
+        .sum_item{
+    
+            .sum_box{
+    
+                .sum_money{
+    
+                    label,p,input{
+                        color: $fontColor;
+                    }
+                }
+    
+                .user_btn_box{
+    
+                    a{
+                        &.delete_num{
+                            color:$fontColor;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    //直选和值
+    .gamecount{
+
+        .twenty_list_div{
+            background-color:$baseColor;
+
+            .twenty_item{
+
+                .list_item_bg{
+                    background-image: linear-gradient(0deg, #A3ACAB, #B6B9B9, #FFFBFF);
+                }
+            }
+        }
+    }
+
+    //投注金额
+    .user_pay{
+
+        .quick_user_inputbox{
+            
+            .comput_flod{
+
+                button{
+                    color: $fontColor;
+                }
+
+                div{
+
+                    input{
+                        color: $fontColor;
+                    }
+                }
+            }
+
+            .quick_user_input1,.quick_user_input2{
+
+                span{
+                    color: $fontColor;
+                }
+                
+            }
+
+            .quick_user_input2{
+
+                div{
+                    color:$fontColor;
+                }
+            }
+        }
+    }
+
+    //开奖记录
+    .lottery_periods{
+
+        .lottery_periods_title{
+            color: $fontColor;
+            background-color:$titleColor;
+
+            a{
+                color: $fontColor;
+            }
+        }
+
+        .lottery_periods_content{
+
+            .el-row-title{
+                color: #999;
+            }
+
+            .lottery_periods_item,.lottery_lhc_item{
+
+                &:nth-child(odd){
+                    background-color:rgba(55, 55, 57,1);
+                }
+
+                &:nth-child(even){
+                    background-color: rgba(44, 44, 44,1);
+                }
+            }
+
+            .lottery_lhc_item{
+
+                .lhc_title{
+                    color: #999;
+                }
+
+                .lhc_content{
+                    color: #999;
+
+                    span,strong{
+                        color: #999;
+                    }
+
+                    .lhc_content_item{
+
+                        div{
+                            
+                            &:last-child{
+                                color: #999;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        }
+    }
+
+    //投注与追号记录
+    .gametype_table_mainbox{
+        background-color: $baseColor;
+
+        .gametype_table_nav{
+
+            .gametype_title{
+                background-color:$gameBgColor;
+
+                .gametype_title_btn{
+
+                    a{
+                        color: $fontColor;
+                    }
+                }
+            }
+
+            .gametype_getmore_box{
+
+                a{
+                    color:$fontColor;
+                }
+            }
+        }
+
+        .recordtable_bg_box{
+
+            .gametype_table_main{
+
+                .el-table{
+                    background-color: $gameBgColor;
+
+                    .el-table__header-wrapper{
+                        background-color: $titleColor;
+
+                        thead{
+
+                            th{
+                                .cell{
+                                    color: $fontColor;
+                                }
+                                
+                            }
+                        }           
+                    }
+
+                    .el-table__body-wrapper{
+
+                        tbody{
+
+                            tr{
+                                td{
+                                    border-bottom: 1px solid #555 !important;
+
+                                    .cell{
+                                        color: #999;
+                                    }
+                                }
+
+                                &:hover{
+
+                                    td{
+                                        background-color: #4b4b4b !important;
+                                    }
+                                    
+                                }
+                            }
+                        }
+
+                        &::-webkit-scrollbar{
+                            background: none;
+                        }
+
+                        &::-webkit-scrollbar-thumb{
+                            background-color: #000 !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //投注提示
+    .betting_frame_box
+    {
+        .bet_frame_mainbox{
+            background-color: $baseColor;
+
+            p{
+                color:$fontColor;
+            }
+        }
+    }
+
+    //投注确定
+    .OrderConfirm_box{
+
+        .oc_mainbox{
+
+            .oc_sure_con{
+                background-color: $baseColor;
+
+                .oc_sure_textbox{
+
+                    .data_item{
+                        color: $fontColor;
+                    }
+
+                    .detBox{
+                        background-color: $gameBgColor;
+                        color: #999;
+                    }
+                }
+
+                .oc_sure_btnbox{
+                    border-top: 1px dashed #666;
+                }
+            }
+        }
+    }
+
+    //追号
+    .betting_frame_box_track{
+
+        .bet_frame_mainbox_track{
+            background-color: $gameBgColor;
+
+            .track_num_main{
+                background-color: $gameBgColor;
+
+                .el-tabs--border-card{
+                    background: none;
+
+                    .el-tabs__header{
+                        background-color: $baseColor;
+
+                        .el-tabs__nav-scroll{
+
+                            .el-tabs__item{
+                                color:$fontColor !important;
+                            }
+                        }
+                    }
+
+                    .el-tabs__content{
+                        
+                        .el-tab-pane{
+
+                            .track_num_inputbox{
+
+                                span{
+                                    color: $fontColor;
+                                }
+
+                                input{
+                                    border: solid 1px #999;
+                                    color: #999;
+                                }
+
+                                button{
+                                    background: none;
+                                    border: solid 1px #6b6b6b;
+                                    color: #999;
+                                    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+                                    transition: all .3s;
+
+                                    &:hover{
+                                        background-color:$baseColor;
+                                        color: #aaa;
+                                        border: solid 1px #666;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+
+                .track_tablebox{
+
+                    .track_num_table{
+
+                        thead{
+                            background-color: $titleColor;
+                        }
+
+                        tbody{
+    
+                            &::-webkit-scrollbar-thumb{
+                                background-color: #000 !important;
+                            }
+
+                            .Multiple{
+                                border: solid 1px #999;
+                                color: #999;
+                            }
+
+                            tr{
+                                border-bottom: 1px solid #666;
+
+                                &:hover{
+                                    border-bottom: 1px solid #666;
+                                    
+                                    td{
+                                        background-color: #4b4b4b;
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .track_num_opreaboxs{
+                        background-color: $baseColor;
+
+                        .track_num_textmain{
+                            color: $fontColor;
+                        }
+                    }
+                }
+            }
+        }
+
+        .el-checkbox{
+            color: $fontColor !important;
+
+            .el-checkbox__input.is-checked + .el-checkbox__label {
+                color: $fontColor !important;
+            }
+        }
+       
+    }
+
+    //投注详情
+    .info_Details{
+        
+        .el-dialog{
+            box-shadow:0px 10px 26px 6px rgba(0, 0, 0, 0.5);
+            
+            .el-dialog__body{
+                background-color:$baseColor;
+
+                .pet_detail_left,.pet_detail_right{
+
+                    .detail_item{
+                        color: #999;
+                    }
+                }
+
+                .show_number{
+                    border: 1px solid #666;
+                    color: #999;
+                }
+            }
+        }
+    }
+
+    //追号详情
+    .zh_details_box{
+
+        .el-dialog{
+            background-color: $baseColor;
+
+            .el-dialog__body{
+
+                .show_number{
+                    border: 1px solid #666;
+                    background-color: $baseColor;
+                    color: #999;
+                }
+
+                .pet_detail_left,.pet_detail_right
+                {
+                    .detail_item{
+                        color: #999;
+                    }
+                }
+
+                .after_no_tab{
+                    box-shadow:0px 0px 10px 6px rgba(0, 0, 0, 0.1);
+
+                    .el-table{
+                        border-bottom: none;
+
+                        thead{
+                            tr{
+                                background: none;
+                                th {
+                                    background-color: $titleColor;
+                                    color: $fontColor;
+                                }
+                            }
+                            
+                        }
+
+                        .is-scrolling-none{
+
+                            .el-table__body{
+
+                                th,tr{
+                                    background: none !important;
+
+                                    td{
+                                        color: #999;
+                                        border-bottom: none;
+                                    }
+                                }
+
+                                tr{
+                                    
+                                    &.el-table__row--striped{
+
+                                        td{
+                                            background-color: $gameBgColor !important;
+                                        }
+                                        
+                                    }
+
+                                    &:hover{
+
+                                        td{
+                                            background-color: #4b4b4b !important;
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                            
+                            &::-webkit-scrollbar{
+                                background:none;
+                            }
+
+                            &::-webkit-scrollbar-thumb{
+                                background-color: #000;
+                            }
+
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+
+    //经典玩法
+    .betContent{
+        box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.2);
+
+        .numberW{
+            color: $fontColor;
+            background-color:$titleColor;
+        }
+
+        .hpj{
+            border-bottom: 0.3px solid #555;
+            span{
+                color: #999;
+            }
+        }
+
+        .setFontOdds{
+            color: #999;
+        }
+
+        .checedFalse{
+
+            .betMoney{
+                border: solid 1px #999;
+                color: #999;
+            }
+        }
+
+        .bet_content_main{
+            border-left: 1px dashed #555;
+        }
+
+        .border_right_dashed{
+            border-right: 1px dashed #555;
+        }
+
+        .hpjW{
+            border-bottom: 0.3px solid #555;
+            color: #999;
+        }
+
+        .contentW210{
+            border-left: 0.3px dashed #555;
+            border-bottom: 0.3px solid #555;
+        }
+    }
+    
+    .twenty_user_opration{
+
+        .user_input_box{
+
+            .user_input{
+                color: #999;
+                
+                input{
+                    border: solid 1px #999;
+                    color: #999;
+                }
+            }
+
+            .user_pay_for{
+                color: #999;
+            }
+        }
+
+        .user_btn_box{
+
+            a{
+                &.delete_num{
+                    color: #999;
+                }
+            }
+        }
+    }
+
+    //用户中心
+    .user_center_box{
+
+        .menuLeftParent{
+            background-color: $baseColor;
+
+            .user_head{
+
+                p{
+                    color: #999;
+                }
+            }
+
+            .user_tac{
+
+                .el-menu-vertical-demo{
+                    background-color: $gameBgColor;
+
+                    .el-submenu{
+                        background-color: $gameBgColor;
+                        border-bottom:1px solid #3f3f3f;
+
+                        .el-submenu__title{
+                            
+                            .titles{
+                                color: $fontColor;
+                            }
+                        }
+
+                        .el-menu{
+
+                            .el-menu-item{
+                                background-color: #000;
+
+                                &.is-active,&:focus,&:hover{
+                                    background-color:rgba(55, 55, 57,.9);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+
+        .menuRightParent{
+            background-color: $baseColor;
+
+            .panel_content{
+
+                #grsy{
+
+                    .person_info{
+                        border-bottom: solid 1px #505050;
+
+                        .left_money{
+                            color: #999;
+
+                            &::after{
+                                background-color: #505050;
+                            }
+                        }
+
+                        .right_safety{
+
+                            p{
+                                color: #999;
+                            }
+                        }
+                    }
+
+                    .bottom_box{
+
+                        .bottomtitle{
+                            color: #999;
+                        }
+                    }
+
+                    .el-collapse{
+
+                        .el-collapse-item{
+                            background-color: $titleColor;
+                            box-shadow: 0px 2px 16px 0px rgba(53, 63, 75, 0.1);
+
+                            .el-collapse-item__header{
+                                background-color: $titleColor;
+                                
+                                b{
+                                    color: $fontColor;
+                                }
+
+                                .unclose{
+                                    color: #666;
+                                }
+                            }
+
+                            .el-collapse-item__wrap{
+                                background-color: $gameBgColor;
+
+                                .demo-input-suffix{
+                                    color: #999;
+                                }
+                            }
+                        }
+                    }
+
+                    .grsy_item{
+                        background-color: $titleColor;
+
+                        b{
+                            color: $fontColor;
+                        }
+
+                        .unclose{
+                            color: #666;
+                        }
+                    }
+
+                    input{
+                        background: none;
+                    }
+                }
+
+                #grzl{
+
+                    .grzl_main{
+                        background-color: $gameBgColor;
+                    }
+
+                    .el-form-item__label{
+                        color: $fontColor;
+                    }
+
+                    .el-form-item__content{
+                        color: #999;
+
+                        .el-input{
+
+                            input{
+                                background: none;
+                                color: #999;
+                            }
+                        }
+                    }
+
+                    .el-button{
+                        border: none;
+                    }
+                }
+
+                #yhkgl{
+
+                    .bindCart{
+                        background-color: $gameBgColor;
+                    }
+
+                    .yhkgl_top{
+                        border-radius: 5px;
+                        background-color: $gameBgColor;
+
+                        .add_title{
+                            border-right: solid 1px #505050;
+                        }
+
+                        .wxts_text{
+
+                            .wxts{
+                                color: $fontColor;
+                            }
+                        } 
+                    }
+
+                    .czTable{
+
+                        .el-table{
+
+                            th{
+                                background-image: none;
+                                background-color: $titleColor;
+                                color: $fontColor;
+                                border: none;
+                                border-right: 1px solid #505050;
+                            }
+
+                            tr{
+                                background-color: $gameBgColor;
+                                color: #999;
+
+                                &:hover{
+
+                                    td{
+                                        background: none;
+                                    } 
+                                }
+                            }
+                            
+                            td{
+                                border-left: none;
+                                border-bottom: none;
+                            }
+
+                            &::before{
+                                display: none;
+                            }
+                            
+                            .el-table__row{
+                                &:nth-child(even){
+                                    background-color: $baseColor;
+                                }
+                            }
+
+                        }
+
+                        .el-table--border,.el-table--group{
+
+                            &::after{
+                                width: 0;
+                            }
+                        }
+                    }
+
+                    input{
+                        background: none;
+                        color: #999;
+
+                        &:focus{
+                            border-color:$activeColor;
+                        }
+                    }
+
+                    .el-dialog{
+                        background-color: $baseColor;
+                    }
+                }
+
+                #dljl{
+
+                    .tableData{
+                        
+                        .el-table{
+                            box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.3);
+                            border-right:1px solid #505050 !important;
+
+                            th{
+                                background: none;
+                                background-color: $titleColor;
+                                color: $fontColor;
+                                border-right:1px solid #505050;
+                                border-bottom: 0;
+                            }
+                            
+                            tr{
+                                color: #999;
+
+                                &:nth-child(odd){
+                                    background-color: $baseColor;
+                                }
+
+                                &:nth-child(even){
+                                    background-color: $gameBgColor;
+                                }
+
+                                &.el-table__row--striped{
+
+                                    td{
+                                        background-color: $gameBgColor;
+                                    }
+                                }
+
+                                &:hover{
+
+                                    td{
+                                        background: none;
+                                    }
+                                    
+                                }
+                            }
+
+                            &.el-table--border{
+                                border:none;
+                            }
+
+                            &::before,&::after{
+                                display: none;
+                            }
+                        }
+                    }
+
+                    
+                }
+
+                #zhcz{
+                    background: none;
+
+                    .tips{
+                        background-color:$gameBgColor;
+                        color: $fontColor;
+                    }
+
+                    .redesign_all{
+
+                        .redesign_text{
+                            color: $fontColor;
+                        }
+
+                        .top-up-btn-group{
+
+                            .top-up-item{
+                                background: none;
+                                color: #999;
+
+                                &.isChecked{
+                                    background-color:$activeColor;
+                                    color: #fff;
+                                }
+                            }
+                        }
+                    }
+
+                    .top-up-num{
+
+                        .top-up-num-text{
+                            color: $fontColor;
+                        }
+
+                        .top-up-num-item{
+                            background: none;
+                            color: #999;
+
+                            &.isChecked{
+                                background-color:$activeColor;
+                                color: #fff;
+                            }
+                        }
+
+                        .top-up-num-input{
+
+                            .el-input{
+                                background: none;
+                            }
+
+                            span{
+                                color: $fontColor;
+                            }
+                        }
+                    }
+
+                    .no_pay_con{
+                        background-color: $gameBgColor;
+
+                        .pay_head{
+                            background-color: $titleColor;
+                            color: $fontColor;
+                        }
+
+                        .pay_style{
+                            color: $fontColor;
+                        }
+
+                        .el-input__inner{
+                            border:none;
+                        }
+
+                        .hit_text{
+                            color: $fontColor;
+                        }
+                    }
+
+                    .el-dialog{
+                        background-color: $baseColor;
+
+                        .left-lable{
+                            color: $fontColor;
+                        }
+
+                        .el-input__inner{
+                            color: #999 !important;
+                        }
+
+                        .copy_text{
+                            color: $activeColor;
+                        }
+                    }
+                }
+
+                #yetx{
+                    
+                    .yetx_main{
+                        background-color: $gameBgColor;
+                    }
+
+                    .tips{
+                        background-color: $gameBgColor;
+                        color: $fontColor;
+
+                        .tips_title{
+                            color: $fontColor;
+                        }
+                    }
+
+                    .el-form{
+
+                        input{
+                            background: none;
+                        }
+
+                        .submit{
+                            border: none;
+                            height: 36px;
+                            line-height: 36px;
+                        }
+                    }
+
+                    .el-dialog{
+                        background-color: $baseColor;
+
+                        .el-dialog__footer{
+                            text-align: center;
+                        }
+                    }
+                }
+
+                #zjzh{
+
+                    .zjzh_main{
+
+                        .zjzh_title{
+                            color: $fontColor;
+                        }
+
+                        .roll-out{
+
+                            .roll-out-item{
+                                border: solid 1px #505050;
+                                background-color: $gameBgColor;
+
+                                .item-top{
+
+                                    span{
+                                        color: #999;
+                                    }
+                                }
+                            }
+                        }
+
+                        .total-money{
+                            color: $fontColor;
+
+                            input{
+                                background: none;
+                            }
+                        }
+
+                        .roll-in-item{
+                            border: none;
+                        }
+                    }
+                }
+
+                #tzjl,#czjl,#txjl,#zzjl,#zhjl,#zbmx,#jfmx,#hdbb,#sfjl,#sjx,#fjx{
+
+                    .query_info{
+
+                        .el-input{
+
+                            input{
+                                background: none;
+                            }
+                        }
+                    }
+
+                    .czTable{
+
+                        .el-table{
+                            border: none;
+                            
+                            th{
+                                background-image: none;
+                                background-color: $titleColor;
+                                color: $fontColor;
+                                border-right: none !important;
+
+                                &.is-leaf{
+                                    border-bottom: none !important;
+                                }
+                            }
+
+                            tr{
+                                color: #999;
+
+                                &:nth-child(odd){
+                                    background-color: $baseColor;
+                                }
+
+                                &:nth-child(even){
+                                    background-color: $gameBgColor;
+                                }
+
+                                &.el-table__row--striped{
+
+                                    td{
+                                        background-color: $gameBgColor;
+                                    }
+                                }
+
+                                &:hover{
+
+                                    td{
+                                        background: none;
+                                    } 
+                                }
+
+                                td{
+                                    border-bottom: none !important;
+                                }
+                            }
+
+                            &::before,&::after{
+                                background-color: #505050;
+                            }
+                        }
+                    }
+
+                    .el-dialog{
+                        background-color: $baseColor;
+                    }
+                }
+
+                .tjbb{
+
+                    .tjbb_box{
+                        border: none;
+                        box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.3);
+
+                        div{
+
+                            div{
+                                border-right: 1px solid #505050;
+                                color: #999;
+
+                                &:first-child{
+                                    color: $fontColor;
+                                    background-image: none;
+                                    background-color: $titleColor !important;
+                                }
+
+                                &:nth-child(odd){
+                                    background-color: $gameBgColor;
+                                }
+                                
+                                &:last-child{
+                                    background-color: rgba(230, 157, 22,.5) !important;
+                                    color: #ccc !important;
+                                }
+                            }
+
+                            &:last-child{
+
+                                div{
+                                    border-right: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                #zhjl{
+
+                    .zh_details_box{
+
+                        .el-table{
+
+                            th{
+                                &.is-leaf{
+                                    border: none;
+                                }
+                            }
+
+                            td{
+                                border: none;
+                            }
+                        }
+                    }
+                }
+
+                #sjx,#fjx{
+
+                    .options_group_item{
+                        background-image: none;
+                        color: $fontColor;
+                        border:1px solid $fontColor;
+                    }
+
+                    .details_dialog{
+                        color: #999;
+                    }
+                }
+
+                #fxx{
+
+                    .fxx_main{
+                        background-color:$gameBgColor;
+                    }
+
+                    .el-form-item__label{
+                        color: $fontColor;
+                    }
+
+                    .accept_lower{
+                        color: $fontColor;
+                    }
+
+                    .have_data_item{
+                        color: #999;
+                    }
+
+                    .el-dialog{
+                        background-color: $baseColor;
+                    }
+                }
+            }
+
+
+        }
+
+        .el-table--border, .el-table--group{
+            border:1px solid #505050;
+        }
+    
+        .el-table td, .el-table th.is-leaf{
+            border:1px solid #505050;
+        }
+
+        .el-form-item__label{
+            color: $fontColor;
+        }
+
+        .el-input__inner{
+            background: none !important;
+            color: #999;
+            border:1px solid #999;
+        }
+
+        .el-icon-time:before{
+            color: #999;
+        }
+
+        .el-input{
+
+            &.is-disabled{
+
+                .el-input__inner{
+                    border:1px solid #999;
+                }
+            }
+        }
+
+        .el-textarea__inner{
+            background:none;
+            border:1px solid #999;
+            color: #999;
+            font-family: "Microsoft YaHei", 微软雅黑;
+        }
+
+        .el-button{
+            border:none;
+        }
+        .el-pagination,.my-paging{
+
+            .totalNum{
+                color: #999;
+            }
+
+            button{
+                background:none;
+
+                &:disabled{
+                    
+                    color: #555 !important;
+                }
+
+                &.btn-next,&.btn-prev{
+                    color: #999;
+                }
+            }
+
+            .el-pager{
+
+                li{
+                    color: #666;
+
+                    &.active{
+                        color: $activeColor;
+                    }
+                }
+            }
+        } 
+    }
+
+   //弹窗
+   .el-dialog__body{
+       background-color: $baseColor;
+       border-radius: 0 0 10px 10px;
+
+       .show_number{
+           border: 1px solid #505050;
+           border-radius: 5px;
+           color: #999;
+       }
+
+       .bet_detail{
+           color: #999;
+       }
+    }
+
+    //开奖提示
+    .betting_frame_change{
+
+        .bet_frame_mainbox_open{
+            background-color: $baseColor;
+        }
+    }
+
+    //加载中背景
+    .el-loading-spinner {
+
+        .el-loading-mask{
+            background: rgba(0, 0, 0, 0.6) !important;
+        }
+    }
+    
+    //整页加载遮罩
+    ~.el-loading-mask{
+        background-color:rgba(0,0,0,.6);
+
+        .path{
+            stroke: $activeColor;
+        }
+    }
+}

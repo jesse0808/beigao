@@ -1,0 +1,324 @@
+<template>
+    <!-- 页面表格组件 -->
+    <div class="gametype_table_mainbox">
+        <div class="gametype_table_bg">
+            <!-- 顶部导航栏 -->
+            <div class="gametype_table_nav cf">
+                <div class="gametype_title">
+                    <div class="gametype_title_btn"><a :class='typeSwitch == true?"gametype_table_select":""' @click="SwitchTrue">我的投注</a></div>
+                    <div class="gametype_title_btn" v-if="indexs!=5 && indexs!=7">
+                        <a :class='typeSwitch == false?"gametype_table_select":""' @click="SwitchFalse">我的追号</a>
+                    </div>
+                </div>
+                <div class="gametype_getmore_box">
+                    <a class="gametype_getmore" @click="SwitchOther">查询更多记录></a>
+                </div>
+            </div>
+            <!-- 表格 -->
+            <div class="recordtable_bg_box">
+                <div class="gametype_table_main" v-if="typeSwitch == true" :key="1">
+                    <el-table empty-text="暂无投注记录" :data="tablist" header-row-class-name="el_table_head" height="440">
+                        <el-table-column label="彩种" prop="LgName" ></el-table-column>
+                        <el-table-column label="期号" prop="Lssue" ></el-table-column>
+                        <el-table-column label="玩法" prop="LpName" ></el-table-column>
+                        <el-table-column label="下注时间" prop="BetTime" width=160></el-table-column>
+                        <el-table-column label="投注金额" prop="BetMoney"></el-table-column>
+                        <el-table-column label="中奖金额" prop="WinBonus"></el-table-column>
+                        <el-table-column label="状态"  prop="StatusText">
+                            <template slot-scope="scope">
+                                <span class="unpaidState"
+                                      v-if="scope.row.StatusText === '未开奖'">{{scope.row.StatusText}}</span>
+                                <span class="chedan"
+                                      v-if="scope.row.StatusText === '已撤单'">{{scope.row.StatusText}}</span>
+                                <span style="color: #f21d32;" v-if="scope.row.StatusText === '已中奖'">{{scope.row.StatusText}}</span>
+                                <span class="cancelState"
+                                      v-if="scope.row.StatusText === '未中奖'">{{scope.row.StatusText}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="亏盈" prop="KuiYing">
+                            <template slot-scope="scope">
+                                <div v-if="scope.row.Status==4 || scope.row.Status==3">{{scope.row.KuiYing}}</div>
+                                <div v-else>0</div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作">
+                            <template slot-scope="scope">
+                                <el-button @click.native.prevent="Viewdetails(scope.$index, tablist)" type="text"
+                                           size="small">查看详情
+                                </el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+                <div class="gametype_table_main" v-else :key="2">
+                    <el-table empty-text="暂无追号记录" :data="tracklist" header-row-class-name="el_table_head" height="440">
+                        <el-table-column label="起始期号" prop="BetTime"></el-table-column>
+                        <el-table-column label="已追/总（期数）" prop="OpenD"></el-table-column>
+                        <el-table-column label="总金额" prop="BetMoney"></el-table-column>
+                        <el-table-column label="状态" prop="StatusText">
+                            <template slot-scope="scope">
+                                <span class="cancelState"
+                                      v-if="scope.row.StatusText === '已撤销'">{{scope.row.StatusText}}</span>
+                                <span class="payState"
+                                      v-if="scope.row.StatusText === '进行中'">{{scope.row.StatusText}}</span>
+                                <span v-if="scope.row.StatusText === '已完成'">{{scope.row.StatusText}}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="操作">
+                            <template slot-scope="tem">
+                                <el-button type="text" size="small"
+                                           @click.native.prevent="zhDetails(tem.$index,tracklist)">查看详情
+                                </el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+  export default {
+    props: {
+      tablist: {
+        type: Array,
+        require: true
+      },
+      tracklist: {
+        type: Array,
+        require: true
+      },
+      indexs: {
+        type: String,
+        require: true
+      }
+    },
+    data() {
+      return {
+        typeSwitch: true,  //切换显示卡
+        tableData: [], //表单数据
+      }
+    },
+    methods: {
+      SwitchTrue() {
+        this.typeSwitch = true
+      },
+      SwitchFalse() {
+        this.typeSwitch = false
+      },
+      SwitchOther() {
+        let name = ""
+        let value = ""
+        if (this.typeSwitch) {
+          name = "tzjl"
+          value = "tzjl"
+        } else {
+          name = "zhjl"
+          value = "zhjl"
+        }
+        this.$router.push({
+          name: "UserCenter",
+          query: {
+            name: name,
+            value: value
+          }
+        })
+      },
+      //查看详情数据
+      Viewdetails(index, rows) {
+        this.$emit("setinfo", rows[index], 1)
+      },
+      // 追号
+      zhDetails(index, rows) {
+        this.$emit("setinfo", rows[index], 2)
+      }
+    },
+
+  }
+</script>
+
+<style lang="scss" scoped>
+    /deep/.gametype_table_mainbox {
+        height: 540px;
+        margin-top: 30px;
+        box-shadow: 0px 2px 16px 0px rgba(53, 63, 75, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+
+        .gametype_table_nav {
+            height: 40px;
+            overflow: hidden;
+
+            .gametype_title{
+                display: inline-block;
+                height: 40px;
+                line-height: 40px;
+                border-radius: 20px;
+
+                .gametype_title_btn{
+                    float: left;
+                    width: 100px;
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    
+                    a{
+                        display: block;
+                        width:100%;
+                        height: 100%;
+                        font-size: 14px;
+                        line-height: 40px;
+                        cursor: pointer;
+                    }
+
+                    .gametype_table_select{
+                        background-color: #008573;
+                        color: #fff;
+                    }
+                }
+            }
+
+            .gametype_getmore_box {
+                float: right;
+                width: auto;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                cursor: pointer;
+                
+                a{
+
+                    &.gametype_getmore{
+                        font-size: 14px;
+                    }
+                }
+            }
+
+        }
+
+        .recordtable_bg_box {
+            width:100%;
+            box-shadow: 0px 2px 16px 0px rgba(53, 63, 75, 0.1);
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+
+            .gametype_table_main {
+                height: 100%;
+                overflow: hidden;
+                
+
+                .chedan {
+                    color: #b0b0b0;
+                }
+
+                .unpaidState {
+                    color: #8b8b8b;
+                }
+
+                .cancelState {
+                    color: #008573;
+                }
+                
+                .el-table{
+                    height: 234px;
+
+                    .el-table__header-wrapper{
+                        height: 40px;
+                        overflow: hidden;
+
+                        .el-table__header{
+                            width:100%;
+                            height: 40px;
+                        }
+                    }
+
+                    thead{
+                        height: 40px;
+
+                        th{
+                            padding: 0;
+                            height: 40px;
+
+                            .cell {
+                                font-weight: normal;
+                                text-align: center;
+                            }
+
+                        }
+
+                    }
+
+                    tbody{
+                        overflow-y: auto;
+                        tr{
+                            height: 40px;
+
+                            td{
+                                padding: 0 !important;
+                                font-size: 14px;
+                                text-align: center;
+                                
+                            }
+                        }
+                    }
+                   
+                    th,tr{
+                        background: none;
+                        border-bottom: none;
+                    }
+                    
+                }
+
+                .el-table__empty-block {
+                    background-position: center top 40px;
+                    background-repeat: no-repeat;
+                    background-image: url(../../assets/img/no_record.png);
+                    background-size: 114px 85px;
+
+                    span {
+                        margin-top: 75px;
+                    }
+                }
+
+                &::before {
+                    height: 0px;
+                }
+            }
+        }
+    }
+
+
+    .el-table--border:after, .el-table--group:after, .el-table:before {
+        content: '';
+        background-color: transparent !important;
+    }
+
+    .el_table_head > th {
+        height: 28px !important;
+        padding: 0 !important;
+    }
+
+    .user_no_record {
+        width: 100%;
+    }
+
+    .cell {
+        text-align: center;
+
+        .el-button--small {
+            display: inline;
+        }
+    }
+
+    .el-button--text {
+        color: #008573 !important;
+        font-weight: bold;
+    }
+
+    .payState {
+        color: #2ba396;
+    }
+</style>

@@ -1,0 +1,470 @@
+<template>
+    <div class="user_login_box">
+        <div class="close_login" @click="closeLogin"><img src="../../assets/img/icon/window/close.png"></div>
+        <div class="login_img">
+          <img src="../../assets/img/head/login_img.png" alt="">
+        </div>
+        <div class="login_content">
+            <div class="login_title"><span><img src="../../assets/img/icon/head/welcome_login.png"></span>欢迎登录</div>
+            <!-- 输入错误时添加类名 return__error -->
+            <div :class='["user_login_itembox",errUser?"return__error":""]'>
+                <span class="iconfont"><img src="../../assets/img/icon/head/login_user.png"></span>
+                <input type="text" placeholder="请输入用户名" v-model="userLogin" @keyup.enter="userLoginAjax"
+                       @click="hideErr"
+                       />
+                <!--        <p>{{errText}}</p>-->
+            </div>
+            <div :class='["user_login_itembox","password_box",errPass?"return__error":""]'>
+                <span class="iconfont"><img src="../../assets/img/icon/head/login_password.png"></span>
+                <input type="password" placeholder="请输入密码" v-model="userPass" @keyup.enter="userLoginAjax"
+                       @click="hideErr" />
+                <!--        <p>{{errText}}</p>-->
+            </div>
+            <div :class='["user_login_itembox","indenty_code",errCode?"return__error":""]'>
+                <div class="indenty_code_box">
+                    <span class="iconfont"><img src="../../assets/img/icon/head/login_verify.png"></span>
+                    <input id="code" type="text" placeholder="请输入验证码" v-model.trim="userCode"
+                           @keyup.enter="userLoginAjax"
+                           @click="hideErr"/>
+                    <!-- 验证码图片 -->
+                    <div class="indenty_code_btn" @click="indentyajax">
+                        <img :src="IndentyImg"/>
+                    </div>
+                </div>
+                <!--        <p>{{errText}}</p>-->
+            </div>
+            <div class="user_login_btnbox">
+                <button @click="userLoginAjax">立即登录</button>
+            </div>
+            <div class="user_login_btnbox shiwan">
+                <button @click="shiwan">试玩一下</button>
+            </div>
+            <!-- <div class="user_login_goto">
+                <router-link to="/userRegister" class="user_goto_other">前往注册</router-link>
+            </div> -->
+            <!--      <el-button :plain="true" @click="openMessAge"></el-button>-->
+            <!--      <el-button :plain="true" @click="openSuccess"></el-button>-->
+        </div>
+
+    </div>
+</template>
+<script>
+  // 引用axios封装文件
+  import {postAjax, getAjax} from "../../util/ajax.js"
+  // 引用vuex文件
+  import {mapMutations} from 'vuex';
+  import {getUserInfo} from "../../util/getdata";
+  import {timeFormatProcessing} from "../../util/common";
+
+  export default {
+    data() {
+      return {
+        userLogin: "", //用户名
+        userPass: "", //密码
+        userCode: "", //用户输入的二维码
+        loginInfo: true, //登陆状态
+        IndentyCode: "", //二维码唯一标示
+        IndentyImg: "", //二维码图片
+        terminalNum: null, //终端型号
+        errUser: false, //用户名错误时显示错误信息
+        errPass: false, //密码错误时显示错误信息
+        errCode: false, //验证码错误时显示错误信息
+        errText: "", //错误信息文本
+        userToken: "", //用户标示token
+        imgarr: [require('../../assets/img/login/log1.png'), require('../../assets/img/login/log2.png')]
+      }
+    },
+    watch: {
+      'userCode'(val) {
+        this.userCode = val.replace(/[^0-9]/ig, "");
+      }
+    },
+    created() {
+      this.indentyajax()
+      this.userPass = ''
+      this.userCode = ''
+    },
+    methods: {
+      // 登陆成功提示
+
+      //vuex文件内定义方法
+      ...mapMutations(['changeLogin']),
+
+      // 请求验证码图片
+      indentyajax() {
+        let that = this;
+        let url = "Api/Common/GetVerifyCode";
+        getAjax(url, 1)
+          .then(function (data) {
+            if (data.IsSucess) {
+              that.IndentyImg = data.Data.ImgBase64
+              that.IndentyCode = data.Data.VcGuid
+            }
+          })
+      },
+      // 显示提示框
+      openMessAge(data) {
+        this.$message.error(data);
+      },
+      // 登陆成功
+      openSuccess() {
+        let that = this
+        this.$message({
+          message: "登陆成功，即将跳转到首页",
+          type: 'success',
+          duration: 1000,
+          onClose: function () {
+            that.$router.push('/home')
+          }
+        });
+      },
+      // 用户登录
+      userLoginAjax() {
+        let that = this;
+        let url = "api/Login/In";
+        // 判断终端
+        if ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+          var ua = window.navigator.userAgent.toLowerCase();
+          if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+            that.terminalNum = 3
+          } else {
+            that.terminalNum = 2
+          }
+        } else {
+          that.terminalNum = 1
+        }
+        var userinfo = {
+          LoginName: that.userLogin,
+          LoginPwd: that.userPass,
+          Term: that.terminalNum,
+          VCode: that.userCode,
+          VCGuid: that.IndentyCode
+        }
+        if (that.userLogin == "") {
+          that.openMessAge("账号不能为空")
+        } else if (that.userPass == "") {
+          that.openMessAge("密码不能为空")
+        } else {
+          if (that.userCode == "") {
+            that.openMessAge("验证码不能为空")
+          } else {
+            //验证提交数据
+            postAjax(url, userinfo)
+              .then(function (data) {
+                if (data.IsSucess) {
+                  that.userToken = "Basic" + " " + data.Data.Token
+                  // 将token存储到vuex
+                  that.changeLogin({Authorization: that.userToken});
+                  that.openSuccess();
+                  localStorage.setItem('alertState', 'true');
+                  sessionStorage.clear()
+                  that.$store.commit('setLoginAfter', false)
+                  getUserInfo()
+                  that.lastLoginInfo()
+                } else {
+                  if (data.Message) {
+                    //获取错误提示显示到页面
+                    that.errText = data.Message
+                    if (data.Message == "验证码输入错误" || data.Message == "验证码过期") {
+                      that.errCode = true
+                      that.userCode = ""
+                    } else if (data.Message == "用户不存在") {
+                      that.errUser = true
+                    } else if (data.Message == "密码输入错误") {
+                      that.errPass = true
+                      that.userPass = ""
+                      that.userCode = ""
+                    }
+
+                    that.openMessAge(that.errText)
+                    that.indentyajax()
+                  } else {
+                    that.openMessAge("获取地址失败，请刷新页面后重试")
+                  }
+                }
+              })
+          }
+        }
+
+      },
+      lastLoginInfo() {
+        let that = this;
+        let url = "Api/User/UserLoginLogInfo";
+        let cxData = {
+          StartTime: timeFormatProcessing(),
+          EndTime: timeFormatProcessing(0, 1),
+          PIndex: 1,
+          PSize: 2
+        };
+        postAjax(url, cxData).then((data) => {
+          if (data.IsSucess) {
+            this.$store.commit('setLastLogin',data.Data.rows[1].LoginTime)
+          }
+        }).catch(() => {
+          this.loading = false
+        })
+      },
+      // input框获取焦点时隐藏错误提示
+      hideErr() {
+        let that = this
+        that.errCode = false
+        that.errUser = false
+        that.errPass = false
+      },
+      //关闭登录窗口
+      closeLogin() {
+        this.$store.commit('setLoginAfter', false)
+      },
+      //试玩
+      shiwan() {
+        let that = this;
+        postAjax('/api/User/GetTmepUser').then(data => {
+          if (data.IsSucess) {
+            localStorage.setItem('Authorization', "Basic" + " " + data.Data.Token);
+            localStorage.setItem('shiwan', true);
+            getUserInfo();
+            that.$message.success('登录成功，跳转首页中...');
+            setTimeout(() => {
+              that.closeLogin();
+              that.$router.push('/home')
+            }, 1000)
+
+          } else {
+            Message.error(data.Message)
+          }
+        })
+      },
+    }
+    
+  }
+</script>
+<style lang="scss" scoped>
+  /* 登录 */
+  .user_login_box {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 1000px;
+    height: 495px;
+    border-radius: 10px;
+
+    .close_login {
+      position: absolute;
+      top: -22px;
+      right: -22px;
+      width: 60px;
+      height: 60px;
+      z-index: 1;
+      cursor: pointer;
+      border-radius: 50%;
+      box-shadow:-3px 3px 5px 1px rgba(0, 0, 0, 0.5);
+
+      img{
+          width:100%;
+          height:100%;
+          transition: all .3s;
+      }
+
+      &:hover{
+
+        img{
+          transform: rotate(180deg);
+        }
+      }
+    }
+
+    .login_img {
+      width: 450px;
+      height: 450px;
+      box-shadow: 0px 0px 6px 0px rgba(78, 97, 122, 0.5);
+      border-radius: 10px;
+      margin-top: 22px;
+      margin-left: 23px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .login_content {
+      width: 360px;
+      margin-top: 45px;
+      margin-right: 80px;
+
+      .login_title{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:100%;
+        height: 30px;
+        color: #008573;
+        font-size: 26px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        letter-spacing: 5px;
+        
+        span{
+          display: flex;
+          align-items: center;
+          margin-right: 10px;
+          margin-top: 3px;
+        }
+      }
+
+      .user_login_itembox {
+        position: relative;
+        padding-bottom: 15px;
+
+        .iconfont{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          top: 13px;
+          left: 20px;
+          width:23px;
+          color: #999;
+          z-index: 2;
+
+          img{
+            width:100%;
+            height:100%;
+          }
+
+        }
+
+        input {
+          position: relative;
+          display: inline-block;
+          width: 100%;
+          height: 54px;
+          padding-left: 52px;
+          outline: none;
+          font-size: 16px;
+          line-height: 42px;
+          border-radius: 10px;
+          z-index: 1;
+
+          &::placeholder {
+              color: #666;
+          }
+        }
+
+        p{
+          padding: 6px 0px;
+          text-align: left;
+          padding-left: 130px;
+          color: #c93030;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          font-size: 14px;
+          display: none;
+        }
+
+        /* 验证码 */
+        &.indenty_code{
+
+          input {
+            padding: 3px 10px;
+            line-height: 30px;
+          }
+
+          .indenty_code_box {
+            position: relative;
+
+            input {
+              width: 100%;
+              border-radius: 10px;
+              padding-right: 100px;
+              padding-left: 52px;
+            }
+
+            .indenty_code_btn {
+              position: absolute;
+              top: 9px;
+              right: 9px;
+              width: 84px;
+              height: 36px;
+              cursor: pointer;
+              z-index: 2;
+
+              img {
+                width: 100%;
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .return__error p {
+        display: block;
+    }
+
+    .user_login_btnbox {
+      text-align: center;
+      margin-top:20px;
+
+      button {
+        width: 100%;
+        height: 50px;
+        background-color: #008573;
+        border-radius: 10px;
+        border: none;
+        font-size: 18px;
+        color: #ffffff;
+        cursor: pointer;
+
+        &:hover {
+          opacity: .9;
+        }
+      }
+
+      &.shiwan{
+        margin-top:15px;
+
+        button{
+          background-color: #C19F63;
+        }
+      }
+    }
+
+    .user_login_goto {
+      text-align: center;
+      width: 100%;
+      font-size: 14px;
+      margin-top: 15px;
+      color: #707b83;
+      overflow: hidden;
+      margin-bottom: 9px;
+
+      .user_goto_other {
+        color: #707b83;
+
+        &:hover {
+          text-decoration: underline;
+          color: #167e77;
+        }
+      }
+
+      span {
+        margin: 0 5px;
+      }
+    }
+    .user_login_box{
+
+      .el-button {
+        display: none
+      }
+    }
+
+    .el-carousel__item {
+      font-size: 0;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+  }   
+</style>

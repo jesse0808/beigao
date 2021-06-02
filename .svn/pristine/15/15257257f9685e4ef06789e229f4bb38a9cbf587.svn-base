@@ -1,0 +1,839 @@
+<template>
+  <!-- 重庆时时彩 -->
+  <div class="allgame-mainbox mark_six">
+    <!-- 收藏 -->
+    <collectList v-if="isGetCollect"></collectList>
+    <div class="box_center">
+      <!-- 玩法内容 -->
+      <div class="gametype_center">
+        <!--玩法类型-->
+        <div class="official_type">官方玩法</div>
+        <!-- 中奖信息 -->
+        <div class="title_box box_h">
+            <div class="title_logo">
+                <img :src="logoImgUrl" alt=""/>
+            </div>
+            <!--投注时间-->
+            <div class="title_countdown_box">
+                <h3 class="racing_titles_box">第<span>{{NowLssue}}</span>期<br>投注倒计时</h3>
+                <div>
+                    <countDown :time="countDown" @upTimeData="upTimeData"/>
+                </div>
+            </div>
+            <!-- 往期中奖号码 -->
+            <div class="title_countdown_box">
+                <h3>第<span>{{LastLssue}}</span>期<br>开奖号码</h3>
+                <!-- 中奖号码盒子 -->
+                <div class="countdown_con">
+                    <lhcOpenNum :data-array="openNumData"></lhcOpenNum>
+                </div>
+            </div>
+            <!--走势、收藏-->
+            <div class="trendCollect">
+              <div class="trend">
+                <router-link :to="{name:'Trendmap',query:{id:$route.query.id,index:$route.query.index}}" target="_blank">
+                  <div class="trendCollect_img"><img src="../../assets/img/gametype/trend.png"></div>
+                  <div class="trendCollect_title">开奖走势</div>
+                </router-link>
+              </div>
+              <collect :lgId="$route.query.id"></collect>
+            </div>
+        </div>
+        <div class="content_info">
+          <div class="content_box_left">
+            <div class="choice_num">
+              <div class="content_nav">
+                <template>
+                  <ul class="content_nav_top box_h">
+                    <li><a :class="selectNav === 0?'select_a':''" :data-id="0" @click="topNavSwitch(0)">特码</a></li>
+                    <li><a :class="selectNav === 1?'select_a':''" :data-id="1" @click="topNavSwitch(1)">正特</a></li>
+                    <li><a :class="selectNav === 2?'select_a':''" :data-id="2" @click="topNavSwitch(2)">半波</a></li>
+                    <li><a :class="selectNav === 3?'select_a':''" :data-id="3" @click="topNavSwitch(3)">生肖</a></li>
+                    <li><a :class="selectNav === 4?'select_a':''" :data-id="4" @click="topNavSwitch(4)">尾数</a></li>
+                    <li><a :class="selectNav === 5?'select_a':''" :data-id="5" @click="topNavSwitch(5)">总分</a></li>
+                    <li><a :class="selectNav === 6?'select_a':''" :data-id="6" @click="topNavSwitch(6)">不中</a></li>
+                  </ul>
+                </template>
+                <div class="content_nav_two" v-if="navAllList[selectNav].length>0" >
+                  <a href="javascript:void(0)"
+                    :class="[selectLpId == item.LpId ? 'select_style':'no_select_style']"
+                    @click="selectTwoNav(item)" v-for="(item,index) in navAllList[selectNav]" :key="index">{{item.Alias}}</a>
+                </div>
+              </div>
+              <div v-if="selectNav === 0" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                当期开出最后一位号码为特码。当开出特码与投注号码一致，即为中奖
+              </div>
+              <div v-if="selectNav === 1" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                当期开出之前6个号码叫正特。第一号为正特1，依次叫正特2、正特3……正特6，不以大小排序。当开出正特1与投注号码一致、即视为中奖（其余情况则视为不中奖）。
+              </div>
+              <div v-if="selectNav === 2" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                以特码色波和特码单双大小为一个投注组合。当开出的特码出现在其投注组合中，即视为中奖（其余情况则视为不中奖）。若开出特码为49号时，所有投注半波任意一个组合接会被视为和局，并返回全部本金（不派发返点）。
+              </div>
+              <div v-if="selectNav === 4" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                指7个开奖号码中含有所属尾数的一个或多个号码，不论同尾数的号码出现一个或多个，派彩只派一次。
+              </div>
+              <div v-if="selectNav === 5" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                所有7个开奖号码的数值总和叫做总分。
+              </div>
+              <div v-if="selectLpId === 248" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                当期开出的最后一位号码为特码。当开出特码与投注号码一致、即视为中奖（其余情况则视为不中奖）。
+              </div>
+              <div v-if="selectLpId === 249" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                指开出的7个开奖号码中含有投注所属生肖的一个或多个号码，即视为中奖，不论同生肖的号码出现一个或多个，派彩只派一次。
+              </div>
+              <div v-if="selectLpId === 250" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                最少选择6个生肖为一注，以特码和生肖为一个投注组合。当开出的特码出现在其投注组合中，即视为中奖（其余情况视为不中奖）。
+              </div>
+              <div v-if="selectLpId === 253" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                  所投注的每五个号码为一注，每注的五个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5则中奖，而投1,2,3,4,6则不中奖。
+              </div>
+              <div v-if="selectLpId === 254" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                  所投注的每六个号码为一注，每注的六个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13则中奖，而投1,2,3,4,5,6则不中奖。
+              </div>
+              <div v-if="selectLpId === 255" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                  所投注的每七个号码为一注，每注的七个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13,14则中奖，而投1,2,3,4,5,6,13则不中奖。
+              </div>
+              <div v-if="selectLpId === 256" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                  所投注的每八个号码为一注，每注的八个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13,14,15则中奖，而投1,2,3,4,5,6,13,14则不中奖。
+              </div>
+              <div v-if="selectLpId === 257" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                  所投注的每九个号码为一注，每注的九个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13,14,15,16则中奖，而投1,2,3,4,5,6,13,14,15则不中奖。
+              </div>
+              <div v-if="selectLpId === 258" class="six_hint">
+                <i class="el-icon-warning-outline"></i>
+                  所投注的每十个号码为一注，每注的十个号码中如果没有当期开奖的所有7个号码中的任意一个，则视为中奖；否则视为不中奖。例如开奖号码是：6,7,8,9,10,11,12，若你投的是1,2,3,4,5,13,14,15,16,17则中奖，而投1,2,3,4,5,6,13,14,15,16则不中奖。
+              </div>
+              <template v-if="(selectNav === 0 || selectNav === 1) && hackReset">
+                <tema @returnSelectNum="selectNum" @returnResetStatus="resetStatus = false" :note-money="noteNum"
+                    :shen-xiao-number="shenXiaoNumber" :reset-fun="resetStatus" :play-list="playInfo"></tema>
+              </template>
+              <template v-if="selectNav === 2 && hackReset">
+                <bb @returnSelectNum="selectNum" @returnResetStatus="resetStatus = false" :note-money="noteNum"
+                    :reset-fun="resetStatus" :play-list="playInfo"></bb>
+              </template>
+              <template v-if="selectNav === 3 && hackReset">
+                <sx @returnSelectNum="selectNum" :note-money="noteNum" @returnResetStatus="resetStatus = false"
+                    :reset-fun="resetStatus" :play-list="playInfo"></sx>
+              </template>
+              <template v-if="selectNav === 4 && hackReset">
+                <ws @returnSelectNum="selectNum" :note-money="noteNum" @returnResetStatus="resetStatus = false"
+                    :reset-fun="resetStatus" :play-list="playInfo"></ws>
+              </template>
+              <template v-if="selectNav === 5 && hackReset">
+                <zf @returnSelectNum="selectNum" :note-money="noteNum" @returnResetStatus="resetStatus = false"
+                    :reset-fun="resetStatus" :play-list="playInfo"></zf>
+              </template>
+              <template v-if="selectNav === 6 && hackReset">
+                <bz @returnSelectNum="selectNum" :note-money="noteNum" @returnResetStatus="resetStatus = false"
+                    :reset-fun="resetStatus" :play-list="playInfo"></bz>
+              </template>
+              <sum-item ref="sumPay" :noteNumber="noteNumber" :noteMoney="noteMoney"  @returnSelectNum="disposeNum" @returnClearFun="clearDataNum" @returnBetFun="betFunction"></sum-item>
+            </div>
+          </div>
+          <div class="content_box_right">
+            <history :history-data="openNumberData"></history>
+          </div>
+        </div>
+      </div>
+      <!-- 表格 -->
+      <tablelist :tablist="tableList" @setinfo="infoData" :tracklist="trackList"
+                :indexs="GameIndex"></tablelist>
+      <!-- 悬浮组件 -->
+      <flextab :gameType=1 :id="GameIds" :indexs="GameIndex"></flextab>
+      <!-- 倒计时结束后显示 -->
+      <openResult v-if="openFrame" :redata="openDataRe" @hidere="hideOpenRe"></openResult>
+      <!-- 投注成功 -->
+      <betSuccess v-if="betSuccess" @bethide="hideBetSuc"></betSuccess>
+      <!-- 详情弹框 -->
+      <detali :getinfo="infoList" ref="dragDetali" @list="ListAjax" @getinfo="getUserInfo"></detali>
+    </div>
+  </div>
+</template>
+
+<script>
+  //系统设置
+  import {SysKey} from "../../util/sysconfig"
+  import {getAjax, postAjax} from "../../util/ajax";
+  import {getUserInfo} from "../../util/getdata";
+  //收藏
+  import collect from '../conmon/collect'
+  //收藏列表
+  import collectList from '../conmon/collectList'
+  // 秒数转化
+  import {SecondToHHSSMM} from "../../assets/js/changeTime.js"
+  import countDown from "../conmon/countDown";
+  import tema from "../lhc/tema";
+  import bb from "../lhc/bb";
+  import bz from "../lhc/bz";
+  import sx from "../lhc/sx";
+  import ws from "../lhc/ws";
+  import zf from "../lhc/zf";
+  import sumItem from "../lhc/sumItem";
+  import history from "../conmon/history";
+  import betSuccess from "../Elasticframe/Betting_success"
+  import tablelist from "../Subcomponents/Tablelist"
+  // 悬浮组件
+  import flextab from "../Subcomponents/flex_tab"
+  // 详情弹框
+  import detali from "../Elasticframe/infodetails"
+  // 倒计时结束后显示
+  import openResult from "../Elasticframe/Number_change"
+  import lhcOpenNum from "../lhc/lhcopennum";
+
+  export default {
+    name: "markSix",
+    // 刷新页面
+    inject: ["reload"],
+    components: {
+      countDown,
+      tema,
+      bb,
+      bz,
+      sx,
+      ws,
+      zf,
+      history,
+      sumItem,
+      betSuccess,
+      tablelist,
+      flextab,
+      detali,
+      openResult,
+      lhcOpenNum,
+      collect,
+      collectList
+    },
+    data() {
+      return {
+        logoImgUrl: '',//彩票图标
+        imgUrl: SysKey("ImgServerUrl").SysValue, //图片地址前缀
+        NowLssue: '',//投注期号
+        dirNowLssue: '',//当前投注期号
+        LastLssue: '',//投注前一期开奖期号
+        countDown: {},//剩余开奖时间
+        openDataRe: {}, //开奖弹框数据
+        openFrame: false, //倒计时结束弹框
+        LastExplain: [],//开奖生效
+        GameIds: parseInt(this.$route.query.id), //游戏ID
+        GameIndex: this.$route.query.index.toString(),  //游戏种类
+        openNumberData: [],//近期开奖数据
+        navAllList: [],//玩法配置
+        selectNav: 0,//游戏选中状态，默认特码：0
+        selectLpId: 0,//选中得玩法ID
+        noteNumber: 0,//投注注数
+        noteMoney: '0.000',//投注金额
+        noteNum: 0,//输入投注金额或者快捷选择投注金额后返回得金额
+        resetStatus: false,//清除选号状态
+        betArrData: [],//投注信息
+        playInfo: {},//当前玩法信息
+        betSuccess: false,//投注成功弹窗显示状态
+        tableList: [], //传入表单子组件
+        trackList: [], //出入表单子组件
+        infoList: {}, //接受子组件的值
+        hackReset: true,//强制刷新子组件
+        timer: null, //设置定时器
+        showOpen: [
+          {
+            selectStatus: false,//0未选中，选中
+          },
+          {
+            selectStatus: false,//0未选中，选中
+          },
+          {
+            selectStatus: false,//0未选中，选中
+          },
+          {
+            selectStatus: false,//0未选中，选中
+          },
+          {
+            selectStatus: false,//0未选中，选中
+          },
+          {
+            selectStatus: false,//0未选中，选中
+          },
+          {
+            selectStatus: false,//0未选中，选中
+          }
+        ],
+        initStatus: true, //执行一次的状态
+        openNumData: {},
+        shenXiaoNumber: [],//生肖对应的数字 因为每年生肖对应的数字都不一样 因为从服务端 生肖玩法中 PlayContentList 获取生肖对应的数字 已供快速选择栏中正确的选中生肖对应的数字
+        isGetCollect:false,//是否加载收藏数据
+      }
+    },
+    created() {
+      //获取当前期号信息
+      this.timeAjax()
+      // 获取彩票图标
+      this.getGameIcon()
+      //获取近期开奖数据
+      this.PhaseAjax()
+      //获取玩法配置
+      this.gameAjax()
+      // 请求已投注数据
+      this.ListAjax()
+      //检查是否有收藏游戏
+      this.checkCollect()
+    },
+    watch: {
+      $route() {
+        // 每次离开当前界面时，清除监听
+        clearTimeout(this.timer);
+        this.timer = null
+        //获取当前期号信息
+        this.timeAjax()
+        // 获取彩票图标
+        this.getGameIcon()
+        //获取近期开奖数据
+        this.PhaseAjax()
+        //获取玩法配置
+        this.gameAjax()
+        // 请求已投注数据
+        this.ListAjax()
+      },
+      navAry(val) {
+        this.getGameIcon()
+      },
+      "$store.state.isCollectList"(){
+        this.checkCollect();
+      }
+    },
+    computed: {
+      navAry() {
+        return this.$store.state.navAry //导航栏数据
+      },
+      userBalace() {
+        return this.$store.state.userInfo.Balance
+      }
+    },
+    methods: {
+      rebuileComponents() {
+        // 销毁子标签
+        this.hackReset = false;
+        // 重新创建子标签
+        this.$nextTick(() => {
+          this.hackReset = true;
+        });
+      },
+      test(t, e) {
+        if (t < e) return 0;
+        let i = t, n = t - e, a = t - e, s = t, r = t - e
+        if (t === e)
+          n = i = 1;
+        else {
+          for (let l = 0; l < a - 1; l++) {
+            i *= s -= 1;
+            n *= r -= 1;
+          }
+
+        }
+        return Math.round(i / n);
+      },
+      //一键投注
+      betFunction() {
+        let that = this
+        let LpId = that.playInfo.LpId
+        let mixNum = {
+          '250': 6,
+          '253': 5,
+          '254': 6,
+          '255': 7,
+          '256': 8,
+          '257': 9,
+          '258': 10
+        }
+        if (LpId == 250 || LpId == 253 || LpId == 254 || LpId == 255 || LpId == 256 || LpId == 257 || LpId == 258) {
+          if (that.betArrData.length < mixNum[LpId]) {
+            that.openMessAge("请选择号码")
+            return false
+          }
+        }
+        let url = "Api/Bet/AddEttmOrder?" + "lssue=" + that.dirNowLssue + "&LgId=" + that.GameIds
+        if (that.betArrData.length < 1) {
+          if (that.noteNum < 1) {
+            that.openMessAge("请输入投注金额")
+          } else {
+            that.openMessAge("请选择号码")
+          }
+        } else if (Number(that.noteMoney) > Number(that.userBalace)) {
+          that.openMessAge("您的可用余额不足，请重新选择")
+        } else {
+          let PlayName = that.playInfo.Name
+          let order = []
+          if (LpId == 250 || LpId == 253 || LpId == 254 || LpId == 255 || LpId == 256 || LpId == 257 || LpId == 258) {
+            let content = []
+            that.betArrData.forEach(item => {
+              content.push(item.text)
+            })
+            let count = this.test(that.betArrData.length, mixNum[LpId])
+            order = [
+              {
+                BetContent: content.join(),
+                BetMoney: Math.floor(that.noteNum * count),
+                Count: count,
+                LpId: LpId,
+                PlayName: PlayName
+              }
+            ]
+          } else {
+            order = that.betArrData.map(item => {
+              return {
+                BetMoney: item.num,
+                BetContent: item.text,
+                LpId: LpId,
+                PlayName: PlayName
+              }
+            })
+          }
+          that._initOpenLoading()
+          postAjax(url, order, 1)
+            .then((data) => {
+              that._initCloseLoading()
+              if (data.IsSucess == true && data.Data.SuccessCount > 0) {
+                that.showBetSuc()
+                getUserInfo()
+                that.resetStatus = true
+                that.$refs.sumPay.clearFun()
+                // 刷新表单数据
+                that.ListAjax()
+              } else if (data.IsSucess === false) {
+                that.openMessAge(data.Message)
+              }
+            })
+            .then(() => {
+              that._initCloseLoading()
+            })
+            .catch(() => {
+              that.openMessAge("网络出现异常，请刷新后重试")
+              that._initCloseLoading()
+            })
+        }
+      },
+      //更改清除状态
+      clearDataNum() {
+        this.resetStatus = true
+      },
+      //计算选中的金额
+      selectNum(arr) {
+        let sumNum = 0
+        let num = 0
+        let id = this.playInfo.LpId
+        if (id == 250 || id == 253 || id == 254 || id == 255 || id == 256 || id == 257 || id == 258) {
+          let mixNum = {
+            '250': 5,
+            '253': 4,
+            '254': 5,
+            '255': 6,
+            '256': 7,
+            '257': 8,
+            '258': 9
+          }
+          sumNum = arr.length > mixNum[id] ? this.test(arr.length, (mixNum[id] + 1)) : 0
+          num = Math.floor(sumNum * this.noteNum)
+        } else {
+          sumNum = arr.length
+          arr.forEach(item => {
+            num += item.num
+          })
+        }
+        this.betArrData = arr
+        this.noteNumber = sumNum
+        this.noteMoney = num.toFixed(3)
+      },
+      //选中得二级导航
+      selectTwoNav(obj) {
+        this.selectLpId = obj.LpId
+        this.playInfo = obj
+        this.resetStatus = true
+        this.$refs.sumPay.clearFun()
+        this.rebuileComponents()
+        this.selectNum([])
+      },
+      //游戏玩法选择
+      topNavSwitch(num) {
+        this.selectNav = num
+        this.resetStatus = true
+        this.$refs.sumPay.clearFun()
+        this.selectNum([])
+        if (Number(num) === 1 || Number(num) === 3 || Number(num) === 6) {
+          this.selectLpId = this.navAllList[num][0].LpId
+          this.playInfo = this.navAllList[num][0]
+          this.rebuileComponents()
+        } else {
+          this.selectLpId = this.navAllList[num].LpId
+          this.playInfo = this.navAllList[num]
+          this.rebuileComponents()
+        }
+      },
+      // 获取彩票图标
+      getGameIcon() {
+        this.navAry.forEach(item => {
+          item.LotteryList.forEach(e => {
+            if (e.LgId == this.GameIds) {
+              this.logoImgUrl = ''
+              this.logoImgUrl = this.imgUrl + e.WebIco
+            }
+          })
+        })
+      },
+      upTimeData() {
+        if (this.NowLssue) {
+          this.$notify({
+            title: '温馨提示',
+            type: 'warning',
+            showClose: false,
+            message: this.NowLssue + ' 已停止销售,请注意当前期号',
+            position: 'bottom-right'
+          });
+        }
+        this.timeAjax();
+      },
+      //请求投注期号
+      timeAjax() {
+        let that = this
+        that.countDown = {
+          state: false
+        }
+        let url = "Api/Lssue/GetBetLssueInfo"
+        let data = {
+          lgId: that.GameIds
+        }
+        getAjax(url, data)
+        // 请求成功后赋值
+          .then(function (data) {
+            that.NowLssue = data.Data.NowLssueFormat
+            that.LastLssue = data.Data.LastLssueFormat
+            that.dirNowLssue = data.Data.NowLssue //当前期号
+            that.openTime = data.Data.LastLssue  //开奖期号
+            that.countDown = {
+              time: data.Data.NowLssueRemainTime,
+              state: true
+            }
+            that.NowTime = SecondToHHSSMM(data.Data.NowLssueRemainTime)
+            if (data.Data.LastOpenNumber == null || data.Data.LastOpenNumber == "") {
+              that.openNumData = {
+                state: false
+              }
+              setTimeout(() => {
+                that.getResultNum()
+              }, 5000)
+            } else {
+              that.openNumData = {
+                state: true,
+                numArr: data.Data.LastOpenNumber.split(','),
+                animalArr: data.Data.LastExplain.split('')
+              }
+            }
+          }).catch(() => {
+          that.openMessAge("网络请求出现错误，请刷新页面后重试")
+        })
+      },
+      // 获取开奖号码
+      getResultNum() {
+        let that = this
+        let url = "Api/Lssue/GetLssueOpenInfo?lgId=" + that.GameIds + "&lssue=" + that.openTime
+        getAjax(url).then(function (data) {
+          window.lgText = data.Data.lgText
+          if (data.Data.OpenNumber == null || data.Data.OpenNumber == "") {
+            that.timer = setTimeout(() => {
+              that.getResultNum()
+            }, 5000)
+          } else {
+            // 显示弹框
+            that.openGifClass = "icon"
+            that.openDataRe["LastOpenNumber"] = data.Data.OpenNumber.split(',')
+            that.openDataRe["LastExplain"] = data.Data.Explain.split('')
+            that.openNumData = {
+              state: true,
+              numArr: data.Data.OpenNumber.split(','),
+              animalArr: data.Data.Explain.split('')
+            }
+            that.openDataRe["Time"] = that.LastLssue
+            that.openDataRe["Name"] = data.Data.lgText
+            that.openFrame = true
+            // 清除倒计时
+            clearTimeout(that.timer)
+            that.timer = null
+            // 请求近5期期号数据
+            that.PhaseAjax()
+            // 请求表单数据
+            that.ListAjax()
+            // 请求用户数据
+            that.getUserInfo()
+          }
+        }).catch(() => {
+          that.openMessAge("网络请求出现错误，请刷新页面后重试")
+        })
+      },
+      // 请求玩法数据
+      gameAjax() {
+        let that = this
+        let getPlayList = JSON.parse(window.sessionStorage.getItem("2playList" + that.GameIds))
+        if (getPlayList) {
+          that.setGameNav(getPlayList)
+          return false
+        }
+        let url = "Api/Lp/GetPlayList?lpId=" + that.GameIds + "&pattern=2"
+        this._initOpenLoading(false)
+        getAjax(url).then(function (data) {
+          if (data.IsSucess) {
+            that.setGameNav(data.Data)
+            window.sessionStorage.setItem("2playList" + that.GameIds, JSON.stringify(data.Data))
+            that.loading.close()
+          }
+        }).catch(() => {
+          this.loading.close()
+          this.openMessAge("网络出现异常，请刷新后重试")
+        })
+      },
+      //玩法设置
+      setGameNav(arr) {
+        this.navAllList.push(arr[0], [...arr.slice(1, 7)], arr[7], [...arr.slice(8, 11)], arr[11], arr[12], [...arr.slice(13)])
+        this.playInfo = this.navAllList[0]
+        let ts = this.navAllList[3][0].PlayContentList;//查看api数据结构找到包含生肖对应数字的玩法内容列表
+        ts.forEach(data => {
+          let arr = data.Content.split('|'); //0生肖 1对应数字
+          let narr = [];
+          arr[1].split(',').forEach(r => {
+            narr.push(Number(r))
+          });
+          this.shenXiaoNumber.push({'text': arr[0], 'numArr': narr,selectStatus:false})
+        });
+       // console.log(this.shenXiaoNumber)
+      },
+      //返回球的颜色
+      returnClass(str) {
+        let num = Number(str)
+        if (num === 1 || num === 2 || num === 7 || num === 8 || num === 12 || num === 13 || num === 18 || num === 19 || num === 23 || num === 24 || num === 29 || num === 30 || num === 34 || num === 35 || num === 40 || num === 45 || num === 46) {
+          return 'red_bo'
+        }
+        if (num === 3 || num === 4 || num === 9 || num === 10 || num === 14 || num === 15 || num === 20 || num === 25 || num === 26 || num === 31 || num === 36 || num === 37 || num === 41 || num === 42 || num === 47 || num === 48) {
+          return 'blue_bo'
+        }
+        if (num === 5 || num === 6 || num === 11 || num === 16 || num === 17 || num === 21 || num === 22 || num === 27 || num === 28 || num === 32 || num === 33 || num === 38 || num === 39 || num === 43 || num === 44 || num === 49) {
+          return 'greed_bo'
+        }
+      },
+      // 显示提示框
+      openMessAge(data) {
+        this.$message.error(data);
+      },
+      _initOpenLoading(isFlag = true) {
+        this.loading = this.$loading({
+          lock: true,
+          text: `${isFlag ? '投注中' : '加载中'}...`,
+          spinner: 'el-icon-loading',
+          background: 'rgba(255, 255, 255, 0.4)'
+        })
+      },
+      _initCloseLoading() {
+        this.loading.close()
+      },
+      // 获取近期开奖数据
+      PhaseAjax() {
+        let that = this;
+        let url = "Api/Lssue/GetLssueHistoryInfo"
+        let data = {
+          lgId: that.GameIds
+        }
+        getAjax(url, data)
+          .then(function (data) {
+            if (data.IsSucess) {
+              if (data.Data != null) {
+                that.openNumberData = [...data.Data];
+              }
+            }
+          })
+      },
+      //处理返回的投注金额
+      disposeNum(num) {
+        this.noteNum = num
+      },
+      // 显示投注成功框
+      showBetSuc() {
+        let that = this
+        this.betSuccess = true
+        setTimeout(that.hideBetSuc, 2000);
+      },
+      hideBetSuc() {
+        this.betSuccess = false
+      },
+      // 接受子组件的值
+      infoData(data, num) {
+        let that = this
+        let index = num  //1为普通订单，2位追号订单
+        let obj = data
+        let ptid = data.OrderNumber  //普通订单号
+        let zhid = data.ZhNumber     //追号订单号
+        //获取普通投注数据
+        if (index == 1) {
+          let url = "Api/Order/GetDetailByOrderNumber?" + "number=" + ptid + "&type=" + index
+          postAjax(url)
+            .then(function (data) {
+              if (data.IsSucess) {
+                that.infoList = data.Data[0]
+              } else {
+                that.openMessAge("获取信息错误，请重试")
+                return false
+              }
+            })
+            .then(function () {
+              that.$refs.dragDetali.dialogTableVisible = true
+            })
+            .catch(() => {
+              that.openMessAge("网路异常，请刷新后重试")
+            })
+        }
+        //追号记录 详情
+        else if (index == 2) {
+          let url = "Api/Order/GetDetailByOrderNumber?" + "number=" + zhid + "&type=" + index
+          postAjax(url)
+            .then(function (data) {
+              if (data.IsSucess) {
+                that.zhList = data.Data
+                let allmoney = 0 //总金额
+                let ykmoney = 0  //盈亏金额
+                //计算总金额
+                data.Data.forEach(item => {
+                  allmoney += item.BetMoney
+                  ykmoney += item.WinBonus - item.BetMoney
+                })
+                //添加到第一个数组
+                data.Data[0]["allMoney"] = allmoney
+                data.Data[0]["ykMoney"] = ykmoney
+              } else {
+                that.openMessAge("获取信息错误，请重试")
+                return false
+              }
+            })
+            .then(function () {
+              that.$refs.dragZhDetali.dialogVisible = true
+            })
+            .catch(() => {
+              that.openMessAge("网路异常，请刷新后重试")
+            })
+        }
+      },
+      // 投注数据
+      // 扩展一个字段，isFlag为true显示投注中,false为默认加载中
+      ListAjax() {
+        let that = this
+        let url = "api/OrderReport/BetHistory" + "?lgid=" + that.GameIds
+        postAjax(url)
+          .then(function (data) {
+            if (data.IsSucess) {
+              that.tableList = data.Data;
+            }
+          })
+        // 追号数据
+        let url2 = "api/OrderReport/ZHHistory?lgid=" + that.GameIds
+        postAjax(url2)
+          .then(function (data) {
+            if (data.IsSucess) {
+              that.trackList = data.Data
+            }
+          })
+      },
+      //请求用户数据
+      getUserInfo() {
+        getUserInfo()
+      },
+      // 关闭开奖弹框
+      hideOpenRe() {
+        this.openFrame = false
+        this.timeNum = 0
+      },
+      //检查是否有收藏
+      checkCollect(){
+        getAjax("/api/User/GetUserFavoritesLotteryList").then(data=>{
+          if(data.Data.length===0){
+            this.isGetCollect=false;
+          }else{
+            this.isGetCollect=true;
+          }
+        })
+      },
+    },
+    beforeDestroy() {
+      // 每次离开当前界面时，清除监听
+      clearTimeout(this.timer);
+      window.removeEventListener('focus', this.timeAjax);
+    },
+    mounted() {
+      window.addEventListener('focus', this.timeAjax);
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  .mark_six {
+    padding-bottom: 20px;
+
+    .countdown_con{
+      margin-top: 3px;
+
+      .lhc_num_style{
+        width: auto;
+      }
+    }
+    
+    .six_hint {
+      display: flex;
+      justify-content: left;
+      width: 780px;
+      margin: 0 auto;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #F97827;
+
+      i{
+        font-size: 18px;
+        margin-top: 1px;
+        margin-right: 5px;
+      }
+    }
+
+    .six_content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      .six_left {
+        width: 918px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px 0 #a7a7a7;
+
+        .sum_class {
+          padding-left: 20px;
+          font-size: 12px;
+          color: #626262;
+
+          strong {
+            color: #ff680a;
+          }
+        }
+      }
+
+      .six_right {
+        width: 282px;
+        padding-top: 43px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px 0 #a7a7a7;
+      }
+    }
+  }
+</style>
